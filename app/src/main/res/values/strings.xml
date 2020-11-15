@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SurveyApp</string>
+    <string name="make_modifications">Make Modifications</string>
+    <string name="view_surveys">View Surveys</string>
+    <string name="home">Home</string>
+    <string name="create_survery">Create Survery</string>
+    <string name="surveyor_name">Surveyor Name</string>
 </resources>
