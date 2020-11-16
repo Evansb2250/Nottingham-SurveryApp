@@ -5,4 +5,9 @@
     <string name="home">Home</string>
     <string name="create_survery">Create Survery</string>
     <string name="surveyor_name">Surveyor Name</string>
+    <string-array name="search_category">
+        <item>SOR CODE</item>
+        <item>Keyword</item>
+        <item>Category</item>
+    </string-array>
 </resources>
