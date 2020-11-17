@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".SORActivity">
 
-    <include layout="@layout/content_s_o_r" />
+    <include
+        layout="@layout/content_s_o_r"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="center" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
