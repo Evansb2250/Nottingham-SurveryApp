@@ -3,12 +3,37 @@
     <string name="make_modifications">Make Modifications</string>
     <string name="view_surveys">View Surveys</string>
     <string name="home">Home</string>
-    <string name="create_survery">Create Survery</string>
+    <string name="create_survey">Create Survey</string>
     <string name="surveyor_name">Surveyor Name</string>
     <string-array name="search_category">
         <item>SOR CODE</item>
         <item>Keyword</item>
         <item>Category</item>
+    </string-array>
+
+    <string name="c28">1.Daywork Labour - Electrician</string>
+    <string name="c29">2.Disconnect electric cooker.</string>
+    <string name="c30">3.De-commission intruder alarm</string>
+    <string name="c31">4.Supply and Fit mains isolator/PME</string>
+    <string name="c32">5.Fit insurance lock</string>
+    <string name="c33">6.Renew cylinder lock</string>
+    <string name="c35">7.Fix only lock</string>
+    <string name="c36">8.Double glazed unit up to 0.50m2</string>
+    <string name="c37">9.Double glazed unit up to 1.0m2</string>
+    <string name="c40">10.Periodic inspection in void properties</string>
+    <string name="c41">11.installation certification- in conjunction</string>
+    <string name="c42">12.Smoke alarm certificates</string>
+    <string name="c43">13.Check, test and certificate eletrics before repairs</string>
+    <string name="c44">14.Check, test and certificate eletrics after repairs</string>
+    <string name="c45">15.Additional radial circuit</string>
+    <string name="c46">16.Additional lighting circuit</string>
+    <string name="c47">17.Additional ring main</string>
+
+
+    <string-array name="heating_selection">
+        <item>System boiler</item>
+        <item>Combi boiler</item>
+        <item>D heating</item>
     </string-array>
 
     <string-array name="dummy_categories">

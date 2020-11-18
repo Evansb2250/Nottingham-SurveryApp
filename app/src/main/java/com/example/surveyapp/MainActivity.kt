@@ -15,7 +15,10 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener({ v ->
             changeFrame()
         })
+
+
     }
+
 
     fun changeFrame() {
         val intent = Intent(this, CreateSurveyActivity::class.java)
