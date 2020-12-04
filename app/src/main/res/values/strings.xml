@@ -59,4 +59,13 @@
         <item>BK1270</item>
         <item>BK1270</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="HEATING">Heating:</string>
+    <string name="SurveyTypeTxt">Survey Type:</string>
+    <string name="RevenuType">Revenue</string>
+    <string name="CapitalType">Capital</string>
+    <string name="CancelButton">Cancel</string>
+    <string name="NextButton">Next</string>
+    <string name="PriorWorkHeading">Prior Work</string>
 </resources>
