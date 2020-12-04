@@ -11,19 +11,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val button = findViewById<Button>(R.id.createSurveyButtonMain)
-        button.setOnClickListener({ v ->
-            changeFrame()
-        })
 
 
     }
 
 
-    fun changeFrame() {
-        val intent = Intent(this, CreateSurveyActivity::class.java)
-        startActivity(intent)
 
-    }
 
 }

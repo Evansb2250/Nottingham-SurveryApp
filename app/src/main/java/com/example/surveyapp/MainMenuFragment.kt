@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 /**
  * A simple [Fragment] subclass.
- * Use the [SOR_Fragment.newInstance] factory method to
+ * Use the [MainMenuFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SOR_Fragment : Fragment() {
+class MainMenuFragment : Fragment() {
+    // TODO: Rename and change types of parameters
 
 
     override fun onCreateView(
@@ -20,7 +23,7 @@ class SOR_Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_s_o_r_, container, false)
+        return inflater.inflate(R.layout.fragment_main_menu, container, false)
     }
 
 

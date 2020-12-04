@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.surveyapp.CreateSurveyFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    tools:context="com.example.surveyapp.CreateSurveyFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutCSFrag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F1F0F0">
 
         <TableLayout
-            android:id="@+id/tableLayout"
+            android:id="@+id/surveyEntryTable"
             android:layout_width="481dp"
             android:layout_height="270dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,14 +24,14 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/surveyorTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Surveyor name"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName7"
+                    android:id="@+id/nameEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -44,14 +45,14 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/addressTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Address"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName8"
+                    android:id="@+id/addressEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -65,14 +66,14 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/postTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Post Code"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName9"
+                    android:id="@+id/postEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -86,14 +87,14 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView15"
+                    android:id="@+id/phoneNumTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phone number"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName10"
+                    android:id="@+id/phoneNumEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -107,14 +108,14 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/dateTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <EditText
-                    android:id="@+id/editTextTextDate"
+                    android:id="@+id/dateEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -125,34 +126,6 @@
 
         </TableLayout>
 
-        <Button
-            android:id="@+id/nextButton_CS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="140dp"
-            android:text="Next"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button6"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-            app:layout_constraintVertical_bias="0.462" />
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="140dp"
-            android:layout_marginTop="0dp"
-            android:text="Back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/nextButton_CS"
-            app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-            app:layout_constraintVertical_bias="0.464" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
