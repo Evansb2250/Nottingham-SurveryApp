@@ -68,4 +68,11 @@
     <string name="CancelButton">Cancel</string>
     <string name="NextButton">Next</string>
     <string name="PriorWorkHeading">Prior Work</string>
+    <string name="Isolator_txt">Isolator</string>
+    <string name="Rewire_txt">Re-Wire</string>
+    <string name="meterTxt">Meter Issues?</string>
+    <string name="HeatingTxt">Heating?</string>
+    <string name="FastTrackingTxt">Fast Track?</string>
+    <string name="glassText">Glass?</string>
+    <string name="altroTxt">Altro?</string>
 </resources>
