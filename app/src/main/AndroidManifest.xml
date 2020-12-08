@@ -10,17 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SurveyApp">
-        <activity android:name=".CreateSurveyp2Activity"></activity>
         <activity
-            android:name=".SORActivity"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".CreateSurveyActivity"
-            android:screenOrientation="landscape" />
+            android:name=".SurveyActivity"
+            android:screenOrientation="landscape">
+
+        </activity>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape">
-            <intent-filter>
+
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

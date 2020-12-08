@@ -2,26 +2,22 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
-    tools:context="com.example.surveyapp.fragments.MainMenuFragment">
+    android:fillViewport="true">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/constraintLayoutMMFrag">
+    <data>
 
-        <Button
-            android:id="@+id/createSurveyButtonMain"
-            android:layout_width="265dp"
-            android:layout_height="42dp"
-            android:text="@string/create_survey"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.222" />
+        <variable
+            name="mainMenu"
+            type="com.example.surveyapp.fragments.MainMenuFragment" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutMMFrag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textView"
@@ -38,17 +34,6 @@
             app:layout_constraintVertical_bias="0.022" />
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="265dp"
-            android:layout_height="42dp"
-            android:text="@string/view_surveys"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/createSurveyButtonMain"
-            app:layout_constraintVertical_bias="0.103" />
-
-        <Button
             android:id="@+id/button3"
             android:layout_width="265dp"
             android:layout_height="42dp"
@@ -56,8 +41,34 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/goToViewSurveyButton"
             app:layout_constraintVertical_bias="0.111" />
+
+        <Button
+            android:id="@+id/goToViewSurveyButton"
+            android:layout_width="265dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/view_surveys"
+            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createSurveyButtonMain"
+            app:layout_constraintVertical_bias="0.103" />
+
+        <Button
+            android:id="@+id/createSurveyButtonMain"
+            android:layout_width="265dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/create_survey"
+            app:layout_constraintBottom_toTopOf="@+id/goToViewSurveyButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.222"
+            app:layout_constraintVertical_chainStyle="packed" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -10,6 +10,12 @@
         <item>Keyword</item>
         <item>Category</item>
     </string-array>
+<string-array name="search_surveys_by">
+
+    <item>Survey ID</item>
+    <item>Address</item>
+    <item>Date</item>
+</string-array>
 
     <string name="c28">1.Daywork Labour - Electrician</string>
     <string name="c29">2.Disconnect electric cooker.</string>
@@ -31,6 +37,7 @@
 
 
     <string-array name="heating_selection">
+        <item>None</item>
         <item>System boiler</item>
         <item>Combi boiler</item>
         <item>D heating</item>
@@ -75,4 +82,5 @@
     <string name="FastTrackingTxt">Fast Track?</string>
     <string name="glassText">Glass?</string>
     <string name="altroTxt">Altro?</string>
+    <string name="SearchButton">search</string>
 </resources>

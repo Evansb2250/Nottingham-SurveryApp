@@ -1,4 +1,4 @@
-package com.example.surveyapp
+package com.example.surveyapp.data
 
 class SurveyData {
 

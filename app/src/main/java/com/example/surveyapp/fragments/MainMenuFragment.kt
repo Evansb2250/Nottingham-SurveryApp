@@ -1,11 +1,17 @@
 package com.example.surveyapp.fragments
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.surveyapp.R
+import com.example.surveyapp.SurveyActivity
+import com.example.surveyapp.databinding.FragmentMainMenuBinding
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,11 +26,36 @@ class MainMenuFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_menu, container, false)
+        val binding: FragmentMainMenuBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_main_menu,
+            container,
+            false
+        )
+
+        binding.createSurveyButtonMain.setOnClickListener({
+            changeToSurveyActivity()
+        })
+
+
+        binding.goToViewSurveyButton.setOnClickListener {
+            changeToViewSurveyFragment(it)
+        }
+
+        return binding.root
+    }
+
+    private fun changeToSurveyActivity() {
+        val intent = Intent(activity, SurveyActivity::class.java)
+        requireActivity().startActivity(intent)
+        requireActivity().finish()
+    }
+
+    private fun changeToViewSurveyFragment(it: View) {
+        it.findNavController().navigate(R.id.action_mainMenuFragment_to_viewSurveyFragment)
     }
 
 

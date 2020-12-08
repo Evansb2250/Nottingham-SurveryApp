@@ -8,22 +8,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutCSFrag"
         android:layout_width="match_parent"
-        android:layout_height="492dp"
+        android:layout_height="match_parent"
         android:background="#F1F0F0">
 
         <TableLayout
             android:id="@+id/surveyEntryTable"
-            android:layout_width="481dp"
-            android:layout_height="270dp"
+            android:layout_width="484dp"
+            android:layout_height="229dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.38">
+            app:layout_constraintVertical_bias="0.39">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -132,6 +135,72 @@
 
         </TableLayout>
 
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="401dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="300dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="275dp"
+            android:layout_marginRight="275dp"
+            android:layout_marginBottom="69dp"
+            app:layout_constraintBottom_toTopOf="@+id/surveyEntryTable"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/surveytypeTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingEnd="100dp"
+                    android:paddingRight="100dp"
+                    android:text="@string/SurveyTypeTxt"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="69dp">
+
+
+                <RadioGroup
+                    android:layout_width="301dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/capitalRB"
+                        android:layout_width="87dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/CapitalType" />
+
+                    <RadioButton
+                        android:id="@+id/revenueRB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/RevenuType" />
+
+                </RadioGroup>
+
+            </TableRow>
+
+
+        </TableLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

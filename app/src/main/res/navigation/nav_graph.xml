@@ -3,10 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/createSurveyFragment">
+    app:startDestination="@id/mainMenuFragment">
     <fragment
-        android:id="@+id/createSurveyFragment"
-        android:name="com.example.surveyapp.fragments.CreateSurveyFragment"
-        android:label="fragment_create_survey"
-        tools:layout="@layout/fragment_create_survey" />
+        android:id="@+id/mainMenuFragment"
+        android:name="com.example.surveyapp.fragments.MainMenuFragment"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu">
+        <action
+            android:id="@+id/action_mainMenuFragment_to_viewSurveyFragment"
+            app:destination="@id/viewSurveyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewSurveyFragment"
+        android:name="com.example.surveyapp.fragments.viewSurveyFragment"
+        android:label="viewSurveyFragment" />
 </navigation>
