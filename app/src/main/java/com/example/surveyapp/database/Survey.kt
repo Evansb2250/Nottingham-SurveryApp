@@ -7,9 +7,15 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Survey_table")
 data class Survey(
     @PrimaryKey(autoGenerate = true)
+    //TODO add the column fields and foreign keys
     var surveyId: Long,
     var address: String,
     var postCode: String,
+    var surveyorName: String,
+    var phoneNumber: String,
+    var abestoRemovalDescription: String,
+    //TODO look into creating a date variable
+    var Date: String
 
 
     /*
