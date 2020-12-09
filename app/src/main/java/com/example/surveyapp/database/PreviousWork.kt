@@ -11,12 +11,6 @@ data class PreviousWork(
     var isElectricCookerDisconnected: Boolean,
     var iscookerDecom: Boolean,
     var isSupplyFitToMain: Boolean,
-    var numOfInsuranceFit: Int,
-    var numOfInsuranceLockFit: Int,
-    var numOfCylinderLockRenew: Int,
-    var numOfFixOnlyLock: Int,
-    var numOfDoubleGlazed50: Int,
-    var numOfDouleGlazed1p9: Int,
 
 
     )

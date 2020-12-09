@@ -15,7 +15,8 @@ data class Survey(
     var phoneNumber: String,
     var abestoRemovalDescription: String,
     //TODO look into creating a date variable
-    var Date: String
+    var Date: String,
+    var surveyType: String
 
 
     /*
