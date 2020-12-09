@@ -5,6 +5,18 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "PreviosWork_table")
 data class PreviousWork(
-    @PrimaryKey val address: String,
-    @PrimaryKey val postCode: String
-)
+    @PrimaryKey(autoGenerate = true) var previousWorID: Int,
+    // TODO add foreign key (Survey_ID),
+    var labourMinutes: Int,
+    var isElectricCookerDisconnected: Boolean,
+    var iscookerDecom: Boolean,
+    var isSupplyFitToMain: Boolean,
+    var numOfInsuranceFit: Int,
+    var numOfInsuranceLockFit: Int,
+    var numOfCylinderLockRenew: Int,
+    var numOfFixOnlyLock: Int,
+    var numOfDoubleGlazed50: Int,
+    var numOfDouleGlazed1p9: Int,
+
+
+    )
