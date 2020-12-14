@@ -1,4 +1,4 @@
-package com.example.surveyapp.database
+package com.example.surveyapp.database.dataTables
 
 data class ElectricalSorTest(
     val etsID: Int,

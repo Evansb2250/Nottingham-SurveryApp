@@ -1,4 +1,4 @@
-package com.example.surveyapp.database
+package com.example.surveyapp.database.dataTables
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

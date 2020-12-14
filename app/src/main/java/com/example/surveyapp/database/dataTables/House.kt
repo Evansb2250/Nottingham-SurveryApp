@@ -1,5 +1,11 @@
-package com.example.surveyapp.database
+package com.example.surveyapp.database.dataTables
 
+import androidx.room.Entity
+
+@Entity(
+    tableName = "House_table",
+    primaryKeys = arrayOf("address", "postCode"),
+)
 data class House(
     //TODO add Primary key to address and post code
     var address: String,

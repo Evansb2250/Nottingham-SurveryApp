@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import com.example.surveyapp.R
 import com.example.surveyapp.SurveyActivity
 import com.example.surveyapp.databinding.FragmentMainMenuBinding
+import com.example.surveyapp.fragments.MainMenuFragment
 
 
 // TODO: Rename parameter arguments, choose names that match

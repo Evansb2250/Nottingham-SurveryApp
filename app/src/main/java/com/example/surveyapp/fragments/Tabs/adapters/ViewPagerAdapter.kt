@@ -1,4 +1,4 @@
-package com.example.surveyapp.fragments.adapters
+package com.example.surveyapp.fragments.Tabs.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

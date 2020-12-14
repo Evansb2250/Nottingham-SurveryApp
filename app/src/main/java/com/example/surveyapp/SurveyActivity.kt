@@ -3,11 +3,11 @@ package com.example.surveyapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
-import com.example.surveyapp.fragments.CreateSurveyFragment
-import com.example.surveyapp.fragments.CreateSurveyP1p5Fragment
-import com.example.surveyapp.fragments.CreateSurveyP2Fragment
-import com.example.surveyapp.fragments.SOR_Fragment
-import com.example.surveyapp.fragments.adapters.ViewPagerAdapter
+import com.example.surveyapp.fragments.Tabs.adapters.createTab.CreateSurveyFragment
+import com.example.surveyapp.fragments.Tabs.adapters.checkListTab.CreateSurveyP1p5Fragment
+import com.example.surveyapp.fragments.Tabs.adapters.PreviousWorkAndLockTab.CreateSurveyP2Fragment
+import com.example.surveyapp.fragments.Tabs.adapters.SoRTab.SOR_Fragment
+import com.example.surveyapp.fragments.Tabs.adapters.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 
 class SurveyActivity : AppCompatActivity() {
