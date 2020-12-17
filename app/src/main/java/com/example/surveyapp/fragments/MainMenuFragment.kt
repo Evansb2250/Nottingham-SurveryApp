@@ -12,6 +12,7 @@ import com.example.surveyapp.R
 import com.example.surveyapp.SurveyActivity
 import com.example.surveyapp.databinding.FragmentMainMenuBinding
 import com.example.surveyapp.fragments.MainMenuFragment
+import com.example.surveyapp.fragments.Tabs.adapters.SoRTab.SOR_Fragment
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,7 +39,10 @@ class MainMenuFragment : Fragment() {
         )
 
         binding.createSurveyButtonMain.setOnClickListener({
-            changeToSurveyActivity()
+
+            testSORLayout(it)
+            //TODO uncomment below and delete the test
+            // changeToSurveyActivity()
         })
 
 
@@ -50,6 +54,8 @@ class MainMenuFragment : Fragment() {
     }
 
     private fun changeToSurveyActivity() {
+        //TODO comment out lines to test SOR DATABASE
+
         val intent = Intent(activity, SurveyActivity::class.java)
         requireActivity().startActivity(intent)
         requireActivity().finish()
@@ -57,6 +63,12 @@ class MainMenuFragment : Fragment() {
 
     private fun changeToViewSurveyFragment(it: View) {
         it.findNavController().navigate(R.id.action_mainMenuFragment_to_viewSurveyFragment)
+    }
+
+    //TODO delete function once functionality works
+    private fun testSORLayout(it: View) {
+        it.findNavController()
+            .navigate(MainMenuFragmentDirections.actionMainMenuFragmentToSORFragment())
     }
 
 
