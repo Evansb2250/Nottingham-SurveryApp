@@ -3,13 +3,13 @@ package com.example.surveyapp
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.example.surveyapp.DAO.SoRDatabaseDao
+import com.example.surveyapp.DAO.SurveyDAO
 import com.example.surveyapp.database.dataTables.*
-import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.io.IOException
 
 
 @RunWith(AndroidJUnit4::class)

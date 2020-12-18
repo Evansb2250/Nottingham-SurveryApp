@@ -1,8 +1,9 @@
-package com.example.surveyapp.database.dataTables
+package com.example.surveyapp.DAO
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.surveyapp.database.dataTables.Survey
 
 @Dao
 interface SurveyDAO {
