@@ -9,8 +9,10 @@ import androidx.room.RoomDatabase
 abstract class SurveyDatabase : RoomDatabase() {
 
     //make the SurveyDatabse know about the Dao
-    abstract var sorDatabaseDao: SoRDatabaseDao?
+    abstract val sordatabaseDao: SoRDatabaseDao
 
+    //    abstract val surveydatabaseDao : SurveyDAO
+//
     companion object {
         @Volatile
         private var INSTANCE: SurveyDatabase? = null
@@ -24,6 +26,7 @@ abstract class SurveyDatabase : RoomDatabase() {
                         context.applicationContext,
                         SurveyDatabase::class.java, "Suvery_History_database"
                     ).fallbackToDestructiveMigration().build()
+
                     INSTANCE = instance
                 }
 

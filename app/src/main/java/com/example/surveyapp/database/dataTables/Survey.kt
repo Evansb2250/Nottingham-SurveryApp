@@ -9,29 +9,28 @@ import com.example.surveyapp.database.dataTables.Survey.Companion.TABLE_NAME
 //    parentColumns =["address", "postCode"],
 //    childColumns = [ADDRESS,POSTCODE ]
 //    ,onDelete = ForeignKey.CASCADE)] )
-@Entity(tableName = TABLE_NAME)
+@Entity(tableName = "survey_table")
 data class Survey(
     @PrimaryKey(autoGenerate = true)
     //TODO add the column fields and foreign keys
-    var surveyId: Long,
-    @ColumnInfo(name = ADDRESS) var address: String,
-    @ColumnInfo(name = POSTCODE) var postCode: String,
-    @ColumnInfo(name = SURVEYOR) var surveyorName: String,
-    @ColumnInfo(name = PHONENUMBER) var phoneNumber: String,
-    // @ColumnInfo(name = ABESTOREMOVAL) var abestoRemovalDescription: String,
+    val surveyId: Long,
+    @ColumnInfo(name = ADDRESS) val address: String,
+    @ColumnInfo(name = POSTCODE) val postCode: String,
+    @ColumnInfo(name = SURVEYOR) val surveyorName: String,
+    @ColumnInfo(name = PHONENUMBER) val phoneNumber: String,
+    @ColumnInfo(name = ABESTOREMOVAL) val abestoRemovalDescription: String,
     //TODO look into creating a date variable
-    // @ColumnInfo(name= DATE) var Date: String,
-//    @ColumnInfo(name= SURVEYTYPE) var surveyType: String
+    @ColumnInfo(name = DATE) val Date: String,
+    @ColumnInfo(name = SURVEYTYPE) val surveyType: String
+)
 
-    /*
-    https://stackoverflow.com/questions/47511750/how-to-use-foreign-key-in-room-persistence-library
-    @Entity(foreignKeys = arrayOf(ForeignKey(entity = ParentClass::class,
-                    parentColumns = arrayOf("parentClassColumn"),
-                    childColumns = arrayOf("childClassColumn"),
-                    onDelete = ForeignKey.CASCADE)))
-     */
-
-) {
+/*z
+https://stackoverflow.com/questions/47511750/how-to-use-foreign-key-in-room-persistence-library
+@Entity(foreignKeys = arrayOf(ForeignKey(entity = ParentClass::class,
+                parentColumns = arrayOf("parentClassColumn"),
+                childColumns = arrayOf("childClassColumn"),
+                onDelete = ForeignKey.CASCADE)))
+ */ {
     companion object {
         const val TABLE_NAME = "Survey_table"
         const val ADDRESS = "address"

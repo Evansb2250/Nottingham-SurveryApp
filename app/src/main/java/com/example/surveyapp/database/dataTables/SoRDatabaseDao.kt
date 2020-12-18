@@ -6,13 +6,18 @@ import androidx.room.Query
 import androidx.room.Update
 
 @Dao
-interface SoRDatabaseDao {
+interface SoRDatabaseDao : SurveyDAO {
     @Insert
     fun insert(sor: SoR)
 
-    @Insert
+    @Update
     fun update(sor: SoR)
 
-    @Query("SELECT * from sor_table WHERE sorCode= sorCode= :key")
+    @Query("SELECT * from SoR_table WHERE sorCode= :key")
     fun get(key: String): SoR
+
+
+//    override fun getAlphabetizedWords(): List<Survey> {
+//        TODO("Not yet implemented")
+//    }
 }
