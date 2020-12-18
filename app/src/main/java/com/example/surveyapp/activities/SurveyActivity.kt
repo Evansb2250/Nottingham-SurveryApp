@@ -1,8 +1,9 @@
-package com.example.surveyapp
+package com.example.surveyapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
+import com.example.surveyapp.R
 import com.example.surveyapp.fragments.Tabs.adapters.createTab.CreateSurveyFragment
 import com.example.surveyapp.fragments.Tabs.adapters.checkListTab.CreateSurveyP1p5Fragment
 import com.example.surveyapp.fragments.Tabs.adapters.PreviousWorkAndLockTab.CreateSurveyP2Fragment

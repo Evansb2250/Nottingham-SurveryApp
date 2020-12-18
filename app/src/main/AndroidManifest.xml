@@ -11,12 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SurveyApp">
         <activity
-            android:name=".SurveyActivity"
+            android:name=".activities.SurveyActivity"
             android:screenOrientation="landscape">
 
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:screenOrientation="landscape">
 
         <intent-filter>
