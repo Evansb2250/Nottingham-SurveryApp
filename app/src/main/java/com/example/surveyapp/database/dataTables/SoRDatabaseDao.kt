@@ -6,7 +6,7 @@ import androidx.room.Query
 import androidx.room.Update
 
 @Dao
-interface SoRDatabaseDao : SurveyDAO {
+interface SoRDatabaseDao {
     @Insert
     fun insert(sor: SoR)
 

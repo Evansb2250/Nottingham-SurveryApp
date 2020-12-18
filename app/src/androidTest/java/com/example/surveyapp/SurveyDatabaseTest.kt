@@ -17,7 +17,7 @@ class SurveyDatabaseTest {
 
     private lateinit var SoRDatabaseDao: SoRDatabaseDao
 
-    //  private lateinit var surveyDao : SurveyDAO
+      private lateinit var surveyDao: SurveyDAO
     private lateinit var db: SurveyDatabase
 
     @Test
@@ -37,25 +37,27 @@ class SurveyDatabaseTest {
             .allowMainThreadQueries()
             .build()
         SoRDatabaseDao = db.sordatabaseDao
-//        surveyDao = db.sordatabaseDao
+        surveyDao = db.surveydao
 
     }
 
 
-//    @Test
-//    fun insertSurvey(){
-//        val survey = Survey(1, "1103 Medford", "NG11 8HH",
-//            "Samuel Brandenburg","+44-743-3211", "THe ssseedcxsada" ,
-//                    "1991/02/01", "Capital")
-//
-//        surveyDao.insert(survey)
-//
-//        val s = surveyDao.get(1)
-//
-//        Assert.assertEquals(s.surveyId, 1)
-//
-//
-//    }
+    @Test
+    fun insertSurvey() {
+        val survey = Survey(
+            1, "1103 Medford", "NG11 8HH",
+            "Samuel Brandenburg", "+44-743-3211", "THe ssseedcxsada",
+            "1991/02/01", "Capital"
+        )
+
+        surveyDao.insertSurvey(survey)
+
+        val s = surveyDao.get(1)
+
+        Assert.assertEquals(s.surveyId, 1)
+
+
+    }
 
 
 //    @After

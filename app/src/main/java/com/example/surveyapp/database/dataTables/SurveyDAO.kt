@@ -1,6 +1,8 @@
 package com.example.surveyapp.database.dataTables
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
 
 @Dao
 interface SurveyDAO {
@@ -9,12 +11,12 @@ interface SurveyDAO {
 //    fun getAlphabetizedWords(): List<Survey>
 
 
-//    @Insert
-//    fun insert(survey: Survey)
-//
-//    @Query("SELECT * FROM survey_table WHERE surveyId = :surveyId")
-//    fun get(surveyId : Int) : Survey
-//
+    @Insert
+    fun insertSurvey(survey: Survey)
+
+    @Query("SELECT * FROM survey_table WHERE surveyId = :surveyId")
+    fun get(surveyId: Int): Survey
+
 //    @Update
 //    fun update()
 

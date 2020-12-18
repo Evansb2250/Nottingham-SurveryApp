@@ -5,11 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [SoR::class], version = 1, exportSchema = false)
+@Database(entities = [SoR::class, Survey::class], version = 1, exportSchema = false)
 abstract class SurveyDatabase : RoomDatabase() {
 
     //make the SurveyDatabse know about the Dao
     abstract val sordatabaseDao: SoRDatabaseDao
+    abstract val surveydao: SurveyDAO
 
     //    abstract val surveydatabaseDao : SurveyDAO
 //
