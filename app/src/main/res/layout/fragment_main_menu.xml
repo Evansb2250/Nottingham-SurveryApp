@@ -10,7 +10,7 @@
 
         <variable
             name="mainMenu"
-            type="com.example.surveyapp.fragments.MainMenuFragment" />
+            type="com.example.surveyapp.fragments.mainFragments.MainMenuFragment" />
 
     </data>
 

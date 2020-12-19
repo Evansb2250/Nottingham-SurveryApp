@@ -6,23 +6,15 @@
     app:startDestination="@id/mainMenuFragment">
     <fragment
         android:id="@+id/mainMenuFragment"
-        android:name="com.example.surveyapp.fragments.MainMenuFragment"
+        android:name="com.example.surveyapp.fragments.mainFragments.MainMenuFragment"
         android:label="fragment_main_menu"
         tools:layout="@layout/fragment_main_menu">
         <action
             android:id="@+id/action_mainMenuFragment_to_viewSurveyFragment"
             app:destination="@id/viewSurveyFragment" />
-        <action
-            android:id="@+id/action_mainMenuFragment_to_SOR_Fragment"
-            app:destination="@id/SOR_Fragment" />
     </fragment>
     <fragment
         android:id="@+id/viewSurveyFragment"
-        android:name="com.example.surveyapp.fragments.viewSurveyFragment"
+        android:name="com.example.surveyapp.fragments.mainFragments.viewSurveyFragment"
         android:label="viewSurveyFragment" />
-    <fragment
-        android:id="@+id/SOR_Fragment"
-        android:name="com.example.surveyapp.fragments.Tabs.adapters.SoRTab.SOR_Fragment"
-        android:label="fragment_s_o_r_"
-        tools:layout="@layout/fragment_s_o_r_" />
 </navigation>

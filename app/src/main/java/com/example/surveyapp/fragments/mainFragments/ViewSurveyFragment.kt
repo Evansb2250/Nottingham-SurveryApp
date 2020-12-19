@@ -1,4 +1,4 @@
-package com.example.surveyapp.fragments
+package com.example.surveyapp.fragments.mainFragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

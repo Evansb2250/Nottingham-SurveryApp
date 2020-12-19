@@ -1,4 +1,4 @@
-package com.example.surveyapp.database.dataTables
+package com.example.surveyapp.domains
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
