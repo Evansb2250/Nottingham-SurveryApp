@@ -8,14 +8,10 @@ import android.view.ViewGroup
 import androidx.annotation.WorkerThread
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.databinding.FragmentMainMenuBinding
-import com.example.surveyapp.fragments.mainFragments.MainMenuFragmentDirections
-import com.example.surveyapp.repository.DatabaseRepository
-import kotlinx.coroutines.launch
 
 
 // TODO: Rename parameter arguments, choose names that match

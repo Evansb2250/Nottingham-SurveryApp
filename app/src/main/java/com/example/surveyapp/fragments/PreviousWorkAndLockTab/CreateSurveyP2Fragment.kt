@@ -1,4 +1,4 @@
-package com.example.surveyapp.fragments.Tabs.adapters.createTab
+package com.example.surveyapp.fragments.PreviousWorkAndLockTab
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,17 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.surveyapp.R
 
-// TODO: Rename parameter arguments, choose names that match
-
-class CreateSurveyFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+class CreateSurveyP2Fragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_survey, container, false)
+        return inflater.inflate(R.layout.fragment_create_survey_p2, container, false)
     }
+
 
 }

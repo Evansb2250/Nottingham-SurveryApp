@@ -1,4 +1,4 @@
-package com.example.surveyapp.fragments.Tabs.adapters.SoRTab
+package com.example.surveyapp.fragments.sorTab
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.*

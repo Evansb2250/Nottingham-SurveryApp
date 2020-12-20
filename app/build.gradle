@@ -13,9 +13,7 @@ apply plugin: 'androidx.navigation.safeargs'
 
 
 android {
-    buildFeatures {
-        dataBinding true
-    }
+
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
@@ -45,6 +43,10 @@ android {
     }
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
+    }
+
+    buildFeatures {
+        dataBinding true
     }
 }
 

@@ -1,23 +1,18 @@
 package com.example.surveyapp.activities
 
-import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.viewpager.widget.ViewPager
 import com.example.surveyapp.R
 import com.example.surveyapp.application.SurveyApplication
-import com.example.surveyapp.fragments.Tabs.adapters.createTab.CreateSurveyFragment
-import com.example.surveyapp.fragments.Tabs.adapters.checkListTab.CreateSurveyP1p5Fragment
-import com.example.surveyapp.fragments.Tabs.adapters.PreviousWorkAndLockTab.CreateSurveyP2Fragment
-import com.example.surveyapp.fragments.Tabs.adapters.SoRTab.SOR_Fragment
-import com.example.surveyapp.fragments.Tabs.adapters.SoRTab.SurveySorViewModel
-import com.example.surveyapp.fragments.Tabs.adapters.SoRTab.SurveySorViewModelFactory
-import com.example.surveyapp.fragments.Tabs.adapters.ViewPagerAdapter
+import com.example.surveyapp.fragments.createTab.CreateSurveyFragment
+import com.example.surveyapp.fragments.checkListTab.CreateSurveyP1p5Fragment
+import com.example.surveyapp.fragments.PreviousWorkAndLockTab.CreateSurveyP2Fragment
+import com.example.surveyapp.fragments.sorTab.SOR_Fragment
+import com.example.surveyapp.fragments.sorTab.SurveySorViewModel
+import com.example.surveyapp.fragments.sorTab.SurveySorViewModelFactory
+import com.example.surveyapp.fragments.tabAdapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 
 class SurveyActivity : AppCompatActivity() {
@@ -25,6 +20,8 @@ class SurveyActivity : AppCompatActivity() {
     companion object {
         // global sor viewModel
         lateinit var sorViewModel: SurveySorViewModel
+
+
     }
 
 
