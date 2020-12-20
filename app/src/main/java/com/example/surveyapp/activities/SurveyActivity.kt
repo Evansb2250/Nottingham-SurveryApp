@@ -1,9 +1,13 @@
 package com.example.surveyapp.activities
 
+import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.viewpager.widget.ViewPager
 import com.example.surveyapp.R
 import com.example.surveyapp.application.SurveyApplication
@@ -18,16 +22,26 @@ import com.google.android.material.tabs.TabLayout
 
 class SurveyActivity : AppCompatActivity() {
 
-    val sorViewModel: SurveySorViewModel by viewModels {
-        SurveySorViewModelFactory((application as SurveyApplication).repository)
+    companion object {
+        // global sor viewModel
+        lateinit var sorViewModel: SurveySorViewModel
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey)
+        // viewModel  = ViewModelProvider(this).get(SurveySorViewModel::class.java)
 
-        sorViewModel.get("dsadsa")
+        initializeViewModels()
         setUpTabs()
+    }
+
+
+    private fun initializeViewModels() {
+        val viewModel: SurveySorViewModel by viewModels { SurveySorViewModelFactory((application as SurveyApplication).repository) }
+        sorViewModel = viewModel
+
     }
 
 
@@ -44,4 +58,5 @@ class SurveyActivity : AppCompatActivity() {
 
 
     }
+
 }

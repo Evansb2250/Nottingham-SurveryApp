@@ -9,21 +9,25 @@ class DatabaseRepository(private val dbManager: dbDAO) {
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insert(sor: SoR) {
-        dbManager.insertSoR(sor)
+        // Before entering an Sor code it checks if it exist
+        if (dbManager.getSoR(sor.sorCode) == null) {
+            dbManager.insertSoR(sor)
+        }
     }
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun getSor(sor: String) {
-        dbManager.getSoR(sor)
+    suspend fun getSor(sor: String): SoR {
+        val sor = dbManager.getSoR(sor)
+        return sor
     }
 
 
-//    @Suppress("RedundantSuspendModifier")
-//    @WorkerThread
-//    suspend fun removeFromSoR(sor : String){
-//        dbManager.removeSoR(sor)
-//    }
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun removeFromSoR(sor: String) {
+        dbManager.removeSoR(sor)
+    }
 
 
 }
