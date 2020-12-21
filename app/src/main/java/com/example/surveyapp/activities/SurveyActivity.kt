@@ -19,7 +19,7 @@ class SurveyActivity : AppCompatActivity() {
 
     companion object {
         // global sor viewModel
-        lateinit var sorViewModel: SurveySorViewModel
+        var sorViewModel: SurveySorViewModel? = null
 
 
     }

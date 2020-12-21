@@ -7,19 +7,41 @@ import com.example.surveyapp.repository.DatabaseRepository
 import kotlinx.coroutines.launch
 
 class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel() {
-//
-//    var fakeData : MutableLiveData<String>? = null
-//
-//    init {
-//        fakeData?.value = "dsadsa"
-//    }
+    private val SORCODE = "SOR CODE"
+    private val KEYWORD = "Keyword"
+
+
+    val searchResult: LiveData<String> get() = _searchResult
+    private val _searchResult = MutableLiveData<String>()
+
+    init {
+        _searchResult.value = ""
+    }
+
+
+    fun searchFor(searchOption: String, userInput: String) {
+        when (searchOption) {
+            SORCODE -> searchBySorCode(userInput)
+
+            KEYWORD -> searchByKeyword(userInput)
+        }
+    }
+
+    private fun searchByKeyword(userInput: String) {
+
+    }
+
+
+    private fun searchBySorCode(sorCode: String) {
+        get(sorCode)
+    }
 
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     fun get(sorCode: String) = viewModelScope.launch {
-        repository.getSor(sorCode)
-
+        val sor = repository.getSor(sorCode)
+        _searchResult.value = sor.description
     }
 
 
