@@ -2,28 +2,34 @@ package com.example.surveyapp.fragments.sorTab
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.*
+import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.domains.SoR
 import com.example.surveyapp.repository.DatabaseRepository
 import kotlinx.coroutines.launch
 
 class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel() {
-    private val SORCODE = "SOR CODE"
-    private val KEYWORD = "Keyword"
+    // string of SOR
+    val searchResult: LiveData<Array<String>> get() = _searchResult
+    private val _searchResult = MutableLiveData<Array<String>>()
 
+    // String Description of the SOR
+    val sorDescripition: LiveData<String> get() = _sorDescripition
+    private val _sorDescripition = MutableLiveData<String>()
 
-    val searchResult: LiveData<String> get() = _searchResult
-    private val _searchResult = MutableLiveData<String>()
 
     init {
-        _searchResult.value = ""
+        //TODO implement this portion after description
+        _searchResult.value = null
+
+
     }
 
 
     fun searchFor(searchOption: String, userInput: String) {
         when (searchOption) {
-            SORCODE -> searchBySorCode(userInput)
+            constant.SORCODE -> searchBySorCode(userInput)
 
-            KEYWORD -> searchByKeyword(userInput)
+            constant.KEYWORD -> searchByKeyword(userInput)
         }
     }
 
@@ -41,7 +47,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     @WorkerThread
     fun get(sorCode: String) = viewModelScope.launch {
         val sor = repository.getSor(sorCode)
-        _searchResult.value = sor.description
+        // _searchResult.value = sor.description
     }
 
 

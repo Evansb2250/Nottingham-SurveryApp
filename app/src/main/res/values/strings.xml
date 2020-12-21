@@ -82,4 +82,6 @@
     <string name="glassText">Glass?</string>
     <string name="altroTxt">Altro?</string>
     <string name="SearchButton">search</string>
+    <string name="singleSoRTotal">Total</string>
+    <string name="quantity_label">Quantity</string>
 </resources>
