@@ -10,7 +10,8 @@ class DatabaseRepository(private val dbManager: dbDAO) {
     @WorkerThread
     suspend fun insert(sor: SoR) {
         // Before entering an Sor code it checks if it exist
-        if (dbManager.getSoR(sor.sorCode) == null) {
+        val doesExist = dbManager.getSoR(sor.sorCode)
+        if (doesExist == null) {
             dbManager.insertSoR(sor)
         }
     }

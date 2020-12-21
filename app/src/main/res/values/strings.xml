@@ -5,11 +5,8 @@
     <string name="home">Home</string>
     <string name="create_survey">Create Survey</string>
     <string name="surveyor_name">Surveyor Name</string>
-    <string-array name="search_category">
-        <item>SOR CODE</item>
-        <item>Keyword</item>
-    </string-array>
-<string-array name="search_surveys_by">
+
+    <string-array name="search_surveys_by">
 
     <item>Survey ID</item>
     <item>Address</item>

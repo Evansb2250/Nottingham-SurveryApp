@@ -2,8 +2,12 @@ package com.example.surveyapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.activity.viewModels
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.viewpager.widget.ViewPager
+import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.R
 import com.example.surveyapp.application.SurveyApplication
 import com.example.surveyapp.fragments.createTab.CreateSurveyFragment
@@ -29,6 +33,7 @@ class SurveyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey)
         // viewModel  = ViewModelProvider(this).get(SurveySorViewModel::class.java)
+
 
         initializeViewModels()
         setUpTabs()

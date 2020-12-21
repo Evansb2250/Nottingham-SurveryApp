@@ -8,6 +8,13 @@ import com.example.surveyapp.repository.DatabaseRepository
 import kotlinx.coroutines.launch
 
 class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel() {
+    //Individual Sor
+    private var currentSor: SoR? = null
+
+    //List of SoR
+    private var sorList = mutableListOf<SoR>()
+
+
     // string of SOR
     val searchResult: LiveData<Array<String>> get() = _searchResult
     private val _searchResult = MutableLiveData<Array<String>>()
@@ -16,10 +23,15 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     val sorDescripition: LiveData<String> get() = _sorDescripition
     private val _sorDescripition = MutableLiveData<String>()
 
+    //Value of spinner object for searching
+    var searchby = MutableLiveData<String>()
 
     init {
         //TODO implement this portion after description
         _searchResult.value = null
+        _sorDescripition.value = searchby.toString()
+
+        searchby.value = constant.SORCODE
 
 
     }
@@ -59,12 +71,13 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    fun removeSoR(sorCode: String) = viewModelScope.launch {
-        repository.removeFromSoR(sorCode)
-
-    }
+//
+//    @Suppress("RedundantSuspendModifier")
+//    @WorkerThread
+//    fun removeSoR(sorCode: String) = viewModelScope.launch {
+//        repository.removeFromSoR(sorCode)
+//
+//    }
 
 }
 

@@ -49,7 +49,7 @@
             app:layout_constraintEnd_toStartOf="@+id/textView4"
             app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner"
+            app:layout_constraintTop_toBottomOf="@+id/optionSelector"
             app:layout_constraintVertical_bias="0.04" />
 
         <ScrollView

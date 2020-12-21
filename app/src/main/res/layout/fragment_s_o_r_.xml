@@ -40,7 +40,7 @@
                 android:ems="10"
                 android:gravity="center"
                 android:inputType="textMultiLine"
-                android:text="{@=viewmodel.description}" />
+                android:text="@{String.valueOf(viewmodel.sorDescripition)}" />
         </ScrollView>
 
         <LinearLayout
@@ -152,10 +152,9 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/optionSelector"
             android:layout_width="171dp"
             android:layout_height="48dp"
-            android:entries="@array/search_category"
             android:spinnerMode="dropdown"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -170,7 +169,7 @@
             android:layout_height="wrap_content"
             android:text="Search By"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toTopOf="@+id/spinner"
+            app:layout_constraintBottom_toTopOf="@+id/optionSelector"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.056"
             app:layout_constraintStart_toStartOf="parent"
@@ -187,7 +186,7 @@
             app:layout_constraintEnd_toStartOf="@+id/textView4"
             app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner"
+            app:layout_constraintTop_toBottomOf="@+id/optionSelector"
             app:layout_constraintVertical_bias="0.04000002" />
 
         <Button
