@@ -59,6 +59,7 @@
                 android:id="@+id/editTextTextPersonName2"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:layout_weight="1"
                 android:editable="false"
@@ -66,21 +67,19 @@
                 android:inputType="textPersonName"
                 android:text="" />
 
-            <EditText
-                android:id="@+id/editTextTextPersonName3"
-                android:layout_width="100dp"
+            <NumberPicker
+                android:id="@+id/quanity"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:layout_weight="1"
-                android:editable="false"
-                android:ems="10"
-                android:inputType="number"
-                android:text="" />
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName4"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:layout_weight="1"
                 android:editable="false"
@@ -111,8 +110,8 @@
             android:layout_width="114dp"
             android:layout_height="48dp"
             android:layout_marginTop="3dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginRight="48dp"
             android:gravity="center"
             android:text="@string/quantity_label"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -177,7 +176,7 @@
             app:layout_constraintVertical_bias="0.416" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName5"
+            android:id="@+id/searchView"
             android:layout_width="139dp"
             android:layout_height="58dp"
             android:ems="10"
@@ -213,7 +212,7 @@
             android:layout_marginRight="80dp"
             android:entries="@array/dummy_SOR_Codes"
             app:layout_constraintEnd_toStartOf="@+id/sorDescription_scrollview"
-            app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName5"
+            app:layout_constraintStart_toEndOf="@+id/searchView"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <TextView
@@ -269,10 +268,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView3"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName5"
+            app:layout_constraintStart_toEndOf="@+id/searchView"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.26999998"
             app:srcCompat="@drawable/ic_baseline_search_24" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

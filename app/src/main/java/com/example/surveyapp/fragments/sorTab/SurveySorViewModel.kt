@@ -1,5 +1,6 @@
 package com.example.surveyapp.fragments.sorTab
 
+import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.*
 import com.example.surveyapp.CONSTANTS.constant
@@ -10,6 +11,8 @@ import kotlinx.coroutines.launch
 class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel() {
     //Individual Sor
     private var currentSor: SoR? = null
+    var search: String? = null
+    var searchWasFound: Boolean
 
     //List of SoR
     private var sorList = mutableListOf<SoR>()
@@ -29,21 +32,22 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     init {
         //TODO implement this portion after description
         _searchResult.value = null
-        _sorDescripition.value = searchby.toString()
+
 
         searchby.value = constant.SORCODE
-
+        searchWasFound = true
+        _sorDescripition.value = ""
 
     }
 
 
-    fun searchFor(searchOption: String, userInput: String) {
-        when (searchOption) {
+    fun searchFor(userInput: String) {
+        when (searchby.value) {
             constant.SORCODE -> searchBySorCode(userInput)
-
             constant.KEYWORD -> searchByKeyword(userInput)
         }
     }
+
 
     private fun searchByKeyword(userInput: String) {
 
@@ -58,8 +62,17 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     fun get(sorCode: String) = viewModelScope.launch {
-        val sor = repository.getSor(sorCode)
+        currentSor = repository.getSor(sorCode)
+        if (currentSor != null) {
+            updateCurrentSoR()
+        } else
+            alertSuccess(false)
         // _searchResult.value = sor.description
+    }
+
+    private fun updateCurrentSoR() {
+        _sorDescripition.value = currentSor?.description
+        alertSuccess(true)
     }
 
 
@@ -70,6 +83,10 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     }
 
+
+    fun alertSuccess(result: Boolean) {
+        searchWasFound = result
+    }
 
 //
 //    @Suppress("RedundantSuspendModifier")

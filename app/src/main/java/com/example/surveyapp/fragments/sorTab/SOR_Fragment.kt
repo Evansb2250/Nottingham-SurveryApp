@@ -3,6 +3,7 @@ package com.example.surveyapp.fragments.sorTab
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -44,8 +46,7 @@ class SOR_Fragment : Fragment() {
 
 
 
-
-        SurveyActivity.sorViewModel?.searchby?.observe(
+        SurveyActivity.sorViewModel?.sorDescripition?.observe(
             viewLifecycleOwner,
             Observer { newSor ->
                 binding.sorDescriptionBox.text.clear()
@@ -54,7 +55,7 @@ class SOR_Fragment : Fragment() {
 
 
 
-
+        setupImageButton(binding)
         setUpSpinner(binding)
 
 
@@ -63,6 +64,26 @@ class SOR_Fragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun setupImageButton(binding: FragmentSORBinding) {
+        binding.imageButton.setOnClickListener({ it ->
+            val userInput = binding.searchView.text.toString().trim()
+            SurveyActivity.sorViewModel?.get(userInput.toUpperCase())
+            binding.searchView.text.clear()
+            alertUser(binding)
+
+
+        })
+    }
+
+
+    private fun alertUser(binding: FragmentSORBinding) {
+        if (binding.viewmodel!!.searchWasFound) {
+            Toast.makeText(requireContext(), "Search found", Toast.LENGTH_SHORT).show()
+        } else
+            Toast.makeText(requireContext(), "Nothing found", Toast.LENGTH_SHORT).show()
+
     }
 
 
