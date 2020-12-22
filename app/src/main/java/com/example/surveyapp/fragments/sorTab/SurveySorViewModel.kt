@@ -3,9 +3,12 @@ package com.example.surveyapp.fragments.sorTab
 import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.*
+import com.example.surveyapp.CONSTANTS.ExistingSors
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.domains.SoR
 import com.example.surveyapp.repository.DatabaseRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 
 class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel() {
@@ -15,11 +18,16 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     var searchViewEntry: String = ""
 
 
+    //
+    var listForView = mutableListOf<String>()
+
+
     //indicates if the search was successful
     var searchWasFound: Boolean
 
     //List of SoR
-    private var sorList = mutableListOf<SoR>()
+    private lateinit var sorList: LiveData<List<SoR>>
+
 
     //Stores and tracks the recharge amount
     val rechargeAmount: LiveData<Double> get() = _rechargeAmount
@@ -63,7 +71,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     fun searchFor(userInput: String) {
 
         when (searchby.value.toString()) {
-            constant.SORCODE -> searchBySorCode(userInput)
+            constant.SORCODE -> searchBySorCode(userInput.toUpperCase())
             constant.KEYWORD -> searchByKeyword(userInput)
         }
     }
@@ -71,6 +79,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     private fun searchByKeyword(userInput: String) {
 
+        getSorList(userInput)
     }
 
 
@@ -92,7 +101,6 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
             updateCurrentSoR()
         } else
             alertSuccess(false)
-        // _searchResult.value = sor.description
     }
 
     private fun updateCurrentSoR() {
@@ -111,17 +119,27 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    fun getSorList(keyword: String) = viewModelScope.launch {
+        //    val n = repository.getSoRList(keyword)
+        listForView.clear()
+        for (sor in ExistingSors.getList()) {
+            if (sor.description.toLowerCase().contains(keyword.toLowerCase())) {
+                listForView.add(sor.sorCode)
+            }
+        }
+
+
+
+        Log.i("SystemOutPut", "list size " + listForView.size.toString())
+    }
+
+
     fun alertSuccess(result: Boolean) {
         searchWasFound = result
     }
 
-//
-//    @Suppress("RedundantSuspendModifier")
-//    @WorkerThread
-//    fun removeSoR(sorCode: String) = viewModelScope.launch {
-//        repository.removeFromSoR(sorCode)
-//
-//    }
 
 }
 

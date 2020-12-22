@@ -68,8 +68,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:focusable="false"
-                android:inputType="textPersonName"
-                android:text="@{viewmodel.rechargeAmount.toString()}" />
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/totalTextView"
@@ -215,7 +214,6 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="80dp"
             android:layout_marginRight="80dp"
-            android:entries="@array/dummy_SOR_Codes"
             app:layout_constraintEnd_toStartOf="@+id/sorDescription_scrollview"
             app:layout_constraintStart_toEndOf="@+id/searchView"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -291,6 +289,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView"
             app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/sorIdentifier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="230dp"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="173dp"
+            android:layout_marginRight="173dp"
+            android:layout_marginBottom="6dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/sorDescription_scrollview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/searchResultBox"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:visibility="invisible" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
