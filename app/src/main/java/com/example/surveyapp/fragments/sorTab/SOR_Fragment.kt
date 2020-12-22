@@ -70,7 +70,20 @@ class SOR_Fragment : Fragment() {
             })
 
 
-        setUpListView()
+        SurveyActivity.sorViewModel!!.viewList.observe(viewLifecycleOwner, Observer { newList ->
+            setUpListView(newList)
+        })
+
+        binding.searchResultBox.setOnItemClickListener { parent, view, position, id ->
+
+            val sorcode = SurveyActivity.sorViewModel!!.listForView.get(position)
+            SurveyActivity.sorViewModel?.get(sorcode)
+            revealSelectedItem(sorcode)
+            setNumberSpinnerToZero()
+        }
+
+
+
         setupImageButton()
         setUpSpinner()
         setUpNumberSpinner()
@@ -83,15 +96,18 @@ class SOR_Fragment : Fragment() {
         return binding.root
     }
 
-    private fun setUpListView() {
+    private fun setUpListView(list: List<String>) {
         binding.searchResultBox.adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_list_item_1,
-            SurveyActivity.sorViewModel!!.listForView.toList()
+            //   SurveyActivity.sorViewModel!!.listForView.toList()
+            list.toList()
         )
+
+
     }
 
-    private fun restoreUI() {
+    private fun restoreUI(title: String) {
         binding.sorIdentifier.text = SurveyActivity.sorViewModel?.searchViewEntry
         binding.sorIdentifier.visibility = View.VISIBLE
     }
@@ -101,13 +117,13 @@ class SOR_Fragment : Fragment() {
         binding.imageButton.setOnClickListener({ it ->
             SurveyActivity.sorViewModel?.searchViewEntry = binding.searchView.text.toString().trim()
             binding.viewmodel?.searchFor(SurveyActivity.sorViewModel!!.searchViewEntry)
-            binding.sorIdentifier.text = SurveyActivity.sorViewModel!!.searchViewEntry
-            binding.sorIdentifier.visibility = View.VISIBLE
+
+            revealSelectedItem(SurveyActivity.sorViewModel!!.searchViewEntry)
             binding.searchView.text.clear()
-            binding.quantitySpinner.setSelection(0)
+            setNumberSpinnerToZero()
 
             if (binding.optionSelector.selectedItem == constant.KEYWORD) {
-                setUpListView()
+                setUpListView(SurveyActivity.sorViewModel!!.listForView)
             }
 
 
@@ -117,6 +133,14 @@ class SOR_Fragment : Fragment() {
         })
     }
 
+    private fun revealSelectedItem(tag: String) {
+        binding.sorIdentifier.visibility = View.VISIBLE
+        binding.sorIdentifier.text = tag
+    }
+
+    private fun setNumberSpinnerToZero() {
+        binding.quantitySpinner.setSelection(0)
+    }
 
     private fun alertUser() {
         if (binding.viewmodel!!.searchWasFound) {
@@ -129,7 +153,7 @@ class SOR_Fragment : Fragment() {
 
     private fun setUpNumberSpinner() {
         val numberArrayAdapter = ArrayAdapter(
-            requireActivity(), android.R.layout.simple_spinner_dropdown_item,
+            requireActivity(), android.R.layout.simple_spinner_item,
             constant.quantityRange.toList()
         )
 

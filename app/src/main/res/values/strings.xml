@@ -82,4 +82,9 @@
     <string name="SearchButton">search</string>
     <string name="singleSoRTotal">Total</string>
     <string name="quantity_label">Quantity</string>
+    <string name="sors_added_label">SoR\'s Added</string>
+    <string name="Recharge_Label">Recharge Cost</string>
+    <string name="Recharge_Box">Is Recharge?</string>
+    <string name="removeButton">Remove</string>
+    <string name="SoRToSurvey">SoRs Attached to Survey</string>
 </resources>

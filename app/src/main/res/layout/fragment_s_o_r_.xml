@@ -87,16 +87,17 @@
             android:id="@+id/sor_total_label"
             android:layout_width="74dp"
             android:layout_height="39dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="60dp"
             android:layout_marginRight="60dp"
+            android:layout_marginBottom="320dp"
             android:gravity="center"
             android:text="@string/singleSoRTotal"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.872"
             app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintVertical_bias="0.0" />
@@ -107,15 +108,17 @@
             android:layout_height="39dp"
             android:layout_marginStart="476dp"
             android:layout_marginLeft="476dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="260dp"
             android:layout_marginRight="260dp"
+            android:layout_marginBottom="320dp"
             android:gravity="center"
-            android:text="Re- charge £"
+            android:text="@string/Recharge_Label"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/quantity_label"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
@@ -160,10 +163,10 @@
             android:spinnerMode="dropdown"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.038"
+            app:layout_constraintHorizontal_bias="0.02"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.119" />
+            app:layout_constraintVertical_bias="0.115" />
 
         <TextView
             android:id="@+id/textView9"
@@ -196,25 +199,27 @@
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="350dp"
+            android:layout_marginBottom="50dp"
             android:text="add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.868"
+            app:layout_constraintHorizontal_bias="0.346"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.771" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <ListView
             android:id="@+id/searchResultBox"
-            android:layout_width="205dp"
-            android:layout_height="149dp"
+            android:layout_width="201dp"
+            android:layout_height="92dp"
             android:layout_marginStart="124dp"
             android:layout_marginLeft="124dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="80dp"
             android:layout_marginRight="80dp"
             app:layout_constraintEnd_toStartOf="@+id/sorDescription_scrollview"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/searchView"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -224,40 +229,43 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Search Results"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintHorizontal_bias="0.406"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.019" />
+            app:layout_constraintVertical_bias="0.008" />
 
         <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
             android:text="Comments"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.876"
+            app:layout_constraintHorizontal_bias="0.823"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.648" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/editTextTextMultiLine2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="200dp"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.94"
+            app:layout_constraintHorizontal_bias="0.868"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10"
-            app:layout_constraintVertical_bias="0.229" />
+            app:layout_constraintVertical_bias="0.057" />
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -283,12 +291,16 @@
             android:layout_marginStart="68dp"
             android:layout_marginLeft="68dp"
             android:layout_marginTop="80dp"
+            android:layout_marginEnd="148dp"
+            android:layout_marginRight="148dp"
             android:layout_marginBottom="232dp"
             android:layout_weight="1"
+            android:spinnerMode="dropdown"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sors_added"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.115" />
 
         <TextView
             android:id="@+id/sorIdentifier"
@@ -306,6 +318,60 @@
             app:layout_constraintStart_toEndOf="@+id/searchResultBox"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             tools:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/added_sors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="175dp"
+            android:text="@string/SoRToSurvey"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ListView
+            android:id="@+id/sors_added"
+            android:layout_width="298dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="240dp"
+            android:background="#F4EAEA"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.394"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <CheckBox
+            android:id="@+id/checkBox12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="130dp"
+            android:text="@string/Recharge_Box"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.822"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="350dp"
+            android:layout_marginBottom="50dp"
+            android:text="@string/removeButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

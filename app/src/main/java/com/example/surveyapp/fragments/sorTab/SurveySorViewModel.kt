@@ -6,6 +6,7 @@ import androidx.lifecycle.*
 import com.example.surveyapp.CONSTANTS.ExistingSors
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.domains.SoR
+import com.example.surveyapp.domains.SurveySORs
 import com.example.surveyapp.repository.DatabaseRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.toList
@@ -18,7 +19,11 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     var searchViewEntry: String = ""
 
 
-    lateinit var viewList: LiveData<List<String>>
+    var addedSorList = arrayListOf<SurveySORs>()
+    lateinit var addedSors: MutableLiveData<List<SurveySORs>>
+
+
+    lateinit var viewList: MutableLiveData<List<String>>
 
     //
     var listForView = mutableListOf<String>()
@@ -27,8 +32,6 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     //indicates if the search was successful
     var searchWasFound: Boolean
 
-    //List of SoR
-    private lateinit var sorList: LiveData<List<SoR>>
 
 
     //Stores and tracks the recharge amount
@@ -65,7 +68,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         _rechargeAmount.value = 0.0
         quantitySelected.value = 0
         total.value = 0.0
-
+        viewList = MutableLiveData(listForView)
 
     }
 
@@ -80,7 +83,6 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     private fun searchByKeyword(userInput: String) {
-
         getSorList(userInput)
     }
 
@@ -130,17 +132,21 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
             if (sor.description.toLowerCase().contains(keyword.toLowerCase())) {
                 listForView.add(sor.sorCode)
             }
+            viewList = MutableLiveData(listForView)
         }
 
-
-
-
-        Log.i("SystemOutPut", "list size " + listForView.size.toString())
     }
 
 
     fun alertSuccess(result: Boolean) {
         searchWasFound = result
+    }
+
+
+    fun addSorToSurvey(quantity: Int) {
+        val sorcode = currentSor!!.sorCode
+
+        // val newSor = SurveySORs()
     }
 
 
