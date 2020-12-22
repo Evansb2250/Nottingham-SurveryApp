@@ -18,6 +18,8 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     var searchViewEntry: String = ""
 
 
+    lateinit var viewList: LiveData<List<String>>
+
     //
     var listForView = mutableListOf<String>()
 
@@ -129,6 +131,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
                 listForView.add(sor.sorCode)
             }
         }
+
 
 
 

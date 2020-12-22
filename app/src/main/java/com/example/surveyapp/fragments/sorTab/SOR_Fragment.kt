@@ -70,7 +70,7 @@ class SOR_Fragment : Fragment() {
             })
 
 
-
+        setUpListView()
         setupImageButton()
         setUpSpinner()
         setUpNumberSpinner()
@@ -109,6 +109,8 @@ class SOR_Fragment : Fragment() {
             if (binding.optionSelector.selectedItem == constant.KEYWORD) {
                 setUpListView()
             }
+
+
             alertUser()
 
 
