@@ -11,11 +11,26 @@ import kotlinx.coroutines.launch
 class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel() {
     //Individual Sor
     private var currentSor: SoR? = null
-    var search: String? = null
+
+    var searchViewEntry: String = ""
+
+
+    //indicates if the search was successful
     var searchWasFound: Boolean
 
     //List of SoR
     private var sorList = mutableListOf<SoR>()
+
+    //Stores and tracks the recharge amount
+    val rechargeAmount: LiveData<Double> get() = _rechargeAmount
+    val _rechargeAmount = MutableLiveData<Double>()
+
+
+    //Store the total for the Sor
+    val total = MutableLiveData<Double>()
+
+    //
+    val quantitySelected = MutableLiveData<Int>()
 
 
     // string of SOR
@@ -37,6 +52,10 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         searchby.value = constant.SORCODE
         searchWasFound = true
         _sorDescripition.value = ""
+        _rechargeAmount.value = 0.0
+        quantitySelected.value = 0
+        total.value = 0.0
+
 
     }
 
@@ -60,6 +79,11 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
+    fun updateTotalByQuantity() {
+        total.value = _rechargeAmount.value!!.times(quantitySelected.value!!.toInt())
+    }
+
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     fun get(sorCode: String) = viewModelScope.launch {
@@ -73,6 +97,8 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     private fun updateCurrentSoR() {
         _sorDescripition.value = currentSor?.description
+        _rechargeAmount.value = currentSor?.rechargeRate
+        total.value = 0.0
         alertSuccess(true)
     }
 

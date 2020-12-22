@@ -1,6 +1,7 @@
 package com.example.surveyapp.fragments.sorTab
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
@@ -12,13 +13,17 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.databinding.FragmentSORBinding
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
+import com.example.surveyapp.application.SurveyApplication
+import java.text.DecimalFormat
 
 
 /**
@@ -27,8 +32,14 @@ import com.example.surveyapp.activities.SurveyActivity
  * create an instance of this fragment.
  */
 class SOR_Fragment : Fragment() {
+    private val application = SurveyApplication()
+    private val currency = DecimalFormat("$###,###.##")
+    private lateinit var viewModel: SurveySorViewModel
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.i("SystemOutPut", " Destroying view")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,24 +50,34 @@ class SOR_Fragment : Fragment() {
         val binding: FragmentSORBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_s_o_r_, container, false)
 
+        // Create the viewModelFactory
+        val viewModelFactory = SurveySorViewModelFactory((application).repository)
+        //Instantiate the viewModel using the viewModelFactory
+        viewModel = viewModelFactory.create(SurveySorViewModel::class.java)
 
-        // Bind the binindingViewModel variable with the global viewModel
-        binding.viewmodel = SurveyActivity.sorViewModel
+//        val viewModel: SurveySorViewModel by viewModels { SurveySorViewModelFactory((application).repository) }
+
+        Log.i("SystemOutPut", "On create called")
+
+        // TEST
+        binding.viewmodel = viewModel
         binding.lifecycleOwner = this
 
+        viewModel.quantitySelected.observe(viewLifecycleOwner, Observer {
+            viewModel.updateTotalByQuantity()
 
+        })
 
-        SurveyActivity.sorViewModel?.sorDescripition?.observe(
-            viewLifecycleOwner,
-            Observer { newSor ->
-                binding.sorDescriptionBox.text.clear()
-                binding.sorDescriptionBox.append(newSor.toString())
-            })
+        viewModel.total.observe(viewLifecycleOwner, Observer {
+
+        })
+
 
 
 
         setupImageButton(binding)
         setUpSpinner(binding)
+        setUpNumberSpinner(binding)
 
 
         // TODO create observers for noticing the change
@@ -66,10 +87,11 @@ class SOR_Fragment : Fragment() {
         return binding.root
     }
 
+
     private fun setupImageButton(binding: FragmentSORBinding) {
         binding.imageButton.setOnClickListener({ it ->
             val userInput = binding.searchView.text.toString().trim()
-            SurveyActivity.sorViewModel?.searchFor(userInput.toUpperCase())
+            binding.viewmodel?.searchFor(userInput.toUpperCase())
             binding.searchView.text.clear()
             alertUser(binding)
 
@@ -84,6 +106,37 @@ class SOR_Fragment : Fragment() {
         } else
             Toast.makeText(requireContext(), "Nothing found", Toast.LENGTH_SHORT).show()
 
+    }
+
+
+    private fun setUpNumberSpinner(binding: FragmentSORBinding) {
+        val numberArrayAdapter = ArrayAdapter(
+            requireActivity(), android.R.layout.simple_spinner_dropdown_item,
+            constant.quantityRange.toList()
+        )
+
+        binding.quantitySpinner.adapter = numberArrayAdapter
+
+        //adding listener
+        binding.quantitySpinner.onItemSelectedListener = object :
+
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+                binding.viewmodel!!.quantitySelected.value = constant.quantityRange[position]
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
     }
 
 
@@ -108,19 +161,17 @@ class SOR_Fragment : Fragment() {
                 id: Long
             ) {
                 binding.viewmodel?.searchby?.value = constant.searchBy[position]
-                Log.i(
-                    "SystemOutput",
-                    "Binding result " + binding.viewmodel?.searchby?.value.toString()
-                )
-                Log.i(
-                    "SystemOutput",
-                    "Activity result " + SurveyActivity.sorViewModel?.searchby?.value.toString()
-                )
+
             }
 
 
         }
 
+    }
+
+    private fun updateTotal(binding: FragmentSORBinding) {
+        binding.totalTextView.text.clear()
+        binding.totalTextView.append(currency.format(viewModel.total.value))
     }
 
 

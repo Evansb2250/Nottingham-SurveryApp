@@ -56,7 +56,8 @@ class MainMenuFragment : Fragment() {
 
         val intent = Intent(activity, SurveyActivity::class.java)
         requireActivity().startActivity(intent)
-        requireActivity().finish()
+
+        //requireActivity().finish()
     }
 
     private fun changeToViewSurveyFragment(it: View) {

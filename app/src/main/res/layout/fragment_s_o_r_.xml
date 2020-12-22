@@ -38,9 +38,10 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
                 android:ems="10"
+                android:focusable="false"
                 android:gravity="center"
                 android:inputType="textMultiLine"
-                android:text="@{String.valueOf(viewmodel.sorDescripition)}" />
+                android:text="@{viewmodel.sorDescripition.toString()}" />
         </ScrollView>
 
         <LinearLayout
@@ -59,21 +60,16 @@
                 android:id="@+id/rechargeTextView"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
-                android:editable="false"
                 android:ems="10"
+                android:focusable="false"
                 android:inputType="textPersonName"
-                android:text="" />
-
-            <NumberPicker
-                android:id="@+id/quanity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="15dp" />
+                android:text="@{viewmodel.rechargeAmount.toString()}" />
 
             <EditText
                 android:id="@+id/totalTextView"
@@ -82,60 +78,68 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:layout_weight="1"
-                android:editable="false"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="" />
+                android:focusable="false"
+                android:inputType="textPersonName" />
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/sor_total_label"
-            android:layout_width="61dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="52dp"
-            android:layout_marginRight="52dp"
+            android:layout_width="74dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
             android:gravity="center"
             android:text="@string/singleSoRTotal"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.028" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/quantity_label"
-            android:layout_width="114dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="48dp"
-            android:layout_marginRight="48dp"
-            android:gravity="center"
-            android:text="@string/quantity_label"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/sor_total_label"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.028" />
-
-        <TextView
+            android:id="@+id/textView2"
             android:layout_width="89dp"
             android:layout_height="39dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
+            android:layout_marginStart="476dp"
+            android:layout_marginLeft="476dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="260dp"
+            android:layout_marginRight="260dp"
             android:gravity="center"
             android:text="Re- charge £"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/quantity_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/quantity_label"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.027"
+            app:layout_constraintVertical_bias="0.0"
             tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/quantity_label"
+            android:layout_width="114dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="440dp"
+            android:layout_marginRight="440dp"
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="@string/quantity_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/quantity_spinner"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/textView4"
@@ -181,6 +185,7 @@
             android:layout_height="58dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:text="@{viewmodel.searchViewEntry}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView4"
             app:layout_constraintHorizontal_bias="0.053"
@@ -272,6 +277,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.26999998"
             app:srcCompat="@drawable/ic_baseline_search_24" />
+
+        <Spinner
+            android:id="@+id/quantity_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="68dp"
+            android:layout_marginLeft="68dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="232dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView"
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

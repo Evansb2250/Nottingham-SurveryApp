@@ -5,6 +5,7 @@
     <string name="home">Home</string>
     <string name="create_survey">Create Survey</string>
     <string name="surveyor_name">Surveyor Name</string>
+    <string name="progress">%1$d / %2$d (%3$.2f)</string>
 
     <string-array name="search_surveys_by">
 
