@@ -60,7 +60,8 @@ class MainMenuFragment : Fragment() {
     }
 
     private fun changeToViewSurveyFragment(it: View) {
-        it.findNavController().navigate(R.id.action_mainMenuFragment_to_viewSurveyFragment)
+        it.findNavController()
+            .navigate(MainMenuFragmentDirections.actionMainMenuFragmentToViewSurveyFragment())
     }
 
 

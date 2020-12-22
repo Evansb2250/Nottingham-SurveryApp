@@ -69,7 +69,7 @@ class SOR_Fragment : Fragment() {
     private fun setupImageButton(binding: FragmentSORBinding) {
         binding.imageButton.setOnClickListener({ it ->
             val userInput = binding.searchView.text.toString().trim()
-            SurveyActivity.sorViewModel?.get(userInput.toUpperCase())
+            SurveyActivity.sorViewModel?.searchFor(userInput.toUpperCase())
             binding.searchView.text.clear()
             alertUser(binding)
 
@@ -108,7 +108,14 @@ class SOR_Fragment : Fragment() {
                 id: Long
             ) {
                 binding.viewmodel?.searchby?.value = constant.searchBy[position]
-
+                Log.i(
+                    "SystemOutput",
+                    "Binding result " + binding.viewmodel?.searchby?.value.toString()
+                )
+                Log.i(
+                    "SystemOutput",
+                    "Activity result " + SurveyActivity.sorViewModel?.searchby?.value.toString()
+                )
             }
 
 

@@ -42,7 +42,8 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     fun searchFor(userInput: String) {
-        when (searchby.value) {
+
+        when (searchby.value.toString()) {
             constant.SORCODE -> searchBySorCode(userInput)
             constant.KEYWORD -> searchByKeyword(userInput)
         }
