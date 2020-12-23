@@ -82,6 +82,11 @@ class SOR_Fragment : Fragment() {
             setNumberSpinnerToZero()
         }
 
+        binding.viewmodel?.wasSorInsertedToSurvey?.observe(viewLifecycleOwner, { wasSuccessfuL ->
+            Toast.makeText(requireContext(), wasSuccessfuL.toString(), Toast.LENGTH_SHORT).show()
+        })
+
+
 
 
 
@@ -91,12 +96,21 @@ class SOR_Fragment : Fragment() {
         setUpAddButton()
 
 
-        // TODO create observers for noticing the change
-        //TODO plan which variable type will be needed inside
 
 
         return binding.root
     }
+
+
+    /*************************
+     *
+     *
+     *
+    Function calls
+     *
+     *
+     * *************************/
+
 
     private fun setUpListView(list: List<String>) {
         binding.searchResultBox.adapter = ArrayAdapter(
@@ -223,15 +237,27 @@ class SOR_Fragment : Fragment() {
     private fun setUpAddButton() {
 
         binding.addSoRToSurveyButton.setOnClickListener({ it ->
+            val surveyId = 1
             val sorCode = SurveyActivity.sorViewModel?.currentSor?.sorCode
             val quantity = SurveyActivity.sorViewModel?.quantitySelected?.value
             val total = SurveyActivity.sorViewModel?.total?.value
-            Toast.makeText(
-                requireContext(),
-                sorCode + " " + quantity.toString() + " " + total.toString(),
-                Toast.LENGTH_SHORT
-            ).show()
+            val comments = binding.commentEntry.text.toString()
+            val isRecharge = binding.rechargeBox.isChecked
 
+            SurveyActivity.sorViewModel?.CheckBeforeAddint(
+                sorCode, surveyId, comments,
+                isRecharge, quantity, total
+            )
+
+//            Toast.makeText(
+//                requireContext(),
+//                sorCode + " " + quantity.toString() + " " + total.toString() + " " + comments
+//               + " " +isRecharge.toString(), Toast.LENGTH_SHORT
+//            ).show()
+
+
+            //RESET TEXT
+            binding.commentEntry.text.clear()
         })
     }
 

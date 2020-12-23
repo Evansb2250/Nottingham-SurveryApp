@@ -33,6 +33,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     //TODO change to a text entry to add floating point numbers
     val quantitySelected = MutableLiveData<Int>()
 
+    val comments: String
 
     /*****
     Variables representing the data appeared on the Fragment and ViewModel
@@ -46,8 +47,8 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     lateinit var addedSors: MutableLiveData<List<String>>
 
-
-    lateinit var viewList: MutableLiveData<List<String>>
+    // the list that is shown to the Fragment
+    var viewList: LiveData<List<String>>
 
     // a list that is used to intantiate in the ViewList constructor for the MutableLiveData
     // Used to show SORCodes that have a specific word in the description box
@@ -62,6 +63,11 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     // Protected by Encapsulation
     val rechargeAmount: LiveData<Double> get() = _rechargeAmount
     val _rechargeAmount = MutableLiveData<Double>()
+
+
+    //Indicator if an insert option fails
+    val wasSorInsertedToSurvey: LiveData<Boolean> get() = _wasSorInsertedToSurvey
+    private val _wasSorInsertedToSurvey = MutableLiveData<Boolean>()
 
 
     // String Description of the SOR
@@ -89,9 +95,10 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         quantitySelected.value = 0
         total.value = 0.0
         viewList = MutableLiveData(listForView)
+        comments = " "
+
 
     }
-
 
     /*************************
      *
@@ -147,6 +154,62 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
+    fun CheckBeforeAddint(
+        sorCode: String?,
+        surveyId: Int,
+        comments: String,
+        recharge: Boolean,
+        quantity: Int?,
+        total: Double?
+    ) {
+        val passedNullTest =
+            checkForNullVariables(sorCode, surveyId, comments, recharge, quantity, total)
+        val passedDuplicateSorTest = runCheck(sorCode?.toLowerCase()?.trim())
+
+
+
+        if (passedNullTest) {
+
+            if (passedDuplicateSorTest) { // val surveysor = SurveySORs(sorCode!!, surveyId!!, comments!!, recharge!!, quantity!!, total!!)
+                addedSorList.add(
+                    SurveySORs(
+                        sorCode!!, surveyId, comments,
+                        recharge, quantity!!, total!!
+                    )
+                )
+                _wasSorInsertedToSurvey.value = true
+            } else
+                _wasSorInsertedToSurvey.value = false
+        } else
+        // Changed variable to false to show insert did not work
+            _wasSorInsertedToSurvey.value = false
+
+
+    }
+
+    private fun checkForNullVariables(
+        sorCode: String?,
+        surveyId: Int,
+        comments: String,
+        recharge: Boolean,
+        quantity: Int?,
+        total: Double?
+    ): Boolean {
+        //Checks to see if there are null variables
+        return !(sorCode == null || surveyId == null || comments == null || recharge == null || quantity == null || total == null)
+    }
+
+    private fun runCheck(sorCode: String?): Boolean {
+        for (sor in addedSorList) {
+            val confirmedSor = sor.sorCode.toLowerCase()
+            if (sorCode.equals(confirmedSor)) {
+                return false
+            }
+        }
+        return true
+    }
+
+
     /******
      *
      *  Function calls using the Repository to interact with the Database
@@ -191,8 +254,15 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
+
 }
 
+
+/****
+ *
+ *  ViewModelFactory
+ *
+ */
 
 class SurveySorViewModelFactory(private val repository: DatabaseRepository) :
     ViewModelProvider.Factory {
