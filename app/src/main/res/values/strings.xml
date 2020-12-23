@@ -87,4 +87,15 @@
     <string name="Recharge_Box">Is Recharge?</string>
     <string name="removeButton">Remove</string>
     <string name="SoRToSurvey">SoRs Attached to Survey</string>
+    <string name="Surveyor_name_label">Surveyor name</string>
+    <string name="Address_label">Address</string>
+    <string name="name_hint_label">Name</string>
+    <string name="no_text_lebel" />
+    <string name="address_hint_label">address</string>
+    <string name="post_code_label">Post Code</string>
+    <string name="post_code_hint">Post Code</string>
+    <string name="phone_number_label">Phone number</string>
+    <string name="phone_number_hint">Phone number</string>
+    <string name="date_label">Date:</string>
+    <string name="dd_mm_yyyy_label">DD/MM/YYYY</string>
 </resources>

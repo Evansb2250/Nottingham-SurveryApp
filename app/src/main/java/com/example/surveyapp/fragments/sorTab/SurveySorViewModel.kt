@@ -19,8 +19,12 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     var searchViewEntry: String = ""
 
 
-    var addedSorList = arrayListOf<SurveySORs>()
-    lateinit var addedSors: MutableLiveData<List<SurveySORs>>
+    companion object {
+        var addedSorList = arrayListOf<SurveySORs>()
+    }
+
+
+    lateinit var addedSors: MutableLiveData<List<String>>
 
 
     lateinit var viewList: MutableLiveData<List<String>>
@@ -47,8 +51,8 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     // string of SOR
-    val searchResult: LiveData<Array<String>> get() = _searchResult
-    private val _searchResult = MutableLiveData<Array<String>>()
+//    val searchResult: LiveData<Array<String>> get() = _searchResult
+//    private val _searchResult = MutableLiveData<Array<String>>()
 
     // String Description of the SOR
     val sorDescripition: LiveData<String> get() = _sorDescripition
@@ -59,7 +63,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     init {
         //TODO implement this portion after description
-        _searchResult.value = null
+//        _searchResult.value = null
 
 
         searchby.value = constant.SORCODE
@@ -107,6 +111,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
             alertSuccess(false)
     }
 
+
     private fun updateCurrentSoR() {
         _sorDescripition.value = currentSor?.description
         _rechargeAmount.value = currentSor?.rechargeRate
@@ -146,7 +151,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     fun addSorToSurvey(quantity: Int) {
         val sorcode = currentSor!!.sorCode
 
-        // val newSor = SurveySORs()
+
     }
 
 

@@ -35,7 +35,7 @@
                     android:id="@+id/surveyorTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Surveyor name"
+                    android:text="@string/Surveyor_name_label"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <EditText
@@ -44,8 +44,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:ems="10"
-                    android:hint="Name"
-                    android:inputType="textPersonName" />
+                    android:hint="@string/name_hint_label"
+                    android:inputType="textPersonName"
+                    android:text="@string/no_text_lebel"
+                    android:autofillHints=""
+                    android:layout_marginStart="30dp" />
             </TableRow>
 
             <TableRow
@@ -56,17 +59,20 @@
                     android:id="@+id/addressTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Address"
+                    android:text="@string/Address_label"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <EditText
                     android:id="@+id/addressEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
                     android:layout_marginLeft="30dp"
+                    android:autofillHints=""
                     android:ems="10"
-                    android:hint="address"
-                    android:inputType="textPersonName" />
+                    android:hint="@string/address_hint_label"
+                    android:inputType="textPersonName"
+                    android:text="@string/no_text_lebel" />
             </TableRow>
 
             <TableRow
@@ -77,7 +83,7 @@
                     android:id="@+id/postTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Post Code"
+                    android:text="@string/post_code_label"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <EditText
@@ -86,8 +92,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:ems="10"
-                    android:hint="Post Code"
-                    android:inputType="textPersonName" />
+                    android:hint="@string/post_code_hint"
+                    android:inputType="textPersonName"
+                    android:autofillHints=""
+                    android:layout_marginStart="30dp" />
             </TableRow>
 
             <TableRow
@@ -98,7 +106,7 @@
                     android:id="@+id/phoneNumTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phone number"
+                    android:text="@string/phone_number_label"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <EditText
@@ -107,8 +115,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:ems="10"
-                    android:hint="Phone number"
-                    android:inputType="phone" />
+                    android:hint="@string/phone_number_hint"
+                    android:inputType="phone"
+                    android:autofillHints=""
+                    android:layout_marginStart="30dp" />
             </TableRow>
 
             <TableRow
@@ -119,7 +129,7 @@
                     android:id="@+id/dateTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date:"
+                    android:text="@string/date_label"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <EditText
@@ -128,8 +138,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:ems="10"
-                    android:hint="DD/MM/YYYY"
-                    android:inputType="date" />
+                    android:hint="@string/dd_mm_yyyy_label"
+                    android:inputType="date"
+                    android:autofillHints=""
+                    android:layout_marginStart="30dp" />
             </TableRow>
 
         </TableLayout>
@@ -162,10 +174,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:paddingLeft="30dp"
                     android:paddingEnd="100dp"
                     android:paddingRight="100dp"
                     android:text="@string/SurveyTypeTxt"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:paddingStart="30dp" />
             </TableRow>
 
             <TableRow
@@ -174,6 +188,7 @@
 
 
                 <RadioGroup
+                    android:id="@+id/radioGroup"
                     android:layout_width="301dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
