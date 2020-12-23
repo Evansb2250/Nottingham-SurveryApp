@@ -25,10 +25,10 @@ import java.text.DecimalFormat
  * create an instance of this fragment.
  */
 class SOR_Fragment : Fragment() {
-    private val application = SurveyApplication()
+
     private val currency = DecimalFormat("£###,###.##")
 
-    // private lateinit var `SurveyActivity.sorViewModel`: SurveySorViewModel
+
     private lateinit var binding: FragmentSORBinding
 
     override fun onDestroyView() {
@@ -84,9 +84,11 @@ class SOR_Fragment : Fragment() {
 
 
 
+
         setupImageButton()
         setUpSpinner()
         setUpNumberSpinner()
+        setUpAddButton()
 
 
         // TODO create observers for noticing the change
@@ -100,7 +102,7 @@ class SOR_Fragment : Fragment() {
         binding.searchResultBox.adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_list_item_1,
-            //   SurveyActivity.sorViewModel!!.listForView.toList()
+
             list.toList()
         )
 
@@ -156,7 +158,6 @@ class SOR_Fragment : Fragment() {
             requireActivity(), android.R.layout.simple_spinner_item,
             constant.quantityRange.toList()
         )
-
 
 
         binding.quantitySpinner.adapter = numberArrayAdapter
@@ -216,6 +217,22 @@ class SOR_Fragment : Fragment() {
     private fun updateTotal() {
         binding.totalTextView.text.clear()
         binding.totalTextView.append(currency.format(SurveyActivity.sorViewModel!!.total.value))
+    }
+
+
+    private fun setUpAddButton() {
+
+        binding.addSoRToSurveyButton.setOnClickListener({ it ->
+            val sorCode = SurveyActivity.sorViewModel?.currentSor?.sorCode
+            val quantity = SurveyActivity.sorViewModel?.quantitySelected?.value
+            val total = SurveyActivity.sorViewModel?.total?.value
+            Toast.makeText(
+                requireContext(),
+                sorCode + " " + quantity.toString() + " " + total.toString(),
+                Toast.LENGTH_SHORT
+            ).show()
+
+        })
     }
 
 
