@@ -44,8 +44,15 @@
                         android:text="@string/c28"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="40dp"
+                        android:text="@string/Recharge_Box" />
+
                     <EditText
-                        android:id="@+id/editTextNumber"
+                        android:id="@+id/question1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -62,6 +69,12 @@
                         android:layout_height="wrap_content"
                         android:text="@string/c29"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <CheckBox
+                        android:id="@+id/rechargeQ2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
 
                     <CheckBox
                         android:id="@+id/checkBox4"
@@ -82,6 +95,12 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                     <CheckBox
+                        android:id="@+id/rechargeQ3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
+                    <CheckBox
                         android:id="@+id/checkBox5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -98,6 +117,12 @@
                         android:layout_height="wrap_content"
                         android:text="@string/c31"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <CheckBox
+                        android:id="@+id/rechargeQ4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
 
                     <CheckBox
                         android:id="@+id/checkBox6"
@@ -117,8 +142,14 @@
                         android:text="@string/c32"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
                     <EditText
-                        android:id="@+id/editTextNumber2"
+                        android:id="@+id/question5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -136,8 +167,14 @@
                         android:text="@string/c33"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
                     <EditText
-                        android:id="@+id/editTextNumber3"
+                        android:id="@+id/question6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -155,8 +192,14 @@
                         android:text="@string/c35"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
                     <EditText
-                        android:id="@+id/editTextNumber4"
+                        android:id="@+id/question7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -174,8 +217,14 @@
                         android:text="@string/c36"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
                     <EditText
-                        android:id="@+id/editTextNumber5"
+                        android:id="@+id/question8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -193,8 +242,14 @@
                         android:text="@string/c37"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
                     <EditText
-                        android:id="@+id/editTextNumber6"
+                        android:id="@+id/question9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -213,8 +268,14 @@
                         android:text="@string/c40"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
                     <EditText
-                        android:id="@+id/editTextNumber7"
+                        android:id="@+id/question10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -233,8 +294,15 @@
                         android:text="@string/c41"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
+
                     <EditText
-                        android:id="@+id/editTextNumber8"
+                        android:id="@+id/question11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -253,8 +321,14 @@
                         android:text="@string/c42"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
                     <EditText
-                        android:id="@+id/editTextNumber11"
+                        android:id="@+id/question12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -273,8 +347,14 @@
                         android:text="@string/c43"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
                     <EditText
-                        android:id="@+id/editTextNumber9"
+                        android:id="@+id/question13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -294,8 +374,14 @@
                         android:text="@string/c44"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
                     <EditText
-                        android:id="@+id/editTextNumber10"
+                        android:id="@+id/question14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -314,8 +400,14 @@
                         android:text="@string/c45"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
                     <EditText
-                        android:id="@+id/editTextNumber12"
+                        android:id="@+id/question15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -333,8 +425,14 @@
                         android:text="@string/c46"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+                    <CheckBox
+                        android:id="@+id/rechargeQ16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
                     <EditText
-                        android:id="@+id/editTextNumber13"
+                        android:id="@+id/question16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -360,6 +458,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="60dp"
+            android:text="Calculate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView3"
+            app:layout_constraintVertical_bias="0.13999999" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

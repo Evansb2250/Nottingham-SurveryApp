@@ -13,6 +13,8 @@ import com.example.surveyapp.application.SurveyApplication
 import com.example.surveyapp.fragments.createTab.CreateSurveyFragment
 import com.example.surveyapp.fragments.checkListTab.CreateSurveyP1p5Fragment
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.CreateSurveyP2Fragment
+import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModel
+import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModelFactory
 import com.example.surveyapp.fragments.sorTab.SOR_Fragment
 import com.example.surveyapp.fragments.sorTab.SurveySorViewModel
 import com.example.surveyapp.fragments.sorTab.SurveySorViewModelFactory
@@ -24,6 +26,7 @@ class SurveyActivity : AppCompatActivity() {
     companion object {
         // global sor viewModel
         var sorViewModel: SurveySorViewModel? = null
+        var prevViewModel: previosWorkViewModel? = null
 
 
     }
@@ -42,7 +45,13 @@ class SurveyActivity : AppCompatActivity() {
 
     private fun initializeViewModels() {
         val viewModel: SurveySorViewModel by viewModels { SurveySorViewModelFactory((application as SurveyApplication).repository) }
+        val prevSoRViewModel: SurveySorViewModel by viewModels { previosWorkViewModelFactory((application as SurveyApplication).repository) }
+
+        // Short CUT TO CLEAR A BUG
+        SurveySorViewModel.addedSorList.clear()
         sorViewModel = viewModel
+
+        prevViewModel = previosWorkViewModel()
 
     }
 

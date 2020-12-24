@@ -22,7 +22,7 @@
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintHorizontal_bias="0.65"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.37">
@@ -42,13 +42,13 @@
                     android:id="@+id/nameEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
                     android:layout_marginLeft="30dp"
+                    android:autofillHints=""
                     android:ems="10"
                     android:hint="@string/name_hint_label"
                     android:inputType="textPersonName"
-                    android:text="@string/no_text_lebel"
-                    android:autofillHints=""
-                    android:layout_marginStart="30dp" />
+                    android:text="@string/no_text_lebel" />
             </TableRow>
 
             <TableRow
@@ -90,12 +90,12 @@
                     android:id="@+id/postEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
                     android:layout_marginLeft="30dp"
+                    android:autofillHints=""
                     android:ems="10"
                     android:hint="@string/post_code_hint"
-                    android:inputType="textPersonName"
-                    android:autofillHints=""
-                    android:layout_marginStart="30dp" />
+                    android:inputType="textPersonName" />
             </TableRow>
 
             <TableRow
@@ -113,12 +113,12 @@
                     android:id="@+id/phoneNumEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
                     android:layout_marginLeft="30dp"
+                    android:autofillHints=""
                     android:ems="10"
                     android:hint="@string/phone_number_hint"
-                    android:inputType="phone"
-                    android:autofillHints=""
-                    android:layout_marginStart="30dp" />
+                    android:inputType="phone" />
             </TableRow>
 
             <TableRow
@@ -136,12 +136,12 @@
                     android:id="@+id/dateEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
                     android:layout_marginLeft="30dp"
+                    android:autofillHints=""
                     android:ems="10"
                     android:hint="@string/dd_mm_yyyy_label"
-                    android:inputType="date"
-                    android:autofillHints=""
-                    android:layout_marginStart="30dp" />
+                    android:inputType="date" />
             </TableRow>
 
         </TableLayout>
@@ -150,15 +150,15 @@
             android:id="@+id/tableLayout"
             android:layout_width="401dp"
             android:layout_height="59dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginLeft="300dp"
+            android:layout_marginStart="350dp"
+            android:layout_marginLeft="350dp"
             android:layout_marginTop="64dp"
             android:layout_marginEnd="275dp"
             android:layout_marginRight="275dp"
             android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toTopOf="@+id/surveyEntryTable"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.02"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.63">
@@ -174,12 +174,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:paddingStart="30dp"
                     android:paddingLeft="30dp"
                     android:paddingEnd="100dp"
                     android:paddingRight="100dp"
                     android:text="@string/SurveyTypeTxt"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:paddingStart="30dp" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             </TableRow>
 
             <TableRow
