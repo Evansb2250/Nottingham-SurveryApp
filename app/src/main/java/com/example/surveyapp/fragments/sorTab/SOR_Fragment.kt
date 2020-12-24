@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.SurfaceView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -51,6 +52,43 @@ class SOR_Fragment : Fragment() {
         binding.sorIdentifier.visibility = View.INVISIBLE
 
 
+        binding.searchResultBox.setOnItemClickListener { parent, view, position, id ->
+            unlockFields()
+            val sorcode = SurveyActivity.sorViewModel!!.listForView.get(position)
+            SurveyActivity.sorViewModel?.get(sorcode)
+            revealSelectedItem(sorcode)
+            setNumberSpinnerToZero()
+        }
+
+        binding.sorAttachedToSurveyBox.setOnItemClickListener { parent, view, position, id ->
+            SurveyActivity.sorViewModel?.sorcodeToDeleteIndex = position
+
+
+            //Gets the values for this added Sor
+            val selectedQuantity = SurveySorViewModel.addedSorList.get(position).quantity
+            val selectedTotal = SurveySorViewModel.addedSorList.get(position).total
+            val sorcode = SurveyActivity.sorViewModel!!.addedSors.get(position)
+            val isRecharge = SurveySorViewModel.addedSorList.get(position).isRecharge
+
+
+            SurveyActivity.sorViewModel?.get(sorcode)
+
+
+            //Redisplays the amount and details submitted
+            binding.quantitySpinner.setSelection(selectedQuantity)
+            binding.totalTextView.text.clear()
+            binding.totalTextView.append(currency.format(selectedTotal))
+            binding.rechargeBox.isChecked = isRecharge
+
+            //Makes it where user cant try to change anything
+            lockFields()
+
+
+            revealSelectedItem(sorcode)
+
+        }
+
+
         SurveyActivity.sorViewModel!!.quantitySelected.observe(viewLifecycleOwner, Observer {
             SurveyActivity.sorViewModel!!.updateTotalByQuantity()
             updateTotal()
@@ -74,19 +112,25 @@ class SOR_Fragment : Fragment() {
             setUpListView(newList)
         })
 
-        binding.searchResultBox.setOnItemClickListener { parent, view, position, id ->
 
-            val sorcode = SurveyActivity.sorViewModel!!.listForView.get(position)
-            SurveyActivity.sorViewModel?.get(sorcode)
-            revealSelectedItem(sorcode)
-            setNumberSpinnerToZero()
-        }
+        SurveyActivity.sorViewModel?.wasSorInsertedToSurvey?.observe(
+            viewLifecycleOwner,
+            { wasSuccessfuL ->
+                // Toast.makeText(requireContext(), wasSuccessfuL.toString(), Toast.LENGTH_SHORT).show()
+                binding.SorNumberView.text = SurveySorViewModel.addedSorList.size.toString()
 
-        binding.viewmodel?.wasSorInsertedToSurvey?.observe(viewLifecycleOwner, { wasSuccessfuL ->
-            Toast.makeText(requireContext(), wasSuccessfuL.toString(), Toast.LENGTH_SHORT).show()
+                setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
+            })
+
+
+        binding.removeSorButton.setOnClickListener({ it ->
+            SurveyActivity.sorViewModel!!.removeSorFromList()
+            if (SurveyActivity.sorViewModel!!.addedSors != null) {
+                setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
+                binding.SorNumberView.text = SurveySorViewModel.addedSorList.size.toString()
+            }
+            unlockFields()
         })
-
-
 
 
 
@@ -94,9 +138,6 @@ class SOR_Fragment : Fragment() {
         setUpSpinner()
         setUpNumberSpinner()
         setUpAddButton()
-
-
-
 
         return binding.root
     }
@@ -112,6 +153,18 @@ class SOR_Fragment : Fragment() {
      * *************************/
 
 
+    private fun setUpAddedSorListView(list: List<String>) {
+
+
+        binding.sorAttachedToSurveyBox.adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            list.toList()
+        )
+
+    }
+
+
     private fun setUpListView(list: List<String>) {
         binding.searchResultBox.adapter = ArrayAdapter(
             requireContext(),
@@ -123,10 +176,6 @@ class SOR_Fragment : Fragment() {
 
     }
 
-    private fun restoreUI(title: String) {
-        binding.sorIdentifier.text = SurveyActivity.sorViewModel?.searchViewEntry
-        binding.sorIdentifier.visibility = View.VISIBLE
-    }
 
 
     private fun setupImageButton() {
@@ -138,10 +187,14 @@ class SOR_Fragment : Fragment() {
             binding.searchView.text.clear()
             setNumberSpinnerToZero()
 
+            //Searches using key word
             if (binding.optionSelector.selectedItem == constant.KEYWORD) {
                 setUpListView(SurveyActivity.sorViewModel!!.listForView)
+                binding.searchResultNumber.text =
+                    SurveyActivity.sorViewModel?.listForView?.size.toString()
             }
 
+            unlockFields()
 
             alertUser()
 
@@ -237,28 +290,47 @@ class SOR_Fragment : Fragment() {
     private fun setUpAddButton() {
 
         binding.addSoRToSurveyButton.setOnClickListener({ it ->
-            val surveyId = 1
+            val surveyId: Int = 1
             val sorCode = SurveyActivity.sorViewModel?.currentSor?.sorCode
             val quantity = SurveyActivity.sorViewModel?.quantitySelected?.value
             val total = SurveyActivity.sorViewModel?.total?.value
             val comments = binding.commentEntry.text.toString()
             val isRecharge = binding.rechargeBox.isChecked
 
-            SurveyActivity.sorViewModel?.CheckBeforeAddint(
+
+            binding.viewmodel?.CheckBeforeAddint(
                 sorCode, surveyId, comments,
                 isRecharge, quantity, total
             )
 
-//            Toast.makeText(
-//                requireContext(),
-//                sorCode + " " + quantity.toString() + " " + total.toString() + " " + comments
-//               + " " +isRecharge.toString(), Toast.LENGTH_SHORT
-//            ).show()
+
+            resetFields()
 
 
-            //RESET TEXT
-            binding.commentEntry.text.clear()
         })
+    }
+
+
+    private fun lockFields() {
+        binding.quantitySpinner.isFocusable = false
+        binding.rechargeBox.isFocusable = false
+        binding.commentEntry.isFocusable = false
+    }
+
+    //TODO Fixe bug that won't let me unlock
+    private fun unlockFields() {
+        binding.quantitySpinner.isFocusable = true
+        binding.rechargeBox.isFocusable = true
+        binding.commentEntry.isFocusable = true
+    }
+
+
+    private fun resetFields() {
+        //RESET TEXT
+        binding.commentEntry.text.clear()
+        //Reset recharge box
+        binding.rechargeBox.isChecked = false
+        binding.quantitySpinner.setSelection(0)
     }
 
 

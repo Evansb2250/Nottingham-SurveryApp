@@ -18,7 +18,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     Static or Companion object variables
      */
     companion object {
-        var addedSorList = arrayListOf<SurveySORs>()
+        var addedSorList = mutableListOf<SurveySORs>()
     }
 
 
@@ -45,10 +45,12 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     var searchViewEntry: String = ""
 
 
-    lateinit var addedSors: MutableLiveData<List<String>>
+    var addedSors = mutableListOf<String>()
+
 
     // the list that is shown to the Fragment
     var viewList: LiveData<List<String>>
+
 
     // a list that is used to intantiate in the ViewList constructor for the MutableLiveData
     // Used to show SORCodes that have a specific word in the description box
@@ -76,6 +78,11 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     //Value of spinner object for searching
     var searchby = MutableLiveData<String>()
+
+
+    //Value
+    var sorcodeToDeleteIndex: Int? = null
+
 
     /***
 
@@ -139,13 +146,6 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
-    fun addSorToSurvey(quantity: Int) {
-        val sorcode = currentSor!!.sorCode
-
-
-    }
-
-
     private fun updateCurrentSoR() {
         _sorDescripition.value = currentSor?.description
         _rechargeAmount.value = currentSor?.rechargeRate
@@ -176,7 +176,10 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
                         sorCode!!, surveyId, comments,
                         recharge, quantity!!, total!!
                     )
+
                 )
+
+                updateListofAddedSorUI(addedSorList)
                 _wasSorInsertedToSurvey.value = true
             } else
                 _wasSorInsertedToSurvey.value = false
@@ -186,6 +189,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     }
+
 
     private fun checkForNullVariables(
         sorCode: String?,
@@ -199,6 +203,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         return !(sorCode == null || surveyId == null || comments == null || recharge == null || quantity == null || total == null)
     }
 
+
     private fun runCheck(sorCode: String?): Boolean {
         for (sor in addedSorList) {
             val confirmedSor = sor.sorCode.toLowerCase()
@@ -208,6 +213,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         }
         return true
     }
+
 
 
     /******
@@ -253,6 +259,32 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     }
 
+
+    fun removeSorFromList() {
+
+//        Log.i("SystemMessage", addedSorList.get(sorcodeToDeleteIndex!!).toString())
+        if (addedSorList.size >= 0 && sorcodeToDeleteIndex != null) {
+            addedSorList.removeAt(sorcodeToDeleteIndex!!)
+            sorcodeToDeleteIndex = null
+
+        }
+        updateListofAddedSorUI(addedSorList)
+    }
+
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    private fun updateListofAddedSorUI(addedSorList: MutableList<SurveySORs>) =
+        viewModelScope.launch {
+            Log.i("SystemCheck", "last point")
+            var list = mutableListOf<String>()
+            for (surveySor in addedSorList) {
+                list.add(surveySor.sorCode)
+            }
+            addedSors = list
+
+
+        }
 
 
 }
