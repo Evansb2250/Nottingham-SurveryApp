@@ -1,5 +1,6 @@
 package com.example.surveyapp.fragments.PreviousWorkAndLockTab
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -9,8 +10,76 @@ import com.example.surveyapp.repository.DatabaseRepository
 class previosWorkViewModel : ViewModel() {
 
 
-    companion object
+    fun addChangesToVariable(id: Int, quantity: Int, isRecharge: Boolean) {
 
+        when (id) {
+            1 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            2 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            3 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            4 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            5 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            6 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            7 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            8 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            9 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            10 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            11 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            12 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            13 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            14 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            15 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+            16 -> Log.i(
+                "SystemMessage",
+                "Slot " + id + " quantity " + quantity + " is a recharge " + isRecharge
+            )
+        }
+
+    }
 
 }
 
