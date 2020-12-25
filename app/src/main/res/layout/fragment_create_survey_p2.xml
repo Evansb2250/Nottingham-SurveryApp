@@ -56,7 +56,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:hint="@string/HOURS"
+                        android:inputType="number|numberDecimal" />
                 </TableRow>
 
                 <TableRow
@@ -77,7 +78,7 @@
                         android:text="@string/Recharge_Box" />
 
                     <CheckBox
-                        android:id="@+id/checkBox4"
+                        android:id="@+id/question2Box"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="yes" />
@@ -101,7 +102,7 @@
                         android:text="@string/Recharge_Box" />
 
                     <CheckBox
-                        android:id="@+id/checkBox5"
+                        android:id="@+id/question3Box"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="yes" />
@@ -125,7 +126,7 @@
                         android:text="@string/Recharge_Box" />
 
                     <CheckBox
-                        android:id="@+id/checkBox6"
+                        android:id="@+id/question4Box"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="yes" />
@@ -153,7 +154,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="@string/quantity_label" />
                 </TableRow>
 
                 <TableRow
@@ -178,7 +180,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="@string/quantity_label" />
                 </TableRow>
 
                 <TableRow
@@ -203,7 +206,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="@string/quantity_label" />
                 </TableRow>
 
                 <TableRow
@@ -228,7 +232,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="@string/quantity_label" />
                 </TableRow>
 
                 <TableRow
@@ -253,7 +258,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="@string/quantity_label" />
                 </TableRow>
 
 
@@ -279,7 +285,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="@string/quantity_label" />
                 </TableRow>
 
 
@@ -306,7 +313,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="@string/quantity_label" />
                 </TableRow>
 
 
@@ -332,7 +340,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="@string/quantity_label" />
 
                 </TableRow>
 
@@ -358,7 +367,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="@string/quantity_label" />
 
 
                 </TableRow>
@@ -385,7 +395,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="@string/quantity_label" />
                 </TableRow>
 
 
@@ -411,7 +422,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="@string/quantity_label" />
                 </TableRow>
 
                 <TableRow
@@ -436,7 +448,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="@string/quantity_label" />
                 </TableRow>
             </TableLayout>
         </ScrollView>

@@ -44,12 +44,13 @@ class CreateSurveyP2Fragment : Fragment() {
         registerTextChange(16, binding.question16, binding.rechargeQ16)
 
 
+//        registerTrueOrFalseClick(2, binding.rechargeQ2, )
+//        registerRechargeClick(3, binding.rechargeQ3)
+//        registerRechargeClick(4, binding.rechargeQ4)
+//
 
 
         registerRechargeClick(1, binding.rechargeQ1, binding.question1)
-//        registerRechargeClick(2, binding.rechargeQ2)
-//        registerRechargeClick(3, binding.rechargeQ3)
-//        registerRechargeClick(4, binding.rechargeQ4)
         registerRechargeClick(5, binding.rechargeQ5, binding.question5)
         registerRechargeClick(6, binding.rechargeQ6, binding.question6)
         registerRechargeClick(7, binding.rechargeQ7, binding.question7)
@@ -75,23 +76,23 @@ class CreateSurveyP2Fragment : Fragment() {
             //pass the number Test
 
             if (isNumberSuitable) {
+                if (!Testnumber.equals(".")) {
 
-                var number: Int = returnAnyNumberWithoutError(Testnumber)
+                    var number: Double = returnAnyNumberWithoutError(Testnumber)
 
-                val isrecharge = rechargeBox.isChecked
+                    val isrecharge = rechargeBox.isChecked
 
 
-                SurveyActivity.prevViewModel!!.addChangesToVariable(id, number, isrecharge)
+                    SurveyActivity.prevViewModel!!.addChangesToVariable(id, number, isrecharge)
+                } else
+                    questionEntry.setText("")
             } else
                 questionEntry.setText("")
-//            Toast.makeText(requireContext(), "Slot " + id + " has " + number, Toast.LENGTH_SHORT)
-//                .show()
         }
     }
 
+
     private fun testNumberLength(testnumber: String): Boolean {
-
-
         if (testnumber.length > 4) {
             Toast.makeText(requireContext(), "NUMBER TOO LARGE!!", Toast.LENGTH_SHORT).show()
             return false
@@ -100,20 +101,19 @@ class CreateSurveyP2Fragment : Fragment() {
     }
 
 
-    fun returnAnyNumberWithoutError(numberToCheck: String): Int {
+    fun returnAnyNumberWithoutError(numberToCheck: String): Double {
         var testNumber = numberToCheck
 
         if (testNumber.equals("")) {
-            testNumber = "0"
-            return testNumber.toInt()
+            testNumber = "0.0"
+            return testNumber.toDouble()
         } else
-            return testNumber.toInt()
+            return testNumber.toDouble()
 
     }
 
 
     private fun registerRechargeClick(id: Int, rechargeBox: CheckBox, questionEntry: EditText) {
-
         rechargeBox.setOnClickListener {
             Toast.makeText(requireContext(), "was clicked" + id, Toast.LENGTH_SHORT).show()
         }

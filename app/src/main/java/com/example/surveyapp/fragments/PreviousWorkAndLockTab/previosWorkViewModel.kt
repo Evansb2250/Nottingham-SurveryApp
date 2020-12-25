@@ -10,7 +10,7 @@ import com.example.surveyapp.repository.DatabaseRepository
 class previosWorkViewModel : ViewModel() {
 
 
-    fun addChangesToVariable(id: Int, quantity: Int, isRecharge: Boolean) {
+    fun addChangesToVariable(id: Int, quantity: Double, isRecharge: Boolean) {
 
         when (id) {
             1 -> Log.i(
