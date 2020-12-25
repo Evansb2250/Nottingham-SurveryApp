@@ -65,7 +65,7 @@ class SOR_Fragment : Fragment() {
 
 
             //Gets the values for this added Sor
-            val selectedQuantity = SurveySorViewModel.addedSorList.get(position).quantity
+            val selectedQuantity = SurveySorViewModel.addedSorList.get(position).quantity.toDouble()
             val selectedTotal = SurveySorViewModel.addedSorList.get(position).total
             val sorcode = SurveyActivity.sorViewModel!!.addedSors.get(position)
             val isRecharge = SurveySorViewModel.addedSorList.get(position).isRecharge
@@ -75,7 +75,7 @@ class SOR_Fragment : Fragment() {
 
 
             //Redisplays the amount and details submitted
-            binding.quantitySpinner.setSelection(selectedQuantity)
+            binding.quantitySpinner.setSelection(selectedQuantity.toInt())
             binding.totalTextView.text.clear()
             binding.totalTextView.append(currency.format(selectedTotal))
             binding.rechargeBox.isChecked = isRecharge

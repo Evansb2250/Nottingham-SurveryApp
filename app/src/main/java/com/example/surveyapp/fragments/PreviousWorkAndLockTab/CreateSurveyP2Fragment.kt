@@ -29,6 +29,7 @@ class CreateSurveyP2Fragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_create_survey_p2, container, false)
 
+
         registerTextChange(1, binding.question1, binding.rechargeQ1)
         registerTextChange(5, binding.question5, binding.rechargeQ5)
         registerTextChange(6, binding.question6, binding.rechargeQ6)
@@ -44,12 +45,19 @@ class CreateSurveyP2Fragment : Fragment() {
         registerTextChange(16, binding.question16, binding.rechargeQ16)
 
 
-//        registerTrueOrFalseClick(2, binding.rechargeQ2, )
-//        registerRechargeClick(3, binding.rechargeQ3)
-//        registerRechargeClick(4, binding.rechargeQ4)
-//
+        /// Box listener
+        registerTrueOrFalseClick(2, binding.question2Box, binding.rechargeQ2)
+        registerTrueOrFalseClick(3, binding.question3Box, binding.rechargeQ3)
+        registerTrueOrFalseClick(4, binding.question4Box, binding.rechargeQ4)
 
 
+        //
+        registerClickRecharge(2, binding.rechargeQ2, binding.question2Box)
+        registerClickRecharge(3, binding.rechargeQ3, binding.question3Box)
+        registerClickRecharge(4, binding.rechargeQ4, binding.question4Box)
+
+
+        //
         registerRechargeClick(1, binding.rechargeQ1, binding.question1)
         registerRechargeClick(5, binding.rechargeQ5, binding.question5)
         registerRechargeClick(6, binding.rechargeQ6, binding.question6)
@@ -66,6 +74,51 @@ class CreateSurveyP2Fragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun registerClickRecharge(id: Int, recharge: CheckBox, questionBox: CheckBox) {
+        var quantity: Int
+
+        recharge.setOnClickListener {
+            val questionHasRecharge = recharge.isChecked
+            val QuestionIsTrue = questionBox.isChecked
+            if (QuestionIsTrue) {
+                quantity = 1
+            } else
+                quantity = 0
+
+            SurveyActivity.prevViewModel!!.addChangetoCheckedVariables(
+                id,
+                quantity,
+                questionHasRecharge
+            )
+
+        }
+
+    }
+
+
+    private fun registerTrueOrFalseClick(id: Int, questionBox: CheckBox, recharge: CheckBox) {
+
+        questionBox.setOnClickListener {
+            var quantity: Int
+            //  Toast.makeText(requireContext(), " WAS CLICKED", Toast.LENGTH_SHORT).show()
+            val QuestionIsTrue = questionBox.isChecked
+            val questionHasRecharge = recharge.isChecked
+
+            if (QuestionIsTrue) {
+                quantity = 1
+            } else
+                quantity = 0
+
+
+            SurveyActivity.prevViewModel!!.addChangetoCheckedVariables(
+                id,
+                quantity,
+                questionHasRecharge
+            )
+        }
+
     }
 
 
@@ -109,7 +162,6 @@ class CreateSurveyP2Fragment : Fragment() {
             return testNumber.toDouble()
         } else
             return testNumber.toDouble()
-
     }
 
 

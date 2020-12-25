@@ -6,6 +6,6 @@ data class SurveySORs(
     var surveyID: Int,
     var surveyorDescription: String,
     var isRecharge: Boolean,
-    var quantity: Int,
+    var quantity: Double,
     var total: Double
 )

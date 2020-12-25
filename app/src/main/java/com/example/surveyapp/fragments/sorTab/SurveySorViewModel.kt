@@ -174,7 +174,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
                 addedSorList.add(
                     SurveySORs(
                         sorCode!!, surveyId, comments,
-                        recharge, quantity!!, total!!
+                        recharge, quantity!!.toDouble(), total!!
                     )
 
                 )

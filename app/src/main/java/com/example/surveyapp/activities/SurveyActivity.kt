@@ -45,13 +45,13 @@ class SurveyActivity : AppCompatActivity() {
 
     private fun initializeViewModels() {
         val viewModel: SurveySorViewModel by viewModels { SurveySorViewModelFactory((application as SurveyApplication).repository) }
-        val prevSoRViewModel: SurveySorViewModel by viewModels { previosWorkViewModelFactory((application as SurveyApplication).repository) }
+        val prevSoRViewModel: previosWorkViewModel by viewModels { previosWorkViewModelFactory((application as SurveyApplication).repository) }
 
         // Short CUT TO CLEAR A BUG
         SurveySorViewModel.addedSorList.clear()
         sorViewModel = viewModel
 
-        prevViewModel = previosWorkViewModel()
+        prevViewModel = prevSoRViewModel
 
     }
 

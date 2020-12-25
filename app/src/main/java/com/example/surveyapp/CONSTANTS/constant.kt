@@ -30,7 +30,7 @@ class constant {
         val QUESTION11_SOR = "EN0610"
         val QUESTION12_SOR = "EN0650"
         val QUESTION13_SOR = "EN0660"
-        val QUESTION14_SOR = "EN0540"
+        val QUESTION14_SOR = "EN0530"
         val QUESTION15_SOR = "EN0540"
         val QUESTION16_SOR = "EN0550"
 
