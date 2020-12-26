@@ -21,6 +21,9 @@ class constant {
         val BOILERPOINTCODES = arrayListOf<String>(PB3010, PB2020, PB4030, FP0010, PB2050)
 
         val QUESTION1_SOR = "DW0090"
+        val QUESTION2_SOR = "EN4530"
+        val QUESTION3_SOR = "EN6160"
+        val QUESTION4_SOR = "EN1010"
         val QUESTION5_SOR = "JN2030"
         val QUESTION6_SOR = "JN2070"
         val QUESTION7_SOR = "JN2040"
