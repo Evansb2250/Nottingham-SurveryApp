@@ -15,6 +15,7 @@ import com.example.surveyapp.fragments.checkListTab.CreateSurveyP1p5Fragment
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.CreateSurveyP2Fragment
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModel
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModelFactory
+import com.example.surveyapp.fragments.confirmationTab.ConfirmationPage
 import com.example.surveyapp.fragments.sorTab.SOR_Fragment
 import com.example.surveyapp.fragments.sorTab.SurveySorViewModel
 import com.example.surveyapp.fragments.sorTab.SurveySorViewModelFactory
@@ -48,7 +49,7 @@ class SurveyActivity : AppCompatActivity() {
         val prevSoRViewModel: previosWorkViewModel by viewModels { previosWorkViewModelFactory((application as SurveyApplication).repository) }
 
         // Short CUT TO CLEAR A BUG
-        SurveySorViewModel.addedSorList.clear()
+        sorViewModel?.addedSorList?.clear()
         sorViewModel = viewModel
 
         prevViewModel = prevSoRViewModel
@@ -62,6 +63,7 @@ class SurveyActivity : AppCompatActivity() {
         adapter.addFragment(CreateSurveyP1p5Fragment(), "Checklist")
         adapter.addFragment(CreateSurveyP2Fragment(), "Previous Work")
         adapter.addFragment(SOR_Fragment(), "Add SOR")
+        adapter.addFragment(ConfirmationPage(), "Confirmation Page")
         val viewPager = findViewById<ViewPager>(R.id.viewPager)
         viewPager.adapter = adapter
         val tabs = findViewById<TabLayout>(R.id.tabs)

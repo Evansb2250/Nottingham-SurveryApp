@@ -14,13 +14,13 @@ import kotlinx.coroutines.launch
 
 class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
-    /*
-    Static or Companion object variables
-     */
-    companion object {
-        var addedSorList = mutableListOf<SurveySORs>()
-    }
 
+    var addedSorList = mutableListOf<SurveySORs>()
+
+
+    fun returnListSORLIST(): List<SurveySORs> {
+        return addedSorList
+    }
 
     /*****
     Variable for creating a new SoR code attached to the survey

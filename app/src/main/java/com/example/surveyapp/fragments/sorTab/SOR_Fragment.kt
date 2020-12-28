@@ -65,20 +65,23 @@ class SOR_Fragment : Fragment() {
 
 
             //Gets the values for this added Sor
-            val selectedQuantity = SurveySorViewModel.addedSorList.get(position).quantity.toDouble()
-            val selectedTotal = SurveySorViewModel.addedSorList.get(position).total
+            val selectedQuantity =
+                SurveyActivity.sorViewModel?.addedSorList?.get(position)?.quantity?.toDouble()
+            val selectedTotal = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.total
             val sorcode = SurveyActivity.sorViewModel!!.addedSors.get(position)
-            val isRecharge = SurveySorViewModel.addedSorList.get(position).isRecharge
+            val isRecharge = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.isRecharge
 
 
             SurveyActivity.sorViewModel?.get(sorcode)
 
 
             //Redisplays the amount and details submitted
-            binding.quantitySpinner.setSelection(selectedQuantity.toInt())
+            binding.quantitySpinner.setSelection(selectedQuantity!!.toInt())
             binding.totalTextView.text.clear()
             binding.totalTextView.append(currency.format(selectedTotal))
-            binding.rechargeBox.isChecked = isRecharge
+            if (isRecharge != null) {
+                binding.rechargeBox.isChecked = isRecharge
+            }
 
             //Makes it where user cant try to change anything
             lockFields()
@@ -117,7 +120,8 @@ class SOR_Fragment : Fragment() {
             viewLifecycleOwner,
             { wasSuccessfuL ->
                 // Toast.makeText(requireContext(), wasSuccessfuL.toString(), Toast.LENGTH_SHORT).show()
-                binding.SorNumberView.text = SurveySorViewModel.addedSorList.size.toString()
+                binding.SorNumberView.text =
+                    SurveyActivity.sorViewModel?.addedSorList?.size.toString()
 
                 setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
             })
@@ -127,7 +131,8 @@ class SOR_Fragment : Fragment() {
             SurveyActivity.sorViewModel!!.removeSorFromList()
             if (SurveyActivity.sorViewModel!!.addedSors != null) {
                 setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
-                binding.SorNumberView.text = SurveySorViewModel.addedSorList.size.toString()
+                binding.SorNumberView.text =
+                    SurveyActivity.sorViewModel?.addedSorList?.size.toString()
             }
             unlockFields()
         })

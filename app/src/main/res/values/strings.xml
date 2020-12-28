@@ -9,10 +9,10 @@
 
     <string-array name="search_surveys_by">
 
-    <item>Survey ID</item>
-    <item>Address</item>
-    <item>Date</item>
-</string-array>
+        <item>Survey ID</item>
+        <item>Address</item>
+        <item>Date</item>
+    </string-array>
 
     <string name="c28">1.Daywork Labour - Electrician</string>
     <string name="c29">2.Disconnect electric cooker.</string>
