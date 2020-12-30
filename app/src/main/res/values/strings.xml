@@ -99,4 +99,7 @@
     <string name="date_label">Date:</string>
     <string name="dd_mm_yyyy_label">DD/MM/YYYY</string>
     <string name="HOURS">Hours</string>
+    <string name="hrs">Hrs</string>
+    <string name="Qty">Qty</string>
+    <string name="commentHint">comment</string>
 </resources>

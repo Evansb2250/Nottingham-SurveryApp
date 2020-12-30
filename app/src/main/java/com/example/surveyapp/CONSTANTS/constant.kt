@@ -30,13 +30,13 @@ class constant {
         val QUESTION8_SOR = "GR0510"
         val QUESTION9_SOR = "GR0520"
         val QUESTION10_SOR = "EN0510"
-        val QUESTION11_SOR = "EN0610"
-        val QUESTION12_SOR = "EN0650"
-        val QUESTION13_SOR = "EN0660"
-        val QUESTION14_SOR = "EN0530"
-        val QUESTION15_SOR = "EN0540"
-        val QUESTION16_SOR = "EN0550"
-
+        val QUESTION11_SOR = "EN0570"
+        val QUESTION12_SOR = "EN0610"
+        val QUESTION13_SOR = "EN0650"
+        val QUESTION14_SOR = "EN0660"
+        val QUESTION15_SOR = "EN0530"
+        val QUESTION16_SOR = "EN0540"
+        val QUESTION17_SOR = "EN0550"
 
         val NOTALLOWEDTOENTER = arraySetOf<String>(
             QUESTION1_SOR,

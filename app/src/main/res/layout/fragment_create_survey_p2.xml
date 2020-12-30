@@ -12,8 +12,8 @@
 
         <ScrollView
             android:id="@+id/scrollView3"
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
+            android:layout_width="893dp"
+            android:layout_height="304dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
@@ -34,39 +34,48 @@
                 android:layout_marginRight="20dp">
 
                 <TableRow
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
                     android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/textView25"
-                        android:layout_width="507dp"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c28"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                     <CheckBox
                         android:id="@+id/rechargeQ1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="151dp"
                         android:layout_height="wrap_content"
-                        android:paddingRight="40dp"
+                        android:paddingRight="5dp"
                         android:text="@string/Recharge_Box" />
 
                     <EditText
                         android:id="@+id/question1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
+                        android:layout_height="match_parent"
                         android:ems="10"
-                        android:hint="@string/HOURS"
+                        android:hint="@string/hrs"
                         android:inputType="number|numberDecimal" />
+
+                    <EditText
+                        android:id="@+id/comment1"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
+
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/textView26"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c29"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -79,9 +88,17 @@
 
                     <CheckBox
                         android:id="@+id/question2Box"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
+                        android:layout_height="36dp"
                         android:text="yes" />
+
+                    <EditText
+                        android:id="@+id/comment2"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
                 <TableRow
@@ -90,7 +107,7 @@
 
                     <TextView
                         android:id="@+id/textView27"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c30"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -103,9 +120,17 @@
 
                     <CheckBox
                         android:id="@+id/question3Box"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:text="yes" />
+
+                    <EditText
+                        android:id="@+id/comment3"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
                 <TableRow
@@ -114,7 +139,7 @@
 
                     <TextView
                         android:id="@+id/textView28"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c31"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -127,9 +152,17 @@
 
                     <CheckBox
                         android:id="@+id/question4Box"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:text="yes" />
+
+                    <EditText
+                        android:id="@+id/comment4"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
                 <TableRow
@@ -138,7 +171,7 @@
 
                     <TextView
                         android:id="@+id/textView29"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c32"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -151,11 +184,19 @@
 
                     <EditText
                         android:id="@+id/question5"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:hint="@string/quantity_label" />
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment5"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
                 <TableRow
@@ -164,7 +205,7 @@
 
                     <TextView
                         android:id="@+id/textView30"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c33"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -177,11 +218,19 @@
 
                     <EditText
                         android:id="@+id/question6"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:hint="@string/quantity_label" />
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment6"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
                 <TableRow
@@ -190,7 +239,7 @@
 
                     <TextView
                         android:id="@+id/textView31"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c35"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -203,11 +252,19 @@
 
                     <EditText
                         android:id="@+id/question7"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:hint="@string/quantity_label" />
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment7"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
                 <TableRow
@@ -216,7 +273,7 @@
 
                     <TextView
                         android:id="@+id/textView32"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c36"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -229,11 +286,19 @@
 
                     <EditText
                         android:id="@+id/question8"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:hint="@string/quantity_label" />
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment8"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
                 <TableRow
@@ -242,7 +307,7 @@
 
                     <TextView
                         android:id="@+id/textView33"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c37"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -255,11 +320,19 @@
 
                     <EditText
                         android:id="@+id/question9"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:hint="@string/quantity_label" />
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment9"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
 
@@ -269,7 +342,7 @@
 
                     <TextView
                         android:id="@+id/textView34"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c40"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -282,11 +355,19 @@
 
                     <EditText
                         android:id="@+id/question10"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:hint="@string/quantity_label" />
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment10"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
 
@@ -296,7 +377,7 @@
 
                     <TextView
                         android:id="@+id/textView35"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c41"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -310,11 +391,19 @@
 
                     <EditText
                         android:id="@+id/question11"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:hint="@string/quantity_label" />
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment11"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
 
@@ -324,7 +413,7 @@
 
                     <TextView
                         android:id="@+id/textView37"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c42"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -337,11 +426,19 @@
 
                     <EditText
                         android:id="@+id/question12"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:hint="@string/quantity_label" />
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment12"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
 
                 </TableRow>
 
@@ -351,7 +448,7 @@
 
                     <TextView
                         android:id="@+id/textView36"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c43"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -364,11 +461,19 @@
 
                     <EditText
                         android:id="@+id/question13"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:hint="@string/quantity_label" />
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment13"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
 
 
                 </TableRow>
@@ -379,7 +484,7 @@
 
                     <TextView
                         android:id="@+id/textView38"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c44"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -392,11 +497,19 @@
 
                     <EditText
                         android:id="@+id/question14"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:hint="@string/quantity_label" />
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment14"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
 
@@ -406,7 +519,7 @@
 
                     <TextView
                         android:id="@+id/textView39"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c45"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -419,11 +532,19 @@
 
                     <EditText
                         android:id="@+id/question15"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:hint="@string/quantity_label" />
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment15"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
                 <TableRow
@@ -432,7 +553,7 @@
 
                     <TextView
                         android:id="@+id/textView40"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c46"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -445,12 +566,56 @@
 
                     <EditText
                         android:id="@+id/question16"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:inputType="number"
-                        android:hint="@string/quantity_label" />
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment16"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView41"
+                        android:layout_width="@dimen/labelWidth"
+                        android:layout_height="wrap_content"
+                        android:text="@string/c47"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <CheckBox
+                        android:id="@+id/rechargeQ17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box" />
+
+                    <EditText
+                        android:id="@+id/question17"
+                        android:layout_width="@dimen/quantityLabelWidth"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment17"
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
+                </TableRow>
+
+
             </TableLayout>
         </ScrollView>
 
@@ -464,7 +629,7 @@
             android:layout_marginEnd="462dp"
             android:layout_marginRight="462dp"
             android:layout_marginBottom="23dp"
-            android:text="Questions 1-16"
+            android:text="Questions 1-17"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toTopOf="@+id/scrollView3"
             app:layout_constraintEnd_toEndOf="parent"

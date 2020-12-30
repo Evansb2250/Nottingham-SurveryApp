@@ -2,21 +2,19 @@ package com.example.surveyapp.fragments.sorTab
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.SurfaceView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.*
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.surveyapp.CONSTANTS.constant
-import com.example.surveyapp.databinding.FragmentSORBinding
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
-import com.example.surveyapp.application.SurveyApplication
+import com.example.surveyapp.databinding.FragmentSORBinding
 import java.text.DecimalFormat
 
 
@@ -51,72 +49,27 @@ class SOR_Fragment : Fragment() {
         binding.lifecycleOwner = this
         binding.sorIdentifier.visibility = View.INVISIBLE
 
-
-        binding.searchResultBox.setOnItemClickListener { parent, view, position, id ->
-            unlockFields()
-            val sorcode = SurveyActivity.sorViewModel!!.listForView.get(position)
-            SurveyActivity.sorViewModel?.get(sorcode)
-            revealSelectedItem(sorcode)
-            setNumberSpinnerToZero()
-        }
-
-        binding.sorAttachedToSurveyBox.setOnItemClickListener { parent, view, position, id ->
-            SurveyActivity.sorViewModel?.sorcodeToDeleteIndex = position
+        setupQuantyObserver(SurveyActivity.sorViewModel)
+        setUpTotalObserver(SurveyActivity.sorViewModel!!.total)
+        setUpRechargeObserver(SurveyActivity.sorViewModel!!.rechargeAmount)
+        setUpViewListObserver(SurveyActivity.sorViewModel!!.viewList)
+        setUpSorInsertCheck(SurveyActivity.sorViewModel?.wasSorInsertedToSurvey)
 
 
-            //Gets the values for this added Sor
-            val selectedQuantity =
-                SurveyActivity.sorViewModel?.addedSorList?.get(position)?.quantity?.toDouble()
-            val selectedTotal = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.total
-            val sorcode = SurveyActivity.sorViewModel!!.addedSors.get(position)
-            val isRecharge = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.isRecharge
+        setUpSurveyAttachButton(binding.sorAttachedToSurveyBox)
+        setUpSearchResult(binding.searchResultBox)
+        setUpRemoveButton(binding.removeSorButton)
+        setupImageButton()
+        setUpSpinner()
+        setUpNumberSpinner()
+        setUpAddButton()
+
+        return binding.root
+    }
 
 
-            SurveyActivity.sorViewModel?.get(sorcode)
-
-
-            //Redisplays the amount and details submitted
-            binding.quantitySpinner.setSelection(selectedQuantity!!.toInt())
-            binding.totalTextView.text.clear()
-            binding.totalTextView.append(currency.format(selectedTotal))
-            if (isRecharge != null) {
-                binding.rechargeBox.isChecked = isRecharge
-            }
-
-            //Makes it where user cant try to change anything
-            lockFields()
-
-
-            revealSelectedItem(sorcode)
-
-        }
-
-
-        SurveyActivity.sorViewModel!!.quantitySelected.observe(viewLifecycleOwner, Observer {
-            SurveyActivity.sorViewModel!!.updateTotalByQuantity()
-            updateTotal()
-
-        })
-
-        SurveyActivity.sorViewModel!!.total.observe(viewLifecycleOwner, Observer {
-            updateTotal()
-
-        })
-
-        SurveyActivity.sorViewModel!!.rechargeAmount.observe(
-            viewLifecycleOwner,
-            Observer { rechargeAmount ->
-                binding.rechargeTextView.text.clear()
-                binding.rechargeTextView.append(currency.format(rechargeAmount))
-            })
-
-
-        SurveyActivity.sorViewModel!!.viewList.observe(viewLifecycleOwner, Observer { newList ->
-            setUpListView(newList)
-        })
-
-
-        SurveyActivity.sorViewModel?.wasSorInsertedToSurvey?.observe(
+    private fun setUpSorInsertCheck(wasSorInsertedToSurvey: LiveData<Boolean>?) {
+        wasSorInsertedToSurvey?.observe(
             viewLifecycleOwner,
             { wasSuccessfuL ->
                 // Toast.makeText(requireContext(), wasSuccessfuL.toString(), Toast.LENGTH_SHORT).show()
@@ -126,8 +79,37 @@ class SOR_Fragment : Fragment() {
                 setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
             })
 
+    }
 
-        binding.removeSorButton.setOnClickListener({ it ->
+
+    private fun setUpViewListObserver(viewList: LiveData<List<String>>) {
+        viewList.observe(viewLifecycleOwner, Observer { newList ->
+            setUpListView(newList)
+        })
+    }
+
+    private fun setUpRechargeObserver(rechargeAmount: LiveData<Double>) {
+        rechargeAmount.observe(
+            viewLifecycleOwner,
+            Observer { rechargeAmount ->
+                binding.rechargeTextView.text.clear()
+                binding.rechargeTextView.append(currency.format(rechargeAmount))
+            })
+
+
+    }
+
+
+    private fun setUpTotalObserver(total: MutableLiveData<Double>) {
+        total.observe(viewLifecycleOwner, Observer {
+            //updateTotal()
+
+        })
+    }
+
+
+    private fun setUpRemoveButton(removeSorButton: Button) {
+        removeSorButton.setOnClickListener({ it ->
             SurveyActivity.sorViewModel!!.removeSorFromList()
             if (SurveyActivity.sorViewModel!!.addedSors != null) {
                 setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
@@ -135,16 +117,73 @@ class SOR_Fragment : Fragment() {
                     SurveyActivity.sorViewModel?.addedSorList?.size.toString()
             }
             unlockFields()
+            binding.commentEntry.text.clear()
+            binding.quantitySpinner.setSelection(0)
+            updateTotal()
         })
 
 
+    }
 
-        setupImageButton()
-        setUpSpinner()
-        setUpNumberSpinner()
-        setUpAddButton()
 
-        return binding.root
+    private fun setupQuantyObserver(sorViewModel: SurveySorViewModel?) {
+        SurveyActivity.sorViewModel!!.quantitySelected.observe(viewLifecycleOwner, Observer {
+            SurveyActivity.sorViewModel!!.updateTotalByQuantity()
+            updateTotal()
+
+        })
+    }
+
+    private fun setUpSearchResult(searchResultBox: ListView) {
+        searchResultBox.setOnItemClickListener { parent, view, position, id ->
+
+            unlockFields()
+
+            val sorcode = SurveyActivity.sorViewModel!!.listForView.get(position)
+            SurveyActivity.sorViewModel?.get(sorcode)
+            revealSelectedItem(sorcode)
+            setNumberSpinnerToZero()
+        }
+
+    }
+
+
+    private fun setUpSurveyAttachButton(sorAttachedToSurveyBox: ListView) {
+
+        sorAttachedToSurveyBox.setOnItemClickListener { parent, view, position, id ->
+            SurveyActivity.sorViewModel?.sorcodeToDeleteIndex = position
+            //Gets the values for this added Sor
+            val selectedQuantity =
+                SurveyActivity.sorViewModel?.addedSorList?.get(position)?.quantity?.toDouble()
+            val selectedTotal = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.total
+            val sorcode = SurveyActivity.sorViewModel!!.addedSors.get(position)
+            val isRecharge = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.isRecharge
+            val comment =
+                SurveyActivity.sorViewModel?.addedSorList?.get(position)?.surveyorDescription
+
+            binding.commentEntry.text.clear()
+            binding.commentEntry.setText(comment)
+
+            SurveyActivity.sorViewModel?.get(sorcode)
+
+            //Redisplays the amount and details submitted
+            binding.quantitySpinner.setSelection(selectedQuantity!!.toInt())
+
+            //  Toast.makeText(requireContext(),  selectedTotal.toString(), Toast.LENGTH_SHORT).show()
+            binding.totalTextView.text.clear()
+
+            binding.totalTextView.append(currency.format(selectedTotal))
+
+            if (isRecharge != null) {
+                binding.rechargeBox.isChecked = isRecharge
+            }
+
+            //   Toast.makeText(requireContext(), " sexond" + selectedTotal.toString(), Toast.LENGTH_SHORT).show()
+            lockFields()
+            revealSelectedItem(sorcode)
+
+        }
+
     }
 
 
@@ -288,6 +327,7 @@ class SOR_Fragment : Fragment() {
 
     private fun updateTotal() {
         binding.totalTextView.text.clear()
+        //    Toast.makeText(requireContext(), " sexond" +  currency.format(SurveyActivity.sorViewModel!!.total.value), Toast.LENGTH_SHORT).show()
         binding.totalTextView.append(currency.format(SurveyActivity.sorViewModel!!.total.value))
     }
 
@@ -326,7 +366,8 @@ class SOR_Fragment : Fragment() {
     private fun unlockFields() {
         binding.quantitySpinner.isFocusable = true
         binding.rechargeBox.isFocusable = true
-        binding.commentEntry.isFocusable = true
+        binding.commentEntry.isFocusableInTouchMode = true
+
     }
 
 

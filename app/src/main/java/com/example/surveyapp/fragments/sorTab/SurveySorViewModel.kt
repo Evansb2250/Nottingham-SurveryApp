@@ -8,8 +8,6 @@ import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.domains.SoR
 import com.example.surveyapp.domains.SurveySORs
 import com.example.surveyapp.repository.DatabaseRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 
 class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel() {
@@ -32,6 +30,8 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     //Number selected in the number wheel
     //TODO change to a text entry to add floating point numbers
     val quantitySelected = MutableLiveData<Int>()
+    lateinit var UOM: String
+    lateinit var sorDescrip: String
 
     val comments: String
 
@@ -149,6 +149,9 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     private fun updateCurrentSoR() {
         _sorDescripition.value = currentSor?.description
         _rechargeAmount.value = currentSor?.rechargeRate
+        UOM = currentSor?.UOM.toString()
+        sorDescrip = currentSor?.description.toString()
+
         total.value = 0.0
         alertSuccess(true)
     }
@@ -173,7 +176,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
             if (passedDuplicateSorTest) { // val surveysor = SurveySORs(sorCode!!, surveyId!!, comments!!, recharge!!, quantity!!, total!!)
                 addedSorList.add(
                     SurveySORs(
-                        sorCode!!, surveyId, comments,
+                        sorCode!!, UOM, surveyId, sorDescrip, comments,
                         recharge, quantity!!.toDouble(), total!!
                     )
 

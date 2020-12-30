@@ -9,5 +9,6 @@ import androidx.room.PrimaryKey
 data class SoR(
     @PrimaryKey val sorCode: String,
     @ColumnInfo(name = "Description") val description: String,
+    @ColumnInfo(name = "UOM") val UOM: String,
     @ColumnInfo(name = "Recharge_Price") val rechargeRate: Double
 )
