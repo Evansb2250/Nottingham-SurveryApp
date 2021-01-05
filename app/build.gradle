@@ -80,12 +80,9 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
 
-    // DEXTER LIBRARY
-    implementation 'com.karumi:dexter:6.2.2'
 
 
-    //Write pdf library
-    implementation 'com.itextpdf:itextg:5.5.10'
+
 
 
     // Testing

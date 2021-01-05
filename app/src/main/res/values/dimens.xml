@@ -2,4 +2,5 @@
 <resources>
     <dimen name="labelWidth">410dp</dimen>
     <dimen name="quantityLabelWidth">60dp</dimen>
+    <dimen name="commentWidth">230dp</dimen>
 </resources>

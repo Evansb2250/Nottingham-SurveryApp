@@ -50,7 +50,7 @@ class SOR_Fragment : Fragment() {
         binding.sorIdentifier.visibility = View.INVISIBLE
 
         setupQuantyObserver(SurveyActivity.sorViewModel)
-        setUpTotalObserver(SurveyActivity.sorViewModel!!.total)
+//        setUpTotalObserver(SurveyActivity.sorViewModel!!.total)
         setUpRechargeObserver(SurveyActivity.sorViewModel!!.rechargeAmount)
         setUpViewListObserver(SurveyActivity.sorViewModel!!.viewList)
         setUpSorInsertCheck(SurveyActivity.sorViewModel?.wasSorInsertedToSurvey)
@@ -99,13 +99,13 @@ class SOR_Fragment : Fragment() {
 
     }
 
-
-    private fun setUpTotalObserver(total: MutableLiveData<Double>) {
-        total.observe(viewLifecycleOwner, Observer {
-            //updateTotal()
-
-        })
-    }
+//
+//    private fun setUpTotalObserver(total: MutableLiveData<Double>) {
+//        total.observe(viewLifecycleOwner, Observer {
+//            //updateTotal()
+//
+//        })
+//    }
 
 
     private fun setUpRemoveButton(removeSorButton: Button) {

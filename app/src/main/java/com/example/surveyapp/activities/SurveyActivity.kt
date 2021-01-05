@@ -1,21 +1,24 @@
 package com.example.surveyapp.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.R
 import com.example.surveyapp.application.SurveyApplication
-import com.example.surveyapp.fragments.createTab.CreateSurveyFragment
-import com.example.surveyapp.fragments.checkListTab.CreateSurveyP1p5Fragment
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.CreateSurveyP2Fragment
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModel
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModelFactory
+import com.example.surveyapp.fragments.checkListTab.ChecklistViewModel
+import com.example.surveyapp.fragments.checkListTab.ChecklistViewModelFactory
+import com.example.surveyapp.fragments.checkListTab.CreateSurveyP1p5Fragment
+import com.example.surveyapp.fragments.confirmationTab.ConfirmViewModel
 import com.example.surveyapp.fragments.confirmationTab.ConfirmationPage
+import com.example.surveyapp.fragments.confirmationTab.confirmViewModelFactory
+import com.example.surveyapp.fragments.createTab.CreateSurveyFragment
+import com.example.surveyapp.fragments.createTab.createSurveyViewModel
+import com.example.surveyapp.fragments.createTab.createSurveyViewModelFactory
 import com.example.surveyapp.fragments.sorTab.SOR_Fragment
 import com.example.surveyapp.fragments.sorTab.SurveySorViewModel
 import com.example.surveyapp.fragments.sorTab.SurveySorViewModelFactory
@@ -26,8 +29,11 @@ class SurveyActivity : AppCompatActivity() {
 
     companion object {
         // global sor viewModel
+        var createSurveyPage: createSurveyViewModel? = null
         var sorViewModel: SurveySorViewModel? = null
         var prevViewModel: previosWorkViewModel? = null
+        var checkListVM: ChecklistViewModel? = null
+        var confirmPage: ConfirmViewModel? = null
 
 
     }
@@ -47,15 +53,23 @@ class SurveyActivity : AppCompatActivity() {
     private fun initializeViewModels() {
         val viewModel: SurveySorViewModel by viewModels { SurveySorViewModelFactory((application as SurveyApplication).repository) }
         val prevSoRViewModel: previosWorkViewModel by viewModels { previosWorkViewModelFactory((application as SurveyApplication).repository) }
-
+        val checklistViewModel: ChecklistViewModel by viewModels { ChecklistViewModelFactory((application as SurveyApplication).repository) }
+        val confirmationVM: ConfirmViewModel by viewModels { confirmViewModelFactory((application as SurveyApplication).repository) }
+        val createSVM: createSurveyViewModel by viewModels { createSurveyViewModelFactory((application as SurveyApplication).repository) }
         // Short CUT TO CLEAR A BUG
-        sorViewModel?.addedSorList?.clear()
-        sorViewModel = viewModel
+        //   sorViewModel?.addedSorList?.clear()
 
+        createSurveyPage = createSVM
+        sorViewModel = viewModel
+        checkListVM = checklistViewModel
         prevViewModel = prevSoRViewModel
+        confirmPage = confirmationVM
 
     }
 
+    override fun onBackPressed() {
+        Toast.makeText(this, "Go To cancel button to exit Survey", Toast.LENGTH_LONG).show()
+    }
 
     private fun setUpTabs() {
         val adapter = ViewPagerAdapter(supportFragmentManager)
@@ -63,7 +77,7 @@ class SurveyActivity : AppCompatActivity() {
         adapter.addFragment(CreateSurveyP1p5Fragment(), "Checklist")
         adapter.addFragment(CreateSurveyP2Fragment(), "Previous Work")
         adapter.addFragment(SOR_Fragment(), "Add SOR")
-        adapter.addFragment(ConfirmationPage(), "Confirmation Page")
+        adapter.addFragment(ConfirmationPage(), "save / cancel")
         val viewPager = findViewById<ViewPager>(R.id.viewPager)
         viewPager.adapter = adapter
         val tabs = findViewById<TabLayout>(R.id.tabs)

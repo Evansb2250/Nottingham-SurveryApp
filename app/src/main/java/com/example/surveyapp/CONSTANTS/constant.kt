@@ -7,6 +7,8 @@ class constant {
     companion object {
         val SORCODE = "SOR CODE"
         val KEYWORD = "Keyword"
+        val CAPTIAL = "Capital"
+        val REVENUE = "Revenue"
         val searchBy = arrayListOf<String>(SORCODE, KEYWORD)
 
         val PB3010 = "PB3010"

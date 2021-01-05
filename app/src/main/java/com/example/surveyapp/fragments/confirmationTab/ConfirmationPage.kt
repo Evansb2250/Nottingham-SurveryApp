@@ -2,25 +2,20 @@ package com.example.surveyapp.fragments.confirmationTab
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.databinding.FragmentConfirmationPageBinding
-
-import com.example.surveyapp.domains.SurveySORs
-import kotlinx.coroutines.currentCoroutineContext
-import kotlinx.coroutines.delay
 import java.io.*
-
 import java.text.DecimalFormat
 import java.util.*
 
@@ -64,10 +59,28 @@ class ConfirmationPage : Fragment() {
             binding.total.text = currency.format(newAmount)
         })
 
+        SurveyActivity.confirmPage?.rechargeTotal?.observe(viewLifecycleOwner, { newAmount ->
+            binding.rechargeAmount.text = currency.format(newAmount)
+        })
+
+
         SurveyActivity.confirmPage?.message?.observe(viewLifecycleOwner, { newMessage ->
             binding.textField.text.clear()
             binding.textField.setText(newMessage)
         })
+
+        binding.taxPrecentage.addTextChangedListener { pct ->
+            var percentage = pct.toString()
+
+            if (percentage == "") {
+                percentage == "0.0"
+            }
+
+            SurveyActivity.confirmPage?.changeVAT(percentage.toDouble())
+            Toast.makeText(requireActivity(), percentage, Toast.LENGTH_LONG).show()
+//            SurveyActivity.confirmPage?.changePercentage()
+
+        }
 
 
 
@@ -87,25 +100,27 @@ class ConfirmationPage : Fragment() {
     fun setUpPdfButton(pdfButton: Button) {
         pdfButton.setOnClickListener { it ->
             try {
-
-                val filename = "myfile"
-                val fileContents = "Hello world!"
-                val file = File(context?.filesDir, filename)
-                context?.openFileOutput(filename, Context.MODE_PRIVATE).use {
-                    if (it != null) {
-                        it.write(fileContents.toByteArray())
-                        it.close()
+                val file = File(activity?.getExternalFilesDir(null), "testfile.txt")
+                val fileOutput = FileOutputStream(file)
+                val outputStreamWriter = OutputStreamWriter(fileOutput)
+                val message = SurveyActivity.confirmPage?.getList()
+                if (message != null) {
+                    for (sorDetails in message) {
+                        outputStreamWriter.write(sorDetails)
                     }
                 }
-
-                Toast.makeText(requireContext(), "File Created", Toast.LENGTH_SHORT).show()
+                outputStreamWriter.flush()
+                fileOutput.fd.sync()
+                outputStreamWriter.close()
+                Toast.makeText(requireContext(), "Pased ", Toast.LENGTH_LONG).show()
             } catch (e: IOException) {
                 Toast.makeText(
                     requireContext(),
-                    "ExceptionFile write failed: " + e.toString(),
-                    Toast.LENGTH_SHORT
+                    "Failed " + e.message.toString(),
+                    Toast.LENGTH_LONG
                 ).show()
             }
+
         }
     }
 

@@ -141,7 +141,7 @@
                     android:autofillHints=""
                     android:ems="10"
                     android:hint="@string/dd_mm_yyyy_label"
-                    android:inputType="date" />
+                    android:inputType="text" />
             </TableRow>
 
         </TableLayout>

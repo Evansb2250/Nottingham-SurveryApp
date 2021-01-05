@@ -61,11 +61,11 @@
 
                     <EditText
                         android:id="@+id/comment1"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
-                        android:inputType="text" />
+                        android:inputType="textMultiLine" />
 
                 </TableRow>
 
@@ -94,7 +94,7 @@
 
                     <EditText
                         android:id="@+id/comment2"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -126,7 +126,7 @@
 
                     <EditText
                         android:id="@+id/comment3"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -158,7 +158,7 @@
 
                     <EditText
                         android:id="@+id/comment4"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -192,7 +192,7 @@
 
                     <EditText
                         android:id="@+id/comment5"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -226,7 +226,7 @@
 
                     <EditText
                         android:id="@+id/comment6"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -260,7 +260,7 @@
 
                     <EditText
                         android:id="@+id/comment7"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -294,7 +294,7 @@
 
                     <EditText
                         android:id="@+id/comment8"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -328,7 +328,7 @@
 
                     <EditText
                         android:id="@+id/comment9"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -363,7 +363,7 @@
 
                     <EditText
                         android:id="@+id/comment10"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -399,7 +399,7 @@
 
                     <EditText
                         android:id="@+id/comment11"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -434,7 +434,7 @@
 
                     <EditText
                         android:id="@+id/comment12"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -469,7 +469,7 @@
 
                     <EditText
                         android:id="@+id/comment13"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -505,7 +505,7 @@
 
                     <EditText
                         android:id="@+id/comment14"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -540,7 +540,7 @@
 
                     <EditText
                         android:id="@+id/comment15"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -574,7 +574,7 @@
 
                     <EditText
                         android:id="@+id/comment16"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"
@@ -608,7 +608,7 @@
 
                     <EditText
                         android:id="@+id/comment17"
-                        android:layout_width="290dp"
+                        android:layout_width="@dimen/commentWidth"
                         android:layout_height="match_parent"
                         android:ems="10"
                         android:hint="@string/commentHint"

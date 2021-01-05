@@ -4,6 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragments.checkListTab.CreateSurveyP1p5Fragment">
 
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.example.surveyapp.fragments.checkListTab.ChecklistViewModel" />
+
+
+    </data>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,11 +50,11 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <CheckBox
-                    android:id="@+id/checkBox7"
+                    android:id="@+id/fdChkbx"
                     android:layout_width="344dp"
                     android:layout_height="wrap_content"
 
-                    android:text="CheckBox" />
+                    android:text="yes" />
             </TableRow>
 
             <TableRow
@@ -59,7 +69,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName6"
+                    android:id="@+id/fireDoorTextField"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:autofillHints=""
@@ -80,10 +90,10 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <CheckBox
-                    android:id="@+id/checkBox8"
+                    android:id="@+id/isolatorChkBx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CheckBox" />
+                    android:text="yes" />
 
                 <TextView
                     android:id="@+id/textView16"
@@ -93,10 +103,10 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <CheckBox
-                    android:id="@+id/checkBox9"
+                    android:id="@+id/rwChkBx"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:text="CheckBox" />
+                    android:text="yes" />
             </TableRow>
 
             <TableRow
@@ -118,10 +128,10 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <CheckBox
-                    android:id="@+id/checkBox10"
+                    android:id="@+id/mIChkBx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CheckBox" />
+                    android:text="yes" />
 
                 <TextView
                     android:id="@+id/textView18"
@@ -131,10 +141,10 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <CheckBox
-                    android:id="@+id/checkBox11"
+                    android:id="@+id/heatingChkBx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CheckBox" />
+                    android:text="yes" />
             </TableRow>
 
 
@@ -156,10 +166,10 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <CheckBox
-                    android:id="@+id/checkBox3"
+                    android:id="@+id/ftChkBx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CheckBox" />
+                    android:text="yes" />
 
                 <TextView
                     android:id="@+id/textView20"
@@ -169,10 +179,10 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/glassChkBx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CheckBox" />
+                    android:text="yes" />
             </TableRow>
 
 
@@ -195,10 +205,10 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <CheckBox
-                    android:id="@+id/checkBox"
+                    android:id="@+id/atroChkBx"
                     android:layout_width="346dp"
                     android:layout_height="29dp"
-                    android:text="CheckBox" />
+                    android:text="yes" />
             </TableRow>
 
 

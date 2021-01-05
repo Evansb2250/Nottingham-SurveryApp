@@ -13,8 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SurveyApp">
-        <activity android:name=".activities.PDF"></activity>
-        <activity
+
+    <activity
             android:name=".activities.SurveyActivity"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="adjustPan"></activity>
