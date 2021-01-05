@@ -9,5 +9,6 @@ data class SurveySORs(
     var surveyorDescription: String,
     var isRecharge: Boolean,
     var quantity: Double,
-    var total: Double
+    var total: Double,
+    var roomCategory: String = ""
 )

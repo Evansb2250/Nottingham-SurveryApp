@@ -40,6 +40,28 @@ class constant {
         val QUESTION16_SOR = "EN0540"
         val QUESTION17_SOR = "EN0550"
 
+        val ROOMCATEGORIES = arraySetOf<String>(
+            "Outside\nfront",
+            "Outside\nrear",
+            "Kitchen",
+            "Utility",
+            "Lounge",
+            "Dining/\nParlour",
+            "Hall",
+            "Stairs",
+            "Landing",
+            "Single wc",
+            "Bathroom",
+            "Bedroom 1",
+            "Bedroom 2",
+            "Bedroom 3",
+            "Bedroom 4",
+            "Bedroom 5",
+            "Attic room",
+            "Garage/\nouthouse",
+            "Misc/\nother"
+        )
+
         val NOTALLOWEDTOENTER = arraySetOf<String>(
             QUESTION1_SOR,
             QUESTION5_SOR,

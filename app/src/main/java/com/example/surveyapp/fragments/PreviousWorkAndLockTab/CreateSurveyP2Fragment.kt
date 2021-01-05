@@ -114,7 +114,7 @@ class CreateSurveyP2Fragment : Fragment() {
     ) {
         comment.addTextChangedListener {
             var com = comment.text.toString()
-            var isRecharge = isRecharge.isChecked
+            var isRecharged = isRecharge.isChecked
             var qty: Double
 
             if (questionBox.isChecked) {
@@ -122,7 +122,7 @@ class CreateSurveyP2Fragment : Fragment() {
             } else
                 qty = 0.0
 
-            SurveyActivity.prevViewModel!!.addChangetoCheckedVariables(id, qty, isRecharge, com)
+            SurveyActivity.prevViewModel!!.addChangetoCheckedVariables(id, qty, isRecharged, com)
 
         }
     }
