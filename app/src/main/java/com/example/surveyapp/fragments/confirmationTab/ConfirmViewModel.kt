@@ -14,7 +14,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     private val numberCounter = DecimalFormat("####. ")
 
 
-    var _dataFromSurvey = MutableLiveData<List<SurveySORs>>()
+    var _dataFromSurvey = mutableListOf<SurveySORs>()
 
 
     var total = MutableLiveData<Double>()
@@ -35,7 +35,6 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     init {
         total.value = 0.0
         message.value = ""
-        _dataFromSurvey.value = mutableListOf<SurveySORs>()
         VAT.value = .2
         rechargeTotal.value = 0.0
     }
@@ -51,14 +50,17 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     private lateinit var surveyType: String
     private lateinit var date: String
 
+    //Separator
     private val sp = "@"
+
 
 
     //Details
 
 
     //TODO Debate if you need to turn this function into a coroutine
-    fun getData(): List<SurveySORs> {
+    //  fun getData(): List<SurveySORs> {
+    fun getData() {
         address = SurveyActivity.createSurveyPage?.getAddress() ?: ""
         name = SurveyActivity.createSurveyPage?.getName() ?: " "
         postCode = SurveyActivity.createSurveyPage?.getPostCode() ?: " "
@@ -77,9 +79,10 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
         dataFromChecklist = SurveyActivity.checkListVM?.getHeatingType()!!
 
+        /** OG CODE **/
+        //    return combineData()
 
-        return combineData()
-
+        _dataFromSurvey = combineData() as MutableList<SurveySORs>
     }
 
     fun combineData(): List<SurveySORs> {
@@ -105,16 +108,17 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
         return tempList
     }
 
-
-    fun updateTotal(List: List<SurveySORs>) {
+    /*** OG CODE **/
+    //  fun updateTotal(List: List<SurveySORs>) {
+    fun updateTotal() {
         total.value = 0.0
         rechargeTotal.value = 0.0
 
-        if (List != null) {
+        if (_dataFromSurvey != null) {
             //Reseto
 
 
-            for (data in List) {
+            for (data in _dataFromSurvey) {
                 total.value = total.value?.plus(data.total)
                 if (data.isRecharge.equals(true)) {
                     rechargeTotal.value = rechargeTotal.value?.plus(data.total)
@@ -124,7 +128,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
             //Apply Vat to recharge amount
             rechargeTotal.value = rechargeTotal.value!! * VAT.value!! + rechargeTotal.value!!
 
-            messageList = updateMessage(List) as ArrayList<String>
+            messageList = updateMessage(_dataFromSurvey) as ArrayList<String>
         }
     }
 
@@ -187,7 +191,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     }
 
     fun changeVAT(newVat: Double) {
-//
+        VAT.value = newVat / 100
     }
 
 

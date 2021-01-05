@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
+import com.example.surveyapp.activities.SurveyActivity.Companion.confirmPage
 import com.example.surveyapp.databinding.FragmentConfirmationPageBinding
 import java.io.*
 import java.text.DecimalFormat
@@ -42,7 +43,7 @@ class ConfirmationPage : Fragment() {
         binding.textField.isFocusable = false
         val currency = DecimalFormat("£###,###.##")
 
-        binding.viewModel = SurveyActivity.confirmPage
+        binding.viewModel = confirmPage
         binding.lifecycleOwner = this
 
         buttonListener(binding.button2)
@@ -55,16 +56,16 @@ class ConfirmationPage : Fragment() {
 //            SurveyActivity.confirmPage!!.updateTotal(list)
 //        })
 
-        SurveyActivity.confirmPage?.total?.observe(viewLifecycleOwner, { newAmount ->
+        confirmPage?.total?.observe(viewLifecycleOwner, { newAmount ->
             binding.total.text = currency.format(newAmount)
         })
 
-        SurveyActivity.confirmPage?.rechargeTotal?.observe(viewLifecycleOwner, { newAmount ->
+        confirmPage?.rechargeTotal?.observe(viewLifecycleOwner, { newAmount ->
             binding.rechargeAmount.text = currency.format(newAmount)
         })
 
 
-        SurveyActivity.confirmPage?.message?.observe(viewLifecycleOwner, { newMessage ->
+        confirmPage?.message?.observe(viewLifecycleOwner, { newMessage ->
             binding.textField.text.clear()
             binding.textField.setText(newMessage)
         })
@@ -73,8 +74,20 @@ class ConfirmationPage : Fragment() {
             var percentage = pct.toString()
             if (percentage.equals("")) {
                 percentage = "0.0"
+            } else if (percentage.toDouble() > 100) {
+                Toast.makeText(
+                    requireContext(),
+                    "Percentages can only be between 0 - 100",
+                    Toast.LENGTH_SHORT
+                ).show()
+                binding.taxPrecentage.text.clear()
+                binding.taxPrecentage.setText("20")
+                //Sets the default VAT RATE
+                confirmPage?.changeVAT(20.0)
+
             }
-            SurveyActivity.confirmPage?.changeVAT(percentage.toDouble())
+
+            confirmPage?.changeVAT(percentage.toDouble())
 
 //            SurveyActivity.confirmPage?.changePercentage()
 
@@ -101,7 +114,7 @@ class ConfirmationPage : Fragment() {
                 val file = File(activity?.getExternalFilesDir(null), "testfile.txt")
                 val fileOutput = FileOutputStream(file)
                 val outputStreamWriter = OutputStreamWriter(fileOutput)
-                val message = SurveyActivity.confirmPage?.getList()
+                val message = confirmPage?.getList()
                 if (message != null) {
                     for (sorDetails in message) {
                         outputStreamWriter.write(sorDetails)
@@ -127,12 +140,22 @@ class ConfirmationPage : Fragment() {
 
         button2.setOnClickListener { it ->
             Toast.makeText(requireContext(), "Loading.....", Toast.LENGTH_SHORT).show()
-            val list = SurveyActivity.confirmPage?.getData()
-            if (list != null) {
-                SurveyActivity.confirmPage!!.updateTotal(list)
+            /**** TODO remove this code once code works again ***/
+//
+//        //FUNCTIONIONING CODE
+//            //returns  a list
+//            val list = SurveyActivity.confirmPage?.getData()
+//            if (list != null) {
+//                SurveyActivity.confirmPage!!.updateTotal(list)
+//            } else
+//                Toast.makeText(requireContext(), "Error Occurred!!.", Toast.LENGTH_LONG).show()
+
+            /*** NEW CODE   ***/
+            confirmPage?.getData()
+            if (confirmPage?._dataFromSurvey != null) {
+                confirmPage?.updateTotal()
             } else
                 Toast.makeText(requireContext(), "Error Occurred!!.", Toast.LENGTH_LONG).show()
-
 
         }
 
