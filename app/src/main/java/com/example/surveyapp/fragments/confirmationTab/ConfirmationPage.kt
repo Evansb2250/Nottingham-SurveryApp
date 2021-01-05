@@ -71,13 +71,11 @@ class ConfirmationPage : Fragment() {
 
         binding.taxPrecentage.addTextChangedListener { pct ->
             var percentage = pct.toString()
-
-            if (percentage == "") {
-                percentage == "0.0"
+            if (percentage.equals("")) {
+                percentage = "0.0"
             }
-
             SurveyActivity.confirmPage?.changeVAT(percentage.toDouble())
-            Toast.makeText(requireActivity(), percentage, Toast.LENGTH_LONG).show()
+
 //            SurveyActivity.confirmPage?.changePercentage()
 
         }

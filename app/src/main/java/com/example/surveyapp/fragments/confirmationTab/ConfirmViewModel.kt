@@ -163,7 +163,9 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
             tempList.add(header3)
             for (data in List) {
                 count += 1
-                message.value += count.toString() + ". " + data.sorCode + " " + currency.format(data.total) + "\n"
+                message.value += count.toString() + ". " + data.roomCategory + "  " + data.sorCode + " " + currency.format(
+                    data.total
+                ) + "\n"
                 var response = "?"
                 if (data.isRecharge.equals(true)) {
                     response = "y"
@@ -171,7 +173,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
                     response = " "
                 //TODO add rounding function
                 tempList.add(
-                    data.sorCode + sp + data.sorDescription + sp + sp +
+                    data.roomCategory + sp + data.sorCode + sp + data.sorDescription + sp + sp +
                             data.UOM + sp + data.quantity + sp + response + sp +
                             currency.format(data.total) + sp +
                             data.surveyorDescription + "\n"

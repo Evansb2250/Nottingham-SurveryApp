@@ -32,6 +32,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     val quantitySelected = MutableLiveData<Int>()
     lateinit var UOM: String
     lateinit var sorDescrip: String
+    private var category = ""
 
     val comments: String
 
@@ -152,7 +153,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         UOM = currentSor?.UOM.toString()
         sorDescrip = currentSor?.description.toString()
 
-        total.value = 0.0
+        total.value = currentSor?.rechargeRate
         alertSuccess(true)
     }
 
@@ -177,11 +178,12 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
                 addedSorList.add(
                     SurveySORs(
                         sorCode!!, UOM, surveyId, sorDescrip, comments,
-                        recharge, quantity!!.toDouble(), total!!
+                        recharge, quantity!!.toDouble(), total!!, category
                     )
 
-                )
 
+                )
+                resetCat()
                 updateListofAddedSorUI(addedSorList)
                 _wasSorInsertedToSurvey.value = true
             } else
@@ -191,6 +193,10 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
             _wasSorInsertedToSurvey.value = false
 
 
+    }
+
+    private fun resetCat() {
+        category = ""
     }
 
 
@@ -279,15 +285,18 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     @WorkerThread
     private fun updateListofAddedSorUI(addedSorList: MutableList<SurveySORs>) =
         viewModelScope.launch {
-            Log.i("SystemCheck", "last point")
             var list = mutableListOf<String>()
             for (surveySor in addedSorList) {
-                list.add(surveySor.sorCode)
+                list.add(surveySor.sorCode + "- " + surveySor.sorDescription)
             }
             addedSors = list
 
-
         }
+
+    fun setCategory(cat: String) {
+        category = cat
+
+    }
 
 
 }

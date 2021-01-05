@@ -50,7 +50,7 @@ class SOR_Fragment : Fragment() {
         binding.sorIdentifier.visibility = View.INVISIBLE
 
         setupQuantyObserver(SurveyActivity.sorViewModel)
-//        setUpTotalObserver(SurveyActivity.sorViewModel!!.total)
+        setUpTotalObserver(SurveyActivity.sorViewModel!!.total)
         setUpRechargeObserver(SurveyActivity.sorViewModel!!.rechargeAmount)
         setUpViewListObserver(SurveyActivity.sorViewModel!!.viewList)
         setUpSorInsertCheck(SurveyActivity.sorViewModel?.wasSorInsertedToSurvey)
@@ -63,8 +63,14 @@ class SOR_Fragment : Fragment() {
         setUpSpinner()
         setUpNumberSpinner()
         setUpAddButton()
-
+        setUpRoomCatSpinner()
         return binding.root
+    }
+
+    private fun setUpTotalObserver(total: MutableLiveData<Double>) {
+        total.observe(viewLifecycleOwner, Observer { newAmount ->
+            binding.totalTextView.setText(currency.format(newAmount))
+        })
     }
 
 
@@ -99,14 +105,6 @@ class SOR_Fragment : Fragment() {
 
     }
 
-//
-//    private fun setUpTotalObserver(total: MutableLiveData<Double>) {
-//        total.observe(viewLifecycleOwner, Observer {
-//            //updateTotal()
-//
-//        })
-//    }
-
 
     private fun setUpRemoveButton(removeSorButton: Button) {
         removeSorButton.setOnClickListener({ it ->
@@ -118,7 +116,7 @@ class SOR_Fragment : Fragment() {
             }
             unlockFields()
             binding.commentEntry.text.clear()
-            binding.quantitySpinner.setSelection(0)
+            binding.quantitySpinner.setSelection(1)
             updateTotal()
         })
 
@@ -142,12 +140,14 @@ class SOR_Fragment : Fragment() {
             val sorcode = SurveyActivity.sorViewModel!!.listForView.get(position)
             SurveyActivity.sorViewModel?.get(sorcode)
             revealSelectedItem(sorcode)
-            setNumberSpinnerToZero()
+            setNumberSpinnerToOne()
+            //TODO remove box
+            resetFields()
         }
 
     }
 
-
+    // Functionality that responds to a listing being selected
     private fun setUpSurveyAttachButton(sorAttachedToSurveyBox: ListView) {
 
         sorAttachedToSurveyBox.setOnItemClickListener { parent, view, position, id ->
@@ -229,7 +229,7 @@ class SOR_Fragment : Fragment() {
 
             revealSelectedItem(SurveyActivity.sorViewModel!!.searchViewEntry)
             binding.searchView.text.clear()
-            setNumberSpinnerToZero()
+            setNumberSpinnerToOne()
 
             //Searches using key word
             if (binding.optionSelector.selectedItem == constant.KEYWORD) {
@@ -251,8 +251,8 @@ class SOR_Fragment : Fragment() {
         binding.sorIdentifier.text = tag
     }
 
-    private fun setNumberSpinnerToZero() {
-        binding.quantitySpinner.setSelection(0)
+    private fun setNumberSpinnerToOne() {
+        binding.quantitySpinner.setSelection(1)
     }
 
     private fun alertUser() {
@@ -263,6 +263,37 @@ class SOR_Fragment : Fragment() {
 
     }
 
+
+    private fun setUpRoomCatSpinner() {
+        //Create an adapter with the list being instantiated
+        val catArrayAdapter = ArrayAdapter(
+            requireActivity(), android.R.layout.simple_spinner_item,
+            constant.ROOMCATEGORIES.toList()
+        )
+        //attach the adapter to the spinner adapter
+        binding.RoomCatSpin.adapter = catArrayAdapter
+
+        binding.RoomCatSpin.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+                SurveyActivity.sorViewModel?.setCategory(
+                    constant.ROOMCATEGORIES.get(position).toString()
+                )
+                //   Toast.makeText(requireContext(), constant.ROOMCATEGORIES.get(position).toString(), Toast.LENGTH_LONG).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+    }
 
     private fun setUpNumberSpinner() {
         val numberArrayAdapter = ArrayAdapter(
@@ -376,7 +407,10 @@ class SOR_Fragment : Fragment() {
         binding.commentEntry.text.clear()
         //Reset recharge box
         binding.rechargeBox.isChecked = false
-        binding.quantitySpinner.setSelection(0)
+        binding.quantitySpinner.setSelection(1)
+        binding.RoomCatSpin.setSelection(0)
+        updateTotal()
+
     }
 
 
