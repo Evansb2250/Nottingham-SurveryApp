@@ -1,6 +1,5 @@
 package com.example.surveyapp.fragments.PreviousWorkAndLockTab
 
-import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -239,8 +238,6 @@ PASSED
         previousWorkData.get(id - 1).quantity = quantity
         previousWorkData.get(id - 1).surveyorDescription = comment
         previousWorkData.get(id - 1).total = currentSor!!.rechargeRate * quantity
-
-        Log.i("SystemMessage", previousWorkData.get(id - 1).toString())
 
 
     }

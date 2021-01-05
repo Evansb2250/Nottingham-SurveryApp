@@ -1,13 +1,12 @@
 package com.example.surveyapp.fragments.createTab
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
@@ -29,20 +28,10 @@ class CreateSurveyFragment : Fragment() {
 
         binding.capitalRB.setOnClickListener {
             SurveyActivity.createSurveyPage?.setSurveryType(constant.CAPTIAL)
-            Toast.makeText(
-                requireContext(),
-                SurveyActivity.createSurveyPage?.getData(),
-                Toast.LENGTH_LONG
-            ).show()
         }
 
         binding.revenueRB.setOnClickListener {
             SurveyActivity.createSurveyPage?.setSurveryType(constant.REVENUE)
-            Toast.makeText(
-                requireContext(),
-                SurveyActivity.createSurveyPage?.getData(),
-                Toast.LENGTH_LONG
-            ).show()
         }
 
 

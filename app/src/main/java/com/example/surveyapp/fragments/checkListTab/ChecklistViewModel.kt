@@ -1,6 +1,5 @@
 package com.example.surveyapp.fragments.checkListTab
 
-import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -21,7 +20,7 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
     private lateinit var heatingType: List<SurveySORs>
     private var sorList = mutableListOf<SoR>()
     private var fireDoorComment = ""
-    private val checkBoxStatus = arrayListOf<Boolean>(
+    private val checkBoxStatus = arrayListOf(
         false,
         false,
         false,
@@ -111,7 +110,6 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
             }
             heatingType = tempList
             Global_heatingType = heatingType
-            Log.i("SysUp", "Check list " + heatingType.toString())
         }
     }
 
@@ -143,8 +141,6 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
                 checkBoxStatus[id - 1] = checked
             }
         }
-        Log.i("TB_Log", checked.toString())
-        Log.i("TB_Log", checkBoxStatus.toString())
     }
 
     fun storeFireDoorComment(newComment: String) {

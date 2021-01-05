@@ -74,6 +74,7 @@ class ConfirmationPage : Fragment() {
             var percentage = pct.toString()
             if (percentage.equals("")) {
                 percentage = "0.0"
+                binding.taxPrecentage.setText("0")
             } else if (percentage.toDouble() > 100) {
                 Toast.makeText(
                     requireContext(),

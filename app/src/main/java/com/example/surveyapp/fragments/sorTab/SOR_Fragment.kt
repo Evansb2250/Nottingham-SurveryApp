@@ -1,7 +1,6 @@
 package com.example.surveyapp.fragments.sorTab
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,11 +28,6 @@ class SOR_Fragment : Fragment() {
 
 
     private lateinit var binding: FragmentSORBinding
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.i("SystemOutPut", " Destroying view")
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

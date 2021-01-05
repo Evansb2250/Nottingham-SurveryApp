@@ -1,6 +1,5 @@
 package com.example.surveyapp.fragments.confirmationTab
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.activities.SurveyActivity
@@ -11,7 +10,6 @@ import java.text.DecimalFormat
 class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
     private val currency = DecimalFormat("£###,###.##")
-    private val numberCounter = DecimalFormat("####. ")
 
 
     var _dataFromSurvey = mutableListOf<SurveySORs>()
@@ -87,12 +85,6 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
     fun combineData(): List<SurveySORs> {
         val tempList = mutableListOf<SurveySORs>()
-
-        if (dataFromSor != null) {
-            for (data in dataFromSor) {
-                tempList.add(data)
-            }
-        }
         if (dataFromPrev != null) {
             for (data in dataFromPrev) {
                 tempList.add(data)
@@ -101,6 +93,11 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
         if (dataFromChecklist != null) {
             for (data in dataFromChecklist) {
+                tempList.add(data)
+            }
+        }
+        if (dataFromSor != null) {
+            for (data in dataFromSor) {
                 tempList.add(data)
             }
         }
@@ -167,7 +164,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
             tempList.add(header3)
             for (data in List) {
                 count += 1
-                message.value += count.toString() + ". " + data.roomCategory + "  " + data.sorCode + " " + currency.format(
+                message.value += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + " -  " + currency.format(
                     data.total
                 ) + "\n"
                 var response = "?"
