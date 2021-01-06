@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
@@ -49,6 +50,7 @@ class ConfirmationPage : Fragment() {
         buttonListener(binding.button2)
         setUpPdfButton(binding.button4)
         setUpCancelButton(binding.cancelButton)
+        setUpCheckButton(binding.showPriceCheckBox)
 
 //
 //        SurveyActivity.confirmPage?.DataFromSurvey?.observe(viewLifecycleOwner, { list ->
@@ -98,6 +100,16 @@ class ConfirmationPage : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun setUpCheckButton(showPriceCheckBox: CheckBox) {
+        showPriceCheckBox.setOnClickListener { it ->
+
+            confirmPage?.changeShowPriceStatus(showPriceCheckBox.isChecked)
+            pullDataAndDisplay()
+            // Toast.makeText(requireContext(), "Recalculate", Toast.LENGTH_SHORT).show()
+
+        }
     }
 
 
@@ -152,17 +164,19 @@ class ConfirmationPage : Fragment() {
 //                Toast.makeText(requireContext(), "Error Occurred!!.", Toast.LENGTH_LONG).show()
 
             /*** NEW CODE   ***/
-            confirmPage?.getData()
-            if (confirmPage?._dataFromSurvey != null) {
-                confirmPage?.updateTotal()
-            } else
-                Toast.makeText(requireContext(), "Error Occurred!!.", Toast.LENGTH_LONG).show()
+            pullDataAndDisplay()
 
         }
 
     }
 
-
+    private fun pullDataAndDisplay() {
+        confirmPage?.getData()
+        if (confirmPage?._dataFromSurvey != null) {
+            confirmPage?.updateTotal()
+        } else
+            Toast.makeText(requireContext(), "Error Occurred!!.", Toast.LENGTH_LONG).show()
+    }
 }
 
 

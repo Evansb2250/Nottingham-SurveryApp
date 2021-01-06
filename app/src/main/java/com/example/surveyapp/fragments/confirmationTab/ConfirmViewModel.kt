@@ -52,6 +52,8 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     private val sp = "@"
 
 
+    //Hides prices
+    private var hidePrices = false
 
     //Details
 
@@ -101,7 +103,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
                 tempList.add(data)
             }
         }
-        //_dataFromSurvey = MutableLiveData(tempList)
+
         return tempList
     }
 
@@ -113,17 +115,18 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
         if (_dataFromSurvey != null) {
             //Reseto
-
-
-            for (data in _dataFromSurvey) {
-                total.value = total.value?.plus(data.total)
-                if (data.isRecharge.equals(true)) {
-                    rechargeTotal.value = rechargeTotal.value?.plus(data.total)
+            //TODO CREATE AN IF STATEMENT TO ADD TOTAL OR TO JUST UPDATE MESSAGE
+            if (hidePrices.equals(false)) {
+                for (data in _dataFromSurvey) {
+                    total.value = total.value?.plus(data.total)
+                    if (data.isRecharge.equals(true)) {
+                        rechargeTotal.value = rechargeTotal.value?.plus(data.total)
+                    }
                 }
-            }
 
-            //Apply Vat to recharge amount
-            rechargeTotal.value = rechargeTotal.value!! * VAT.value!! + rechargeTotal.value!!
+                //Apply Vat to recharge amount
+                rechargeTotal.value = rechargeTotal.value!! * VAT.value!! + rechargeTotal.value!!
+            }
 
             messageList = updateMessage(_dataFromSurvey) as ArrayList<String>
         }
@@ -156,39 +159,60 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
             val header2 =
                 "Revenue ${sp} ${revenue} ${sp} Capital${sp} ${capital} ${sp} ${sp} Fire  Service Referral${sp}0 ${sp}${sp} Capital Void Total ${sp}${capitalTotal} + \n"
             var header3 =
-                "SoRs${sp}Description${sp}${sp}UOM${sp}QTY${sp}Recharge${sp}Total Price${sp}Comments${sp}Recharge Total${sp}${
+                "Category${sp}SoRs${sp}Description${sp}${sp}UOM${sp}QTY${sp}Recharge${sp}Total Price${sp}Comments${sp}Recharge Total${sp}${
                     currency.format(rechargeTotal.value)
                 } \n"
             tempList.add(header)
             tempList.add(header2)
             tempList.add(header3)
+
+
             for (data in List) {
                 count += 1
-                message.value += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + " -  " + currency.format(
-                    data.total
-                ) + "\n"
-                var response = "?"
+                //TODO REMOVE CODE ONCE TESTED
+                if (hidePrices.equals(false)) {
+                    message.value += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + " -  " + currency.format(
+                        data.total
+                    ) + "\n"
+                } else
+                    message.value += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + "\n"
+
+                var response: String
                 if (data.isRecharge.equals(true)) {
                     response = "y"
                 } else
                     response = " "
                 //TODO add rounding function
-                tempList.add(
-                    data.roomCategory + sp + data.sorCode + sp + data.sorDescription + sp + sp +
-                            data.UOM + sp + data.quantity + sp + response + sp +
-                            currency.format(data.total) + sp +
-                            data.surveyorDescription + "\n"
-                )
+                if (hidePrices.equals(false)) {
+                    tempList.add(
+                        data.roomCategory + sp + data.sorCode + sp + data.sorDescription + sp + sp +
+                                data.UOM + sp + data.quantity + sp + response + sp +
+                                currency.format(data.total) + sp +
+                                data.surveyorDescription + "\n"
+                    )
+                } else
+                    tempList.add(
+                        data.roomCategory + sp + data.sorCode + sp + data.sorDescription + sp + sp +
+                                data.UOM + sp + data.quantity + sp + response + sp +
+                                "" + sp +
+                                data.surveyorDescription + "\n"
+                    )
 
             }
+
             return tempList
         } else
+        //Returns an empty list
             return tempList
 
     }
 
     fun changeVAT(newVat: Double) {
         VAT.value = newVat / 100
+    }
+
+    fun changeShowPriceStatus(hide: Boolean) {
+        hidePrices = hide
     }
 
 
