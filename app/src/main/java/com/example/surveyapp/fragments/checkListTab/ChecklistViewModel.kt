@@ -106,7 +106,20 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
                 val description = sor.description
                 val comment = ""
                 val uom = sor.UOM
-                tempList.add(SurveySORs(sorcode, uom, 1, description, comment, false, 1.0, total))
+
+                tempList.add(
+                    SurveySORs(
+                        sorcode,
+                        uom,
+                        1,
+                        description,
+                        comment,
+                        false,
+                        1.0,
+                        total,
+                        constant.STANDARDCODE
+                    )
+                )
             }
             heatingType = tempList
             Global_heatingType = heatingType

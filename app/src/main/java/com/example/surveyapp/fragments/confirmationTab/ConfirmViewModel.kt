@@ -41,19 +41,19 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     private lateinit var dataFromPrev: List<SurveySORs>
     private lateinit var dataFromChecklist: List<SurveySORs>
 
-    private lateinit var address: String
-    private lateinit var name: String
-    private lateinit var postCode: String
-    private lateinit var phoneNumber: String
-    private lateinit var surveyType: String
-    private lateinit var date: String
+    lateinit var address: String
+    lateinit var name: String
+    lateinit var postCode: String
+    lateinit var phoneNumber: String
+    lateinit var surveyType: String
+    lateinit var date: String
 
     //Separator
     private val sp = "@"
 
 
     //Hides prices
-    private var hidePrices = false
+    var hidePrices = false
 
     //Details
 
@@ -67,6 +67,9 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
         phoneNumber = SurveyActivity.createSurveyPage?.getPhoneNumber() ?: ""
         surveyType = SurveyActivity.createSurveyPage?.getSurveyType() ?: ""
         date = SurveyActivity.createSurveyPage?.getDate() ?: ""
+
+//        constant.HEADERS1[1] = address
+//        constant.HEADERS1[4] = name
 
 
         dataFromSor = SurveyActivity.sorViewModel?.returnListSORLIST()!!
@@ -132,6 +135,9 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
         }
     }
 
+    fun getSORS(): List<SurveySORs> {
+        return _dataFromSurvey
+    }
 
     fun updateMessage(List: List<SurveySORs>): List<String> {
         val tempList = mutableListOf<String>()
@@ -190,6 +196,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
                                 currency.format(data.total) + sp +
                                 data.surveyorDescription + "\n"
                     )
+
                 } else
                     tempList.add(
                         data.roomCategory + sp + data.sorCode + sp + data.sorDescription + sp + sp +
@@ -207,15 +214,19 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
     }
 
+
     fun changeVAT(newVat: Double) {
         VAT.value = newVat / 100
     }
+
 
     fun changeShowPriceStatus(hide: Boolean) {
         hidePrices = hide
     }
 
-
+    fun getCheckedStatus(): Boolean {
+        return hidePrices
+    }
 }
 
 

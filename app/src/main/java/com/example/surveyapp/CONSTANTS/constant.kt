@@ -22,6 +22,54 @@ class constant {
         val COMBIBOILER = arrayListOf<String>(PB3010, PB2030)
         val BOILERPOINTCODES = arrayListOf<String>(PB3010, PB2020, PB4030, FP0010, PB2050)
 
+        /*
+1.Revenue
+2.response
+3.Capital
+4.response
+5.Fire / services referral
+6.reach
+7.Rechargeable Total
+8.amount
+ */
+
+        val HEADERS3 = arrayListOf<String>(
+            "Category",
+            "SoRs",
+            "Description",
+            "UOM",
+            "QTY",
+            "Recharge",
+            "Total Price",
+            "Comments",
+            "Rechargeable Total",
+            ""
+        )
+        val HEADERS2 = arrayListOf<String>(
+            "Revenue",
+            "",
+            "Capital",
+            "",
+            "Fire / Services referral",
+            "",
+            "",
+            "",
+            "Capital Void Total",
+            ""
+        )
+        val HEADERS1 = arrayListOf<String>(
+            "Address",
+            "",
+            "",
+            "Surveyor: ",
+            "",
+            "",
+            "",
+            "",
+            "Revenue Void Total",
+            ""
+        )
+        val STANDARDCODE = "Standard Code"
         val QUESTION1_SOR = "DW0090"
         val QUESTION2_SOR = "EN4530"
         val QUESTION3_SOR = "EN6160"

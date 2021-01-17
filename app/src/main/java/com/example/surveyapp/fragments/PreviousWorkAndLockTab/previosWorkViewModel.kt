@@ -24,7 +24,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 1
         SurveySORs(
             constant.QUESTION2_SOR,
@@ -34,7 +35,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 2
         SurveySORs(
             constant.QUESTION3_SOR,
@@ -44,7 +46,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 3
         SurveySORs(
             constant.QUESTION4_SOR,
@@ -54,7 +57,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 4
         SurveySORs(
             constant.QUESTION5_SOR,
@@ -64,7 +68,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 5
         SurveySORs(
             constant.QUESTION6_SOR,
@@ -74,9 +79,13 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 6
-        SurveySORs(constant.QUESTION7_SOR, "No", 1, "Fix only lock", "", false, 0.0, 0.0), // 7
+        SurveySORs(
+            constant.QUESTION7_SOR, "No", 1, "Fix only lock", "", false, 0.0, 0.0,
+            constant.STANDARDCODE
+        ), // 7
         SurveySORs(
             constant.QUESTION8_SOR,
             "No",
@@ -85,7 +94,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 8
         SurveySORs(
             constant.QUESTION9_SOR,
@@ -95,7 +105,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 9
         SurveySORs(
             constant.QUESTION10_SOR,
@@ -105,7 +116,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 10
         SurveySORs(
             constant.QUESTION11_SOR,
@@ -115,7 +127,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 11
         SurveySORs(
             constant.QUESTION12_SOR,
@@ -125,7 +138,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 12
         SurveySORs(
             constant.QUESTION13_SOR,
@@ -135,7 +149,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 13
         SurveySORs(
             constant.QUESTION14_SOR,
@@ -145,7 +160,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 14
         SurveySORs(
             constant.QUESTION15_SOR,
@@ -155,7 +171,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ), // 15
         SurveySORs(
             constant.QUESTION16_SOR,
@@ -165,9 +182,13 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "",
             false,
             0.0,
-            0.0
+            0.0,
+            constant.STANDARDCODE
         ),
-        SurveySORs(constant.QUESTION17_SOR, "No", 1, "Additional ring main", "", false, 0.0, 0.0)
+        SurveySORs(
+            constant.QUESTION17_SOR, "No", 1, "Additional ring main", "", false, 0.0, 0.0,
+            constant.STANDARDCODE
+        )
     ) // 16
 
 
