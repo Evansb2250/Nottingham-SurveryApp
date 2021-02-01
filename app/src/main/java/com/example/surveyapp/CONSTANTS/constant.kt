@@ -37,20 +37,22 @@ class constant {
             "Category",
             "SoRs",
             "Description",
+            "",
             "UOM",
             "QTY",
             "Recharge",
             "Total Price",
             "Comments",
             "Rechargeable Total",
-            ""
+        ""
         )
         val HEADERS2 = arrayListOf<String>(
             "Revenue",
             "",
             "Capital",
             "",
-            "Fire / Services referral",
+            "",
+            "",
             "",
             "",
             "",
@@ -66,8 +68,10 @@ class constant {
             "",
             "",
             "",
+            "",
             "Revenue Void Total",
             ""
+
         )
         val STANDARDCODE = "Standard Code"
         val QUESTION1_SOR = "DW0090"
@@ -133,7 +137,6 @@ class constant {
         )
 
         val quantityRange = arrayListOf<Int>(
-            0,
             1,
             2,
             3,

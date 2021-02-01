@@ -191,24 +191,27 @@
                     android:id="@+id/radioGroup"
                     android:layout_width="301dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp">
 
-                    <RadioButton
-                        android:id="@+id/capitalRB"
-                        android:layout_width="87dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:text="@string/CapitalType" />
 
                     <RadioButton
                         android:id="@+id/revenueRB"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="match_parent"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
                         android:text="@string/RevenuType" />
+
+                    <RadioButton
+                        android:id="@+id/capitalRB"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+
+                        android:layout_weight="1"
+                        android:text="@string/CapitalType" />
 
                 </RadioGroup>
 
