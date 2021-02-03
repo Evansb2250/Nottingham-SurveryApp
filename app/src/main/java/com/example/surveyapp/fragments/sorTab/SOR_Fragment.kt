@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
@@ -48,6 +49,11 @@ class SOR_Fragment : Fragment() {
         setUpRechargeObserver(SurveyActivity.sorViewModel!!.rechargeAmount)
         setUpViewListObserver(SurveyActivity.sorViewModel!!.viewList)
         setUpSorInsertCheck(SurveyActivity.sorViewModel?.wasSorInsertedToSurvey)
+
+        //Keep the search result number the same
+        SurveyActivity.sorViewModel?.listForViewSize?.observe(viewLifecycleOwner, Observer { size ->
+            binding.searchResultNumber.text = size.toString()
+        })
 
 
         setUpSurveyAttachButton(binding.sorAttachedToSurveyBox)
@@ -110,7 +116,7 @@ class SOR_Fragment : Fragment() {
             }
             unlockFields()
             binding.commentEntry.text.clear()
-            binding.quantitySpinner.setSelection(1)
+            binding.quantitySpinner.setSelection(0)
             updateTotal()
         })
 
@@ -142,18 +148,36 @@ class SOR_Fragment : Fragment() {
     }
 
     // Functionality that responds to a listing being selected
+    //Preview sor list information that was added to the survey
     private fun setUpSurveyAttachButton(sorAttachedToSurveyBox: ListView) {
 
         sorAttachedToSurveyBox.setOnItemClickListener { parent, view, position, id ->
             SurveyActivity.sorViewModel?.sorcodeToDeleteIndex = position
             //Gets the values for this added Sor
-            val selectedQuantity =
-                SurveyActivity.sorViewModel?.addedSorList?.get(position)?.quantity?.toDouble()
+
+            // Adds the SorCode to the current sorCode
+
+
+
+            val selectedQuantity = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.quantity?.toDouble()
+
+            // calculates the original recharge cost
+            val rechargeCost = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.total!!.toDouble() / selectedQuantity!!.toDouble()
+            SurveyActivity.sorViewModel!!._rechargeAmount.value = rechargeCost
+
+
+            val category = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.roomCategory
             val selectedTotal = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.total
             val sorcode = SurveyActivity.sorViewModel!!.addedSors.get(position)
             val isRecharge = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.isRecharge
-            val comment =
-                SurveyActivity.sorViewModel?.addedSorList?.get(position)?.surveyorDescription
+            val comment = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.surveyorDescription
+
+            for( idCat in 0..constant.ROOMCATEGORIES.size -1){
+                if( category.equals(constant.ROOMCATEGORIES[idCat].toString())){
+                    binding.RoomCatSpin.setSelection(idCat)
+                }
+            }
+
 
             binding.commentEntry.text.clear()
             binding.commentEntry.setText(comment)
@@ -161,7 +185,13 @@ class SOR_Fragment : Fragment() {
             SurveyActivity.sorViewModel?.get(sorcode)
 
             //Redisplays the amount and details submitted
-            binding.quantitySpinner.setSelection(selectedQuantity!!.toInt())
+
+
+
+            binding.quantitySpinner.setSelection(selectedQuantity!!.toInt() -1)
+
+
+
 
             //  Toast.makeText(requireContext(),  selectedTotal.toString(), Toast.LENGTH_SHORT).show()
             binding.totalTextView.text.clear()
@@ -228,8 +258,7 @@ class SOR_Fragment : Fragment() {
             //Searches using key word
             if (binding.optionSelector.selectedItem == constant.KEYWORD) {
                 setUpListView(SurveyActivity.sorViewModel!!.listForView)
-                binding.searchResultNumber.text =
-                    SurveyActivity.sorViewModel?.listForView?.size.toString()
+                SurveyActivity.sorViewModel?.listForViewSize?.value =  SurveyActivity.sorViewModel?.listForView?.size
             }
 
             unlockFields()
@@ -246,7 +275,7 @@ class SOR_Fragment : Fragment() {
     }
 
     private fun setNumberSpinnerToOne() {
-        binding.quantitySpinner.setSelection(1)
+        binding.quantitySpinner.setSelection(0)
     }
 
     private fun alertUser() {
@@ -401,7 +430,7 @@ class SOR_Fragment : Fragment() {
         binding.commentEntry.text.clear()
         //Reset recharge box
         binding.rechargeBox.isChecked = false
-        binding.quantitySpinner.setSelection(1)
+        binding.quantitySpinner.setSelection(0)
         binding.RoomCatSpin.setSelection(0)
         updateTotal()
 

@@ -175,7 +175,7 @@ class ConfirmationPage : Fragment() {
 
 
             //val pointColumnWidths = FloatArray(150)
-            val table = PdfPTable(10)
+            val table = PdfPTable(11)
 
             /*
             1.Revenue
@@ -185,15 +185,15 @@ class ConfirmationPage : Fragment() {
             5.Fire / services referral
             6.reach
             7.Rechargeable Total
-            8.amount
-             */
+            8.amount             */
 
 
 
-            for (id in 0..9) {
+
+            for (id in 0..10) {
                 val phrase = Phrase()
 
-                if (id == 1 || id == 4 || id == 9) {
+                if (id == 1 || id == 4 || id == 10) {
 
                     if (id == 1) {
                         constant.HEADERS1[1] = confirmPage?.address.toString()
@@ -214,7 +214,7 @@ class ConfirmationPage : Fragment() {
                         )
                     }
 
-                    if (id == 9) {
+                    if (id == 10) {
 
                         if (confirmPage?.hidePrices!!.equals(true)) {
                             HEADERS1[id] = currency.format(0.0)
@@ -246,7 +246,7 @@ class ConfirmationPage : Fragment() {
 
 
 
-            for (id in 0..9) {
+            for (id in 0..10) {
                 val phrase = Phrase()
 
                 if (id == 1) {
@@ -262,7 +262,7 @@ class ConfirmationPage : Fragment() {
                         constant.HEADERS2[id] = ""
                 }
 
-                if (id == 9) {
+                if (id == 10) {
                     if (confirmPage?.hidePrices!!.equals(true)) {
                         constant.HEADERS2[id] = currency.format(0.0)
                     }
@@ -296,12 +296,12 @@ class ConfirmationPage : Fragment() {
                 table.addCell(cell)
             }
 
-//
-            for (id in 0..9) {
+
+            for (id in 0..10) {
 
                 val phrase = Phrase()
 
-                if (id == 9) {
+                if (id == 10) {
                     constant.HEADERS3[id] = currency.format(confirmPage?.rechargeTotal?.value)
                     phrase.add(
                         Chunk(
@@ -318,21 +318,32 @@ class ConfirmationPage : Fragment() {
                     )
 
                 val cell = PdfPCell(phrase)
+//                if(id == 2){
+//                    cell.setColspan(2)
+//                }
                 cell.border = NONE
                 table.addCell(cell)
             }
 
             //UNDERLINE
             val cell = PdfPCell(Phrase(""))
-            cell.colspan = 10
-            table.addCell(cell)
+           cell.colspan = 11
+          table.addCell(cell)
 
+
+            var count = 0;
             val list = confirmPage?.getSORS()
             if (list != null) {
                 var cell: PdfPCell
 
                 for (sor in list) {
                     //DIVIDER
+
+                    cell = PdfPCell(Phrase(""))
+                    cell.border = NONE
+                    cell.colspan = 11
+                    cell.minimumHeight=20F
+                    table.addCell(cell)
 
 
                     var phrase = Phrase()
@@ -352,7 +363,9 @@ class ConfirmationPage : Fragment() {
                     table.addCell(cell)
 
                     cell = PdfPCell(Phrase(sor.sorDescription))
+                    cell.setColspan(2)
                     cell.border = NONE
+
                     table.addCell(cell)
 
                     phrase = Phrase()
@@ -377,21 +390,31 @@ class ConfirmationPage : Fragment() {
                     table.addCell(cell)
 
                     cell = PdfPCell(Phrase(sor.surveyorDescription))
+                    cell.setColspan(2)
                     cell.border = NONE
                     table.addCell(cell)
+
+//                    cell = PdfPCell(Phrase(""))
+//                    cell.border = NONE
+//                    table.addCell(cell)
+
+//                    cell = PdfPCell(Phrase(""))
+//                    cell.border = NONE
+//                    table.addCell(cell)
 
                     cell = PdfPCell(Phrase(""))
                     cell.border = NONE
                     table.addCell(cell)
 
-                    cell = PdfPCell(Phrase(""))
-                    cell.border = NONE
-                    table.addCell(cell)
+                    count += 1
 
-                    cell = PdfPCell(Phrase(""))
-                    cell.border = NONE
-                    cell.colspan = 10
-                    table.addCell(cell)
+                    if(count%5== 0){
+                        cell = PdfPCell(Phrase(""))
+                        cell.border = NONE
+                        cell.colspan = 11
+                        cell.minimumHeight=40F
+                        table.addCell(cell)
+                    }
                 }
             }
 
