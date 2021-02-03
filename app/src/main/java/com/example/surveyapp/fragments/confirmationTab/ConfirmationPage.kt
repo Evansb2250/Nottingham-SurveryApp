@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.CONSTANTS.constant.Companion.HEADERS1
 import com.example.surveyapp.R
+import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.activities.SurveyActivity.Companion.confirmPage
 import com.example.surveyapp.databinding.FragmentConfirmationPageBinding
 import com.itextpdf.text.*
@@ -434,6 +435,7 @@ class ConfirmationPage : Fragment() {
 
     private fun setUpCancelButton(cancelButton: Button) {
         cancelButton.setOnClickListener { it ->
+            SurveyActivity.confirmPage?.insertCompleteSurvey()
             activity?.finish()
 
         }

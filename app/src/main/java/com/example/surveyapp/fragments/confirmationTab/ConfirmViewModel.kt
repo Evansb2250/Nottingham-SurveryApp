@@ -1,10 +1,13 @@
 package com.example.surveyapp.fragments.confirmationTab
 
+import androidx.annotation.WorkerThread
 import androidx.lifecycle.*
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.domains.SurveySORs
+import com.example.surveyapp.ignore.Survey
 import com.example.surveyapp.repository.DatabaseRepository
+import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 
 class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel() {
@@ -20,7 +23,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     var VAT = MutableLiveData<Double>()
     var message = MutableLiveData<String>()
     var messageList = arrayListOf<String>()
-
+    lateinit var surveyInfo: Survey
 
     fun getList(): List<String> {
         if (messageList != null) {
@@ -67,6 +70,10 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
         phoneNumber = SurveyActivity.createSurveyPage?.getPhoneNumber() ?: ""
         surveyType = SurveyActivity.createSurveyPage?.getSurveyType() ?: ""
         date = SurveyActivity.createSurveyPage?.getDate() ?: ""
+
+        surveyInfo = Survey(address = address,
+        postCode = postCode, phoneNumber = phoneNumber, Date = date, surveyType = surveyType,
+        surveyorName = name, abestoRemovalDescription = "")
 
 //        constant.HEADERS1[1] = address
 //        constant.HEADERS1[4] = name
@@ -213,6 +220,21 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
             return tempList
 
     }
+
+
+    fun insertCompleteSurvey(){
+        addSurvey()
+    }
+
+
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    private fun addSurvey() =
+        viewModelScope.launch {
+         repository.insertCompleteSurvey(surveyInfo)
+        }
+
 
 
     fun changeVAT(newVat: Double) {

@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.surveyapp.domains.SoR
+import com.example.surveyapp.ignore.Survey
 import kotlinx.coroutines.flow.Flow
 
 
@@ -13,6 +14,9 @@ interface dbDAO {
 
     @Insert
     suspend fun insertSoR(sorCode: SoR)
+
+    @Insert
+    suspend fun insertSurvey(survey: Survey)
 
     @Update
     suspend fun updateSoR(sor: SoR)
