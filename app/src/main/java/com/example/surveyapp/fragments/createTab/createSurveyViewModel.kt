@@ -1,9 +1,10 @@
 package com.example.surveyapp.fragments.createTab
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.annotation.WorkerThread
+import androidx.lifecycle.*
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModel
 import com.example.surveyapp.repository.DatabaseRepository
+import kotlinx.coroutines.launch
 
 class createSurveyViewModel(private val repository: DatabaseRepository) : ViewModel() {
     private var surveyName = ""
@@ -12,6 +13,7 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
     private var phoneNumber = ""
     private var date = ""
     private var surveyType = ""
+    private var _id :Int = 0
 
 
     fun getData(): String {
@@ -80,7 +82,9 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
         return date
     }
 
-
+    fun pullData() {
+        TODO("Not yet implemented")
+    }
 }
 
 

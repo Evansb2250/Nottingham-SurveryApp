@@ -1,16 +1,38 @@
 package com.example.surveyapp.fragments.viewSurvey
 
+import android.provider.ContactsContract
 import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.annotation.WorkerThread
+import androidx.lifecycle.*
 import com.example.surveyapp.fragments.sorTab.SurveySorViewModel
 import com.example.surveyapp.repository.DatabaseRepository
+import kotlinx.coroutines.launch
+import kotlin.properties.Delegates
 
-class ViewSurveyViewModel (repository: DatabaseRepository) : ViewModel() {
-    fun createMessage() {
-       Log.i("messageForMe", " Hi I got the message")
+class ViewSurveyViewModel (private val repository: DatabaseRepository) : ViewModel() {
+
+
+    val id : LiveData<Int>get() = _id
+    private var _id = MutableLiveData<Int>()
+
+    init{
+     //   _id.value = null
     }
 
+    fun createMessage() {
+        lastSurvey()
+       //Log.i("messageForMe", " Hi I got the message")
+    }
+
+
+
+    // create a function that
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+     fun lastSurvey() = viewModelScope.launch {
+        val survey = repository.getLastestSurvey()
+        _id.value = survey.surveyId
+    }
 
 }
 

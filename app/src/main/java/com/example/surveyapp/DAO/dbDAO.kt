@@ -25,8 +25,20 @@ interface dbDAO {
     @Query("SELECT * from SoR_table WHERE sorCode= :key")
     suspend fun getSoR(key: String): SoR
 
+
     @Query("DELETE FROM SoR_table where sorCode =:key")
     suspend fun removeSoR(key: String)
+
+
+    //Test function
+    @Query("SELECT * from survey_table where surveyId =:key")
+    suspend fun getKeySurveyTable(key:Int):Survey
+
+    @Query("SELECT * from survey_table ORDER BY surveyId DESC LIMIT 0, 1")
+    suspend fun getLastID():Survey
+
+
+
 
 
 }

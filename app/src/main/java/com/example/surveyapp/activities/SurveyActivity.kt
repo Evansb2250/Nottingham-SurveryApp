@@ -5,8 +5,11 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import com.example.surveyapp.DAO.dbDAO
+import com.example.surveyapp.DataBinderMapperImpl
 import com.example.surveyapp.R
 import com.example.surveyapp.application.SurveyApplication
+import com.example.surveyapp.domains.SoR
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.CreateSurveyP2Fragment
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModel
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModelFactory
@@ -23,6 +26,8 @@ import com.example.surveyapp.fragments.sorTab.SOR_Fragment
 import com.example.surveyapp.fragments.sorTab.SurveySorViewModel
 import com.example.surveyapp.fragments.sorTab.SurveySorViewModelFactory
 import com.example.surveyapp.fragments.tabAdapter.ViewPagerAdapter
+import com.example.surveyapp.ignore.Survey
+import com.example.surveyapp.repository.DatabaseRepository
 import com.google.android.material.tabs.TabLayout
 
 class SurveyActivity : AppCompatActivity() {
@@ -34,8 +39,7 @@ class SurveyActivity : AppCompatActivity() {
         var prevViewModel: previosWorkViewModel? = null
         var checkListVM: ChecklistViewModel? = null
         var confirmPage: ConfirmViewModel? = null
-
-
+        var SurveyID:Int?= null
     }
 
 
@@ -58,6 +62,9 @@ class SurveyActivity : AppCompatActivity() {
         val createSVM: createSurveyViewModel by viewModels { createSurveyViewModelFactory((application as SurveyApplication).repository) }
         // Short CUT TO CLEAR A BUG
         //   sorViewModel?.addedSorList?.clear()
+
+
+
 
         createSurveyPage = createSVM
         sorViewModel = viewModel

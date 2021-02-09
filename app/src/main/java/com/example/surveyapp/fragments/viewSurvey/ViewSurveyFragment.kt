@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import com.example.surveyapp.R
 import com.example.surveyapp.application.SurveyApplication
 import com.example.surveyapp.databinding.FragmentViewSurveyBinding
@@ -32,14 +33,15 @@ class ViewSurveyFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_view_survey, container, false)
 
 
-
         binding.imageButton2.setOnClickListener(
             {
-               // Toast.makeText(requireContext(), "YOU CLICKED", Toast.LENGTH_LONG).show()
                 viewModel.createMessage()
             }
         )
 
+        viewModel.id.observe(viewLifecycleOwner, Observer { id ->
+            Toast.makeText(requireContext(), "Last ID " + id.toString(), Toast.LENGTH_LONG).show()
+        })
 
 
         return binding.root

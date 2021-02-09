@@ -17,4 +17,5 @@ class SurveyApplication : Application() {
 
     val database by lazy { SurveyDatabase.getDatabase(this, applicationScope) }
     val repository by lazy { DatabaseRepository(database.dbManager()) }
+
 }

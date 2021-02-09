@@ -389,7 +389,7 @@ class SOR_Fragment : Fragment() {
     private fun setUpAddButton() {
 
         binding.addSoRToSurveyButton.setOnClickListener({ it ->
-            val surveyId: Int = 1
+            val surveyId: Int = SurveyActivity.SurveyID!!
             val sorCode = SurveyActivity.sorViewModel?.currentSor?.sorCode
             val quantity = SurveyActivity.sorViewModel?.quantitySelected?.value
             val total = SurveyActivity.sorViewModel?.total?.value

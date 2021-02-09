@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -25,6 +26,7 @@ class CreateSurveyFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_create_survey, container, false)
         // Inflate the layout for this fragment
+
 
         binding.capitalRB.setOnClickListener {
             SurveyActivity.createSurveyPage?.setSurveryType(constant.CAPTIAL)
@@ -57,6 +59,9 @@ class CreateSurveyFragment : Fragment() {
         }
 
 
+        binding.button5.setOnClickListener({
+            Toast.makeText(requireContext(), SurveyActivity.SurveyID.toString(), Toast.LENGTH_LONG).show()
+        })
 
 
 

@@ -22,11 +22,9 @@ class DatabaseRepository(private val dbManager: dbDAO) {
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insertCompleteSurvey(survey: Survey) {
-            dbManager.insertSurvey(survey)
+        dbManager.insertSurvey(survey)
 
     }
-
-
 
 
     @Suppress("RedundantSuspendModifier")
@@ -42,6 +40,14 @@ class DatabaseRepository(private val dbManager: dbDAO) {
     suspend fun removeFromSoR(sor: String) {
         dbManager.removeSoR(sor)
     }
+
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun getLastestSurvey(): Survey {
+      return dbManager.getLastID()
+    }
+
 
 
 }
