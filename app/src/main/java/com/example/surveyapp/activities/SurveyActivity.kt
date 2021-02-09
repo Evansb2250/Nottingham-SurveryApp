@@ -1,9 +1,13 @@
 package com.example.surveyapp.activities
 
+import android.app.Application
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.example.surveyapp.DAO.dbDAO
 import com.example.surveyapp.DataBinderMapperImpl
@@ -39,6 +43,8 @@ class SurveyActivity : AppCompatActivity() {
         var prevViewModel: previosWorkViewModel? = null
         var checkListVM: ChecklistViewModel? = null
         var confirmPage: ConfirmViewModel? = null
+        var sAVM: SurveyActivityViewModel?= null
+
         var SurveyID:Int?= null
     }
 
@@ -46,15 +52,31 @@ class SurveyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survey)
+
+        val surveyActivityModel : SurveyActivityViewModel by viewModels {SurveyActivityViewModelFactory((application as SurveyApplication).repository)}
+        surveyActivityModel.createMessage()
+        //  surveyActivityModel.createMessage()
+        surveyActivityModel.id.observe(this, Observer { id ->
+            SurveyID = id
+            Toast.makeText(this, SurveyID.toString(), Toast.LENGTH_SHORT).show()
+        })
+
+
+
         // viewModel  = ViewModelProvider(this).get(SurveySorViewModel::class.java)
-
-
         initializeViewModels()
         setUpTabs()
     }
 
 
     private fun initializeViewModels() {
+
+
+
+
+
+
+
         val viewModel: SurveySorViewModel by viewModels { SurveySorViewModelFactory((application as SurveyApplication).repository) }
         val prevSoRViewModel: previosWorkViewModel by viewModels { previosWorkViewModelFactory((application as SurveyApplication).repository) }
         val checklistViewModel: ChecklistViewModel by viewModels { ChecklistViewModelFactory((application as SurveyApplication).repository) }
@@ -94,3 +116,14 @@ class SurveyActivity : AppCompatActivity() {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
