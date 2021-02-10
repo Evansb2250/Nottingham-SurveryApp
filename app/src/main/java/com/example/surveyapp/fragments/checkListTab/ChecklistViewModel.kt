@@ -17,6 +17,10 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
 
     }
 
+
+
+
+    private var _surveyID :Int ?= null
     private lateinit var heatingType: List<SurveySORs>
     private var sorList = mutableListOf<SoR>()
     private var fireDoorComment = ""
@@ -30,6 +34,15 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
         false,
         false
     )
+
+
+    fun setSurveyID(id: Int){
+        _surveyID = id
+    }
+
+
+
+
 
 
     fun getHeatingType(): List<SurveySORs> {
@@ -106,12 +119,17 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
                 val description = sor.description
                 val comment = ""
                 val uom = sor.UOM
+                var surveyID = -1
+
+                if(_surveyID != null){
+                    surveyID = _surveyID!!
+                }
 
                 tempList.add(
                     SurveySORs(
                         sorcode,
                         uom,
-                        1,
+                        surveyID,
                         description,
                         comment,
                         false,

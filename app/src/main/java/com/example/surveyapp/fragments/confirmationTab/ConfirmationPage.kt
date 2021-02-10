@@ -458,7 +458,9 @@ class ConfirmationPage : Fragment() {
 
     private fun setUpCancelButton(cancelButton: Button) {
         cancelButton.setOnClickListener { it ->
-            SurveyActivity.confirmPage?.insertCompleteSurvey()
+
+            confirmPage?.insertCompleteSurvey()
+
             activity?.finish()
 
         }

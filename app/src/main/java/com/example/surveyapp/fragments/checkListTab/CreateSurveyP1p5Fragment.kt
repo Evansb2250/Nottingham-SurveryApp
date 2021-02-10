@@ -32,7 +32,6 @@ class CreateSurveyP1p5Fragment : Fragment() {
         binding.viewmodel = SurveyActivity.checkListVM
 
 
-
         heatypeChange(binding.systemBoilerSpinner)
         // simplifying the checkBox click
         registerCheckBoxClick(1, binding.fdChkbx)

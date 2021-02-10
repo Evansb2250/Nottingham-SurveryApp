@@ -7,7 +7,7 @@ import androidx.room.*
 data class Survey(
     @PrimaryKey(autoGenerate = true)
     //TODO add the column fields and foreign keys
-    val surveyId: Int = 0,
+    var surveyId: Int = 0,
     @ColumnInfo(name = ADDRESS) val address: String,
     @ColumnInfo(name = POSTCODE) val postCode: String,
     @ColumnInfo(name = SURVEYOR) val surveyorName: String,

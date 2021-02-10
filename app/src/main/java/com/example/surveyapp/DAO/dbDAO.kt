@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.surveyapp.domains.SoR
+import com.example.surveyapp.domains.SurveySORs
 import com.example.surveyapp.ignore.Survey
 import kotlinx.coroutines.flow.Flow
 
@@ -18,8 +19,12 @@ interface dbDAO {
     @Insert
     suspend fun insertSurvey(survey: Survey)
 
+    @Insert
+    suspend fun insertSurveySors(sor: SurveySORs)
+
     @Update
     suspend fun updateSoR(sor: SoR)
+
 
 
     @Query("SELECT * from SoR_table WHERE sorCode= :key")
@@ -36,8 +41,6 @@ interface dbDAO {
 
     @Query("SELECT * from survey_table ORDER BY surveyId DESC LIMIT 0, 1")
     suspend fun getLastID():Survey
-
-
 
 
 

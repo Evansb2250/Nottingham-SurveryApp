@@ -43,7 +43,7 @@ class SurveyActivity : AppCompatActivity() {
         var prevViewModel: previosWorkViewModel? = null
         var checkListVM: ChecklistViewModel? = null
         var confirmPage: ConfirmViewModel? = null
-        var sAVM: SurveyActivityViewModel?= null
+
 
         var SurveyID:Int?= null
     }
@@ -58,6 +58,10 @@ class SurveyActivity : AppCompatActivity() {
         //  surveyActivityModel.createMessage()
         surveyActivityModel.id.observe(this, Observer { id ->
             SurveyID = id
+            checkListVM?.setSurveyID(id)
+            prevViewModel?.setSurveyID(id)
+
+
             Toast.makeText(this, SurveyID.toString(), Toast.LENGTH_SHORT).show()
         })
 

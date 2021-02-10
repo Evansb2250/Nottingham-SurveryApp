@@ -1,5 +1,6 @@
 package com.example.surveyapp.fragments.confirmationTab
 
+import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.*
 import com.example.surveyapp.CONSTANTS.constant
@@ -58,7 +59,6 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     //Hides prices
     var hidePrices = false
 
-    //Details
 
 
     //TODO Debate if you need to turn this function into a coroutine
@@ -74,9 +74,6 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
         surveyInfo = Survey(address = address,
         postCode = postCode, phoneNumber = phoneNumber, Date = date, surveyType = surveyType,
         surveyorName = name, abestoRemovalDescription = "")
-
-//        constant.HEADERS1[1] = address
-//        constant.HEADERS1[4] = name
 
 
         dataFromSor = SurveyActivity.sorViewModel?.returnListSORLIST()!!
@@ -186,7 +183,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
                 if (hidePrices.equals(false)) {
                     message.value += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + " -  " + currency.format(
                         data.total
-                    ) + "\n"
+                    ) +  " survey Id  " + data.surveyID +"\n"
                 } else
                     message.value += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + "\n"
 
@@ -224,15 +221,23 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
     fun insertCompleteSurvey(){
         addSurvey()
+        addSurveySorsList()
     }
 
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    private fun addSurveySorsList() =
+        viewModelScope.launch {
+            for(sor in _dataFromSurvey) {
+                repository.insertSurveySors(sor)
+            }
+        }
 
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    private fun addSurvey() =
-        viewModelScope.launch {
-         repository.insertCompleteSurvey(surveyInfo)
+    private fun addSurvey() = viewModelScope.launch {
+        repository.insertCompleteSurvey(surveyInfo)
         }
 
 

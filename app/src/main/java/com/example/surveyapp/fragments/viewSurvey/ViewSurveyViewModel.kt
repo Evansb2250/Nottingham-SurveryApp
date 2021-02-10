@@ -31,7 +31,11 @@ class ViewSurveyViewModel (private val repository: DatabaseRepository) : ViewMod
     @WorkerThread
      fun lastSurvey() = viewModelScope.launch {
         val survey = repository.getLastestSurvey()
-        _id.value = survey.surveyId
+        if(survey == null){
+            _id.value = 0
+        }else {
+            _id.value = survey.surveyId
+        }
     }
 
 }

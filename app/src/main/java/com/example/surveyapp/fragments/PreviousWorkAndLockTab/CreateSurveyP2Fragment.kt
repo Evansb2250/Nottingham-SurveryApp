@@ -8,11 +8,16 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
+import com.example.surveyapp.application.SurveyApplication
 import com.example.surveyapp.databinding.FragmentCreateSurveyP2Binding
+import com.example.surveyapp.fragments.checkListTab.ChecklistViewModel
+import com.example.surveyapp.fragments.checkListTab.ChecklistViewModelFactory
 
 
 class CreateSurveyP2Fragment : Fragment() {
@@ -26,6 +31,7 @@ class CreateSurveyP2Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_create_survey_p2, container, false)
 

@@ -3,8 +3,8 @@ package com.example.surveyapp.repository
 import androidx.annotation.WorkerThread
 import com.example.surveyapp.DAO.dbDAO
 import com.example.surveyapp.domains.SoR
+import com.example.surveyapp.domains.SurveySORs
 import com.example.surveyapp.ignore.Survey
-import kotlinx.coroutines.flow.Flow
 
 class DatabaseRepository(private val dbManager: dbDAO) {
 
@@ -46,6 +46,16 @@ class DatabaseRepository(private val dbManager: dbDAO) {
     @WorkerThread
     suspend fun getLastestSurvey(): Survey {
       return dbManager.getLastID()
+    }
+
+
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun insertSurveySors(sor: SurveySORs) {
+
+                dbManager.insertSurveySors(sor)
+
     }
 
 

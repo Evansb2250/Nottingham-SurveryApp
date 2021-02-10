@@ -82,9 +82,8 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
         return date
     }
 
-    fun pullData() {
-        TODO("Not yet implemented")
-    }
+
+
 }
 
 

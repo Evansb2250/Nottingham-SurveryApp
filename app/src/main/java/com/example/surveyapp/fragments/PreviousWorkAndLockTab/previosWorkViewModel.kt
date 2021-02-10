@@ -12,6 +12,19 @@ import kotlinx.coroutines.launch
 
 class previosWorkViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
+
+    private var surveyID = 0
+
+
+
+
+    fun setSurveyID(id: Int){
+        for(x in 0.. previousWorkData.size -1){
+            previousWorkData[x].surveyID = id
+        }
+    }
+
+
     /*
     PASSED
      */
@@ -19,7 +32,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION1_SOR,
             "HR",
-            1,
+            surveyID,
             "Daywork Labour - Electrician",
             "",
             false,
@@ -30,7 +43,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION2_SOR,
             "No",
-            1,
+            surveyID,
             "Disconnect electric cooker.",
             "",
             false,
@@ -41,7 +54,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION3_SOR,
             "No",
-            1,
+            surveyID,
             "De-commission intruder alarm",
             "",
             false,
@@ -52,7 +65,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION4_SOR,
             "Item",
-            1,
+            surveyID,
             "Supply and Fit mains isolator/PME",
             "",
             false,
@@ -63,7 +76,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION5_SOR,
             "No",
-            1,
+            surveyID,
             "Fit insurance lock<",
             "",
             false,
@@ -74,7 +87,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION6_SOR,
             "No",
-            1,
+            surveyID,
             "Renew cylinder lock",
             "",
             false,
@@ -83,13 +96,13 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 6
         SurveySORs(
-            constant.QUESTION7_SOR, "No", 1, "Fix only lock", "", false, 0.0, 0.0,
+            constant.QUESTION7_SOR, "No", surveyID, "Fix only lock", "", false, 0.0, 0.0,
             constant.STANDARDCODE
         ), // 7
         SurveySORs(
             constant.QUESTION8_SOR,
             "No",
-            1,
+            surveyID,
             "Double glazed unit up to 0.50m2",
             "",
             false,
@@ -100,7 +113,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION9_SOR,
             "No",
-            1,
+            surveyID,
             "Double glazed unit up to 1.0m2",
             "",
             false,
@@ -111,7 +124,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION10_SOR,
             "Item",
-            1,
+            surveyID,
             "Periodic inspection in void properties",
             "",
             false,
@@ -122,7 +135,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION11_SOR,
             "Item",
-            1,
+            surveyID,
             "installation certification- in conjunction",
             "",
             false,
@@ -133,7 +146,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION12_SOR,
             "Item",
-            1,
+            surveyID,
             "Smoke alarm certificates",
             "",
             false,
@@ -144,7 +157,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION13_SOR,
             "Item",
-            1,
+            surveyID,
             "Check, test and certificate eletrics before repairs",
             "",
             false,
@@ -155,7 +168,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION14_SOR,
             "Item",
-            1,
+            surveyID,
             "Check, test and certificate eletrics after repairs",
             "",
             false,
@@ -166,7 +179,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION15_SOR,
             "No",
-            1,
+            surveyID,
             "Additional radial circuit",
             "",
             false,
@@ -177,7 +190,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         SurveySORs(
             constant.QUESTION16_SOR,
             "No",
-            1,
+            surveyID,
             "Additional lighting circuit",
             "",
             false,
@@ -186,7 +199,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ),
         SurveySORs(
-            constant.QUESTION17_SOR, "No", 1, "Additional ring main", "", false, 0.0, 0.0,
+            constant.QUESTION17_SOR, "No", surveyID, "Additional ring main", "", false, 0.0, 0.0,
             constant.STANDARDCODE
         )
     ) // 16
@@ -243,6 +256,13 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
         }
 
     }
+
+
+
+
+
+
+
 
 
     /*

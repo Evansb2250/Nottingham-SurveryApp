@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.example.surveyapp.R
+import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.application.SurveyApplication
 import com.example.surveyapp.databinding.FragmentViewSurveyBinding
 import com.example.surveyapp.repository.DatabaseRepository
@@ -32,6 +33,7 @@ class ViewSurveyFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_view_survey, container, false)
 
+        Toast.makeText(requireContext(), SurveyActivity.SurveyID.toString(), Toast.LENGTH_SHORT).show()
 
         binding.imageButton2.setOnClickListener(
             {
