@@ -55,6 +55,7 @@ class MainMenuFragment : Fragment() {
 
         val intent = Intent(activity, SurveyActivity::class.java)
         requireActivity().startActivity(intent)
+        activity?.finish()
 
         //requireActivity().finish()
     }

@@ -30,9 +30,9 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
      */
     val previousWorkData = arrayOf(
         SurveySORs(
+            surveyID,
             constant.QUESTION1_SOR,
             "HR",
-            surveyID,
             "Daywork Labour - Electrician",
             "",
             false,
@@ -41,9 +41,9 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 1
         SurveySORs(
+            surveyID,
             constant.QUESTION2_SOR,
             "No",
-            surveyID,
             "Disconnect electric cooker.",
             "",
             false,
@@ -52,9 +52,9 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 2
         SurveySORs(
+            surveyID,
             constant.QUESTION3_SOR,
             "No",
-            surveyID,
             "De-commission intruder alarm",
             "",
             false,
@@ -63,9 +63,9 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 3
         SurveySORs(
+            surveyID,
             constant.QUESTION4_SOR,
             "Item",
-            surveyID,
             "Supply and Fit mains isolator/PME",
             "",
             false,
@@ -74,9 +74,9 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 4
         SurveySORs(
+            surveyID,
             constant.QUESTION5_SOR,
             "No",
-            surveyID,
             "Fit insurance lock<",
             "",
             false,
@@ -85,9 +85,9 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 5
         SurveySORs(
+            surveyID,
             constant.QUESTION6_SOR,
             "No",
-            surveyID,
             "Renew cylinder lock",
             "",
             false,
@@ -96,13 +96,13 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 6
         SurveySORs(
-            constant.QUESTION7_SOR, "No", surveyID, "Fix only lock", "", false, 0.0, 0.0,
+            surveyID, constant.QUESTION7_SOR, "No",  "Fix only lock", "", false, 0.0, 0.0,
             constant.STANDARDCODE
         ), // 7
         SurveySORs(
+            surveyID,
             constant.QUESTION8_SOR,
             "No",
-            surveyID,
             "Double glazed unit up to 0.50m2",
             "",
             false,
@@ -111,9 +111,9 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 8
         SurveySORs(
+            surveyID,
             constant.QUESTION9_SOR,
             "No",
-            surveyID,
             "Double glazed unit up to 1.0m2",
             "",
             false,
@@ -122,9 +122,10 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 9
         SurveySORs(
+            surveyID,
             constant.QUESTION10_SOR,
             "Item",
-            surveyID,
+
             "Periodic inspection in void properties",
             "",
             false,
@@ -133,9 +134,9 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 10
         SurveySORs(
+            surveyID,
             constant.QUESTION11_SOR,
             "Item",
-            surveyID,
             "installation certification- in conjunction",
             "",
             false,
@@ -144,9 +145,9 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 11
         SurveySORs(
+            surveyID,
             constant.QUESTION12_SOR,
             "Item",
-            surveyID,
             "Smoke alarm certificates",
             "",
             false,
@@ -155,9 +156,9 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 12
         SurveySORs(
+            surveyID,
             constant.QUESTION13_SOR,
             "Item",
-            surveyID,
             "Check, test and certificate eletrics before repairs",
             "",
             false,
@@ -166,9 +167,9 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 13
         SurveySORs(
+            surveyID,
             constant.QUESTION14_SOR,
             "Item",
-            surveyID,
             "Check, test and certificate eletrics after repairs",
             "",
             false,
@@ -177,10 +178,10 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 14
         SurveySORs(
+            surveyID,
             constant.QUESTION15_SOR,
             "No",
-            surveyID,
-            "Additional radial circuit",
+                  "Additional radial circuit",
             "",
             false,
             0.0,
@@ -188,9 +189,9 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 15
         SurveySORs(
+            surveyID,
             constant.QUESTION16_SOR,
             "No",
-            surveyID,
             "Additional lighting circuit",
             "",
             false,
@@ -199,7 +200,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ),
         SurveySORs(
-            constant.QUESTION17_SOR, "No", surveyID, "Additional ring main", "", false, 0.0, 0.0,
+            surveyID, constant.QUESTION17_SOR, "No", "Additional ring main", "", false, 0.0, 0.0,
             constant.STANDARDCODE
         )
     ) // 16

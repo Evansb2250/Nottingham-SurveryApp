@@ -14,6 +14,7 @@ import com.example.surveyapp.DataBinderMapperImpl
 import com.example.surveyapp.R
 import com.example.surveyapp.application.SurveyApplication
 import com.example.surveyapp.domains.SoR
+import com.example.surveyapp.fragments.AsbestoRomval.AsbestoRemoval
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.CreateSurveyP2Fragment
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModel
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModelFactory
@@ -48,6 +49,7 @@ class SurveyActivity : AppCompatActivity() {
         var SurveyID:Int?= null
     }
 
+    val adapter = ViewPagerAdapter(supportFragmentManager)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,12 +75,8 @@ class SurveyActivity : AppCompatActivity() {
     }
 
 
+
     private fun initializeViewModels() {
-
-
-
-
-
 
 
         val viewModel: SurveySorViewModel by viewModels { SurveySorViewModelFactory((application as SurveyApplication).repository) }
@@ -88,9 +86,6 @@ class SurveyActivity : AppCompatActivity() {
         val createSVM: createSurveyViewModel by viewModels { createSurveyViewModelFactory((application as SurveyApplication).repository) }
         // Short CUT TO CLEAR A BUG
         //   sorViewModel?.addedSorList?.clear()
-
-
-
 
         createSurveyPage = createSVM
         sorViewModel = viewModel
@@ -105,9 +100,9 @@ class SurveyActivity : AppCompatActivity() {
     }
 
     private fun setUpTabs() {
-        val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(CreateSurveyFragment(), "Survey Details")
         adapter.addFragment(CreateSurveyP1p5Fragment(), "Checklist")
+        adapter.addFragment(AsbestoRemoval(), "Asbesto Removal")
         adapter.addFragment(CreateSurveyP2Fragment(), "Previous Work")
         adapter.addFragment(SOR_Fragment(), "Add SOR")
         adapter.addFragment(ConfirmationPage(), "save / cancel")
@@ -115,7 +110,6 @@ class SurveyActivity : AppCompatActivity() {
         viewPager.adapter = adapter
         val tabs = findViewById<TabLayout>(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
-
 
     }
 

@@ -179,7 +179,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
             if (passedDuplicateSorTest) { // val surveysor = SurveySORs(sorCode!!, surveyId!!, comments!!, recharge!!, quantity!!, total!!)
                 addedSorList.add(
                     SurveySORs(
-                        sorCode!!, UOM, surveyId, sorDescrip, comments,
+                        surveyId, sorCode!!, UOM, sorDescrip, comments,
                         recharge, quantity!!.toDouble(), total!!, category
                     )
 

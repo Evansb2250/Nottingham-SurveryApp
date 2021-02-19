@@ -1,6 +1,5 @@
 package com.example.surveyapp.fragments.confirmationTab
 
-import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.*
 import com.example.surveyapp.CONSTANTS.constant
@@ -8,10 +7,15 @@ import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.domains.SurveySORs
 import com.example.surveyapp.ignore.Survey
 import com.example.surveyapp.repository.DatabaseRepository
+
 import kotlinx.coroutines.launch
 import java.text.DecimalFormat
+import kotlin.collections.ArrayList
 
 class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel() {
+
+    //object that will create PDF
+    private val pdf = PdfCreator(this)
 
     private val currency = DecimalFormat("£###,###.##")
 
@@ -32,6 +36,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
         }
         return emptyList()
     }
+
 
 
     init {
@@ -68,7 +73,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
         name = SurveyActivity.createSurveyPage?.getName() ?: " "
         postCode = SurveyActivity.createSurveyPage?.getPostCode() ?: " "
         phoneNumber = SurveyActivity.createSurveyPage?.getPhoneNumber() ?: ""
-        surveyType = SurveyActivity.createSurveyPage?.getSurveyType() ?: ""
+        surveyType = SurveyActivity.createSurveyPage?.getSurveyType() ?: "Blank"
         date = SurveyActivity.createSurveyPage?.getDate() ?: ""
 
         surveyInfo = Survey(address = address,
@@ -113,6 +118,11 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
         return tempList
     }
+
+
+
+
+
 
     /*** OG CODE **/
     //  fun updateTotal(List: List<SurveySORs>) {
@@ -254,7 +264,19 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     fun getCheckedStatus(): Boolean {
         return hidePrices
     }
+
+
+
+
+    fun savePdfHandler():Boolean{
+        return pdf.savePdf()
+    }
+
+
+
+
 }
+
 
 
 class confirmViewModelFactory(private val repository: DatabaseRepository) :

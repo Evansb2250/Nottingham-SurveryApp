@@ -17,7 +17,8 @@
     <activity
             android:name=".activities.SurveyActivity"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan"
+        ></activity>
         <activity
             android:name=".activities.MainActivity"
             android:screenOrientation="landscape">

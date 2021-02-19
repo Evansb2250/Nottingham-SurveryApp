@@ -3,12 +3,11 @@ package com.example.surveyapp.fragments.confirmationTab
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.usage.UsageEvents.Event.NONE
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,22 +15,18 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.surveyapp.CONSTANTS.constant
-import com.example.surveyapp.CONSTANTS.constant.Companion.HEADERS1
+import androidx.fragment.app.FragmentActivity
 import com.example.surveyapp.R
-import com.example.surveyapp.activities.SurveyActivity
+import com.example.surveyapp.activities.MainActivity
 import com.example.surveyapp.activities.SurveyActivity.Companion.confirmPage
 import com.example.surveyapp.databinding.FragmentConfirmationPageBinding
 import com.itextpdf.text.*
-import com.itextpdf.text.pdf.PdfPCell
-import com.itextpdf.text.pdf.PdfPTable
-import com.itextpdf.text.pdf.PdfWriter
 import java.io.*
 import java.text.DecimalFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -64,10 +59,10 @@ class ConfirmationPage : Fragment() {
 
         buttonListener(binding.button2)
         setUpAsCSV(binding.button4)
-        setUpPDFButton(binding.pdfButton)
-
-        setUpCancelButton(binding.cancelButton)
+       // setUpPDFButton(binding.pdfButton)
+        saveAndExit(binding.cancelButton)
         setUpCheckButton(binding.showPriceCheckBox)
+        exitDontSave(binding.button5)
 
         confirmPage?.total?.observe(viewLifecycleOwner, { newAmount ->
             binding.total.text = currency.format(newAmount)
@@ -110,339 +105,55 @@ class ConfirmationPage : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun setUpPDFButton(pdfButton: Button) {
-        pdfButton.setOnClickListener { it ->
-            checkPerm()
+    private fun exitDontSave(exitButton: Button) {
+        exitButton.setOnClickListener{
+            exitActivity(requireContext(), activity)
         }
     }
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun checkPerm() {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-
-            val context = context
-            if (context != null) {
-                if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                    val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    requestPermissions(permissions, STORAGE_CODE)
-                } else
-                    savePdf()
-            }
-        } else {
-            savePdf()
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-
-
-            STORAGE_CODE -> {
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    savePdf()
-                } else {
-                    Toast.makeText(requireContext(), "Permission denied .....!", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-        }
-    }
-
-
-    private fun savePdf() {
-        // Create object of Document class
-        val mDoc = Document(PageSize.A3.rotate())
-        //    val mDoc = Document(PageSize.A4.rotate())
-        //pdf file name
-        val mFileName = SimpleDateFormat(
-            "yyyyMMdd_HHmmss",
-            Locale.getDefault()
-        ).format(System.currentTimeMillis())
-        // PDF file path
-        val mFilePath =
-            Environment.getExternalStorageDirectory().toString() + "/" + mFileName + ".pdf"
-        try {
-            //create instance of pdfwriter class
-            PdfWriter.getInstance(mDoc, FileOutputStream(mFilePath))
-
-            //open the document for writing
-            mDoc.open()
-
-
-            //val pointColumnWidths = FloatArray(150)
-            val table = PdfPTable(11)
-
-            /*
-            1.Revenue
-            2.response
-            3.Capital
-            4.response
-            5.Fire / services referral
-            6.reach
-            7.Rechargeable Total
-            8.amount             */
-
-
-
-
-            for (id in 0..10) {
-                val phrase = Phrase()
-
-                if (id == 1 || id == 4 || id == 10) {
-
-                    if (id == 1) {
-                        constant.HEADERS1[1] = confirmPage?.address.toString()
-                        phrase.add(
-                            Chunk(
-                                HEADERS1[id],
-                                FontFactory.getFont(FontFactory.HELVETICA)
-                            )
-                        )
-                    }
-                    if (id == 4) {
-                        constant.HEADERS1[4] = confirmPage?.name.toString()
-                        phrase.add(
-                            Chunk(
-                                HEADERS1[id],
-                                FontFactory.getFont(FontFactory.HELVETICA)
-                            )
-                        )
-                    }
-
-                    if (id == 10) {
-
-                        if (confirmPage?.hidePrices!!.equals(true)) {
-                            HEADERS1[id] = currency.format(0.0)
-                        }
-
-                        if (confirmPage?.hidePrices!!.equals(false) && confirmPage!!.surveyType.equals(
-                                constant.REVENUE
-                            )
-                        ) {
-                            HEADERS1[id] = currency.format(confirmPage?.total?.value)
-                        } else {
-                            HEADERS1[id] = currency.format(0.0)
-                        }
-
-                        phrase.add(Chunk(HEADERS1[id], FontFactory.getFont(FontFactory.HELVETICA)))
-                    }
-
-                } else
-                    phrase.add(Chunk(HEADERS1[id], FontFactory.getFont(FontFactory.TIMES_BOLD)))
-
-
-                val cell = PdfPCell(phrase)
-                cell.border = NONE
-                table.addCell(cell)
-            }
-
-
-
-
-
-
-            for (id in 0..10) {
-                val phrase = Phrase()
-
-                if (id == 1) {
-                    if (confirmPage!!.surveyType.equals(constant.REVENUE)) {
-                        constant.HEADERS2[id] = "Y"
-                    } else
-                        constant.HEADERS2[id] = ""
-                }
-                if (id == 3) {
-                    if (confirmPage!!.surveyType.equals(constant.CAPTIAL)) {
-                        constant.HEADERS2[id] = "Y"
-                    } else
-                        constant.HEADERS2[id] = ""
-                }
-
-                if (id == 10) {
-                    if (confirmPage?.hidePrices!!.equals(true)) {
-                        constant.HEADERS2[id] = currency.format(0.0)
-                    }
-
-                    if (confirmPage?.hidePrices!!.equals(false) && confirmPage!!.surveyType.equals(
-                            constant.CAPTIAL
-                        )
-                    ) {
-                        constant.HEADERS2[id] = currency.format(confirmPage?.total?.value)
-                    } else {
-                        constant.HEADERS2[id] = currency.format(0.0)
-                    }
-
-                    phrase.add(
-                        Chunk(
-                            constant.HEADERS2[id],
-                            FontFactory.getFont(FontFactory.HELVETICA)
-                        )
-                    )
-                } else
-                    phrase.add(
-                        Chunk(
-                            constant.HEADERS2[id],
-                            FontFactory.getFont(FontFactory.TIMES_BOLD)
-                        )
-                    )
-
-                //  phrase.add(Chunk(constant.HEADERS2[id], FontFactory.getFont(FontFactory.TIMES_BOLD)))
-                val cell = PdfPCell(phrase)
-                cell.border = NONE
-                table.addCell(cell)
-            }
-
-
-            for (id in 0..10) {
-
-                val phrase = Phrase()
-
-                if (id == 10) {
-                    constant.HEADERS3[id] = currency.format(confirmPage?.rechargeTotal?.value)
-                    phrase.add(
-                        Chunk(
-                            constant.HEADERS3[id],
-                            FontFactory.getFont(FontFactory.HELVETICA)
-                        )
-                    )
-                } else
-                    phrase.add(
-                        Chunk(
-                            constant.HEADERS3[id],
-                            FontFactory.getFont(FontFactory.TIMES_BOLD)
-                        )
-                    )
-
-                val cell = PdfPCell(phrase)
-//                if(id == 2){
-//                    cell.setColspan(2)
+//
+//    @RequiresApi(Build.VERSION_CODES.M)
+//    private fun setUpPDFButton(pdfButton: Button) {
+//        pdfButton.setOnClickListener { it ->
+//            checkPerm()
+//        }
+//    }
+//
+//    @RequiresApi(Build.VERSION_CODES.M)
+//    private fun checkPerm() {
+//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+//            val context = context
+//            if (context != null) {
+//                if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+//                    val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                    requestPermissions(permissions, STORAGE_CODE)
+//                } else
+//                    displayPDFStatus(confirmPage?.savePdfHandler()!!)
+//            }
+//        } else {
+//            displayPDFStatus(confirmPage?.savePdfHandler()!!)
+//        }
+//    }
+//
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        when (requestCode) {
+//            STORAGE_CODE -> {
+//                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    displayPDFStatus(confirmPage?.savePdfHandler()!!)
+//                } else {
+//                    Toast.makeText(requireContext(), "Permission denied .....!", Toast.LENGTH_SHORT)
+//                        .show()
 //                }
-                cell.border = NONE
-                table.addCell(cell)
-            }
-
-            //UNDERLINE
-            val cell = PdfPCell(Phrase(""))
-           cell.colspan = 11
-          table.addCell(cell)
-
-
-            var count = 0;
-            val list = confirmPage?.getSORS()
-            if (list != null) {
-                var cell: PdfPCell
-
-                for (sor in list) {
-                    //DIVIDER
-
-                    cell = PdfPCell(Phrase(""))
-                    cell.border = NONE
-                    cell.colspan = 11
-                    cell.minimumHeight=20F
-                    table.addCell(cell)
-
-
-                    var phrase = Phrase()
-                    phrase.add(
-                        Chunk(
-                            sor.roomCategory,
-                            FontFactory.getFont(FontFactory.TIMES_ITALIC)
-                        )
-                    )
-                    cell = PdfPCell(phrase)
-                    cell.border = NONE
-                    cell.fixedHeight = 10F
-                    table.addCell(cell)
-
-                    cell = PdfPCell(Phrase(sor.sorCode))
-                    cell.border = NONE
-                    table.addCell(cell)
-
-                    cell = PdfPCell(Phrase(sor.sorDescription))
-                    cell.setColspan(2)
-                    cell.border = NONE
-
-                    table.addCell(cell)
-
-                    phrase = Phrase()
-                    phrase.add(Chunk(sor.UOM, FontFactory.getFont(FontFactory.TIMES_ITALIC)))
-                    cell = PdfPCell(phrase)
-                    cell.border = NONE
-                    table.addCell(cell)
-
-
-                    cell = PdfPCell(Phrase(sor.quantity.toString()))
-                    cell.border = NONE
-                    table.addCell(cell)
-
-                    cell = PdfPCell(Phrase(recharge(sor.isRecharge)))
-                    cell.border = NONE
-                    table.addCell(cell)
-
-
-
-                    cell = PdfPCell(Phrase(currency.format(hidePrices(sor.total))))
-                    cell.border = NONE
-                    table.addCell(cell)
-
-                    cell = PdfPCell(Phrase(sor.surveyorDescription))
-                    cell.setColspan(2)
-                    cell.border = NONE
-                    table.addCell(cell)
-
-//                    cell = PdfPCell(Phrase(""))
-//                    cell.border = NONE
-//                    table.addCell(cell)
-
-//                    cell = PdfPCell(Phrase(""))
-//                    cell.border = NONE
-//                    table.addCell(cell)
-
-                    cell = PdfPCell(Phrase(""))
-                    cell.border = NONE
-                    table.addCell(cell)
-
-                    count += 1
-
-                    if(count%5== 0){
-                        cell = PdfPCell(Phrase(""))
-                        cell.border = NONE
-                        cell.colspan = 11
-                        cell.minimumHeight=40F
-                        table.addCell(cell)
-                    }
-                }
-            }
-
-            mDoc.add(table)
-
-
-
-
-
-
-            mDoc.close()
-
-            Toast.makeText(
-                requireContext(),
-                "$mFileName.pdf\nis saved to\n$mFilePath",
-                Toast.LENGTH_SHORT
-            ).show()
-        } catch (e: Exception) {
-            //
-            Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun recharge(isRecharge: Boolean): String {
-        if (isRecharge.equals(true)) {
-            return "Y"
-        } else return ""
-    }
+//            }
+//        }
+//    }
+//
+//
+//
+//
 
 
     private fun setUpCheckButton(showPriceCheckBox: CheckBox) {
@@ -456,12 +167,11 @@ class ConfirmationPage : Fragment() {
     }
 
 
-    private fun setUpCancelButton(cancelButton: Button) {
+    private fun saveAndExit(cancelButton: Button) {
         cancelButton.setOnClickListener { it ->
-
+            pullDataAndDisplay()
             confirmPage?.insertCompleteSurvey()
-
-            activity?.finish()
+            exitActivity(requireContext(), activity)
 
         }
     }
@@ -496,7 +206,6 @@ class ConfirmationPage : Fragment() {
 
 
     private fun buttonListener(button2: Button) {
-
         button2.setOnClickListener { it ->
             Toast.makeText(requireContext(), "Loading.....", Toast.LENGTH_SHORT).show()
             /**** TODO remove this code once code works again ***/
@@ -510,13 +219,26 @@ class ConfirmationPage : Fragment() {
     }
 
 
+    private fun displayPDFStatus(pdfWasCreatead: Boolean){
+        if(pdfWasCreatead){
+            Toast.makeText(requireContext(),"PDF Saved",Toast.LENGTH_SHORT).show()
+        }else {
+            Toast.makeText(requireContext(),"PDF Failed " + PdfCreator.message,Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
+
+    //TODO remove once it is moved to the other side.
+/*
     private fun hidePrices(originalAmount: Double): Double {
         if (confirmPage?.getCheckedStatus() == true) {
             return 0.0
         }
         return originalAmount
     }
-
+*/
     private fun pullDataAndDisplay() {
         confirmPage?.getData()
         if (confirmPage?._dataFromSurvey != null) {
@@ -525,6 +247,15 @@ class ConfirmationPage : Fragment() {
             Toast.makeText(requireContext(), "Error Occurred!!.", Toast.LENGTH_LONG).show()
     }
 }
+
+
+
+private fun exitActivity(activityContext: Context, activity: FragmentActivity?) {
+    val intent = Intent(activityContext, MainActivity::class.java)
+    activity!!.startActivity(intent)
+    activity!!.finish()
+}
+
 
 
 

@@ -21,6 +21,7 @@ android {
         applicationId "com.example.surveyapp"
         minSdkVersion 16
         targetSdkVersion 30
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -49,11 +50,6 @@ android {
         dataBinding true
     }
 
-    defaultConfig {
-
-        // Enabling multidex support.
-        multiDexEnabled true
-    }
 
     dexOptions {
         javaMaxHeapSize "4g"
@@ -70,8 +66,7 @@ dependencies {
     // You'll probably have to update the version numbers in build.gradle (Project)
 
     // DEX
-    compile 'com.android.support:multidex:1.0.3'
-
+    implementation "androidx.multidex:multidex:2.0.1"
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'

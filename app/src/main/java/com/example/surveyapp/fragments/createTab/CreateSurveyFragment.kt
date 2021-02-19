@@ -59,10 +59,6 @@ class CreateSurveyFragment : Fragment() {
         }
 
 
-        binding.button5.setOnClickListener({
-            Toast.makeText(requireContext(), SurveyActivity.SurveyID.toString(), Toast.LENGTH_LONG).show()
-        })
-
 
 
 

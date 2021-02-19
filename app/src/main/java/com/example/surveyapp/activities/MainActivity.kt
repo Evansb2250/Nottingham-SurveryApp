@@ -13,8 +13,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
         val viewModel: MainActivityViewModel by viewModels { MainActivityViewModelFactory((application as SurveyApplication).repository) }
 
         viewModel.refreshPage()

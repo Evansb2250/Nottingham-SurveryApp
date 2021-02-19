@@ -1,12 +1,13 @@
 package com.example.surveyapp.application
 
 import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.example.surveyapp.database.SurveyDatabase
 import com.example.surveyapp.repository.DatabaseRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
-class SurveyApplication : Application() {
+class SurveyApplication : MultiDexApplication() {
 
     // No need to cancel this scope as it'll be torn down with the process
     val applicationScope = CoroutineScope(SupervisorJob())

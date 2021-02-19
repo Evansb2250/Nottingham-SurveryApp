@@ -127,9 +127,9 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
 
                 tempList.add(
                     SurveySORs(
+                        surveyID,
                         sorcode,
                         uom,
-                        surveyID,
                         description,
                         comment,
                         false,
