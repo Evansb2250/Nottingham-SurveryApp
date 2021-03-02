@@ -35,19 +35,7 @@ class AsbestoRemoval : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_asbesto_removal, container, false)
 
-<<<<<<< HEAD
 
-        // updates text
-        binding.abestoRemovalEditView.addTextChangedListener{
-            val description = binding.abestoRemovalEditView.getText().toString()
-            SurveyActivity.abesto!!.updateText(description)
-=======
-        binding.abestoRemovalEditView.addTextChangedListener{
-
-            Toast.makeText(requireContext(), binding.abestoRemovalEditView.getText(), Toast.LENGTH_LONG ).show()
->>>>>>> origin/DatabaseDev
-        }
-        //
 
 
 
