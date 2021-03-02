@@ -27,6 +27,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:4.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$version_navigation"
+        //Added to fix UTF-8 'STRING_TOO_LARGE'
 
         //safe-args
     //    classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:2.3.0"

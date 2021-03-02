@@ -4,8 +4,13 @@
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="teal_700">#141515</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="experiment">#F5B8B4</color>
+    <color name="appbackgroundColor">#E6E5BE</color>
+
+   <!-- #F6F4BE -->
+<!-- #F1F0F0 -->
+    <color name="secondBackgroundColor">#ABC85B</color>
 </resources>

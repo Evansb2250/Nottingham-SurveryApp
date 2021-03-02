@@ -153,10 +153,12 @@ class ConfirmationPage : Fragment() {
                     val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     requestPermissions(permissions, STORAGE_CODE)
                 } else
-                    displayPDFStatus(confirmPage?.savePdfHandler()!!)
+                    displayPDFStatus(true)
+                   // displayPDFStatus(confirmPage?.savePdfHandler()!!)
             }
         } else {
-            displayPDFStatus(confirmPage?.savePdfHandler()!!)
+            displayPDFStatus(true)
+         //   displayPDFStatus(confirmPage?.savePdfHandler()!!)
         }
     }
 

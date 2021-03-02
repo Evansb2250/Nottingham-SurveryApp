@@ -30,6 +30,8 @@ class SOR_Fragment : Fragment() {
 
     private lateinit var binding: FragmentSORBinding
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

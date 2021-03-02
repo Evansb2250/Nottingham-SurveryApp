@@ -1,23 +1,19 @@
 package com.example.surveyapp.activities
 
-import android.app.Application
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
-import com.example.surveyapp.DAO.dbDAO
-import com.example.surveyapp.DataBinderMapperImpl
 import com.example.surveyapp.R
 import com.example.surveyapp.application.SurveyApplication
-import com.example.surveyapp.domains.SoR
-import com.example.surveyapp.fragments.AsbestoRomval.AsbestoRemoval
+import com.example.surveyapp.fragments.asbestoRomval.AsbestoRemoval
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.CreateSurveyP2Fragment
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModel
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModelFactory
+import com.example.surveyapp.fragments.asbestoRomval.AbestoViewModel
+import com.example.surveyapp.fragments.asbestoRomval.AbestoViewModelFactory
 import com.example.surveyapp.fragments.checkListTab.ChecklistViewModel
 import com.example.surveyapp.fragments.checkListTab.ChecklistViewModelFactory
 import com.example.surveyapp.fragments.checkListTab.CreateSurveyP1p5Fragment
@@ -31,8 +27,6 @@ import com.example.surveyapp.fragments.sorTab.SOR_Fragment
 import com.example.surveyapp.fragments.sorTab.SurveySorViewModel
 import com.example.surveyapp.fragments.sorTab.SurveySorViewModelFactory
 import com.example.surveyapp.fragments.tabAdapter.ViewPagerAdapter
-import com.example.surveyapp.ignore.Survey
-import com.example.surveyapp.repository.DatabaseRepository
 import com.google.android.material.tabs.TabLayout
 
 class SurveyActivity : AppCompatActivity() {
@@ -44,6 +38,7 @@ class SurveyActivity : AppCompatActivity() {
         var prevViewModel: previosWorkViewModel? = null
         var checkListVM: ChecklistViewModel? = null
         var confirmPage: ConfirmViewModel? = null
+        var abesto: AbestoViewModel ?=null
 
 
         var SurveyID:Int?= null
@@ -84,9 +79,11 @@ class SurveyActivity : AppCompatActivity() {
         val checklistViewModel: ChecklistViewModel by viewModels { ChecklistViewModelFactory((application as SurveyApplication).repository) }
         val confirmationVM: ConfirmViewModel by viewModels { confirmViewModelFactory((application as SurveyApplication).repository) }
         val createSVM: createSurveyViewModel by viewModels { createSurveyViewModelFactory((application as SurveyApplication).repository) }
+        val abestoViewModel: AbestoViewModel by viewModels { AbestoViewModelFactory((application as SurveyApplication).repository) }
         // Short CUT TO CLEAR A BUG
         //   sorViewModel?.addedSorList?.clear()
 
+        abesto = abestoViewModel
         createSurveyPage = createSVM
         sorViewModel = viewModel
         checkListVM = checklistViewModel
