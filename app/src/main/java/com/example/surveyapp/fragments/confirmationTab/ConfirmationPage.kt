@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat.startActivity
@@ -49,20 +50,19 @@ class ConfirmationPage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_confirmation_page, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_confirmation_page, container, false)
         binding.textField.isFocusable = false
-        val currency = DecimalFormat("£###,###.##")
 
         binding.viewModel = confirmPage
         binding.lifecycleOwner = this
 
         buttonListener(binding.button2)
         setUpAsCSV(binding.button4)
-       // setUpPDFButton(binding.pdfButton)
+        setUpPDFButton(binding.pdfButton)
         saveAndExit(binding.cancelButton)
         setUpCheckButton(binding.showPriceCheckBox)
         exitDontSave(binding.button5)
+
 
         confirmPage?.total?.observe(viewLifecycleOwner, { newAmount ->
             binding.total.text = currency.format(newAmount)
@@ -78,31 +78,36 @@ class ConfirmationPage : Fragment() {
         })
 
         binding.taxPrecentage.addTextChangedListener { pct ->
-            var percentage = pct.toString()
-            if (percentage.equals("")) {
-                percentage = "0.0"
-                binding.taxPrecentage.setText("0")
-            } else if (percentage.toDouble() > 100) {
-                Toast.makeText(
-                    requireContext(),
-                    "Percentages can only be between 0 - 100",
-                    Toast.LENGTH_SHORT
-                ).show()
-                binding.taxPrecentage.text.clear()
-                binding.taxPrecentage.setText("20")
-
-                //Sets the default VAT RATE
-                confirmPage?.changeVAT(20.0)
-
-            }
+            val percentage = checkTaxPercentage(pct.toString())
             confirmPage?.changeVAT(percentage.toDouble())
 
         }
 
 
-
-
         return binding.root
+    }
+
+
+
+    private fun checkTaxPercentage(pct: String): String{
+        var percentage = pct
+        if (percentage.equals("")) {
+            percentage = "0.0"
+            binding.taxPrecentage.setText("")
+        } else if (percentage.toDouble() > 100) {
+            Toast.makeText(
+                requireContext(),
+                "Percentages can only be between 0 - 100",
+                Toast.LENGTH_SHORT
+            ).show()
+            binding.taxPrecentage.text.clear()
+            binding.taxPrecentage.setText("20")
+
+            //Sets the default VAT RATE
+            confirmPage?.changeVAT(20.0)
+
+        }
+        return percentage
     }
 
     private fun exitDontSave(exitButton: Button) {
@@ -110,50 +115,6 @@ class ConfirmationPage : Fragment() {
             exitActivity(requireContext(), activity)
         }
     }
-//
-//    @RequiresApi(Build.VERSION_CODES.M)
-//    private fun setUpPDFButton(pdfButton: Button) {
-//        pdfButton.setOnClickListener { it ->
-//            checkPerm()
-//        }
-//    }
-//
-//    @RequiresApi(Build.VERSION_CODES.M)
-//    private fun checkPerm() {
-//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-//            val context = context
-//            if (context != null) {
-//                if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-//                    val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                    requestPermissions(permissions, STORAGE_CODE)
-//                } else
-//                    displayPDFStatus(confirmPage?.savePdfHandler()!!)
-//            }
-//        } else {
-//            displayPDFStatus(confirmPage?.savePdfHandler()!!)
-//        }
-//    }
-//
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<out String>,
-//        grantResults: IntArray
-//    ) {
-//        when (requestCode) {
-//            STORAGE_CODE -> {
-//                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    displayPDFStatus(confirmPage?.savePdfHandler()!!)
-//                } else {
-//                    Toast.makeText(requireContext(), "Permission denied .....!", Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//            }
-//        }
-//    }
-//
-//
-//
-//
 
 
     private fun setUpCheckButton(showPriceCheckBox: CheckBox) {
@@ -175,6 +136,50 @@ class ConfirmationPage : Fragment() {
 
         }
     }
+
+        @RequiresApi(Build.VERSION_CODES.M)
+    private fun setUpPDFButton(pdfButton: Button) {
+        pdfButton.setOnClickListener { it ->
+            checkPerm()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun checkPerm() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            val context = context
+            if (context != null) {
+                if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                    val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    requestPermissions(permissions, STORAGE_CODE)
+                } else
+                    displayPDFStatus(confirmPage?.savePdfHandler()!!)
+            }
+        } else {
+            displayPDFStatus(confirmPage?.savePdfHandler()!!)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            STORAGE_CODE -> {
+                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    displayPDFStatus(confirmPage?.savePdfHandler()!!)
+                } else {
+                    Toast.makeText(requireContext(), "Permission denied .....!", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
+    }
+
+
+
+
 
 
     fun setUpAsCSV(pdfButton: Button) {
@@ -210,7 +215,6 @@ class ConfirmationPage : Fragment() {
             Toast.makeText(requireContext(), "Loading.....", Toast.LENGTH_SHORT).show()
             /**** TODO remove this code once code works again ***/
 
-
             /*** NEW CODE   ***/
             pullDataAndDisplay()
 
@@ -230,15 +234,7 @@ class ConfirmationPage : Fragment() {
 
 
 
-    //TODO remove once it is moved to the other side.
-/*
-    private fun hidePrices(originalAmount: Double): Double {
-        if (confirmPage?.getCheckedStatus() == true) {
-            return 0.0
-        }
-        return originalAmount
-    }
-*/
+
     private fun pullDataAndDisplay() {
         confirmPage?.getData()
         if (confirmPage?._dataFromSurvey != null) {
@@ -258,6 +254,14 @@ private fun exitActivity(activityContext: Context, activity: FragmentActivity?) 
 
 
 
+fun returnAnyNumberWithoutError(numberToCheck: String): Double {
+    var testNumber = numberToCheck
+    if (testNumber.equals("")) {
+        testNumber = "0.0"
+        return testNumber.toDouble()
+    }
+    return testNumber.toDouble()
+}
 
 
 

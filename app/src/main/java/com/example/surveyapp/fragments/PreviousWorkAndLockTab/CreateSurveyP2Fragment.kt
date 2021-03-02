@@ -42,14 +42,14 @@ class CreateSurveyP2Fragment : Fragment() {
         registerTextChange(7, binding.question7, binding.rechargeQ7, binding.comment7)
         registerTextChange(8, binding.question8, binding.rechargeQ8, binding.comment8)
         registerTextChange(9, binding.question9, binding.rechargeQ9, binding.comment9)
-        registerTextChange(10, binding.question10, binding.rechargeQ10, binding.comment10)
+      registerTextChange(10, binding.question10, binding.rechargeQ10, binding.comment10)
         registerTextChange(11, binding.question11, binding.rechargeQ11, binding.comment11)
         registerTextChange(12, binding.question12, binding.rechargeQ12, binding.comment12)
-        registerTextChange(13, binding.question13, binding.rechargeQ13, binding.comment13)
+       registerTextChange(13, binding.question13, binding.rechargeQ13, binding.comment13)
         registerTextChange(14, binding.question14, binding.rechargeQ14, binding.comment14)
-        registerTextChange(15, binding.question15, binding.rechargeQ15, binding.comment15)
-        registerTextChange(16, binding.question16, binding.rechargeQ16, binding.comment16)
-        registerTextChange(17, binding.question17, binding.rechargeQ17, binding.comment17)
+       registerTextChange(15, binding.question15, binding.rechargeQ15, binding.comment15)
+       registerTextChange(16, binding.question16, binding.rechargeQ16, binding.comment16)
+         registerTextChange(17, binding.question17, binding.rechargeQ17, binding.comment17)
 
         /*
         PASSED
@@ -75,7 +75,7 @@ class CreateSurveyP2Fragment : Fragment() {
         registerRechargeClick(7, binding.rechargeQ7, binding.question7, binding.comment7)
         registerRechargeClick(8, binding.rechargeQ8, binding.question8, binding.comment8)
         registerRechargeClick(9, binding.rechargeQ9, binding.question9, binding.comment9)
-        registerRechargeClick(10, binding.rechargeQ10, binding.question10, binding.comment10)
+       registerRechargeClick(10, binding.rechargeQ10, binding.question10, binding.comment10)
         registerRechargeClick(11, binding.rechargeQ11, binding.question11, binding.comment11)
         registerRechargeClick(12, binding.rechargeQ12, binding.question12, binding.comment12)
         registerRechargeClick(13, binding.rechargeQ13, binding.question13, binding.comment13)
@@ -268,7 +268,6 @@ PASSED
 
     fun returnAnyNumberWithoutError(numberToCheck: String): Double {
         var testNumber = numberToCheck
-
         if (testNumber.equals("")) {
             testNumber = "0.0"
             return testNumber.toDouble()
@@ -290,7 +289,6 @@ PASSED
             val isRecharge = rechargeBox.isChecked
             val number = returnAnyNumberWithoutError(questionEntry.text.toString())
             val comment = userComment.text.toString()
-
 
             //pass to the function
             SurveyActivity.prevViewModel!!.addChangesToVariable(id, number, isRecharge, comment)

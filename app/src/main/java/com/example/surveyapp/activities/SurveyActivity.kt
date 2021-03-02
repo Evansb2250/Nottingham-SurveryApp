@@ -107,9 +107,12 @@ class SurveyActivity : AppCompatActivity() {
         adapter.addFragment(SOR_Fragment(), "Add SOR")
         adapter.addFragment(ConfirmationPage(), "save / cancel")
         val viewPager = findViewById<ViewPager>(R.id.viewPager)
+        //
+        viewPager.setOffscreenPageLimit(6)
         viewPager.adapter = adapter
         val tabs = findViewById<TabLayout>(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
+
 
     }
 

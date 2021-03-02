@@ -153,6 +153,8 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
         return _dataFromSurvey
     }
 
+
+
     fun updateMessage(List: List<SurveySORs>): List<String> {
         val tempList = mutableListOf<String>()
         if (List != null) {
@@ -174,6 +176,8 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
             }
 
 
+            //TODO REFACTOR Below
+
             val header =
                 "Address:${sp}${address}${sp}0${sp} ${sp}Survey:${sp}${name}${sp}${sp}${sp}Revenue Void Total${sp}${revenueTotal}\n"
             val header2 =
@@ -182,6 +186,8 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
                 "Category${sp}SoRs${sp}Description${sp}${sp}UOM${sp}QTY${sp}Recharge${sp}Total Price${sp}Comments${sp}Recharge Total${sp}${
                     currency.format(rechargeTotal.value)
                 } \n"
+
+
             tempList.add(header)
             tempList.add(header2)
             tempList.add(header3)
@@ -227,6 +233,9 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
             return tempList
 
     }
+
+
+
 
 
     fun insertCompleteSurvey(){

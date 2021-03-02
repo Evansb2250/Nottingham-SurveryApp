@@ -3,7 +3,6 @@ buildscript {
 
     ext {
         kotlin_version = "1.4.21"
-        kotlin_version = "1.4.21"
         activityVersion = '1.1.0'
         appCompatVersion = '1.2.0'
         constraintLayoutVersion = '2.0.2'
