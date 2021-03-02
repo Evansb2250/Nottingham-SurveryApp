@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
@@ -54,11 +55,14 @@ class CreateSurveyFragment : Fragment() {
             SurveyActivity.createSurveyPage?.storePhoneNumber(text.toString())
         }
 
-        binding.dateEdit.addTextChangedListener { text ->
-            SurveyActivity.createSurveyPage?.storeDate(text.toString())
-        }
+//        binding.dateEdit.addTextChangedListener { text ->
+//            SurveyActivity.createSurveyPage?.storeDate(text.toString())
+//        }
 
 
+        binding.calendarView.setOnDateChangeListener({CalendarView, year, month, dayOfMonth ->
+            binding.dateEdit.setText("${dayOfMonth}/${month+1}/${year}")
+        })
 
 
 

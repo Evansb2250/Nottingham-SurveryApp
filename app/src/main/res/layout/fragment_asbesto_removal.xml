@@ -2,13 +2,21 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragments.asbestoRomval.AsbestoRemoval"
+    >
 
-    tools:context=".fragments.AsbestoRomval.AsbestoRemoval">
+    <data>
+        <variable
+            name="abestoViewmodel"
+            type="com.example.surveyapp.fragments.asbestoRomval.AbestoViewModel" />
+    </data>
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F1F0F0">
+        android:background="@color/appbackgroundColor">
 
         <TextView
             android:id="@+id/textView8"
@@ -18,6 +26,7 @@
             android:layout_marginLeft="450dp"
             android:layout_marginEnd="450dp"
             android:layout_marginRight="450dp"
+            android:fontFamily="@font/abril_fatface"
             android:text="@string/Abesto"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +36,7 @@
             app:layout_constraintVertical_bias="0.050000012" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/abestoRemovalEditView"
             android:layout_width="633dp"
             android:layout_height="339dp"
             android:layout_marginTop="8dp"

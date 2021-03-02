@@ -8,7 +8,7 @@
         android:id="@+id/constraintLayoutCSP2Frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F1F0F0">
+        android:background="@color/appbackgroundColor">
 
 
         <ScrollView
@@ -42,15 +42,18 @@
                         android:id="@+id/textView25"
                         android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/bsc_fonts"
                         android:text="@string/c28"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        />
 
                     <CheckBox
                         android:id="@+id/rechargeQ1"
                         android:layout_width="151dp"
                         android:layout_height="wrap_content"
                         android:paddingRight="5dp"
-                        android:text="@string/Recharge_Box" />
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <EditText
                         android:id="@+id/question1"
@@ -79,19 +82,22 @@
                         android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c29"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <CheckBox
                         android:id="@+id/rechargeQ2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Recharge_Box" />
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <CheckBox
                         android:id="@+id/question2Box"
                         android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="36dp"
-                        android:text="yes" />
+                        android:text="yes"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <EditText
                         android:id="@+id/comment2"
@@ -111,19 +117,22 @@
                         android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c30"
+                        android:fontFamily="@font/bsc_fonts"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                     <CheckBox
                         android:id="@+id/rechargeQ3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Recharge_Box" />
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <CheckBox
                         android:id="@+id/question3Box"
                         android:layout_width="@dimen/quantityLabelWidth"
                         android:layout_height="wrap_content"
-                        android:text="yes" />
+                        android:text="yes"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <EditText
                         android:id="@+id/comment3"
@@ -143,13 +152,15 @@
                         android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c31"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <CheckBox
                         android:id="@+id/rechargeQ4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Recharge_Box" />
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <CheckBox
                         android:id="@+id/question4Box"
@@ -175,13 +186,15 @@
                         android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c32"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <CheckBox
                         android:id="@+id/rechargeQ5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Recharge_Box" />
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <EditText
                         android:id="@+id/question5"
@@ -209,13 +222,15 @@
                         android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c33"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <CheckBox
                         android:id="@+id/rechargeQ6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Recharge_Box" />
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <EditText
                         android:id="@+id/question6"
@@ -243,13 +258,15 @@
                         android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c35"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <CheckBox
                         android:id="@+id/rechargeQ7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Recharge_Box" />
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <EditText
                         android:id="@+id/question7"
@@ -277,13 +294,15 @@
                         android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c36"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <CheckBox
                         android:id="@+id/rechargeQ8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Recharge_Box" />
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <EditText
                         android:id="@+id/question8"
@@ -311,13 +330,15 @@
                         android:layout_width="@dimen/labelWidth"
                         android:layout_height="wrap_content"
                         android:text="@string/c37"
+                        android:fontFamily="@font/bsc_fonts"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                     <CheckBox
                         android:id="@+id/rechargeQ9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Recharge_Box" />
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
                     <EditText
                         android:id="@+id/question9"
@@ -337,283 +358,301 @@
                 </TableRow>
 
 
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                                    <TextView
-                                        android:id="@+id/textView34"
-                                        android:layout_width="@dimen/labelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/c40"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                    <TextView
+                        android:id="@+id/textView34"
+                        android:layout_width="@dimen/labelWidth"
+                        android:layout_height="wrap_content"
+                        android:text="@string/c40"
+                        android:fontFamily="@font/bsc_fonts"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-                                    <CheckBox
-                                        android:id="@+id/rechargeQ10"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/Recharge_Box" />
+                    <CheckBox
+                        android:id="@+id/rechargeQ10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
-                                    <EditText
-                                        android:id="@+id/question10"
-                                        android:layout_width="@dimen/quantityLabelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:ems="10"
-                                        android:hint="@string/Qty"
-                                        android:inputType="number" />
+                    <EditText
+                        android:id="@+id/question10"
+                        android:layout_width="@dimen/quantityLabelWidth"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
 
-                                    <EditText
-                                        android:id="@+id/comment10"
-                                        android:layout_width="@dimen/commentWidth"
-                                        android:layout_height="match_parent"
-                                        android:ems="10"
-                                        android:hint="@string/commentHint"
-                                        android:inputType="text" />
-                                </TableRow>
-
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:id="@+id/textView35"
-                                        android:layout_width="@dimen/labelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/c41"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                                    <CheckBox
-                                        android:id="@+id/rechargeQ11"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/Recharge_Box" />
+                    <EditText
+                        android:id="@+id/comment10"
+                        android:layout_width="@dimen/commentWidth"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
+                </TableRow>
 
 
-                                    <EditText
-                                        android:id="@+id/question11"
-                                        android:layout_width="@dimen/quantityLabelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:ems="10"
-                                        android:hint="@string/Qty"
-                                        android:inputType="number" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                                    <EditText
-                                        android:id="@+id/comment11"
-                                        android:layout_width="@dimen/commentWidth"
-                                        android:layout_height="match_parent"
-                                        android:ems="10"
-                                        android:hint="@string/commentHint"
-                                        android:inputType="text" />
-                                </TableRow>
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="@dimen/labelWidth"
+                        android:layout_height="wrap_content"
+                        android:text="@string/c41"
+                        android:fontFamily="@font/bsc_fonts"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:id="@+id/textView37"
-                                        android:layout_width="@dimen/labelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/c42"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                                    <CheckBox
-                                        android:id="@+id/rechargeQ12"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/Recharge_Box" />
-
-                                    <EditText
-                                        android:id="@+id/question12"
-                                        android:layout_width="@dimen/quantityLabelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:ems="10"
-                                        android:hint="@string/Qty"
-                                        android:inputType="number" />
-
-                                    <EditText
-                                        android:id="@+id/comment12"
-                                        android:layout_width="@dimen/commentWidth"
-                                        android:layout_height="match_parent"
-                                        android:ems="10"
-                                        android:hint="@string/commentHint"
-                                        android:inputType="text" />
-
-                                </TableRow>
-
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:id="@+id/textView36"
-                                        android:layout_width="@dimen/labelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/c43"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                                    <CheckBox
-                                        android:id="@+id/rechargeQ13"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/Recharge_Box" />
-
-                                    <EditText
-                                        android:id="@+id/question13"
-                                        android:layout_width="@dimen/quantityLabelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:ems="10"
-                                        android:hint="@string/Qty"
-                                        android:inputType="number" />
-
-                                    <EditText
-                                        android:id="@+id/comment13"
-                                        android:layout_width="@dimen/commentWidth"
-                                        android:layout_height="match_parent"
-                                        android:ems="10"
-                                        android:hint="@string/commentHint"
-                                        android:inputType="text" />
+                    <CheckBox
+                        android:id="@+id/rechargeQ11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
 
-                                </TableRow>
+                    <EditText
+                        android:id="@+id/question11"
+                        android:layout_width="@dimen/quantityLabelWidth"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
 
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-
-                                    <TextView
-                                        android:id="@+id/textView38"
-                                        android:layout_width="@dimen/labelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/c44"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                                    <CheckBox
-                                        android:id="@+id/rechargeQ14"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/Recharge_Box" />
-
-                                    <EditText
-                                        android:id="@+id/question14"
-                                        android:layout_width="@dimen/quantityLabelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:ems="10"
-                                        android:hint="@string/Qty"
-                                        android:inputType="number" />
-
-                                    <EditText
-                                        android:id="@+id/comment14"
-                                        android:layout_width="@dimen/commentWidth"
-                                        android:layout_height="match_parent"
-                                        android:ems="10"
-                                        android:hint="@string/commentHint"
-                                        android:inputType="text" />
-                                </TableRow>
+                    <EditText
+                        android:id="@+id/comment11"
+                        android:layout_width="@dimen/commentWidth"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
+                </TableRow>
 
 
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                                    <TextView
-                                        android:id="@+id/textView39"
-                                        android:layout_width="@dimen/labelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/c45"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                    <TextView
+                        android:id="@+id/textView37"
+                        android:layout_width="@dimen/labelWidth"
+                        android:layout_height="wrap_content"
+                        android:text="@string/c42"
+                        android:fontFamily="@font/bsc_fonts"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-                                    <CheckBox
-                                        android:id="@+id/rechargeQ15"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/Recharge_Box" />
+                    <CheckBox
+                        android:id="@+id/rechargeQ12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
-                                    <EditText
-                                        android:id="@+id/question15"
-                                        android:layout_width="@dimen/quantityLabelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:ems="10"
-                                        android:hint="@string/Qty"
-                                        android:inputType="number" />
+                    <EditText
+                        android:id="@+id/question12"
+                        android:layout_width="@dimen/quantityLabelWidth"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
 
-                                    <EditText
-                                        android:id="@+id/comment15"
-                                        android:layout_width="@dimen/commentWidth"
-                                        android:layout_height="match_parent"
-                                        android:ems="10"
-                                        android:hint="@string/commentHint"
-                                        android:inputType="text" />
-                                </TableRow>
+                    <EditText
+                        android:id="@+id/comment12"
+                        android:layout_width="@dimen/commentWidth"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
 
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                </TableRow>
 
-                                    <TextView
-                                        android:id="@+id/textView40"
-                                        android:layout_width="@dimen/labelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/c46"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                                    <CheckBox
-                                        android:id="@+id/rechargeQ16"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/Recharge_Box" />
+                    <TextView
+                        android:id="@+id/textView36"
+                        android:layout_width="@dimen/labelWidth"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bsc_fonts"
+                        android:text="@string/c43"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-                                    <EditText
-                                        android:id="@+id/question16"
-                                        android:layout_width="@dimen/quantityLabelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:ems="10"
-                                        android:hint="@string/Qty"
-                                        android:inputType="number" />
+                    <CheckBox
+                        android:id="@+id/rechargeQ13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
 
-                                    <EditText
-                                        android:id="@+id/comment16"
-                                        android:layout_width="@dimen/commentWidth"
-                                        android:layout_height="match_parent"
-                                        android:ems="10"
-                                        android:hint="@string/commentHint"
-                                        android:inputType="text" />
-                                </TableRow>
+                    <EditText
+                        android:id="@+id/question13"
+                        android:layout_width="@dimen/quantityLabelWidth"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
 
-                                <TableRow
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                    <EditText
+                        android:id="@+id/comment13"
+                        android:layout_width="@dimen/commentWidth"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
 
-                                    <TextView
-                                        android:id="@+id/textView41"
-                                        android:layout_width="@dimen/labelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/c47"
-                                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-                                    <CheckBox
-                                        android:id="@+id/rechargeQ17"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/Recharge_Box" />
+                </TableRow>
 
-                                    <EditText
-                                        android:id="@+id/question17"
-                                        android:layout_width="@dimen/quantityLabelWidth"
-                                        android:layout_height="wrap_content"
-                                        android:ems="10"
-                                        android:hint="@string/Qty"
-                                        android:inputType="number" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                                    <EditText
-                                        android:id="@+id/comment17"
-                                        android:layout_width="@dimen/commentWidth"
-                                        android:layout_height="match_parent"
-                                        android:ems="10"
-                                        android:hint="@string/commentHint"
-                                        android:inputType="text" />
+                    <TextView
+                        android:id="@+id/textView38"
+                        android:layout_width="@dimen/labelWidth"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bsc_fonts"
+                        android:text="@string/c44"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <CheckBox
+                        android:id="@+id/rechargeQ14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
+
+                    <EditText
+                        android:id="@+id/question14"
+                        android:layout_width="@dimen/quantityLabelWidth"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment14"
+                        android:layout_width="@dimen/commentWidth"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
+                </TableRow>
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="@dimen/labelWidth"
+                        android:layout_height="wrap_content"
+                        android:text="@string/c45"
+                        android:fontFamily="@font/bsc_fonts"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <CheckBox
+                        android:id="@+id/rechargeQ15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
+
+                    <EditText
+                        android:id="@+id/question15"
+                        android:layout_width="@dimen/quantityLabelWidth"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment15"
+                        android:layout_width="@dimen/commentWidth"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="@dimen/labelWidth"
+                        android:layout_height="wrap_content"
+                        android:text="@string/c46"
+                        android:fontFamily="@font/bsc_fonts"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <CheckBox
+                        android:id="@+id/rechargeQ16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
+
+                    <EditText
+                        android:id="@+id/question16"
+                        android:layout_width="@dimen/quantityLabelWidth"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/Qty"
+
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment16"
+                        android:layout_width="@dimen/commentWidth"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+
+                        android:inputType="text" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView41"
+                        android:layout_width="@dimen/labelWidth"
+                        android:layout_height="wrap_content"
+                        android:text="@string/c47"
+                        android:fontFamily="@font/bsc_fonts"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <CheckBox
+                        android:id="@+id/rechargeQ17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recharge_Box"
+                        android:fontFamily="@font/bsc_fonts"/>
+
+                    <EditText
+                        android:id="@+id/question17"
+                        android:layout_width="@dimen/quantityLabelWidth"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="@string/Qty"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/comment17"
+                        android:layout_width="@dimen/commentWidth"
+                        android:layout_height="match_parent"
+                        android:ems="10"
+                        android:hint="@string/commentHint"
+                        android:inputType="text" />
                 </TableRow>
 
             </TableLayout>
@@ -629,6 +668,7 @@
             android:layout_marginEnd="462dp"
             android:layout_marginRight="462dp"
             android:layout_marginBottom="23dp"
+            android:fontFamily="@font/abril_fatface"
             android:text="Questions 1-17"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toTopOf="@+id/scrollView3"

@@ -199,7 +199,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
                 if (hidePrices.equals(false)) {
                     message.value += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + " -  " + currency.format(
                         data.total
-                    ) +  " survey Id  " + data.surveyID +"\n"
+                    ) +"\n"
                 } else
                     message.value += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + "\n"
 
@@ -290,7 +290,6 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 class confirmViewModelFactory(private val repository: DatabaseRepository) :
     ViewModelProvider.Factory {
-
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ConfirmViewModel::class.java)) {
 

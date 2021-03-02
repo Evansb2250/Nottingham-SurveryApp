@@ -17,7 +17,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/viewSurveyLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/secondBackgroundColor">
 
         <ImageButton
             android:id="@+id/imageButton2"
@@ -25,7 +26,7 @@
             android:layout_height="57dp"
             android:layout_marginStart="11dp"
             android:layout_marginLeft="11dp"
-            android:background="@color/experiment"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.207"
@@ -69,7 +70,7 @@
             android:layout_height="264dp"
             android:layout_marginStart="150dp"
             android:layout_marginLeft="150dp"
-            android:background="#C6C4C4"
+            android:background="@color/design_default_color_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.678"
@@ -103,6 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="16dp"
+            android:fontFamily="@font/abril_fatface"
             android:text="Previous Survey's"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toTopOf="@+id/scrollView6"

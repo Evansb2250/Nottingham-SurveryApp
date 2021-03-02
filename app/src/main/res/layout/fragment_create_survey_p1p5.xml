@@ -10,14 +10,13 @@
             name="viewmodel"
             type="com.example.surveyapp.fragments.checkListTab.ChecklistViewModel" />
 
-
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F1F0F0"
+        android:background="@color/appbackgroundColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent">
@@ -47,6 +46,7 @@
                     android:id="@+id/fireDoorTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="Fire Door"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -55,12 +55,14 @@
                     android:layout_width="296dp"
                     android:layout_height="wrap_content"
 
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="yes" />
 
                 <TextView
                     android:id="@+id/fdCommentTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="Comments:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -85,6 +87,7 @@
                     android:id="@+id/decorPoints"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="@string/DecorationPoints"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -105,6 +108,7 @@
                     android:id="@+id/decorPoints2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="@string/Location_TAPS"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -131,6 +135,7 @@
                     android:id="@+id/decorPoints3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="@string/FloorLevel"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -155,6 +160,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="@string/Isolator_txt"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -162,12 +168,14 @@
                     android:id="@+id/isolatorChkBx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="yes" />
 
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="125dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="@string/Rewire_txt"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -175,6 +183,7 @@
                     android:id="@+id/rwChkBx"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="yes" />
             </TableRow>
 
@@ -187,6 +196,7 @@
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="@string/meterTxt"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -194,12 +204,14 @@
                     android:id="@+id/mIChkBx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="yes" />
 
                 <TextView
                     android:id="@+id/textView18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="@string/HeatingTxt"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -207,6 +219,7 @@
                     android:id="@+id/heatingChkBx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="yes" />
             </TableRow>
 
@@ -225,6 +238,7 @@
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="@string/FastTrackingTxt"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -232,12 +246,14 @@
                     android:id="@+id/ftChkBx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="yes" />
 
                 <TextView
                     android:id="@+id/textView20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="@string/glassText"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -245,6 +261,7 @@
                     android:id="@+id/glassChkBx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="yes" />
             </TableRow>
 
@@ -264,6 +281,7 @@
                     android:id="@+id/textView21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="@string/altroTxt"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -271,6 +289,7 @@
                     android:id="@+id/atroChkBx"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="yes" />
 
             </TableRow>
@@ -284,9 +303,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="400dp"
             android:layout_marginLeft="400dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="500dp"
             android:layout_marginRight="500dp"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/abril_fatface"
             android:text="Checklist"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toTopOf="@+id/tableLayout2"

@@ -5,7 +5,6 @@
     tools:context=".fragments.confirmationTab.ConfirmationPage">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.surveyapp.fragments.confirmationTab.ConfirmViewModel" />
@@ -15,13 +14,14 @@
         android:id="@+id/constraintLayoutConfirmPage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F1F0F0">
+        android:background="@color/appbackgroundColor">
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:fontFamily="@font/abril_fatface"
             android:text="Survey Information"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,6 +76,7 @@
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="Capital/Revenue Total Amount:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -97,6 +98,7 @@
                     android:id="@+id/rechargeLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="Recharge Amount: "
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -118,6 +120,7 @@
                     android:id="@+id/VAT_Percent_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="VAT %"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -141,6 +144,7 @@
                     android:id="@+id/revealPriceLabel"
                     android:layout_width="303dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="Hide Prices"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -150,6 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/bsc_fonts"
                     android:text="yes" />
             </TableRow>
         </TableLayout>
@@ -172,30 +177,35 @@
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/button_fonts"
                 android:text="REFRESH Page" />
 
             <Button
                 android:id="@+id/pdfButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/button_fonts"
                 android:text="create PDF" />
 
             <Button
                 android:id="@+id/button4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/button_fonts"
                 android:text="Create TextFile" />
 
             <Button
                 android:id="@+id/cancelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/button_fonts"
                 android:text="Save/Exit" />
 
             <Button
                 android:id="@+id/button5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/button_fonts"
                 android:text="exit" />
         </LinearLayout>
 
