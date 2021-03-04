@@ -3,6 +3,7 @@ package com.example.surveyapp.fragments.confirmationTab
 import android.app.usage.UsageEvents.Event.NONE
 import android.os.Environment
 import android.util.Log
+import com.example.surveyapp.CONSTANTS.PDFconstants
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.CONSTANTS.constant.Companion.HEADERS1
 import com.example.surveyapp.activities.SurveyActivity
@@ -18,7 +19,6 @@ import java.util.*
 
 
 class PdfCreator(private val viewModel: ConfirmViewModel) {
-
     companion object{
         var message = ""
     }
@@ -28,17 +28,9 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
     fun savePdf() : Boolean{
         // Create object of Document class
         val mDoc = Document(PageSize.A3.rotate())
-        //    val mDoc = Document(PageSize.A4.rotate())
-        //pdf file name
-        var mFileName = SimpleDateFormat(
-            "yyyyMMdd_HHmmss",
-            Locale.getDefault()
-        ).format(System.currentTimeMillis())
-        // PDF file path
-        val fileName = "_Survey_id_" + SurveyActivity.SurveyID
-        mFileName = mFileName+fileName
-        val mFilePath =
-            Environment.getExternalStorageDirectory().toString() + "/" + mFileName + ".pdf"
+
+       val mFilePath = createDocFilePath("_Survey_id_", SurveyActivity.SurveyID)
+
         try {
             //create instance of pdfwriter class
             PdfWriter.getInstance(mDoc, FileOutputStream(mFilePath))
@@ -191,9 +183,7 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
                     )
 
                 val cell = PdfPCell(phrase)
-//                if(id == 2){
-//                    cell.setColspan(2)
-//                }
+
                 cell.border = NONE
                 table.addCell(cell)
             }
@@ -267,13 +257,7 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
                     cell.border = NONE
                     table.addCell(cell)
 
-//                    cell = PdfPCell(Phrase(""))
-//                    cell.border = NONE
-//                    table.addCell(cell)
 
-//                    cell = PdfPCell(Phrase(""))
-//                    cell.border = NONE
-//                    table.addCell(cell)
 
                     cell = PdfPCell(Phrase(""))
                     cell.border = NONE
@@ -318,18 +302,10 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
     fun saveQuestionaire2Pdf(){
 
         // Create object of Document class
-        val mDoc = Document(PageSize.A3.rotate())
-        //    val mDoc = Document(PageSize.A4.rotate())
-        //pdf file name
-        var mFileName = SimpleDateFormat(
-            "yyyyMMdd_HHmmss",
-            Locale.getDefault()
-        ).format(System.currentTimeMillis())
-        // PDF file path
-        val fileName = "_Questionaire_id_" + SurveyActivity.SurveyID
-        mFileName = mFileName+fileName
-        val mFilePath =
-            Environment.getExternalStorageDirectory().toString() + "/" + mFileName + ".pdf"
+        val mDoc = Document(PageSize.A4)
+
+        val mFilePath = createDocFilePath("_Questionaire_id_", SurveyActivity.SurveyID)
+//            Environment.getExternalStorageDirectory().toString() + "/" + mFileName + ".pdf"
         try {
             //create instance of pdfwriter class
             PdfWriter.getInstance(mDoc, FileOutputStream(mFilePath))
@@ -339,40 +315,50 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
 
 
             //val pointColumnWidths = FloatArray(150)
-            val table = PdfPTable(1)
+            val table = PdfPTable(2)
 
-            var cell = PdfPCell(Phrase("Address"))
-            table.addCell(cell)
 
-            cell = PdfPCell(Phrase("VPM"))
-            table.addCell(cell)
+            table.addCell(createBordlessTitleCell())
 
-            cell = PdfPCell(Phrase("Asbestos Removal"))
-            table.addCell(cell)
 
-            cell = PdfPCell(Phrase("Meter Issue"))
-            table.addCell(cell)
+            table.addCell(createBordlessHeaderCell(PDFconstants.ADDRESS))
+            table.addCell(createBordlessCell(SurveyActivity.createSurveyPage?.getAddress()))
 
-            cell = PdfPCell(Phrase("Fire Door"))
-            table.addCell(cell)
+            table.addCell(createBordlessHeaderCell(PDFconstants.VPM))
+            table.addCell(createBordlessCell(SurveyActivity?.createSurveyPage?.getName()))
 
-            cell = PdfPCell(Phrase("Isolator"))
-            table.addCell(cell)
 
-            cell = PdfPCell(Phrase("Re-Wire"))
-            table.addCell(cell)
 
-            cell = PdfPCell(Phrase("Heating"))
-            table.addCell(cell)
+            table.addCell(createBordlessHeaderCell(PDFconstants.ASBESTOS_REMOVAL))
+            table.addCell(createBordlessCell(SurveyActivity?.abesto?.getAbesto()))
 
-            cell = PdfPCell(Phrase("Fast Track"))
-            table.addCell(cell)
 
-            cell = PdfPCell(Phrase("Glass"))
-            table.addCell(cell)
+            table.addCell(createBordlessHeaderCell(PDFconstants.METER_ISSUE))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getMeterStatus()))
 
-            cell = PdfPCell(Phrase("Altro"))
-            table.addCell(cell)
+
+            table.addCell(createBordlessHeaderCell(PDFconstants.FIRE_DOOR))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getFireDoorStatus()))
+
+            table.addCell(createBordlessHeaderCell(PDFconstants.ISOLATOR))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getIsolatorStatus()))
+
+
+            table.addCell(createBordlessHeaderCell(PDFconstants.REWIRE))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getRewireStatus()))
+
+            table.addCell(createBordlessHeaderCell(PDFconstants.HEATING))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getHouseHeatingStatus()))
+
+            table.addCell(createBordlessHeaderCell(PDFconstants.FAST_TRACK))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getFastTrackStatus()))
+
+            table.addCell(createBordlessHeaderCell(PDFconstants.GLASS))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getHouseHasGlassStatus()))
+
+
+            table.addCell(createBordlessHeaderCell(PDFconstants.ALTRO))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getAltroStatus()))
 
 
             mDoc.add(table)
@@ -387,7 +373,35 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
 
     }
 
+    private fun createBordlessTitleCell(): PdfPCell {
+        val cellDescription = "NEW VOID CHECKLIST"
+        val titlePhrase = Phrase()
+        titlePhrase.add(Chunk(cellDescription, FontFactory.getFont(FontFactory.HELVETICA_BOLD)))
+        titlePhrase.font.size = 20.0f
+        val headerCell  = PdfPCell(titlePhrase)
+        headerCell.setColspan(2)
+        headerCell.border = NONE
 
+        return headerCell
+    }
+
+
+    private fun createBordlessCell(cellDescription: String?): PdfPCell{
+        val cell = PdfPCell(Phrase(cellDescription))
+        //cell.border = NONE
+
+        return cell
+    }
+
+    private fun createBordlessHeaderCell(cellDescription: String?): PdfPCell{
+        var phrase = Phrase()
+        phrase.add(Chunk(cellDescription, FontFactory.getFont(FontFactory.HELVETICA_BOLD)))
+        phrase.font.size= 10.0f
+        val headerCell = PdfPCell(phrase)
+        headerCell.border = NONE
+
+        return headerCell
+    }
 
     private fun hidePrices(originalAmount: Double): Double {
         if (SurveyActivity.confirmPage?.getCheckedStatus() == true) {
@@ -397,6 +411,18 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
     }
 
 
+
+    private fun createDocFilePath(pdfType: String, surveyID: Int?): String {
+        var mFileName = SimpleDateFormat(
+            "yyyyMMdd_HHmmss",
+            Locale.getDefault()
+        ).format(System.currentTimeMillis())
+        // PDF file path
+        val fileName = pdfType + SurveyActivity.SurveyID
+        mFileName = mFileName+fileName
+
+        return Environment.getExternalStorageDirectory().toString() + "/" + mFileName + ".pdf"
+    }
 
 
     private fun recharge(isRecharge: Boolean): String {

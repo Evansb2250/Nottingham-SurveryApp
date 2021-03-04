@@ -115,6 +115,17 @@ class constant {
             "Misc/other"
         )
 
+        val FIRE_DOOR_BOX_ID = 0
+        val ISOLATOR_BOX_ID = 1
+        val METER_BOX_ID =2
+        val FAST_TRACKING_BOX_ID = 3
+        val ASTO_BOX_ID = 4
+        val REWIRE_BOX_ID = 5
+        val HEATING_BOX_ID = 6
+        val GLASS_BOX_ID = 7
+
+
+
         val NOTALLOWEDTOENTER = arraySetOf<String>(
             QUESTION1_SOR,
             QUESTION5_SOR,

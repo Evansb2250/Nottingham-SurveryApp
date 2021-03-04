@@ -13,6 +13,7 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
     private var phoneNumber = ""
     private var date = ""
     private var surveyType = ""
+
     private var _id :Int = 0
 
 

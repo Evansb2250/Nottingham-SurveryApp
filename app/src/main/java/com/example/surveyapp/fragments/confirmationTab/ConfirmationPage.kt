@@ -8,15 +8,14 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
-import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -57,7 +56,6 @@ class ConfirmationPage : Fragment() {
         binding.lifecycleOwner = this
 
         buttonListener(binding.button2)
-        setUpAsCSV(binding.button4)
         setUpPDFButton(binding.pdfButton)
         saveAndExit(binding.cancelButton)
         setUpCheckButton(binding.showPriceCheckBox)
@@ -77,12 +75,12 @@ class ConfirmationPage : Fragment() {
             binding.textField.setText(newMessage)
         })
 
+
+
         binding.taxPrecentage.addTextChangedListener { pct ->
             val percentage = checkTaxPercentage(pct.toString())
             confirmPage?.changeVAT(percentage.toDouble())
-
         }
-
 
         return binding.root
     }
@@ -93,7 +91,7 @@ class ConfirmationPage : Fragment() {
         var percentage = pct
         if (percentage.equals("")) {
             percentage = "0.0"
-            binding.taxPrecentage.setText("")
+            binding.taxPrecentage.setText(percentage)
         } else if (percentage.toDouble() > 100) {
             Toast.makeText(
                 requireContext(),
@@ -107,6 +105,7 @@ class ConfirmationPage : Fragment() {
             confirmPage?.changeVAT(20.0)
 
         }
+
         return percentage
     }
 
@@ -154,11 +153,11 @@ class ConfirmationPage : Fragment() {
                     requestPermissions(permissions, STORAGE_CODE)
                 } else
                     displayPDFStatus(true)
-                   // displayPDFStatus(confirmPage?.savePdfHandler()!!)
+                    displayPDFStatus(confirmPage?.savePdfHandler()!!)
             }
         } else {
-            displayPDFStatus(true)
-         //   displayPDFStatus(confirmPage?.savePdfHandler()!!)
+           //displayPDFStatus(true)
+            displayPDFStatus(confirmPage?.savePdfHandler()!!)
         }
     }
 
@@ -183,33 +182,12 @@ class ConfirmationPage : Fragment() {
 
 
 
-
-    fun setUpAsCSV(pdfButton: Button) {
-        pdfButton.setOnClickListener { it ->
-            try {
-                val file = File(activity?.getExternalFilesDir(null), "testfile.txt")
-                val fileOutput = FileOutputStream(file)
-                val outputStreamWriter = OutputStreamWriter(fileOutput)
-                val message = confirmPage?.getList()
-                if (message != null) {
-                    for (sorDetails in message) {
-                        outputStreamWriter.write(sorDetails)
-                    }
-                }
-                outputStreamWriter.flush()
-                fileOutput.fd.sync()
-                outputStreamWriter.close()
-                Toast.makeText(requireContext(), "Pased ", Toast.LENGTH_LONG).show()
-            } catch (e: IOException) {
-                Toast.makeText(
-                    requireContext(),
-                    "Failed " + e.message.toString(),
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-
-        }
-    }
+//
+//    fun setUpAsCSV(pdfButton: Button) {
+//        pdfButton.setOnClickListener { it ->
+//            confirmPage?.createCSVFile(activity)
+//        }
+//    }
 
 
     private fun buttonListener(button2: Button) {

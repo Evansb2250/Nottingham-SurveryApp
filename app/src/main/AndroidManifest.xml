@@ -14,14 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SurveyApp">
 
-    <activity
+        <activity
             android:name=".activities.SurveyActivity"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="adjustPan"
-        ></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.MainActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:noHistory="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

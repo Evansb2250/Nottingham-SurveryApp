@@ -39,7 +39,6 @@ class SOR_Fragment : Fragment() {
 
         // Instantiate the binding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_s_o_r_, container, false)
-        Toast.makeText(requireContext(), SurveyActivity.SurveyID.toString(), Toast.LENGTH_SHORT).show()
 
         // TEST
         binding.viewmodel = SurveyActivity.sorViewModel

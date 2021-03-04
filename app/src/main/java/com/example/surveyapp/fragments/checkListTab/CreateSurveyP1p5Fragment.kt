@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.CheckBox
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.databinding.FragmentCreateSurveyP1p5Binding
@@ -31,17 +33,37 @@ class CreateSurveyP1p5Fragment : Fragment() {
         )
         binding.viewmodel = SurveyActivity.checkListVM
 
+        binding.lifecycleOwner = this
+
+
+        binding.decorComments.addTextChangedListener{
+            val decorText = binding.decorComments.getText().toString()
+            SurveyActivity.checkListVM?.updateDecorTaps(decorText)
+        }
+
+        binding.floorComment.addTextChangedListener{
+            val floorText = binding.floorComment.getText().toString()
+            SurveyActivity.checkListVM?.upDateFloorComment(floorText)
+        }
+
+        binding.TAPScomment.addTextChangedListener{
+            val tapsText = binding.TAPScomment.getText().toString()
+            SurveyActivity.checkListVM?.upDateTapsComment(tapsText)
+        }
+
+
+
 
         heatypeChange(binding.systemBoilerSpinner)
         // simplifying the checkBox click
-        registerCheckBoxClick(1, binding.fdChkbx)
-        registerCheckBoxClick(2, binding.isolatorChkBx)
-        registerCheckBoxClick(3, binding.mIChkBx)
-        registerCheckBoxClick(4, binding.ftChkBx)
-        registerCheckBoxClick(5, binding.atroChkBx)
-        registerCheckBoxClick(6, binding.rwChkBx)
-        registerCheckBoxClick(7, binding.heatingChkBx)
-        registerCheckBoxClick(8, binding.glassChkBx)
+        registerCheckBoxClick(constant.FIRE_DOOR_BOX_ID, binding.fdChkbx)
+        registerCheckBoxClick(constant.ISOLATOR_BOX_ID, binding.isolatorChkBx)
+        registerCheckBoxClick(constant.METER_BOX_ID, binding.mIChkBx)
+        registerCheckBoxClick(constant.FAST_TRACKING_BOX_ID, binding.ftChkBx)
+        registerCheckBoxClick(constant.ASTO_BOX_ID, binding.atroChkBx)
+        registerCheckBoxClick(constant.REWIRE_BOX_ID, binding.rwChkBx)
+        registerCheckBoxClick(constant.HEATING_BOX_ID, binding.heatingChkBx)
+        registerCheckBoxClick(constant.GLASS_BOX_ID, binding.glassChkBx)
 
 
         binding.fireDoorTextField.addTextChangedListener { text ->
@@ -59,6 +81,8 @@ class CreateSurveyP1p5Fragment : Fragment() {
         chkBx.setOnClickListener { it ->
             val isChecked = chkBx.isChecked
             SurveyActivity.checkListVM?.registerClick(id, isChecked)
+
+            Toast.makeText(requireContext(), binding.viewmodel!!.getDecorPoints(), Toast.LENGTH_LONG).show()
         }
 
 

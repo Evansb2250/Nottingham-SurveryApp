@@ -1,17 +1,20 @@
 package com.example.surveyapp.fragments.mainFragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.WorkerThread
+import androidx.core.content.ContentProviderCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.databinding.FragmentMainMenuBinding
+import kotlinx.coroutines.delay
+import java.lang.Thread.sleep
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,7 +27,8 @@ import com.example.surveyapp.databinding.FragmentMainMenuBinding
  */
 class MainMenuFragment : Fragment() {
     // TODO: Rename and change types of parameters
-
+    private var flag = false
+    private lateinit var progress :AlertDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -38,9 +42,24 @@ class MainMenuFragment : Fragment() {
         )
 
 
-        binding.createSurveyButtonMain.setOnClickListener({
-            changeToSurveyActivity()
-        })
+        binding.createSurveyButtonMain.setOnClickListener { it ->
+            if (flag != true) {
+                //stops the app from making two instancesal
+
+                progress = AlertDialog.Builder(requireContext()).create()
+                progress.setTitle("Loading");
+                progress.setMessage("Please wait while survey builder is loading...");
+                progress.setCancelable(true); // disable dismiss by tapping outside of the dialog
+                progress.show();
+                flag = true
+                val intent = Intent(activity, SurveyActivity::class.java)
+
+                readyToStart()
+                requireActivity().startActivity(intent)
+            }
+
+
+        }
 
 
         binding.goToViewSurveyButton.setOnClickListener {
@@ -50,15 +69,38 @@ class MainMenuFragment : Fragment() {
         return binding.root
     }
 
+
+    private fun displayLoadMessage() {
+
+
+    }
+
     private fun changeToSurveyActivity() {
+
+
+        changeNow()
         //TODO comment out lines to test SOR DATABASE
 
-        val intent = Intent(activity, SurveyActivity::class.java)
-        requireActivity().startActivity(intent)
-        activity?.finish()
 
-        //requireActivity().finish()
+
+  //      activity?.finish()
+
     }
+
+    private fun changeNow() {
+//        val intent = Intent(activity, SurveyActivity::class.java)
+//
+//        readyToStart()
+//      //  progress.dismiss()
+//        requireActivity().startActivity(intent)
+    }
+
+    private fun readyToStart() {
+     //   progress.dismiss()
+    }
+
+
+
 
     private fun changeToViewSurveyFragment(it: View) {
         it.findNavController()

@@ -59,7 +59,7 @@ class SurveyActivity : AppCompatActivity() {
             prevViewModel?.setSurveyID(id)
 
 
-            Toast.makeText(this, SurveyID.toString(), Toast.LENGTH_SHORT).show()
+         //   Toast.makeText(this, SurveyID.toString(), Toast.LENGTH_SHORT).show()
         })
 
 

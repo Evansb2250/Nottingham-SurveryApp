@@ -33,7 +33,7 @@ class ViewSurveyFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_view_survey, container, false)
 
-        Toast.makeText(requireContext(), SurveyActivity.SurveyID.toString(), Toast.LENGTH_SHORT).show()
+
 
         binding.imageButton2.setOnClickListener(
             {

@@ -20,10 +20,18 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
 
+
     private var _surveyID :Int ?= null
     private lateinit var heatingType: List<SurveySORs>
     private var sorList = mutableListOf<SoR>()
+
     private var fireDoorComment = ""
+    private var decorationPoints =""
+    private var tapsComment =""
+    private var floorComment = ""
+
+
+
     private val checkBoxStatus = arrayListOf(
         false,
         false,
@@ -147,29 +155,29 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
     fun registerClick(id: Int, checked: Boolean) {
 
         when (id) {
-            1 -> {
-                checkBoxStatus[id - 1] = checked
+            constant.FIRE_DOOR_BOX_ID -> {
+                checkBoxStatus[id] = checked
             }
-            2 -> {
-                checkBoxStatus[id - 1] = checked
+            constant.ISOLATOR_BOX_ID -> {
+                checkBoxStatus[id] = checked
             }
-            3 -> {
-                checkBoxStatus[id - 1] = checked
+            constant.METER_BOX_ID  -> {
+                checkBoxStatus[id] = checked
             }
-            4 -> {
-                checkBoxStatus[id - 1] = checked
+            constant.FAST_TRACKING_BOX_ID  -> {
+                checkBoxStatus[id] = checked
             }
-            5 -> {
-                checkBoxStatus[id - 1] = checked
+            constant.ASTO_BOX_ID -> {
+                checkBoxStatus[id] = checked
             }
-            6 -> {
-                checkBoxStatus[id - 1] = checked
+            constant.REWIRE_BOX_ID  -> {
+                checkBoxStatus[id] = checked
             }
-            7 -> {
-                checkBoxStatus[id - 1] = checked
+            constant.HEATING_BOX_ID  -> {
+                checkBoxStatus[id] = checked
             }
-            8 -> {
-                checkBoxStatus[id - 1] = checked
+            constant.GLASS_BOX_ID  -> {
+                checkBoxStatus[id] = checked
             }
         }
     }
@@ -178,7 +186,82 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
         fireDoorComment = newComment
     }
 
+    fun getDecorPoints():String{
+        return decorationPoints
+    }
+
+    fun getTapLocation():String{
+        return tapsComment
+    }
+
+    fun getFloorLevel():String{
+        return floorComment
+    }
+
+
+
+
+    fun updateDecorTaps(decorText: String) {
+        decorationPoints = decorText
+
+    }
+
+    fun upDateFloorComment(floorText: String) {
+        floorComment = floorText
+    }
+
+    fun upDateTapsComment(tapsText: String) {
+        tapsComment = tapsText
+    }
+
+
+
+
+    fun getMeterStatus():String {
+        return returnStatus(constant.METER_BOX_ID)
+    }
+
+
+    fun getFireDoorStatus():String{
+        return returnStatus(constant.FIRE_DOOR_BOX_ID)
+    }
+
+    fun getIsolatorStatus(): String{
+        return returnStatus(constant.ISOLATOR_BOX_ID)
+    }
+
+    fun getRewireStatus(): String{
+        return returnStatus(constant.REWIRE_BOX_ID)
+    }
+
+    fun getHouseHeatingStatus():String{
+        return returnStatus(constant.HEATING_BOX_ID)
+    }
+
+    fun getFastTrackStatus():String{
+        return  returnStatus(constant.FAST_TRACKING_BOX_ID)
+    }
+
+    fun getHouseHasGlassStatus():String{
+        return returnStatus(constant.GLASS_BOX_ID)
+    }
+
+    fun getAltroStatus():String{
+        return returnStatus(constant.ASTO_BOX_ID)
+    }
+
+
+
+
+    private fun returnStatus(id:Int): String{
+        if(checkBoxStatus[id] == true){
+            return "YES"
+        }else
+            return "NO"
+    }
+
 }
+
 
 
 /****
