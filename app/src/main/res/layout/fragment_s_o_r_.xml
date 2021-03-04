@@ -179,13 +179,15 @@
             android:id="@+id/addSoRToSurveyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="370dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="415dp"
+            android:layout_marginBottom="25dp"
             android:fontFamily="@font/button_fonts"
             android:text="add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.346"
+            app:layout_constraintHorizontal_bias="0.26"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
@@ -287,8 +289,10 @@
 
         <ListView
             android:id="@+id/sorAttachedToSurveyBox"
-            android:layout_width="298dp"
-            android:layout_height="100dp"
+            android:layout_width="352dp"
+            android:layout_height="152dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="260dp"
             android:background="#F4EAEA"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -316,12 +320,36 @@
             android:id="@+id/removeSorButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="370dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="415dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="25dp"
             android:fontFamily="@font/button_fonts"
             android:text="@string/removeButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.41"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/removeAllSorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="415dp"
+            android:layout_marginLeft="415dp"
+            android:layout_marginTop="415dp"
+            android:layout_marginEnd="90dp"
+            android:layout_marginRight="90dp"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/button_fonts"
+            android:text="@string/remove_all_label"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
@@ -372,8 +400,8 @@
         </ListView>
 
         <LinearLayout
-            android:layout_width="231dp"
-            android:layout_height="184dp"
+            android:layout_width="239dp"
+            android:layout_height="152dp"
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="60dp"
@@ -383,10 +411,10 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/sorAttachedToSurveyBox"
-            app:layout_constraintHorizontal_bias="0.358"
+            app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintVertical_bias="0.110000014">
 
             <TextView
                 android:id="@+id/textView7"

@@ -50,6 +50,7 @@ class SOR_Fragment : Fragment() {
         setUpRechargeObserver(SurveyActivity.sorViewModel!!.rechargeAmount)
         setUpViewListObserver(SurveyActivity.sorViewModel!!.viewList)
         setUpSorInsertCheck(SurveyActivity.sorViewModel?.wasSorInsertedToSurvey)
+        setUpRemoveAllButton()
 
         //Keep the search result number the same
         SurveyActivity.sorViewModel?.listForViewSize?.observe(viewLifecycleOwner, Observer { size ->
@@ -68,6 +69,16 @@ class SOR_Fragment : Fragment() {
         return binding.root
     }
 
+
+
+
+    private fun setUpRemoveAllButton() {
+        binding.removeAllSorButton.setOnClickListener({
+            SurveyActivity.sorViewModel?.removeAllSorFromList()
+            updateListViewAfterDeletion()
+        })
+    }
+
     private fun setUpTotalObserver(total: MutableLiveData<Double>) {
         total.observe(viewLifecycleOwner, Observer { newAmount ->
             binding.totalTextView.setText(currency.format(newAmount))
@@ -79,9 +90,9 @@ class SOR_Fragment : Fragment() {
         wasSorInsertedToSurvey?.observe(
             viewLifecycleOwner,
             { wasSuccessfuL ->
-                // Toast.makeText(requireContext(), wasSuccessfuL.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), wasSuccessfuL.toString(), Toast.LENGTH_SHORT).show()
                 binding.SorNumberView.text =
-                    SurveyActivity.sorViewModel?.addedSorList?.size.toString()
+                    SurveyActivity.sorViewModel?.addedSor2List?.size.toString()
 
                 setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
             })
@@ -108,20 +119,25 @@ class SOR_Fragment : Fragment() {
 
 
     private fun setUpRemoveButton(removeSorButton: Button) {
-        removeSorButton.setOnClickListener({ it ->
+        removeSorButton.setOnClickListener { it ->
             SurveyActivity.sorViewModel!!.removeSorFromList()
-            if (SurveyActivity.sorViewModel!!.addedSors != null) {
-                setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
-                binding.SorNumberView.text =
-                    SurveyActivity.sorViewModel?.addedSorList?.size.toString()
-            }
-            unlockFields()
-            binding.commentEntry.text.clear()
-            binding.quantitySpinner.setSelection(0)
-            updateTotal()
-        })
+            updateListViewAfterDeletion()
+        }
 
 
+    }
+
+
+
+    private fun updateListViewAfterDeletion(){
+        if (SurveyActivity.sorViewModel!!.addedSors != null) {
+            setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
+            binding.SorNumberView.text = SurveyActivity.sorViewModel?.addedSor2List?.size.toString()
+        }
+        unlockFields()
+        binding.commentEntry.text.clear()
+        binding.quantitySpinner.setSelection(0)
+        updateTotal()
     }
 
 
@@ -132,6 +148,10 @@ class SOR_Fragment : Fragment() {
 
         })
     }
+
+
+
+
 
     private fun setUpSearchResult(searchResultBox: ListView) {
         searchResultBox.setOnItemClickListener { parent, view, position, id ->
@@ -160,18 +180,18 @@ class SOR_Fragment : Fragment() {
 
 
 
-            val selectedQuantity = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.quantity?.toDouble()
+            val selectedQuantity = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.quantity?.toDouble()
 
             // calculates the original recharge cost
-            val rechargeCost = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.total!!.toDouble() / selectedQuantity!!.toDouble()
+            val rechargeCost = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.total!!.toDouble() / selectedQuantity!!.toDouble()
             SurveyActivity.sorViewModel!!._rechargeAmount.value = rechargeCost
 
 
-            val category = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.roomCategory
-            val selectedTotal = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.total
+            val category = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.roomCategory
+            val selectedTotal = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.total
             val sorcode = SurveyActivity.sorViewModel!!.addedSors.get(position)
-            val isRecharge = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.isRecharge
-            val comment = SurveyActivity.sorViewModel?.addedSorList?.get(position)?.surveyorDescription
+            val isRecharge = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.isRecharge
+            val comment = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.surveyorDescription
 
             for( idCat in 0..constant.ROOMCATEGORIES.size -1){
                 if( category.equals(constant.ROOMCATEGORIES[idCat].toString())){

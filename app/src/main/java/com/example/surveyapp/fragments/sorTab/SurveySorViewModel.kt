@@ -1,6 +1,5 @@
 package com.example.surveyapp.fragments.sorTab
 
-import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.*
 import com.example.surveyapp.CONSTANTS.ExistingSors
@@ -13,11 +12,9 @@ import kotlinx.coroutines.launch
 class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
 
-    var addedSorList = mutableListOf<SurveySORs>()
-
 
     fun returnListSORLIST(): List<SurveySORs> {
-        return addedSorList
+        return addedSor2List
     }
 
     /*****
@@ -47,10 +44,13 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     var addedSors = mutableListOf<String>()
+    var addedSor2List = mutableListOf<SurveySORs>()
 
 
     // the list that is shown to the Fragment
     var viewList: LiveData<List<String>>
+
+
 
 
     // a list that is used to intantiate in the ViewList constructor for the MutableLiveData
@@ -63,6 +63,8 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     // TODO add more functions to interact and indicate if it is working
     var searchWasFound: Boolean
 
+
+
     //Stores and tracks the recharge amount
     // Protected by Encapsulation
     val rechargeAmount: LiveData<Double> get() = _rechargeAmount
@@ -74,12 +76,20 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     private val _wasSorInsertedToSurvey = MutableLiveData<Boolean>()
 
 
+
+
+
     // String Description of the SOR
     val sorDescripition: LiveData<String> get() = _sorDescripition
     private val _sorDescripition = MutableLiveData<String>()
 
+
+
+
     //Value of spinner object for searching
     var searchby = MutableLiveData<String>()
+
+
 
 
     //Value
@@ -177,16 +187,14 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         if (passedNullTest) {
 
             if (passedDuplicateSorTest) { // val surveysor = SurveySORs(sorCode!!, surveyId!!, comments!!, recharge!!, quantity!!, total!!)
-                addedSorList.add(
+                addedSor2List.add(
                     SurveySORs(
                         surveyId, sorCode!!, UOM, sorDescrip, comments,
                         recharge, quantity!!.toDouble(), total!!, category
                     )
-
-
                 )
                 resetCat()
-                updateListofAddedSorUI(addedSorList)
+                updateListofAddedSorUI(addedSor2List)
                 _wasSorInsertedToSurvey.value = true
             } else
                 _wasSorInsertedToSurvey.value = false
@@ -216,7 +224,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     private fun runCheck(sorCode: String?): Boolean {
-        for (sor in addedSorList) {
+        for (sor in addedSor2List) {
             val confirmedSor = sor.sorCode.toLowerCase()
             if (sorCode.equals(confirmedSor)) {
                 return false
@@ -273,14 +281,25 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     fun removeSorFromList() {
 
-//        Log.i("SystemMessage", addedSorList.get(sorcodeToDeleteIndex!!).toString())
-        if (addedSorList.size >= 0 && sorcodeToDeleteIndex != null) {
-            addedSorList.removeAt(sorcodeToDeleteIndex!!)
+        if (addedSor2List.size >= 0 && sorcodeToDeleteIndex != null) {
+            addedSor2List.removeAt(sorcodeToDeleteIndex!!)
             sorcodeToDeleteIndex = null
 
         }
-        updateListofAddedSorUI(addedSorList)
+        updateListofAddedSorUI(addedSor2List)
     }
+
+
+
+   fun removeAllSorFromList(){
+       addedSor2List.clear()
+        updateListofAddedSorUI(addedSor2List)
+    }
+
+
+
+
+
 
 
     @Suppress("RedundantSuspendModifier")
