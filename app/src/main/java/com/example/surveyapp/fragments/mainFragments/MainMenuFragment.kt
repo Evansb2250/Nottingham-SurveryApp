@@ -59,8 +59,11 @@ class MainMenuFragment : Fragment() {
                 flag = true
                 // val intent = Intent(activity, SurveyActivity::class.java)
 
+
+
                 readyToStart()
                 requireActivity().startActivity(intent)
+                activity?.onBackPressed()
             }
 
         }
@@ -70,6 +73,10 @@ class MainMenuFragment : Fragment() {
             changeToViewSurveyFragment(it)
         }
 
+
+        binding.button3.setOnClickListener{
+            activity?.onBackPressed()
+        }
         return binding.root
     }
 

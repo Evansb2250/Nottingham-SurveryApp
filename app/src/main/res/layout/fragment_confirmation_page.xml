@@ -75,6 +75,28 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/surveyId"
+                    android:layout_width="303dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bsc_fonts"
+                    android:text="Survey ID"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <TextView
+                    android:id="@+id/surveyID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/bsc_fonts"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -160,27 +182,7 @@
                     android:text="yes" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/surveyId"
-                    android:layout_width="303dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="Survey ID"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <TextView
-                    android:id="@+id/surveyID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="" />
-            </TableRow>
         </TableLayout>
 
         <LinearLayout
@@ -198,7 +200,7 @@
             app:layout_constraintVertical_bias="0.3">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/refreshPageButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/button_fonts"

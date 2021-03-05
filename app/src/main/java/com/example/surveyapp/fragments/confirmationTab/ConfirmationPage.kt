@@ -55,12 +55,6 @@ class ConfirmationPage : Fragment() {
         binding.viewModel = confirmPage
         binding.lifecycleOwner = this
 
-        buttonListener(binding.button2)
-        setUpPDFButton(binding.pdfButton)
-        saveAndExit(binding.cancelButton)
-        setUpCheckButton(binding.showPriceCheckBox)
-        exitDontSave(binding.button5)
-
 
         confirmPage?.total?.observe(viewLifecycleOwner, { newAmount ->
             binding.total.text = currency.format(newAmount)
@@ -81,6 +75,15 @@ class ConfirmationPage : Fragment() {
             val percentage = checkTaxPercentage(pct.toString())
             confirmPage?.changeVAT(percentage.toDouble())
         }
+
+
+
+        buttonListener(binding.refreshPageButton)
+        setUpPDFButton(binding.pdfButton)
+        saveAndExit(binding.cancelButton)
+        setUpCheckButton(binding.showPriceCheckBox)
+        exitDontSave(binding.button5)
+
 
         return binding.root
     }
@@ -162,6 +165,7 @@ class ConfirmationPage : Fragment() {
         }
     }
 
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -191,8 +195,8 @@ class ConfirmationPage : Fragment() {
 //    }
 
 
-    private fun buttonListener(button2: Button) {
-        button2.setOnClickListener { it ->
+    private fun buttonListener(refreshPageButton: Button) {
+        refreshPageButton.setOnClickListener { it ->
             Toast.makeText(requireContext(), "Loading.....", Toast.LENGTH_SHORT).show()
             /**** TODO remove this code once code works again ***/
 
