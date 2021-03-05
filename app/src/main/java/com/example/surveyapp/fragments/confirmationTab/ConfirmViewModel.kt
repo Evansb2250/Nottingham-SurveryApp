@@ -34,19 +34,11 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     var rechargeTotal = MutableLiveData<Double>()
     var VAT = MutableLiveData<Double>()
     var message = MutableLiveData<String>()
-    var messageList = arrayListOf<String>()
+
+
+
     lateinit var surveyInfo: Survey
 
-
-
-
-
-//    fun getList(): List<String> {
-//        if (messageList != null) {
-//            return messageList
-//        }
-//        return emptyList()
-//    }
 
 
 
@@ -176,7 +168,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     @WorkerThread
   fun updateMessageOnBackThread()  = viewModelScope.launch{
      //   messageList = updateMessage(_dataFromSurvey) as ArrayList<String>
-        updateMessage(_dataFromSurvey) as ArrayList<String>
+        updateMessage(_dataFromSurvey)
     }
 
 
@@ -184,7 +176,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 
 
-    fun updateMessage(List: List<SurveySORs>): List<String> {
+    fun updateMessage(List: List<SurveySORs>) {
         val tempList = mutableListOf<String>()
         if (List != null) {
             //Reset
@@ -245,29 +237,27 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 
 
-                //TODO add rounding function
-                if (hidePrices.equals(false)) {
-                    tempList.add(
-                        data.roomCategory + sp + data.sorCode + sp + data.sorDescription + sp + sp +
-                                data.UOM + sp + data.quantity + sp + response + sp +
-                                currency.format(data.total) + sp +
-                                data.surveyorDescription + "\n"
-                    )
-
-                } else
-                    tempList.add(
-                        data.roomCategory + sp + data.sorCode + sp + data.sorDescription + sp + sp +
-                                data.UOM + sp + data.quantity + sp + response + sp +
-                                "" + sp +
-                                data.surveyorDescription + "\n"
-                    )
+//                //TODO add rounding function
+//                if (hidePrices.equals(false)) {
+//                    tempList.add(
+//                        data.roomCategory + sp + data.sorCode + sp + data.sorDescription + sp + sp +
+//                                data.UOM + sp + data.quantity + sp + response + sp +
+//                                currency.format(data.total) + sp +
+//                                data.surveyorDescription + "\n"
+//                    )
+//
+//                } else
+//                    tempList.add(
+//                        data.roomCategory + sp + data.sorCode + sp + data.sorDescription + sp + sp +
+//                                data.UOM + sp + data.quantity + sp + response + sp +
+//                                "" + sp +
+//                                data.surveyorDescription + "\n"
+//                    )
 
             }
 
-            return tempList
-        } else
-        //Returns an empty list
-            return tempList
+        }
+
 
     }
 
