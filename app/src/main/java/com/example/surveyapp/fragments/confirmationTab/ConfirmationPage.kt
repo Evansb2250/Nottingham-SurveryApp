@@ -20,8 +20,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModel
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.MainActivity
+import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.activities.SurveyActivity.Companion.confirmPage
 import com.example.surveyapp.databinding.FragmentConfirmationPageBinding
 import com.itextpdf.text.*
@@ -69,13 +71,17 @@ class ConfirmationPage : Fragment() {
             binding.textField.setText(newMessage)
         })
 
+        confirmPage?.refreshFinished?.observe(viewLifecycleOwner, { newChange ->
+            Toast.makeText(requireContext(), "Change Detected", Toast.LENGTH_SHORT).show()
+            confirmPage!!.updateTotal()
+        })
+
 
 
         binding.taxPrecentage.addTextChangedListener { pct ->
             val percentage = checkTaxPercentage(pct.toString())
             confirmPage?.changeVAT(percentage.toDouble())
         }
-
 
 
         buttonListener(binding.refreshPageButton)
@@ -186,18 +192,9 @@ class ConfirmationPage : Fragment() {
 
 
 
-
-//
-//    fun setUpAsCSV(pdfButton: Button) {
-//        pdfButton.setOnClickListener { it ->
-//            confirmPage?.createCSVFile(activity)
-//        }
-//    }
-
-
     private fun buttonListener(refreshPageButton: Button) {
         refreshPageButton.setOnClickListener { it ->
-            Toast.makeText(requireContext(), "Loading.....", Toast.LENGTH_SHORT).show()
+       //    Toast.makeText(requireContext(), "Loading.....", Toast.LENGTH_SHORT).show()
             /**** TODO remove this code once code works again ***/
 
             /*** NEW CODE   ***/
@@ -222,36 +219,15 @@ class ConfirmationPage : Fragment() {
 
     private fun pullDataAndDisplay() {
         confirmPage?.getData()
-        if (confirmPage?._dataFromSurvey != null) {
-            confirmPage?.updateTotal()
-        } else
-            Toast.makeText(requireContext(), "Error Occurred!!.", Toast.LENGTH_LONG).show()
     }
 }
 
-
-
 private fun exitActivity(activityContext: Context, activity: FragmentActivity?) {
-
-//    var openMainActivity =  Intent(activity, MainActivity::class.java);
-//    openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//    activity?.startActivityIfNeeded(openMainActivity, 0);
-//    activity?.finish()
     val intent = Intent(activityContext, MainActivity::class.java)
     activity!!.startActivity(intent)
     activity!!.finish()
 }
 
-
-
-fun returnAnyNumberWithoutError(numberToCheck: String): Double {
-    var testNumber = numberToCheck
-    if (testNumber.equals("")) {
-        testNumber = "0.0"
-        return testNumber.toDouble()
-    }
-    return testNumber.toDouble()
-}
 
 
 

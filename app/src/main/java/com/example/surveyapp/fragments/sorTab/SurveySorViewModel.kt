@@ -51,8 +51,6 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     var viewList: LiveData<List<String>>
 
 
-
-
     // a list that is used to intantiate in the ViewList constructor for the MutableLiveData
     // Used to show SORCodes that have a specific word in the description box
     var listForView = mutableListOf<String>()

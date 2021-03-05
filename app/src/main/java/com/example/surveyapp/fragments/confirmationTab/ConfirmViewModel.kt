@@ -28,27 +28,14 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 
     var _dataFromSurvey = mutableListOf<SurveySORs>()
+    var refreshFinished = MutableLiveData<Boolean>()
 
     var changes = MutableLiveData<Int>()
     var total = MutableLiveData<Double>()
     var rechargeTotal = MutableLiveData<Double>()
     var VAT = MutableLiveData<Double>()
     var message = MutableLiveData<String>()
-
-
-
     lateinit var surveyInfo: Survey
-
-
-
-
-    init {
-        total.value = 0.0
-        message.value = ""
-        VAT.value = .2
-        rechargeTotal.value = 0.0
-        changes.value = 0
-    }
 
     private lateinit var dataFromSor: List<SurveySORs>
     private lateinit var dataFromPrev: List<SurveySORs>
@@ -70,27 +57,42 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 
 
+
+
+    init {
+        refreshFinished.value = false
+        total.value = 0.0
+        message.value = ""
+        VAT.value = .2
+        rechargeTotal.value = 0.0
+        changes.value = 0
+    }
+
+
+
+
     //TODO Debate if you need to turn this function into a coroutine
     //  fun getData(): List<SurveySORs> {
     fun getData() = viewModelScope.launch {
 
         createSurveyObject()
 
-
         dataFromSor = SurveyActivity.sorViewModel?.returnListSORLIST()!!
         dataFromPrev = SurveyActivity.prevViewModel?.returnPreviosWorkData()!!
         dataFromChecklist = SurveyActivity.checkListVM?.getHeatingType()!!
 
-        /** OG CODE **/
-        //    return combineData()
 
+        //    return combineData()
         _dataFromSurvey = combineData() as MutableList<SurveySORs>
 
-        //USED SO I CAN STOP PROCESSING ON THE MAIN THREAD
-    //    changes.value = changes.value?.plus(1)
+        refreshFinished.value = true;
     }
 
-    fun combineData(): List<SurveySORs> {
+
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+   suspend fun combineData(): List<SurveySORs> {
         val tempList = mutableListOf<SurveySORs>()
         if (dataFromPrev != null) {
             for (data in dataFromPrev) {
@@ -115,7 +117,9 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 
 
-    private fun createSurveyObject(){
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    private suspend fun createSurveyObject(){
 
         address = SurveyActivity.createSurveyPage?.getAddress() ?: ""
         name = SurveyActivity.createSurveyPage?.getName() ?: " "
@@ -134,35 +138,50 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
     /*** OG CODE **/
     //  fun updateTotal(List: List<SurveySORs>) {
-    fun updateTotal() {
-        total.value = 0.0
-        rechargeTotal.value = 0.0
-
-        if (_dataFromSurvey != null) {
-            //Reseto
-            //TODO CREATE AN IF STATEMENT TO ADD TOTAL OR TO JUST UPDATE MESSAGE
-                if (hidePrices.equals(false)) {
-                for (data in _dataFromSurvey) {
-                    total.value = total.value?.plus(data.total)
-                    if (data.isRecharge.equals(true)) {
-                        rechargeTotal.value = rechargeTotal.value?.plus(data.total)
-                    }
-                }
-
-                //Apply Vat to recharge amount
-                rechargeTotal.value = rechargeTotal.value!! * VAT.value!! + rechargeTotal.value!!
-            }
-            //OLD CODE   messageList = updateMessage(_dataFromSurvey) as ArrayList<String>
-
-            //Runs update on back thread
-            updateMessageOnBackThread()
-
-        }
+    fun updateTotal() = viewModelScope.launch {
+        computeOnBackEnd()
     }
+
+
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+  private suspend fun computeOnBackEnd() {
+
+       total.value = 0.0
+       rechargeTotal.value = 0.0
+
+       if (_dataFromSurvey != null) {
+           //Reseto
+           //TODO CREATE AN IF STATEMENT TO ADD TOTAL OR TO JUST UPDATE MESSAGE
+           if (hidePrices.equals(false)) {
+               for (data in _dataFromSurvey) {
+                   total.value = total.value?.plus(data.total)
+                   if (data.isRecharge.equals(true)) {
+                       rechargeTotal.value = rechargeTotal.value?.plus(data.total)
+                   }
+               }
+
+               //Apply Vat to recharge amount
+               rechargeTotal.value = rechargeTotal.value!! * VAT.value!! + rechargeTotal.value!!
+           }
+           //OLD CODE   messageList = updateMessage(_dataFromSurvey) as ArrayList<String>
+
+           //Runs update on back thread
+
+           updateMessageOnBackThread()
+
+       }
+
+    }
+
+
 
     fun getSORS(): List<SurveySORs> {
         return _dataFromSurvey
     }
+
+
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
@@ -176,25 +195,27 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 
 
-    fun updateMessage(List: List<SurveySORs>) {
-
+  private suspend fun  updateMessage(List: List<SurveySORs>) {
         if (List != null) {
+            var tempString =""
             //Reset
-            message.value = ""
+
             var count = 0
 
             for (data in List) {
                 count += 1
                 //TODO add this to a separate return function
                 if (hidePrices.equals(false)) {
-                    message.value += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + " -  " + currency.format(
+                    tempString += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + " -  " + currency.format(
                         data.total
                     ) +"\n"
                 } else
-                    message.value += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + "\n"
+                     tempString += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + "\n"
 
             }
 
+
+            message.value = tempString
         }
 
 
@@ -209,8 +230,8 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
         addSurveySorsList()
     }
 
-//    @Suppress("RedundantSuspendModifier")
-//    @WorkerThread
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
     private suspend fun addSurveySorsList(){
             for(sor in _dataFromSurvey) {
                 repository.insertSurveySors(sor)
