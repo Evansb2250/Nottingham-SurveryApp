@@ -109,5 +109,6 @@
     <string name="Location_TAPS">Location TAPS: </string>
     <string name="FloorLevel">Floor Level: </string>
     <string name="remove_all_label">RESET</string>
+    <string name="button">Button</string>
 
 </resources>

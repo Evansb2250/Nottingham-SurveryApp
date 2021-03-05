@@ -35,6 +35,11 @@ interface dbDAO {
     suspend fun removeSoR(key: String)
 
 
+
+    @Query("SELECT * FROM SURVEY_TABLE where surveyId =:key")
+    suspend fun searchForSurveyByID(key:Int):Survey
+
+
     //Test function
     @Query("SELECT * from survey_table where surveyId =:key")
     suspend fun getKeySurveyTable(key:Int):Survey

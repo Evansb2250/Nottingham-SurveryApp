@@ -153,11 +153,12 @@ class ConfirmationPage : Fragment() {
                     requestPermissions(permissions, STORAGE_CODE)
                 } else
                     displayPDFStatus(true)
-                    displayPDFStatus(confirmPage?.savePdfHandler()!!)
+                confirmPage?.savePdfHandler()
+                  //  displayPDFStatus(confirmPage?.savePdfHandler()!!)
             }
         } else {
            //displayPDFStatus(true)
-            displayPDFStatus(confirmPage?.savePdfHandler()!!)
+         //   displayPDFStatus(confirmPage?.savePdfHandler()!!)
         }
     }
 
@@ -227,6 +228,11 @@ class ConfirmationPage : Fragment() {
 
 
 private fun exitActivity(activityContext: Context, activity: FragmentActivity?) {
+
+//    var openMainActivity =  Intent(activity, MainActivity::class.java);
+//    openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//    activity?.startActivityIfNeeded(openMainActivity, 0);
+//    activity?.finish()
     val intent = Intent(activityContext, MainActivity::class.java)
     activity!!.startActivity(intent)
     activity!!.finish()

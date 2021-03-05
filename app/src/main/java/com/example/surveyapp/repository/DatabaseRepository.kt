@@ -60,4 +60,16 @@ class DatabaseRepository(private val dbManager: dbDAO) {
 
 
 
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun searchSurveyById(id : Int): Survey {
+
+      val survey =  dbManager.searchForSurveyByID(id)
+
+        return survey
+    }
+
+
+
+
 }

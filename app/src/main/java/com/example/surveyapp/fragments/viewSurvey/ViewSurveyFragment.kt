@@ -35,14 +35,29 @@ class ViewSurveyFragment : Fragment() {
 
 
 
-        binding.imageButton2.setOnClickListener(
-            {
-                viewModel.createMessage()
-            }
-        )
+        binding.imageButton2.setOnClickListener {
+
+            //  viewModel.createMessage()
+            val searchMethod = binding.spinner3.getSelectedItem()
+            val surveyDetail = binding.searchEditField.getText().toString()
+            viewModel.requestSurvey(searchMethod, surveyDetail)
+
+            // Toast.makeText(requireContext(), n.toString() , Toast.LENGTH_LONG).show()
+
+        }
+
+
+
+
+
+
 
         viewModel.id.observe(viewLifecycleOwner, Observer { id ->
             Toast.makeText(requireContext(), "Last ID " + id.toString(), Toast.LENGTH_LONG).show()
+        })
+
+        viewModel.currentSurvey.observe(viewLifecycleOwner, Observer { survey->
+            Toast.makeText(requireContext(), survey.surveyorName, Toast.LENGTH_LONG).show()
         })
 
 

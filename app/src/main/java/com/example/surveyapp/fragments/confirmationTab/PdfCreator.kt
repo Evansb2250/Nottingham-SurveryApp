@@ -336,13 +336,14 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
             table.addCell(createBordlessHeaderCell(PDFconstants.METER_ISSUE))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getMeterStatus()))
 
-
             table.addCell(createBordlessHeaderCell(PDFconstants.FIRE_DOOR))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getFireDoorStatus()))
 
+            table.addCell(createBordlessHeaderCell(PDFconstants.FIRE_DOOR_COMMENT))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getFireDoorComment()))
+
             table.addCell(createBordlessHeaderCell(PDFconstants.ISOLATOR))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getIsolatorStatus()))
-
 
             table.addCell(createBordlessHeaderCell(PDFconstants.REWIRE))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getRewireStatus()))
@@ -377,10 +378,13 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
         val cellDescription = "NEW VOID CHECKLIST"
         val titlePhrase = Phrase()
         titlePhrase.add(Chunk(cellDescription, FontFactory.getFont(FontFactory.HELVETICA_BOLD)))
-        titlePhrase.font.size = 20.0f
+        titlePhrase.font.size = 40.0f
         val headerCell  = PdfPCell(titlePhrase)
         headerCell.setColspan(2)
         headerCell.border = NONE
+        headerCell.minimumHeight=40F
+
+
 
         return headerCell
     }
@@ -388,14 +392,14 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
 
     private fun createBordlessCell(cellDescription: String?): PdfPCell{
         val cell = PdfPCell(Phrase(cellDescription))
-        //cell.border = NONE
-
+        cell.border = NONE
+        cell.minimumHeight = 28F
         return cell
     }
 
     private fun createBordlessHeaderCell(cellDescription: String?): PdfPCell{
         var phrase = Phrase()
-        phrase.add(Chunk(cellDescription, FontFactory.getFont(FontFactory.HELVETICA_BOLD)))
+        phrase.add(Chunk(cellDescription, FontFactory.getFont(FontFactory.TIMES_ROMAN)))
         phrase.font.size= 10.0f
         val headerCell = PdfPCell(phrase)
         headerCell.border = NONE

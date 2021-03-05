@@ -186,6 +186,10 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
         fireDoorComment = newComment
     }
 
+    fun getFireDoorComment():String?{
+        return fireDoorComment
+    }
+
     fun getDecorPoints():String{
         return decorationPoints
     }
