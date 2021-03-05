@@ -177,47 +177,14 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 
     fun updateMessage(List: List<SurveySORs>) {
-        val tempList = mutableListOf<String>()
+
         if (List != null) {
             //Reset
             message.value = ""
             var count = 0
-            var capital = "0"
-            var revenue = "0"
-            var capitalTotal = "0.0"
-            var revenueTotal = "0.0"
-
-            //TODO ADD THIS TO A SEPARATE FUNCTION
-            //Adding header
-            if (surveyType.equals(constant.CAPTIAL)) {
-                capital = "y"
-                capitalTotal = currency.format(total.value)
-            } else if (surveyType.equals(constant.REVENUE)) {
-                revenue = "y"
-                revenueTotal = currency.format(total.value)
-            }
-
-
-            //TODO REFACTOR Below
-
-            val header =
-                "Address:${sp}${address}${sp}0${sp} ${sp}Survey:${sp}${name}${sp}${sp}${sp}Revenue Void Total${sp}${revenueTotal}\n"
-            val header2 =
-                "Revenue ${sp} ${revenue} ${sp} Capital${sp} ${capital} ${sp} ${sp} Fire  Service Referral${sp}0 ${sp}${sp} Capital Void Total ${sp}${capitalTotal} + \n"
-            var header3 =
-                "Category${sp}SoRs${sp}Description${sp}${sp}UOM${sp}QTY${sp}Recharge${sp}Total Price${sp}Comments${sp}Recharge Total${sp}${
-                    currency.format(rechargeTotal.value)
-                } \n"
-
-
-            tempList.add(header)
-            tempList.add(header2)
-            tempList.add(header3)
-
 
             for (data in List) {
                 count += 1
-
                 //TODO add this to a separate return function
                 if (hidePrices.equals(false)) {
                     message.value += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + " -  " + currency.format(
@@ -226,34 +193,6 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
                 } else
                     message.value += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + "\n"
 
-                var response: String
-
-                //TODO put this in a separate return function
-                if (data.isRecharge.equals(true)) {
-                    response = "y"
-                } else
-                    response = " "
-
-
-
-
-//                //TODO add rounding function
-//                if (hidePrices.equals(false)) {
-//                    tempList.add(
-//                        data.roomCategory + sp + data.sorCode + sp + data.sorDescription + sp + sp +
-//                                data.UOM + sp + data.quantity + sp + response + sp +
-//                                currency.format(data.total) + sp +
-//                                data.surveyorDescription + "\n"
-//                    )
-//
-//                } else
-//                    tempList.add(
-//                        data.roomCategory + sp + data.sorCode + sp + data.sorDescription + sp + sp +
-//                                data.UOM + sp + data.quantity + sp + response + sp +
-//                                "" + sp +
-//                                data.surveyorDescription + "\n"
-//                    )
-
             }
 
         }
@@ -265,24 +204,23 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 
 
-    fun insertCompleteSurvey(){
+    fun insertCompleteSurvey() = viewModelScope.launch{
         addSurvey()
         addSurveySorsList()
     }
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    private fun addSurveySorsList() =
-        viewModelScope.launch {
+//    @Suppress("RedundantSuspendModifier")
+//    @WorkerThread
+    private suspend fun addSurveySorsList(){
             for(sor in _dataFromSurvey) {
                 repository.insertSurveySors(sor)
             }
         }
 
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    private fun addSurvey() = viewModelScope.launch {
+//    @Suppress("RedundantSuspendModifier")
+//    @WorkerThread
+    private suspend fun addSurvey() {
         repository.insertCompleteSurvey(surveyInfo)
         }
 
