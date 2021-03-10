@@ -72,7 +72,7 @@ class ConfirmationPage : Fragment() {
         })
 
         confirmPage?.refreshFinished?.observe(viewLifecycleOwner, { newChange ->
-            Toast.makeText(requireContext(), "Change Detected", Toast.LENGTH_SHORT).show()
+       //     Toast.makeText(requireContext(), "Change Detected", Toast.LENGTH_SHORT).show()
             confirmPage!!.updateTotal()
         })
 
@@ -161,13 +161,10 @@ class ConfirmationPage : Fragment() {
                     val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     requestPermissions(permissions, STORAGE_CODE)
                 } else
-                    displayPDFStatus(true)
                 confirmPage?.savePdfHandler()
-                  //  displayPDFStatus(confirmPage?.savePdfHandler()!!)
             }
         } else {
-           //displayPDFStatus(true)
-         //   displayPDFStatus(confirmPage?.savePdfHandler()!!)
+            confirmPage?.savePdfHandler()
         }
     }
 
@@ -180,7 +177,7 @@ class ConfirmationPage : Fragment() {
         when (requestCode) {
             STORAGE_CODE -> {
                 if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    displayPDFStatus(confirmPage?.savePdfHandler()!!)
+                    confirmPage?.savePdfHandler()
                 } else {
                     Toast.makeText(requireContext(), "Permission denied .....!", Toast.LENGTH_SHORT)
                         .show()
@@ -225,6 +222,7 @@ class ConfirmationPage : Fragment() {
 private fun exitActivity(activityContext: Context, activity: FragmentActivity?) {
     val intent = Intent(activityContext, MainActivity::class.java)
     activity!!.startActivity(intent)
+
     activity!!.finish()
 }
 

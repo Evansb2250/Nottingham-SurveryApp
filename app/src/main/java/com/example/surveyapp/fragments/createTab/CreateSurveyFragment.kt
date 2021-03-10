@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
@@ -28,6 +30,35 @@ class CreateSurveyFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_create_survey, container, false)
         // Inflate the layout for this fragment
 
+        SurveyActivity.createSurveyPage?.surveyName_?.observe(viewLifecycleOwner, Observer { name->
+            binding.nameEdit.setText(name)
+
+        })
+        SurveyActivity.createSurveyPage?.address_?.observe(viewLifecycleOwner, Observer { address->
+            binding.addressEdit.setText(address)
+
+        })
+        SurveyActivity.createSurveyPage?.postCode_?.observe(viewLifecycleOwner, Observer { postCode->
+            binding.postEdit.setText(postCode)
+
+        })
+        SurveyActivity.createSurveyPage?.phoneNumber_?.observe(viewLifecycleOwner, Observer { phoneNumber->
+            binding.phoneNumEdit.setText(phoneNumber)
+
+        })
+        SurveyActivity.createSurveyPage?.date_?.observe(viewLifecycleOwner, Observer { date->
+            binding.dateEdit.setText(date)
+
+        })
+
+        SurveyActivity.createSurveyPage?.surveyType_?.observe(viewLifecycleOwner, Observer { surveyType->
+            if(surveyType == constant.CAPTIAL){
+                binding.capitalRB.setChecked(true)
+            }
+             if(surveyType == constant.REVENUE) {
+                 binding.revenueRB.setChecked(true)}
+
+        })
 
         binding.capitalRB.setOnClickListener {
             SurveyActivity.createSurveyPage?.setSurveryType(constant.CAPTIAL)

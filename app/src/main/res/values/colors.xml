@@ -13,4 +13,7 @@
    <!-- #F6F4BE -->
 <!-- #F1F0F0 -->
     <color name="secondBackgroundColor">#ABC85B</color>
+    <color name="whitish">#FAF8F7</color>
+    <color name="grey">#D1CBCA</color>
+    <color name="gunGray">#C5BEBE</color>
 </resources>

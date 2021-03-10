@@ -25,7 +25,7 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
 
     private val currency = DecimalFormat("£###,###.##")
 
-    fun savePdf() : Boolean{
+   suspend fun savePdf() : Boolean{
         // Create object of Document class
         val mDoc = Document(PageSize.A3.rotate())
 
@@ -194,7 +194,7 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
             table.addCell(cell)
 
 
-            var count = 0;
+            var count = 0
             val list = confirmPage?.getSORS()
             if (list != null) {
                 var cell: PdfPCell
@@ -226,7 +226,7 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
                     table.addCell(cell)
 
                     cell = PdfPCell(Phrase(sor.sorDescription))
-                    cell.setColspan(2)
+                    cell.colspan = 2
                     cell.border = NONE
 
                     table.addCell(cell)
@@ -253,7 +253,7 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
                     table.addCell(cell)
 
                     cell = PdfPCell(Phrase(sor.surveyorDescription))
-                    cell.setColspan(2)
+                    cell.colspan = 2
                     cell.border = NONE
                     table.addCell(cell)
 
@@ -299,12 +299,13 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
 
 
 
-    fun saveQuestionaire2Pdf(){
+   suspend fun saveQuestionaire2Pdf(){
 
         // Create object of Document class
         val mDoc = Document(PageSize.A4)
 
         val mFilePath = createDocFilePath("_Questionaire_id_", SurveyActivity.SurveyID)
+
 //            Environment.getExternalStorageDirectory().toString() + "/" + mFileName + ".pdf"
         try {
             //create instance of pdfwriter class
@@ -313,54 +314,94 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
             //open the document for writing
             mDoc.open()
 
-
-            //val pointColumnWidths = FloatArray(150)
             val table = PdfPTable(2)
 
 
             table.addCell(createBordlessTitleCell())
 
-
-            table.addCell(createBordlessHeaderCell(PDFconstants.ADDRESS))
-            table.addCell(createBordlessCell(SurveyActivity.createSurveyPage?.getAddress()))
+            table.addCell(createBlankSpace())
+            table.addCell(createBlankSpace())
 
             table.addCell(createBordlessHeaderCell(PDFconstants.VPM))
-            table.addCell(createBordlessCell(SurveyActivity?.createSurveyPage?.getName()))
+            table.addCell(createBordlessHeaderCell(SurveyActivity.createSurveyPage?.getName()))
 
+            table.addCell(createBlankSpace())
+            table.addCell(createBlankSpace())
+
+            table.addCell(createBordlessHeaderCell(PDFconstants.ADDRESS))
+            table.addCell(createBordlessHeaderCell(SurveyActivity.createSurveyPage?.getAddress()))
+
+            table.addCell(createBlankSpace())
+            table.addCell(createBlankSpace())
+
+
+            table.addCell(createBordlessHeaderCell(PDFconstants.TAPSLOCATION))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getTapsLocation()))
+
+
+            table.addCell(createBlankSpace())
+
+            table.addCell(createBordlessHeaderCell(PDFconstants.DECORATIONPOINTS))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getDecorPoints()))
+
+            table.addCell(createBlankSpace())
+
+
+            table.addCell(createBordlessHeaderCell(PDFconstants.FLOORLEVEL))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getFloorLevel()))
+
+            table.addCell(createBlankSpace())
 
 
             table.addCell(createBordlessHeaderCell(PDFconstants.ASBESTOS_REMOVAL))
-            table.addCell(createBordlessCell(SurveyActivity?.abesto?.getAbesto()))
+            table.addCell(createBordlessCell(SurveyActivity.abesto?.getAbesto()))
 
+            table.addCell(createBlankSpace())
 
             table.addCell(createBordlessHeaderCell(PDFconstants.METER_ISSUE))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getMeterStatus()))
 
+            table.addCell(createBlankSpace())
+
             table.addCell(createBordlessHeaderCell(PDFconstants.FIRE_DOOR))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getFireDoorStatus()))
 
+            table.addCell(createBlankSpace())
+
             table.addCell(createBordlessHeaderCell(PDFconstants.FIRE_DOOR_COMMENT))
-            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getFireDoorComment()))
+            table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getFireDoorComments()))
+
+            table.addCell(createBlankSpace())
 
             table.addCell(createBordlessHeaderCell(PDFconstants.ISOLATOR))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getIsolatorStatus()))
 
+            table.addCell(createBlankSpace())
+
             table.addCell(createBordlessHeaderCell(PDFconstants.REWIRE))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getRewireStatus()))
+
+            table.addCell(createBlankSpace())
 
             table.addCell(createBordlessHeaderCell(PDFconstants.HEATING))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getHouseHeatingStatus()))
 
+            table.addCell(createBlankSpace())
+
             table.addCell(createBordlessHeaderCell(PDFconstants.FAST_TRACK))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getFastTrackStatus()))
+
+            table.addCell(createBlankSpace())
 
             table.addCell(createBordlessHeaderCell(PDFconstants.GLASS))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getHouseHasGlassStatus()))
 
+table.addCell(createBlankSpace())
 
             table.addCell(createBordlessHeaderCell(PDFconstants.ALTRO))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getAltroStatus()))
 
+            table.addCell(createBlankSpace())
 
             mDoc.add(table)
             mDoc.close()
@@ -378,11 +419,11 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
         val cellDescription = "NEW VOID CHECKLIST"
         val titlePhrase = Phrase()
         titlePhrase.add(Chunk(cellDescription, FontFactory.getFont(FontFactory.HELVETICA_BOLD)))
-        titlePhrase.font.size = 40.0f
+        titlePhrase.font.size = 80.0f
         val headerCell  = PdfPCell(titlePhrase)
-        headerCell.setColspan(2)
+        headerCell.colspan = 2
         headerCell.border = NONE
-        headerCell.minimumHeight=40F
+        headerCell.minimumHeight=20F
 
 
 
@@ -390,17 +431,20 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
     }
 
 
+
     private fun createBordlessCell(cellDescription: String?): PdfPCell{
+        var phrase = Phrase()
+        phrase.add(Chunk(cellDescription,FontFactory.getFont(FontFactory.HELVETICA)))
         val cell = PdfPCell(Phrase(cellDescription))
-        cell.border = NONE
+      //  cell.border = NONE
         cell.minimumHeight = 28F
         return cell
     }
 
     private fun createBordlessHeaderCell(cellDescription: String?): PdfPCell{
         var phrase = Phrase()
-        phrase.add(Chunk(cellDescription, FontFactory.getFont(FontFactory.TIMES_ROMAN)))
-        phrase.font.size= 10.0f
+        phrase.add(Chunk(cellDescription, FontFactory.getFont(FontFactory.HELVETICA_BOLD)))
+        phrase.font.size= 15.0f
         val headerCell = PdfPCell(phrase)
         headerCell.border = NONE
 
@@ -414,6 +458,16 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
         return originalAmount
     }
 
+
+    private fun createBlankSpace():PdfPCell{
+        val cell = PdfPCell(Phrase(""))
+        cell.border = NONE
+        cell.colspan = 11
+        cell.minimumHeight=15F
+
+        return cell
+
+    }
 
 
     private fun createDocFilePath(pdfType: String, surveyID: Int?): String {

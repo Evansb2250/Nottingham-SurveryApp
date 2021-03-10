@@ -171,5 +171,12 @@ class constant {
         )
 
 
+        val bundleMessage = "message"
+        val editSurveyTag = "edit"
+        val idTag = "ID"
+        val getLastSurvey = "requesting last survey"
+        val getExistingSurvey ="requesting existing survey"
+
+
     }
 }

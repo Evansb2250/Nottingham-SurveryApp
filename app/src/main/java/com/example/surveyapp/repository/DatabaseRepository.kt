@@ -1,5 +1,6 @@
 package com.example.surveyapp.repository
 
+import android.util.Log
 import androidx.annotation.WorkerThread
 import com.example.surveyapp.DAO.dbDAO
 import com.example.surveyapp.domains.SoR
@@ -7,6 +8,24 @@ import com.example.surveyapp.domains.SurveySORs
 import com.example.surveyapp.ignore.Survey
 
 class DatabaseRepository(private val dbManager: dbDAO) {
+
+
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun returnSurveySors(sorId: Int): List<SurveySORs>?{
+        var list:List<SurveySORs>?= null
+        // Before entering an Sor code it checks if it exist
+        val doesExist = dbManager.searchForSurveyByID(sorId)
+        Log.i("SEARCH", "Does exist " + doesExist.surveyorName)
+        if (doesExist != null) {
+         list =   dbManager.getSurveySors(sorId)
+        }
+        return list
+    }
+
+
+
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
@@ -23,7 +42,6 @@ class DatabaseRepository(private val dbManager: dbDAO) {
     @WorkerThread
     suspend fun insertCompleteSurvey(survey: Survey) {
         dbManager.insertSurvey(survey)
-
     }
 
 
@@ -53,9 +71,7 @@ class DatabaseRepository(private val dbManager: dbDAO) {
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun insertSurveySors(sor: SurveySORs) {
-
                 dbManager.insertSurveySors(sor)
-
     }
 
 

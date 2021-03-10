@@ -27,6 +27,9 @@ import java.lang.Thread.sleep
  */
 class MainMenuFragment : Fragment() {
     // TODO: Rename and change types of parameters
+    companion object{
+        var MessageFlag = false
+    }
     private var flag = false
     private lateinit var progress :AlertDialog
    private lateinit var intent:Intent
@@ -44,29 +47,23 @@ class MainMenuFragment : Fragment() {
         progress = AlertDialog.Builder(requireContext()).create()
 
 
+        if(flag == false){
+            progress?.dismiss()
+        }
 
         binding.createSurveyButtonMain.setOnClickListener { it ->
-            intent  = Intent(activity, SurveyActivity::class.java)
-            progress.setTitle("Loading");
-            progress.setMessage("Please wait while survey builder is loading...");
-            progress.setCancelable(true); // disable dismiss by tapping outside of the dialog
-            progress.show();
+
+
 
             if (flag != true) {
-                //stops the app from making two instancesal
-
+                displayLoadMessage()
 
                 flag = true
-                // val intent = Intent(activity, SurveyActivity::class.java)
-
-
-
-                readyToStart()
-                requireActivity().startActivity(intent)
-                activity?.onBackPressed()
+                changeToSurveyActivity()
             }
 
         }
+
 
 
         binding.goToViewSurveyButton.setOnClickListener {
@@ -82,32 +79,19 @@ class MainMenuFragment : Fragment() {
 
 
     private fun displayLoadMessage() {
-
+        progress.setTitle("Loading");
+        progress.setMessage("Please wait while survey builder is loading...");
+        progress.setCancelable(true); // disable dismiss by tapping outside of the dialog
+        progress.show();
 
     }
 
     private fun changeToSurveyActivity() {
-
-
-        changeNow()
+        intent  = Intent(activity, SurveyActivity::class.java)
+        requireActivity().startActivity(intent)
         //TODO comment out lines to test SOR DATABASE
+        activity?.finish()
 
-
-
-  //      activity?.finish()
-
-    }
-
-    private fun changeNow() {
-//        val intent = Intent(activity, SurveyActivity::class.java)
-//
-//        readyToStart()
-//      //  progress.dismiss()
-//        requireActivity().startActivity(intent)
-    }
-
-    private fun readyToStart() {
-     //   progress.dismiss()
     }
 
 

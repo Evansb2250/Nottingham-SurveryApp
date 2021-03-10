@@ -2,11 +2,24 @@ package com.example.surveyapp.fragments.createTab
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.*
+import com.example.surveyapp.classLoader.createPagePackage
 import com.example.surveyapp.fragments.PreviousWorkAndLockTab.previosWorkViewModel
 import com.example.surveyapp.repository.DatabaseRepository
 import kotlinx.coroutines.launch
 
 class createSurveyViewModel(private val repository: DatabaseRepository) : ViewModel() {
+
+
+    var surveyName_ = MutableLiveData<String>()
+    var address_ = MutableLiveData<String>()
+    var postCode_ = MutableLiveData<String>()
+    var phoneNumber_ = MutableLiveData<String>()
+    var date_ = MutableLiveData<String>()
+    var surveyType_ = MutableLiveData<String>()
+
+
+
+
     private var surveyName = ""
     private var address = ""
     private var postCode = ""
@@ -83,6 +96,21 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
         return date
     }
 
+    fun setName(oldName: String) {
+        surveyName = oldName
+    }
+
+    fun addSurveyPackage(returnCreatePagePackage: createPagePackage) {
+
+        surveyName_.value = returnCreatePagePackage.name
+        address_.value = returnCreatePagePackage.address
+        postCode_.value = returnCreatePagePackage.postCode
+        phoneNumber_.value = returnCreatePagePackage.phoneNumber
+        date_.value = returnCreatePagePackage.date
+        surveyType_.value = returnCreatePagePackage.surveyType
+        surveyType = returnCreatePagePackage.surveyType
+
+    }
 
 
 }

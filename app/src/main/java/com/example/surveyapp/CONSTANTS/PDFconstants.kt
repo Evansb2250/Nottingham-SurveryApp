@@ -2,6 +2,9 @@ package com.example.surveyapp.CONSTANTS
 
 class PDFconstants {
     companion object{
+        val FLOORLEVEL = "FLOOR LEVEL:"
+        val DECORATIONPOINTS = "DECORATION POINTS:"
+        val TAPSLOCATION = "LOCATION TAPS:"
         val FIRE_DOOR_COMMENT = "FIREDOOR COMMENT:"
         val ADDRESS = "ADRESS:"
         val VPM = "VPM:"

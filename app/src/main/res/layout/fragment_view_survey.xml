@@ -18,136 +18,188 @@
         android:id="@+id/viewSurveyLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/secondBackgroundColor">
+        android:background="#B95F886F">
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/imageButtonRequestSearch"
             android:layout_width="60dp"
             android:layout_height="57dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginLeft="11dp"
+            android:layout_marginStart="240dp"
+            android:layout_marginLeft="240dp"
+            android:layout_marginTop="130dp"
+            android:layout_marginEnd="425dp"
+            android:layout_marginRight="425dp"
+            android:layout_marginBottom="350dp"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.207"
+            app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.299"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_baseline_search_24" />
 
         <Spinner
-            android:id="@+id/spinner3"
+            android:id="@+id/searchBySpinner"
             android:layout_width="214dp"
             android:layout_height="46dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="700dp"
+            android:layout_marginRight="700dp"
+            android:layout_marginBottom="400dp"
+            android:background="@color/whitish"
             android:entries="@array/search_surveys_by"
             android:spinnerMode="dropdown"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.042"
+            app:layout_constraintHorizontal_bias="0.43"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.132" />
+            app:layout_constraintVertical_bias="0.100000024" />
 
         <EditText
             android:id="@+id/searchEditField"
-            android:layout_width="139dp"
-            android:layout_height="58dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginBottom="456dp"
+            android:layout_width="150dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="700dp"
+            android:layout_marginRight="700dp"
+            android:layout_marginBottom="200dp"
+            android:background="@color/whitish"
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.053"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/optionSelector"
-            app:layout_constraintVertical_bias="0.04" />
-
-        <ScrollView
-            android:id="@+id/scrollView6"
-            android:layout_width="560dp"
-            android:layout_height="264dp"
-            android:layout_marginStart="150dp"
-            android:layout_marginLeft="150dp"
-            android:background="@color/design_default_color_background"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.678"
+            app:layout_constraintHorizontal_bias="0.38"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:scrollbarSize="10dp">
-
-                <TextView
-                    android:id="@+id/textView24"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
-            </LinearLayout>
-        </ScrollView>
+            app:layout_constraintTop_toBottomOf="@+id/searchBySpinner"
+            app:layout_constraintVertical_bias="0.044" />
 
         <TextView
             android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="440dp"
+            android:layout_marginLeft="440dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="300dp"
+            android:layout_marginRight="300dp"
+            android:layout_marginBottom="520dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Previous Survey's"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toTopOf="@+id/scrollView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.575"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.18"
-            app:layout_constraintVertical_chainStyle="packed" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button4"
-            app:layout_constraintHorizontal_bias="0.66"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.693" />
+            app:layout_constraintVertical_bias="0.523"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ScrollView
+            android:id="@+id/surveyDescription"
+            android:layout_width="524dp"
+            android:layout_height="295dp"
+            android:layout_marginStart="300dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="95dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginBottom="200dp"
+            android:background="@color/whitish"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.61">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/createPDFButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="edit"
-            app:layout_constraintEnd_toStartOf="@+id/button6"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button"
-            app:layout_constraintTop_toTopOf="@+id/button" />
+            android:layout_marginTop="28dp"
+            android:text="@string/pdf"
+            app:layout_constraintEnd_toStartOf="@+id/editSurveyButton"
+            app:layout_constraintHorizontal_bias="0.74"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/surveyDescription" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/deleteSurveyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="5dp"
+            android:text="delete survey"
+            app:layout_constraintBottom_toBottomOf="@+id/editSurveyButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button4"
-            app:layout_constraintTop_toTopOf="@+id/button4" />
+            app:layout_constraintStart_toEndOf="@+id/editSurveyButton"
+            app:layout_constraintTop_toTopOf="@+id/editSurveyButton" />
+
+        <Button
+            android:id="@+id/editSurveyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="edit"
+            app:layout_constraintBottom_toBottomOf="@+id/createPDFButton"
+            app:layout_constraintEnd_toStartOf="@+id/deleteSurveyButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/createPDFButton"
+            app:layout_constraintTop_toTopOf="@+id/createPDFButton" />
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="146dp"
+            android:layout_height="202dp"
+            android:layout_marginStart="79dp"
+            android:layout_marginLeft="79dp"
+            android:layout_marginTop="93dp"
+            android:layout_marginEnd="187dp"
+            android:layout_marginRight="187dp"
+            android:layout_marginBottom="64dp"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/surveyDescription"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchEditField"
+            app:layout_constraintVertical_bias="0.222" />
+
+        <Spinner
+            android:id="@+id/orderBySpinner"
+            android:layout_width="126dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="190dp"
+            android:layout_marginRight="190dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/listView"
+            app:layout_constraintEnd_toStartOf="@+id/surveyDescription"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchEditField"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

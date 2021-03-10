@@ -39,6 +39,9 @@ interface dbDAO {
     @Query("SELECT * FROM SURVEY_TABLE where surveyId =:key")
     suspend fun searchForSurveyByID(key:Int):Survey
 
+    @Query("SELECT * FROM survey_sors_table where surveyId =:key")
+    suspend fun getSurveySors(key:Int): List<SurveySORs>
+
 
     //Test function
     @Query("SELECT * from survey_table where surveyId =:key")

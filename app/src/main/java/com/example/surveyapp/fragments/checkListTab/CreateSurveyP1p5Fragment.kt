@@ -32,7 +32,6 @@ class CreateSurveyP1p5Fragment : Fragment() {
             false
         )
         binding.viewmodel = SurveyActivity.checkListVM
-
         binding.lifecycleOwner = this
 
 
@@ -64,7 +63,6 @@ class CreateSurveyP1p5Fragment : Fragment() {
         registerCheckBoxClick(constant.REWIRE_BOX_ID, binding.rwChkBx)
         registerCheckBoxClick(constant.HEATING_BOX_ID, binding.heatingChkBx)
         registerCheckBoxClick(constant.GLASS_BOX_ID, binding.glassChkBx)
-
 
         binding.fireDoorTextField.addTextChangedListener { text ->
             SurveyActivity.checkListVM?.storeFireDoorComment(text.toString())

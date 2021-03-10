@@ -165,7 +165,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
                //Apply Vat to recharge amount
                rechargeTotal.value = rechargeTotal.value!! * VAT.value!! + rechargeTotal.value!!
            }
-           //OLD CODE   messageList = updateMessage(_dataFromSurvey) as ArrayList<String>
+
 
            //Runs update on back thread
 
@@ -263,8 +263,8 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 
 
-    fun savePdfHandler():Boolean{
-        return pdf.savePdf()
+    fun savePdfHandler() = viewModelScope.launch{
+         pdf.savePdf()
     }
 
 

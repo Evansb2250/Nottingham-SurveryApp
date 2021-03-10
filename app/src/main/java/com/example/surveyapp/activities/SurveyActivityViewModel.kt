@@ -1,29 +1,40 @@
 package com.example.surveyapp.activities
 
+import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.*
+import com.example.surveyapp.CONSTANTS.constant
+import com.example.surveyapp.classLoader.RestoreSurveyHelper
+import com.example.surveyapp.domains.SurveySORs
 import com.example.surveyapp.fragments.createTab.createSurveyViewModel
+import com.example.surveyapp.ignore.Survey
 import com.example.surveyapp.repository.DatabaseRepository
 import kotlinx.coroutines.launch
 
 class SurveyActivityViewModel (private val repository: DatabaseRepository) : ViewModel() {
 
-
+    lateinit var restoreSurveyHelperClass:RestoreSurveyHelper
 
 
     val id : LiveData<Int>
         get() = _id
     private var _id = MutableLiveData<Int>()
 
-    init{
-        //   _id.value = null
+
+    fun createMessage(messageTpye : String, id: Int) {
+        when(messageTpye){
+            constant.getExistingSurvey ->  requestExistSurvey(id)
+            constant.getLastSurvey -> lastSurvey()
+        }
     }
 
-    fun createMessage() {
-        lastSurvey()
-        //Log.i("messageForMe", " Hi I got the message")
-    }
 
+    private fun requestExistSurvey(id: Int) = viewModelScope.launch {
+       val existingSurvey = repository.searchSurveyById(id)
+       val existingSorCodes = repository.returnSurveySors(id)!!
+        restoreSurveyHelperClass = RestoreSurveyHelper(existingSurvey, existingSorCodes)
+        _id.value = restoreSurveyHelperClass.getId()
+    }
 
 
     // create a function that

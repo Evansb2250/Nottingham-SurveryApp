@@ -1,6 +1,7 @@
 package com.example.surveyapp.fragments.checkListTab
 
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -12,15 +13,13 @@ import kotlinx.coroutines.launch
 
 class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
+
+
+
     companion object {
         private lateinit var Global_heatingType: List<SurveySORs>
 
     }
-
-
-
-
-
     private var _surveyID :Int ?= null
     private lateinit var heatingType: List<SurveySORs>
     private var sorList = mutableListOf<SoR>()
@@ -42,6 +41,18 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
         false,
         false
     )
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     fun setSurveyID(id: Int){
@@ -186,7 +197,7 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
         fireDoorComment = newComment
     }
 
-    fun getFireDoorComment():String?{
+    fun getFireDoorComments():String{
         return fireDoorComment
     }
 
@@ -194,9 +205,11 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
         return decorationPoints
     }
 
-    fun getTapLocation():String{
-        return tapsComment
+
+    fun getTapsLocation(): String? {
+        return tapsComment;
     }
+
 
     fun getFloorLevel():String{
         return floorComment

@@ -110,5 +110,6 @@
     <string name="FloorLevel">Floor Level: </string>
     <string name="remove_all_label">RESET</string>
     <string name="button">Button</string>
+    <string name="pdf">PDF</string>
 
 </resources>

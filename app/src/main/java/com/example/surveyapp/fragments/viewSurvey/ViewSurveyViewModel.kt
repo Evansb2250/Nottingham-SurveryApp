@@ -22,25 +22,6 @@ class ViewSurveyViewModel (private val repository: DatabaseRepository) : ViewMod
     private var _currentSurvey = MutableLiveData<Survey>()
 
 
-//
-//    val id : LiveData<Int>get() = _id
-//    private var _id = MutableLiveData<Int>()
-
-
-
-
-
-
-    init{
-     //   _id.value = null
-    }
-
-    fun createMessage() {
-        lastSurvey()
-       //Log.i("messageForMe", " Hi I got the message")
-    }
-
-
 
     // create a function that
     @Suppress("RedundantSuspendModifier")
@@ -66,7 +47,6 @@ class ViewSurveyViewModel (private val repository: DatabaseRepository) : ViewMod
 
         when(searchMethod){
             "Address" -> {Log.i("SearchMethod", "Address" + surveyDetail)
-
 
             }
             "Survey ID" -> {
