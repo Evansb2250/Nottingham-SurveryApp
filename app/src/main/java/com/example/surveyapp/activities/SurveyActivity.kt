@@ -59,10 +59,12 @@ class SurveyActivity : AppCompatActivity() {
        //Request the number for the last survey, so thrveye new survey doesn't overwrite an existing survey.
         // -1 since this function does not request an instance of a previous s
 
+        //TODO CLEAN THIS SHIT UP TOO CLUTTERED CAN'T READ
 
         //Checks to see if the survey is connected to a new survey, or an existing one.
         if(bundle != null){
             val message = bundle?.getString(constant.bundleMessage)
+
             if(message != null && message == constant.editSurveyTag){
                 val id = bundle?.getString(constant.idTag)
                 surveyActivityModel.createMessage(constant.getExistingSurvey, id!!.toInt())
@@ -79,10 +81,11 @@ class SurveyActivity : AppCompatActivity() {
         surveyActivityModel.id.observe(this, Observer { id ->
 
             if(isThisSurveyBeingEdited){
-
-             createSurveyPage?.addSurveyPackage(surveyActivityModel.restoreSurveyHelperClass.returnCreatePagePackage())
+                createSurveyPage?.addSurveyPackage(surveyActivityModel.restoreSurveyHelperClass.returnCreatePagePackage())
+                sorViewModel?.loadPreviousSorList(surveyActivityModel.restoreSurveyHelperClass.getSorsBelongingToSorFragament())
+                checkListVM?._loadedHeatType?.value = surveyActivityModel.restoreSurveyHelperClass.getHeatType()
             }
-
+            confirmPage?.surveyIDTextView?.value = id
             SurveyID = id
             checkListVM?.setSurveyID(id)
             prevViewModel?.setSurveyID(id)

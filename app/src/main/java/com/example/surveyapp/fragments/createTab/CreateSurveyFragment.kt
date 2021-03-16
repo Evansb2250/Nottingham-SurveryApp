@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
+import com.example.surveyapp.activities.SurveyActivity.Companion.createSurveyPage
 import com.example.surveyapp.databinding.FragmentCreateSurveyBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,8 +47,11 @@ class CreateSurveyFragment : Fragment() {
             binding.phoneNumEdit.setText(phoneNumber)
 
         })
-        SurveyActivity.createSurveyPage?.date_?.observe(viewLifecycleOwner, Observer { date->
-            binding.dateEdit.setText(date)
+        SurveyActivity.createSurveyPage?.day_?.observe(viewLifecycleOwner, Observer { day->
+            var month = createSurveyPage?.getMonth()
+            var year = createSurveyPage?.getYear()
+
+            binding.dateEdit.setText("${day}/${month}/${year}")
 
         })
 
@@ -91,9 +95,12 @@ class CreateSurveyFragment : Fragment() {
 //        }
 
 
-        binding.calendarView.setOnDateChangeListener({CalendarView, year, month, dayOfMonth ->
-            binding.dateEdit.setText("${dayOfMonth}/${month+1}/${year}")
-        })
+        binding.calendarView.setOnDateChangeListener{CalendarView, year, month, dayOfMonth ->
+            createSurveyPage?.month_?.value = month+1
+            createSurveyPage?.year_?.value = year
+            createSurveyPage?.day_?.value = dayOfMonth
+
+        }
 
 
 

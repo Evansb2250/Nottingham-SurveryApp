@@ -21,8 +21,9 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
 
     }
     private var _surveyID :Int ?= null
-    private lateinit var heatingType: List<SurveySORs>
+    private var heatingType: List<SurveySORs> ?= null
     private var sorList = mutableListOf<SoR>()
+    var _loadedHeatType = MutableLiveData<Int>()
 
     private var fireDoorComment = ""
     private var decorationPoints =""
@@ -65,7 +66,7 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     fun getHeatingType(): List<SurveySORs> {
-        return heatingType
+        return heatingType!!
     }
 
 
@@ -78,20 +79,20 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
             }
             1 -> {
                 val systemBoilerCodes = constant.BOILERPOINTCODES
-                if (heatingType.size != 5) {
+                if (heatingType?.size != 5) {
                     get(systemBoilerCodes)
                 }
             }
             2 -> {
                 val combiHeating = constant.COMBIBOILER
-                if (heatingType.size != 2) {
+                if (heatingType?.size != 2) {
                     get(combiHeating)
                 }
 
             }
             3 -> {
                 val deheating = mutableListOf<String>(constant.DHEATING)
-                if (heatingType.size != 1) {
+                if (heatingType?.size != 1) {
                     get(deheating)
                 }
 
@@ -159,7 +160,7 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
                 )
             }
             heatingType = tempList
-            Global_heatingType = heatingType
+            Global_heatingType = heatingType as MutableList<SurveySORs>
         }
     }
 

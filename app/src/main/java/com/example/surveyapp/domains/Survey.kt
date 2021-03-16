@@ -1,9 +1,10 @@
 package com.example.surveyapp.ignore
 
 import androidx.room.*
+import com.example.surveyapp.ignore.Survey.Companion.TABLE_NAME
 
 
-@Entity(tableName = "survey_table")
+@Entity(tableName = TABLE_NAME)
 data class Survey(
     @PrimaryKey(autoGenerate = true)
     //TODO add the column fields and foreign keys
@@ -14,7 +15,9 @@ data class Survey(
     @ColumnInfo(name = PHONENUMBER) val phoneNumber: String,
     @ColumnInfo(name = ABESTOREMOVAL) val abestoRemovalDescription: String,
     //TODO look into creating a date variable
-    @ColumnInfo(name = DATE) val Date: String,
+    @ColumnInfo(name = DAY) val day: Int, //TODO CREATE DAY, MONTH, YEAR columns
+    @ColumnInfo(name= MONTH) val  month: Int,
+    @ColumnInfo(name = YEAR) val year: Int,
     @ColumnInfo(name = SURVEYTYPE) val surveyType: String
 )
 
@@ -32,7 +35,10 @@ https://stackoverflow.com/questions/47511750/how-to-use-foreign-key-in-room-pers
         const val SURVEYOR = "Surveyor"
         const val PHONENUMBER = "phoneNumber"
         const val ABESTOREMOVAL = "abestoRemoval"
-        const val DATE = "date"
+        const val DAY = "day"
+        const val MONTH = "month"
+        const val YEAR = "year"
         const val SURVEYTYPE = "surveyType"
+
     }
 }

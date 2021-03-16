@@ -31,7 +31,7 @@ interface dbDAO {
     suspend fun getSoR(key: String): SoR
 
 
-    @Query("DELETE FROM SoR_table where sorCode =:key")
+    @Query("DELETE FROM SoR_table where sorCode =:key ")
     suspend fun removeSoR(key: String)
 
 

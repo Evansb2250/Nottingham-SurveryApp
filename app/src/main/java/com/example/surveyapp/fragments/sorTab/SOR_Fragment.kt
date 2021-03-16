@@ -159,7 +159,10 @@ class SOR_Fragment : Fragment() {
             unlockFields()
 
             val sorcode = SurveyActivity.sorViewModel!!.listForView.get(position)
+
+            //val description = SurveyActivity.sorViewModel!!.listForView.get(position)
             SurveyActivity.sorViewModel?.get(sorcode)
+           // setDescription(description)
             revealSelectedItem(sorcode)
             setNumberSpinnerToOne()
             //TODO remove box
@@ -176,9 +179,10 @@ class SOR_Fragment : Fragment() {
             SurveyActivity.sorViewModel?.sorcodeToDeleteIndex = position
             //Gets the values for this added Sor
 
+//TODO REFACTOR CODE
             // Adds the SorCode to the current sorCode
 
-
+              SurveyActivity.sorViewModel!!.get(SurveyActivity.sorViewModel!!.addedSor2List!!.get(position)!!.sorCode)
 
             val selectedQuantity = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.quantity?.toDouble()
 

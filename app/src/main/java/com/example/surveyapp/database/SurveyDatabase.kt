@@ -14,7 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
-@Database(entities = [SoR::class, Survey::class, SurveySORs::class], version = 3, exportSchema = false)
+@Database(entities = [SoR::class, Survey::class, SurveySORs::class], version = 4, exportSchema = false)
 abstract class SurveyDatabase : RoomDatabase() {
 
     //let the database know about the DAO

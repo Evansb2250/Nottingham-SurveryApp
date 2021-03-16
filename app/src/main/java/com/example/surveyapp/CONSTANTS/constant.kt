@@ -22,6 +22,10 @@ class constant {
         val COMBIBOILER = arrayListOf<String>(PB3010, PB2030)
         val BOILERPOINTCODES = arrayListOf<String>(PB3010, PB2020, PB4030, FP0010, PB2050)
 
+        val BOILERPOINT_ID = 1
+        val COMBIEBOILER_ID = 2
+        val DHEATING_ID = 3
+
         /*
 1.Revenue
 2.response
@@ -44,7 +48,7 @@ class constant {
             "Total Price",
             "Comments",
             "Rechargeable Total",
-        ""
+            ""
         )
         val HEADERS2 = arrayListOf<String>(
             "Revenue",
@@ -117,7 +121,7 @@ class constant {
 
         val FIRE_DOOR_BOX_ID = 0
         val ISOLATOR_BOX_ID = 1
-        val METER_BOX_ID =2
+        val METER_BOX_ID = 2
         val FAST_TRACKING_BOX_ID = 3
         val ASTO_BOX_ID = 4
         val REWIRE_BOX_ID = 5
@@ -125,9 +129,11 @@ class constant {
         val GLASS_BOX_ID = 7
 
 
-
         val NOTALLOWEDTOENTER = arraySetOf<String>(
             QUESTION1_SOR,
+            QUESTION2_SOR,
+            QUESTION3_SOR,
+            QUESTION4_SOR,
             QUESTION5_SOR,
             QUESTION6_SOR,
             QUESTION6_SOR,
@@ -139,6 +145,9 @@ class constant {
             QUESTION12_SOR,
             QUESTION13_SOR,
             QUESTION14_SOR,
+            QUESTION15_SOR,
+            QUESTION16_SOR,
+            QUESTION17_SOR,
             PB3010,
             PB2020,
             PB4030,
@@ -175,7 +184,7 @@ class constant {
         val editSurveyTag = "edit"
         val idTag = "ID"
         val getLastSurvey = "requesting last survey"
-        val getExistingSurvey ="requesting existing survey"
+        val getExistingSurvey = "requesting existing survey"
 
 
     }

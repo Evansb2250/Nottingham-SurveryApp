@@ -1,5 +1,6 @@
 package com.example.surveyapp.fragments.sorTab
 
+import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.*
 import com.example.surveyapp.CONSTANTS.ExistingSors
@@ -162,10 +163,11 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         _rechargeAmount.value = currentSor?.rechargeRate
         UOM = currentSor?.UOM.toString()
         sorDescrip = currentSor?.description.toString()
-
         total.value = currentSor?.rechargeRate
         alertSuccess(true)
     }
+
+
 
 
     fun CheckBeforeAddint(
@@ -176,15 +178,15 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         quantity: Int?,
         total: Double?
     ) {
-        val passedNullTest =
-            checkForNullVariables(sorCode, surveyId, comments, recharge, quantity, total)
-        val passedDuplicateSorTest = runCheck(sorCode?.toLowerCase()?.trim())
+        val passedNullTest = checkForNullVariables(sorCode, surveyId, comments, recharge, quantity, total)
+        val passedDuplicateSorTest = runCheck4Duplicates(sorCode?.toLowerCase()?.trim())
+        val passedNotallowedTest = passedUniqueSoRTest(sorCode?.toUpperCase()?.trim())
 
 
 
         if (passedNullTest) {
 
-            if (passedDuplicateSorTest) { // val surveysor = SurveySORs(sorCode!!, surveyId!!, comments!!, recharge!!, quantity!!, total!!)
+            if (passedDuplicateSorTest && passedNotallowedTest) { // val surveysor = SurveySORs(sorCode!!, surveyId!!, comments!!, recharge!!, quantity!!, total!!)
                 addedSor2List.add(
                     SurveySORs(
                         surveyId, sorCode!!, UOM, sorDescrip, comments,
@@ -201,6 +203,23 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
             _wasSorInsertedToSurvey.value = false
 
 
+    }
+
+
+
+
+    fun passedUniqueSoRTest(sorCode: String?): Boolean{
+        return !constant.NOTALLOWEDTOENTER.contains(sorCode)
+    }
+
+    fun loadPreviousSorList(list: List<SurveySORs>){
+        Log.i("SEARCH","Result in survey sor" + list.toString())
+        if(list != null) {
+            addedSor2List = list.toMutableList()
+          //  Log.i("SEARCH","Result in survey sor" + addedSor2List.toString())
+            updateListofAddedSorUI(addedSor2List)
+            _wasSorInsertedToSurvey.value = true
+        }
     }
 
     private fun resetCat() {
@@ -221,7 +240,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
-    private fun runCheck(sorCode: String?): Boolean {
+    private fun runCheck4Duplicates(sorCode: String?): Boolean {
         for (sor in addedSor2List) {
             val confirmedSor = sor.sorCode.toLowerCase()
             if (sorCode.equals(confirmedSor)) {
@@ -271,6 +290,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
             if (sor.description.toLowerCase().contains(keyword.toLowerCase())) {
                 listForView.add(sor.sorCode)
             }
+            //This list displays the options available SORS a user can select and find out more about.
             viewList = MutableLiveData(listForView)
         }
 

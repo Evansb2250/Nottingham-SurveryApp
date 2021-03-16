@@ -39,6 +39,7 @@ import java.util.*
  */
 class ConfirmationPage : Fragment() {
 
+
     private val currency = DecimalFormat("£###,###.##")
 
     lateinit var binding: FragmentConfirmationPageBinding
@@ -58,6 +59,9 @@ class ConfirmationPage : Fragment() {
         binding.lifecycleOwner = this
 
 
+        confirmPage?.surveyIDTextView?.observe(viewLifecycleOwner, androidx.lifecycle.Observer { SurveyID ->
+            binding.idLabel.text = SurveyID.toString()
+        })
         confirmPage?.total?.observe(viewLifecycleOwner, { newAmount ->
             binding.total.text = currency.format(newAmount)
         })
@@ -74,6 +78,16 @@ class ConfirmationPage : Fragment() {
         confirmPage?.refreshFinished?.observe(viewLifecycleOwner, { newChange ->
        //     Toast.makeText(requireContext(), "Change Detected", Toast.LENGTH_SHORT).show()
             confirmPage!!.updateTotal()
+        })
+
+        confirmPage?.canSuveryBeSaved?.observe(viewLifecycleOwner, androidx.lifecycle.Observer { status ->
+            if(status == true){
+                exitActivity(requireContext(), activity)
+            }
+        })
+
+        confirmPage?.statusMessage?.observe(viewLifecycleOwner, androidx.lifecycle.Observer { status ->
+            Toast.makeText(requireContext(), status, Toast.LENGTH_SHORT).show()
         })
 
 
@@ -140,7 +154,8 @@ class ConfirmationPage : Fragment() {
         cancelButton.setOnClickListener { it ->
             pullDataAndDisplay()
             confirmPage?.insertCompleteSurvey()
-            exitActivity(requireContext(), activity)
+
+
 
         }
     }
@@ -217,6 +232,8 @@ class ConfirmationPage : Fragment() {
     private fun pullDataAndDisplay() {
         confirmPage?.getData()
     }
+
+
 }
 
 private fun exitActivity(activityContext: Context, activity: FragmentActivity?) {

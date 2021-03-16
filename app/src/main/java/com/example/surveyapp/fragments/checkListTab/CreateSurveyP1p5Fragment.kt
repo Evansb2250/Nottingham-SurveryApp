@@ -11,6 +11,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
@@ -34,6 +35,9 @@ class CreateSurveyP1p5Fragment : Fragment() {
         binding.viewmodel = SurveyActivity.checkListVM
         binding.lifecycleOwner = this
 
+        SurveyActivity.checkListVM?._loadedHeatType?.observe(viewLifecycleOwner, Observer { heatType ->
+            binding.systemBoilerSpinner.setSelection(heatType)
+        })
 
         binding.decorComments.addTextChangedListener{
             val decorText = binding.decorComments.getText().toString()

@@ -14,8 +14,12 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
     var address_ = MutableLiveData<String>()
     var postCode_ = MutableLiveData<String>()
     var phoneNumber_ = MutableLiveData<String>()
-    var date_ = MutableLiveData<String>()
     var surveyType_ = MutableLiveData<String>()
+
+    var day_ = MutableLiveData<Int>()
+    var month_ = MutableLiveData<Int>()
+    var year_ = MutableLiveData<Int>()
+
 
 
 
@@ -92,8 +96,16 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
         return phoneNumber
     }
 
-    fun getDate(): String {
-        return date
+    fun getDay(): Int? {
+        return day_.value
+    }
+
+    fun getMonth(): Int? {
+        return month_.value
+    }
+
+    fun getYear(): Int?{
+        return year_.value
     }
 
     fun setName(oldName: String) {
@@ -106,7 +118,13 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
         address_.value = returnCreatePagePackage.address
         postCode_.value = returnCreatePagePackage.postCode
         phoneNumber_.value = returnCreatePagePackage.phoneNumber
-        date_.value = returnCreatePagePackage.date
+
+        //This order is needed since observer pattern is focused on day
+        //otherwise month and year will be come null
+        month_.value = returnCreatePagePackage.month
+        year_.value = returnCreatePagePackage.year
+        day_.value = returnCreatePagePackage.day
+
         surveyType_.value = returnCreatePagePackage.surveyType
         surveyType = returnCreatePagePackage.surveyType
 
