@@ -15,6 +15,7 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
     var postCode_ = MutableLiveData<String>()
     var phoneNumber_ = MutableLiveData<String>()
     var surveyType_ = MutableLiveData<String>()
+    var houseNumber_=MutableLiveData<String>()
 
     var day_ = MutableLiveData<Int>()
     var month_ = MutableLiveData<Int>()
@@ -28,15 +29,9 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
     private var address = ""
     private var postCode = ""
     private var phoneNumber = ""
-    private var date = ""
     private var surveyType = ""
 
-    private var _id :Int = 0
 
-
-    fun getData(): String {
-        return surveyName + "\n" + address + "\n" + postCode + "\n" + phoneNumber + "\n" + date + "\n" + surveyType + "\n"
-    }
 
 
     fun storeName(newName: String) {
@@ -63,12 +58,6 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
     fun storePhoneNumber(newPhoneNumber: String) {
         if (newPhoneNumber != null) {
             phoneNumber = newPhoneNumber
-        }
-    }
-
-    fun storeDate(newDate: String) {
-        if (newDate != null) {
-            date = newDate
         }
     }
 
@@ -108,9 +97,6 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
         return year_.value
     }
 
-    fun setName(oldName: String) {
-        surveyName = oldName
-    }
 
     fun addSurveyPackage(returnCreatePagePackage: createPagePackage) {
 

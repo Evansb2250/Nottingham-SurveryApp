@@ -48,7 +48,7 @@ class SOR_Fragment : Fragment() {
         setupQuantyObserver(SurveyActivity.sorViewModel)
         setUpTotalObserver(SurveyActivity.sorViewModel!!.total)
         setUpRechargeObserver(SurveyActivity.sorViewModel!!.rechargeAmount)
-        setUpViewListObserver(SurveyActivity.sorViewModel!!.viewList)
+        setUpViewListObserver()
         setUpSorInsertCheck(SurveyActivity.sorViewModel?.wasSorInsertedToSurvey)
         setUpRemoveAllButton()
 
@@ -100,8 +100,8 @@ class SOR_Fragment : Fragment() {
     }
 
 
-    private fun setUpViewListObserver(viewList: LiveData<List<String>>) {
-        viewList.observe(viewLifecycleOwner, Observer { newList ->
+    private fun setUpViewListObserver() {
+        SurveyActivity.sorViewModel!!.viewList.observe(viewLifecycleOwner, Observer { newList ->
             setUpListView(newList)
         })
     }

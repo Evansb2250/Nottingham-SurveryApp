@@ -18,7 +18,9 @@ data class Survey(
     @ColumnInfo(name = DAY) val day: Int, //TODO CREATE DAY, MONTH, YEAR columns
     @ColumnInfo(name= MONTH) val  month: Int,
     @ColumnInfo(name = YEAR) val year: Int,
-    @ColumnInfo(name = SURVEYTYPE) val surveyType: String
+    @ColumnInfo(name = SURVEYTYPE) val surveyType: String,
+    @ColumnInfo(name = SURVEY_TOTAL) var surveyTotal:Double,
+    @ColumnInfo(name=  SURVEY_RECHARGE_TOTAL) var rechargeTotal:Double
 )
 
 /*z
@@ -39,6 +41,8 @@ https://stackoverflow.com/questions/47511750/how-to-use-foreign-key-in-room-pers
         const val MONTH = "month"
         const val YEAR = "year"
         const val SURVEYTYPE = "surveyType"
+        const val SURVEY_TOTAL ="survey_Total"
+        const val SURVEY_RECHARGE_TOTAL ="survey_recharge_Total"
 
     }
 }

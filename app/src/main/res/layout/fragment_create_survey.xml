@@ -129,7 +129,7 @@
             <TableLayout
                 android:id="@+id/surveyEntryTable"
                 android:layout_width="484dp"
-                android:layout_height="229dp"
+                android:layout_height="290dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginEnd="8dp"
@@ -167,7 +167,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/addressTxt"
+                        android:id="@+id/addressText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bsc_fonts"
@@ -186,7 +186,32 @@
                         android:inputType="textPersonName"
                         android:text="@string/no_text_lebel" />
                 </TableRow>
+<!--
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
+                    <TextView
+                        android:id="@+id/houseNumber_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bsc_fonts"
+                        android:text="@string/houseNumberLabel"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <EditText
+                        android:id="@+id/houseNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:autofillHints=""
+                        android:ems="10"
+                        android:hint="@string/houseNumberHint"
+                        android:inputType="textPersonName"
+                        android:text="@string/no_text_lebel" />
+                </TableRow>
+-->
 
                 <TableRow
                     android:layout_width="match_parent"

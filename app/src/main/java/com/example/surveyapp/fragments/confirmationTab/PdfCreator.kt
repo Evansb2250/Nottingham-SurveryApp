@@ -19,17 +19,17 @@ import java.util.*
 
 
 class PdfCreator(private val viewModel: ConfirmViewModel) {
-    companion object{
+    companion object {
         var message = ""
     }
 
     private val currency = DecimalFormat("£###,###.##")
 
-   suspend fun savePdf() : Boolean{
+    suspend fun savePdf(): Boolean {
         // Create object of Document class
         val mDoc = Document(PageSize.A3.rotate())
 
-       val mFilePath = createDocFilePath("_Survey_id_", SurveyActivity.SurveyID)
+        val mFilePath = createDocFilePath("_Survey_id_", SurveyActivity.SurveyID)
 
         try {
             //create instance of pdfwriter class
@@ -205,7 +205,7 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
                     cell = PdfPCell(Phrase(""))
                     cell.border = NONE
                     cell.colspan = 11
-                    cell.minimumHeight=20F
+                    cell.minimumHeight = 20F
                     table.addCell(cell)
 
 
@@ -265,11 +265,11 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
 
                     count += 1
 
-                    if(count%5== 0){
+                    if (count % 5 == 0) {
                         cell = PdfPCell(Phrase(""))
                         cell.border = NONE
                         cell.colspan = 11
-                        cell.minimumHeight=40F
+                        cell.minimumHeight = 40F
                         table.addCell(cell)
                     }
                 }
@@ -297,9 +297,7 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
     }
 
 
-
-
-   suspend fun saveQuestionaire2Pdf(){
+    suspend fun saveQuestionaire2Pdf() {
 
         // Create object of Document class
         val mDoc = Document(PageSize.A4)
@@ -396,7 +394,7 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
             table.addCell(createBordlessHeaderCell(PDFconstants.GLASS))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getHouseHasGlassStatus()))
 
-table.addCell(createBlankSpace())
+            table.addCell(createBlankSpace())
 
             table.addCell(createBordlessHeaderCell(PDFconstants.ALTRO))
             table.addCell(createBordlessCell(SurveyActivity.checkListVM?.getAltroStatus()))
@@ -405,7 +403,6 @@ table.addCell(createBlankSpace())
 
             mDoc.add(table)
             mDoc.close()
-
 
 
         } catch (e: Exception) {
@@ -420,10 +417,10 @@ table.addCell(createBlankSpace())
         val titlePhrase = Phrase()
         titlePhrase.add(Chunk(cellDescription, FontFactory.getFont(FontFactory.HELVETICA_BOLD)))
         titlePhrase.font.size = 80.0f
-        val headerCell  = PdfPCell(titlePhrase)
+        val headerCell = PdfPCell(titlePhrase)
         headerCell.colspan = 2
         headerCell.border = NONE
-        headerCell.minimumHeight=20F
+        headerCell.minimumHeight = 20F
 
 
 
@@ -431,20 +428,19 @@ table.addCell(createBlankSpace())
     }
 
 
-
-    private fun createBordlessCell(cellDescription: String?): PdfPCell{
+    private fun createBordlessCell(cellDescription: String?): PdfPCell {
         var phrase = Phrase()
-        phrase.add(Chunk(cellDescription,FontFactory.getFont(FontFactory.HELVETICA)))
+        phrase.add(Chunk(cellDescription, FontFactory.getFont(FontFactory.HELVETICA)))
         val cell = PdfPCell(Phrase(cellDescription))
-      //  cell.border = NONE
+        //  cell.border = NONE
         cell.minimumHeight = 28F
         return cell
     }
 
-    private fun createBordlessHeaderCell(cellDescription: String?): PdfPCell{
+    private fun createBordlessHeaderCell(cellDescription: String?): PdfPCell {
         var phrase = Phrase()
         phrase.add(Chunk(cellDescription, FontFactory.getFont(FontFactory.HELVETICA_BOLD)))
-        phrase.font.size= 15.0f
+        phrase.font.size = 15.0f
         val headerCell = PdfPCell(phrase)
         headerCell.border = NONE
 
@@ -459,11 +455,11 @@ table.addCell(createBlankSpace())
     }
 
 
-    private fun createBlankSpace():PdfPCell{
+    private fun createBlankSpace(): PdfPCell {
         val cell = PdfPCell(Phrase(""))
         cell.border = NONE
         cell.colspan = 11
-        cell.minimumHeight=15F
+        cell.minimumHeight = 15F
 
         return cell
 
@@ -477,7 +473,7 @@ table.addCell(createBlankSpace())
         ).format(System.currentTimeMillis())
         // PDF file path
         val fileName = pdfType + SurveyActivity.SurveyID
-        mFileName = mFileName+fileName
+        mFileName = mFileName + fileName
 
         return Environment.getExternalStorageDirectory().toString() + "/" + mFileName + ".pdf"
     }

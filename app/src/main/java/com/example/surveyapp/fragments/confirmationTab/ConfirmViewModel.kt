@@ -1,24 +1,16 @@
 package com.example.surveyapp.fragments.confirmationTab
 
 import android.util.Log
-import android.widget.Toast
 import androidx.annotation.WorkerThread
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.*
-import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.activities.SurveyActivity
+import com.example.surveyapp.domains.ChecklistEntries
 import com.example.surveyapp.domains.SurveySORs
 import com.example.surveyapp.ignore.Survey
 import com.example.surveyapp.repository.DatabaseRepository
 
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStreamWriter
 import java.text.DecimalFormat
-import kotlin.collections.ArrayList
 
 class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
@@ -26,7 +18,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     private val pdf = PdfCreator(this)
     private val currency = DecimalFormat("£###,###.##")
     var surveyIDTextView = MutableLiveData<Int>()
-    var _dataFromSurvey = mutableListOf<SurveySORs>()
+    var _sorListData = mutableListOf<SurveySORs>()
     var refreshFinished = MutableLiveData<Boolean>()
     var changes = MutableLiveData<Int>()
     var total = MutableLiveData<Double>()
@@ -37,7 +29,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 
     var statusMessage = MutableLiveData<String>()
-    var hasConditionsBeenMet:Boolean =true
+    var hasConditionsBeenMet: Boolean = true
     var canSuveryBeSaved = MutableLiveData<Boolean>()
 
 
@@ -50,10 +42,14 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     lateinit var postCode: String
     lateinit var phoneNumber: String
     lateinit var surveyType: String
+    lateinit var abestoText:String
+
+
     var day: Int? = null
     var month: Int? = null
     var year: Int? = null
 
+    var checkListObject: ChecklistEntries? = null
 
 
     //Hides prices
@@ -71,34 +67,35 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     }
 
 
-
-
-
     //TODO Debate if you need to turn this function into a coroutine
     //  fun getData(): List<SurveySORs> {
     fun getData() = viewModelScope.launch {
         //Default setting
         hasConditionsBeenMet = true
-
         createSurveyObject()
-
+        createChecklistObject()
 
         if (hasConditionsBeenMet == true) {
-            updateConditionsMetStatus(true,"Data Collection Successful")
+            updateConditionsMetStatus(true, "Data Collection Successful")
             dataFromSor = SurveyActivity.sorViewModel?.returnListSORLIST()!!
             dataFromPrev = SurveyActivity.prevViewModel?.returnPreviosWorkData()!!
+
             dataFromChecklist = SurveyActivity.checkListVM?.getHeatingType()!!
 
             //    return combineData()
-            _dataFromSurvey = combineData() as MutableList<SurveySORs>
+            _sorListData = combineData() as MutableList<SurveySORs>
             refreshFinished.value = true;
 
         }
 
 
-
-
     }
+
+
+    private suspend fun createChecklistObject() {
+        checkListObject = SurveyActivity?.checkListVM?.getCheckListObject()
+    }
+
 
 
     @Suppress("RedundantSuspendModifier")
@@ -129,9 +126,51 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     private suspend fun createSurveyObject() {
-        val cantUpdate = "Cant update "
+        initializeSurveyInfoVariables()
+        val isSurveyDetailsCompleted = surveyTabScanResults()
+        if(isSurveyDetailsCompleted){
+            createSurveyDomain()
+        }
 
-        address = SurveyActivity.createSurveyPage?.getAddress() ?:""
+    }
+
+    private fun createSurveyDomain() {
+        surveyInfo = Survey(
+            address = address,
+            postCode = postCode,
+            phoneNumber = phoneNumber,
+            day = day!!,
+            month = month!!,
+            year = year!!,
+            surveyType = surveyType,
+            surveyorName = name,
+            abestoRemovalDescription = abestoText,
+            surveyTotal = 0.0,
+            rechargeTotal = 0.0
+        )
+    }
+
+    private fun surveyTabScanResults(): Boolean {
+        val cantUpdate = "Cant update "
+        //Checks if the user added (Name, addres, and PostCode Details
+        if (name.length > 1 && address.length > 1  && postCode.length > 1) {
+            //Checks if the user selected a date for the survey
+            if (day != null && month != null && year != null && surveyType.length > 1) {
+                //Returns true only if these requirements are made
+                return true
+            } else {
+                //Generates an  error message
+                updateConditionsMetStatus(false, "${cantUpdate}Please Complete The Survey Detail Tab!") }
+        } else {
+            //Generates an  error message
+            updateConditionsMetStatus(false, "${cantUpdate}Missing details {Surveyor name, address, or post code }")
+        }
+        return false
+    }
+
+
+    private fun initializeSurveyInfoVariables() {
+        address = SurveyActivity.createSurveyPage?.getAddress() ?: ""
         name = SurveyActivity.createSurveyPage?.getName() ?: ""
         postCode = SurveyActivity.createSurveyPage?.getPostCode() ?: ""
         phoneNumber = SurveyActivity.createSurveyPage?.getPhoneNumber() ?: ""
@@ -139,29 +178,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
         day = SurveyActivity.createSurveyPage?.getDay()
         month = SurveyActivity.createSurveyPage?.getMonth()
         year = SurveyActivity.createSurveyPage?.getYear()
-
-
-
-        if(name.length > 1 && address.length > 1 && postCode.length > 1){
-            if (day != null && month != null && year != null && surveyType.length > 1) {
-                surveyInfo = Survey(
-                    address = address,
-                    postCode = postCode,
-                    phoneNumber = phoneNumber,
-                    day = day!!,
-                    month = month!!,
-                    year = year!!,
-                    surveyType = surveyType,
-                    surveyorName = name,
-                    abestoRemovalDescription = ""
-                )
-
-            } else {updateConditionsMetStatus(false, "${cantUpdate}Please Complete The Survey Detail Tab!")}
-
-
-        }else {updateConditionsMetStatus(false, "${cantUpdate}Missing details {Surveyor name, address, or post code }")}
-
-
+        abestoText = SurveyActivity?.abesto?.getAbesto().toString()
 
     }
 
@@ -180,11 +197,11 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
         total.value = 0.0
         rechargeTotal.value = 0.0
 
-        if (_dataFromSurvey != null) {
+        if (_sorListData != null) {
             //Reseto
             //TODO CREATE AN IF STATEMENT TO ADD TOTAL OR TO JUST UPDATE MESSAGE
             if (hidePrices.equals(false)) {
-                for (data in _dataFromSurvey) {
+                for (data in _sorListData) {
                     total.value = total.value?.plus(data.total)
                     if (data.isRecharge.equals(true)) {
                         rechargeTotal.value = rechargeTotal.value?.plus(data.total)
@@ -193,6 +210,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
                 //Apply Vat to recharge amount
                 rechargeTotal.value = rechargeTotal.value!! * VAT.value!! + rechargeTotal.value!!
+
             }
 
 
@@ -206,7 +224,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 
     fun getSORS(): List<SurveySORs> {
-        return _dataFromSurvey
+        return _sorListData
     }
 
 
@@ -214,7 +232,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     @WorkerThread
     fun updateMessageOnBackThread() = viewModelScope.launch {
         //   messageList = updateMessage(_dataFromSurvey) as ArrayList<String>
-        updateMessage(_dataFromSurvey)
+        updateMessage(_sorListData)
     }
 
 
@@ -244,39 +262,40 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
     }
 
-// Notifies the GUI side if the operation was successful, and if not what the problem was.
+    // Notifies the GUI side if the operation was successful, and if not what the problem was.
     private fun updateConditionsMetStatus(status: Boolean, message: String) {
-    statusMessage.value = message
-    hasConditionsBeenMet = status
-
-
+        statusMessage.value = message
+        hasConditionsBeenMet = status
     }
 
 
     fun insertCompleteSurvey() = viewModelScope.launch {
 
-            if (hasConditionsBeenMet == true) {
-                addSurvey()
-                addSurveySorsList()
-                //Sets flag, the activity will then be closed after saving the data
-                canSuveryBeSaved.value = true
-            } else
-                updateConditionsMetStatus(false, "Survey cannot be saved Conditions were not met, make sure all the survey is completed")
-
-
-    }
-
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    private suspend fun addSurveySorsList() {
-        for (sor in _dataFromSurvey) {
-            repository.insertSurveySors(sor)
+        if(surveyInfo != null){
+            //adds the survey total inside the survey object
+            surveyInfo.surveyTotal = total.value?:0.0
+            //adds the recharge amount into the survey object
+            surveyInfo.rechargeTotal = rechargeTotal.value ?:0.0
         }
+
+
+        if (hasConditionsBeenMet == true) {
+            addSurvey()
+            //Sets flag, the activity will then be closed after saving the data
+            canSuveryBeSaved.value = true
+        } else
+            updateConditionsMetStatus(
+                false,
+                "Survey cannot be saved Conditions were not met, make sure all the survey is completed"
+            )
+
+
     }
 
 
     private suspend fun addSurvey() {
-        repository.insertCompleteSurvey(surveyInfo)
+       // repository.insertCompleteSurvey(surveyInfo)
+        repository.insertSurveyPreCheck(surveyInfo,_sorListData,checkListObject!!)
     }
 
 

@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.surveyapp.CONSTANTS.constant
+import com.example.surveyapp.activities.SurveyActivity
+import com.example.surveyapp.domains.ChecklistEntries
 import com.example.surveyapp.domains.SoR
 import com.example.surveyapp.domains.SurveySORs
 import com.example.surveyapp.repository.DatabaseRepository
@@ -14,24 +16,24 @@ import kotlinx.coroutines.launch
 class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
 
-
-
     companion object {
         private lateinit var Global_heatingType: List<SurveySORs>
 
     }
-    private var _surveyID :Int ?= null
-    private var heatingType: List<SurveySORs> ?= null
-    private var sorList = mutableListOf<SoR>()
-    var _loadedHeatType = MutableLiveData<Int>()
 
+    private var _surveyID: Int? = null
+    private var heatingType: List<SurveySORs>? = null
+    private var sorList = mutableListOf<SoR>()
+
+    private var heatTypeIndex = 0
+    private var checkListObject: ChecklistEntries? = null
     private var fireDoorComment = ""
-    private var decorationPoints =""
-    private var tapsComment =""
+    private var decorationPoints = ""
+    private var tapsComment = ""
     private var floorComment = ""
 
 
-
+    var changeDetected = MutableLiveData<Boolean>()
     private val checkBoxStatus = arrayListOf(
         false,
         false,
@@ -43,26 +45,15 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
         false
     )
 
+    var checBoxLiveState_ = checkBoxStatus
 
 
 
-
-
-
-
-
-
-
-
-
-
-    fun setSurveyID(id: Int){
+    fun setSurveyID(id: Int) {
         _surveyID = id
+        updateChecklistObject()
+
     }
-
-
-
-
 
 
     fun getHeatingType(): List<SurveySORs> {
@@ -74,17 +65,27 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
         when (code) {
             0 -> {
                 val empytList = mutableListOf<SurveySORs>()
+                heatTypeIndex = 0
+                updateChecklistObject()
                 heatingType = empytList
 
             }
             1 -> {
                 val systemBoilerCodes = constant.BOILERPOINTCODES
+                heatTypeIndex = constant.BOILERPOINT_ID
+                updateChecklistObject()
+
+                // prevents duplicates
                 if (heatingType?.size != 5) {
                     get(systemBoilerCodes)
                 }
             }
             2 -> {
                 val combiHeating = constant.COMBIBOILER
+                heatTypeIndex = constant.COMBIEBOILER_ID
+                updateChecklistObject()
+
+                // prevents duplicates
                 if (heatingType?.size != 2) {
                     get(combiHeating)
                 }
@@ -92,6 +93,10 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
             }
             3 -> {
                 val deheating = mutableListOf<String>(constant.DHEATING)
+                heatTypeIndex = constant.DHEATING_ID
+                updateChecklistObject()
+
+                // prevents duplicates
                 if (heatingType?.size != 1) {
                     get(deheating)
                 }
@@ -141,7 +146,7 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
                 val uom = sor.UOM
                 var surveyID = -1
 
-                if(_surveyID != null){
+                if (_surveyID != null) {
                     surveyID = _surveyID!!
                 }
 
@@ -164,45 +169,91 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
         }
     }
 
+    fun requestCheckList(checklistEntries: ChecklistEntries){
+
+        allocateCheckListEntries(constant.FIRE_DOOR_BOX_ID, checklistEntries.fireDoor)
+        allocateCheckListEntries(constant.ISOLATOR_BOX_ID,  checklistEntries.isolator)
+        allocateCheckListEntries(constant.METER_BOX_ID,  checklistEntries.meterIssue)
+        allocateCheckListEntries(constant.REWIRE_BOX_ID, checklistEntries.rewire)
+        allocateCheckListEntries(constant.FAST_TRACKING_BOX_ID, checklistEntries.fastTrack)
+        allocateCheckListEntries(constant.ASTO_BOX_ID, checklistEntries.altro)
+        allocateCheckListEntries(constant.HEATING_BOX_ID, checklistEntries.heating)
+        allocateCheckListEntries(constant.GLASS_BOX_ID, checklistEntries.glass)
+
+        upDateTapsComment(checklistEntries.locationTaps)
+        upDateFloorComment(checklistEntries.floorLevel)
+        updateDecorTaps(checklistEntries.decorationPoints)
+        storeFireDoorComment(checklistEntries.fireDoorComment)
+        setHeatyingType(checklistEntries.heatType)
+
+
+        checBoxLiveState_ = checkBoxStatus
+        changeDetected.value =true
+    }
+
+
+    private fun allocateCheckListEntries(id: Int, isChecked: Boolean) {
+        checkBoxStatus[id] = isChecked
+        updateChecklistObject()
+    }
+
+
     fun registerClick(id: Int, checked: Boolean) {
 
         when (id) {
             constant.FIRE_DOOR_BOX_ID -> {
                 checkBoxStatus[id] = checked
+                updateChecklistObject()
+
+
             }
             constant.ISOLATOR_BOX_ID -> {
                 checkBoxStatus[id] = checked
+                updateChecklistObject()
+
             }
-            constant.METER_BOX_ID  -> {
+            constant.METER_BOX_ID -> {
                 checkBoxStatus[id] = checked
+                updateChecklistObject()
+
             }
-            constant.FAST_TRACKING_BOX_ID  -> {
+            constant.FAST_TRACKING_BOX_ID -> {
                 checkBoxStatus[id] = checked
+                updateChecklistObject()
+
             }
             constant.ASTO_BOX_ID -> {
                 checkBoxStatus[id] = checked
+                updateChecklistObject()
+
             }
-            constant.REWIRE_BOX_ID  -> {
+            constant.REWIRE_BOX_ID -> {
                 checkBoxStatus[id] = checked
+                updateChecklistObject()
             }
-            constant.HEATING_BOX_ID  -> {
+            constant.HEATING_BOX_ID -> {
                 checkBoxStatus[id] = checked
+                updateChecklistObject()
             }
-            constant.GLASS_BOX_ID  -> {
+            constant.GLASS_BOX_ID -> {
                 checkBoxStatus[id] = checked
+                updateChecklistObject()
+
             }
         }
     }
 
     fun storeFireDoorComment(newComment: String) {
         fireDoorComment = newComment
+        updateChecklistObject()
+
     }
 
-    fun getFireDoorComments():String{
+    fun getFireDoorComments(): String {
         return fireDoorComment
     }
 
-    fun getDecorPoints():String{
+    fun getDecorPoints(): String {
         return decorationPoints
     }
 
@@ -212,74 +263,107 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
-    fun getFloorLevel():String{
+    fun getFloorLevel(): String {
         return floorComment
     }
 
 
-
-
     fun updateDecorTaps(decorText: String) {
         decorationPoints = decorText
+        updateChecklistObject()
+
 
     }
 
     fun upDateFloorComment(floorText: String) {
         floorComment = floorText
+        updateChecklistObject()
+
     }
 
     fun upDateTapsComment(tapsText: String) {
         tapsComment = tapsText
+        updateChecklistObject()
+
     }
 
 
+    fun getHeatTypeIndex(): Int {
+        return heatTypeIndex
+    }
 
-
-    fun getMeterStatus():String {
+    fun getMeterStatus(): String {
         return returnStatus(constant.METER_BOX_ID)
     }
 
 
-    fun getFireDoorStatus():String{
+    fun getFireDoorStatus(): String {
         return returnStatus(constant.FIRE_DOOR_BOX_ID)
     }
 
-    fun getIsolatorStatus(): String{
+    fun getIsolatorStatus(): String {
         return returnStatus(constant.ISOLATOR_BOX_ID)
     }
 
-    fun getRewireStatus(): String{
+    fun getRewireStatus(): String {
         return returnStatus(constant.REWIRE_BOX_ID)
     }
 
-    fun getHouseHeatingStatus():String{
+    fun getHouseHeatingStatus(): String {
         return returnStatus(constant.HEATING_BOX_ID)
     }
 
-    fun getFastTrackStatus():String{
-        return  returnStatus(constant.FAST_TRACKING_BOX_ID)
+    fun getFastTrackStatus(): String {
+        return returnStatus(constant.FAST_TRACKING_BOX_ID)
     }
 
-    fun getHouseHasGlassStatus():String{
+    fun getHouseHasGlassStatus(): String {
         return returnStatus(constant.GLASS_BOX_ID)
     }
 
-    fun getAltroStatus():String{
+    fun getAltroStatus(): String {
         return returnStatus(constant.ASTO_BOX_ID)
     }
 
 
-
-
-    private fun returnStatus(id:Int): String{
-        if(checkBoxStatus[id] == true){
+    private fun returnStatus(id: Int): String {
+        if (checkBoxStatus[id] == true) {
             return "YES"
-        }else
+        } else
             return "NO"
     }
 
-}
+    private fun updateChecklistObject() {
 
+        if(_surveyID != null) {
+    checkListObject = ChecklistEntries(
+        surveyId = _surveyID!!,
+        heatType = heatTypeIndex,
+        fireDoor = checkBoxStatus[constant.FIRE_DOOR_BOX_ID],
+        fireDoorComment = fireDoorComment,
+        decorationPoints = decorationPoints,
+        locationTaps = tapsComment,
+        floorLevel = floorComment,
+        isolator = checkBoxStatus[constant.ISOLATOR_BOX_ID],
+        meterIssue = checkBoxStatus[constant.METER_BOX_ID],
+        fastTrack = checkBoxStatus[constant.FAST_TRACKING_BOX_ID],
+        altro = checkBoxStatus[constant.ASTO_BOX_ID],
+        rewire = checkBoxStatus[constant.REWIRE_BOX_ID],
+        heating = checkBoxStatus[constant.HEATING_BOX_ID],
+        glass = checkBoxStatus[constant.GLASS_BOX_ID]
+    )
+}
+    }
+
+    fun getCheckListObject():ChecklistEntries?{
+        return checkListObject
+    }
+
+
+    //Functions to get and create a
+
+
+}
 
 
 /****

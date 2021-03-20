@@ -1,5 +1,6 @@
 package com.example.surveyapp.fragments.asbestoRomval
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.surveyapp.repository.DatabaseRepository
@@ -7,7 +8,12 @@ import com.example.surveyapp.repository.DatabaseRepository
 class AbestoViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
     private var abestoRemovalDescription:String = ""
+     var changeDetected = MutableLiveData<Boolean>()
 
+    fun restoreOldText(oldText: String){
+        abestoRemovalDescription = oldText
+        changeDetected.value = true
+    }
 
     fun updateText(newText:String){
         abestoRemovalDescription = newText

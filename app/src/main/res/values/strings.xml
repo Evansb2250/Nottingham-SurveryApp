@@ -9,9 +9,11 @@
     <string name="blank"></string>
     <string-array name="search_surveys_by">
 
-        <item>Survey ID</item>
-        <item>Address</item>
-        <item>Date</item>
+        <item>SURVEY ID</item>
+        <item>ADDRESS</item>
+        <item>YEAR</item>
+        <item>MONTH</item>
+
     </string-array>
 
     <string name="c28">1.Daywork Labour - Electrician</string>
@@ -111,5 +113,7 @@
     <string name="remove_all_label">RESET</string>
     <string name="button">Button</string>
     <string name="pdf">PDF</string>
+    <string name="houseNumberLabel">House #</string>
+    <string name="houseNumberHint">Enter House Number</string>
 
 </resources>

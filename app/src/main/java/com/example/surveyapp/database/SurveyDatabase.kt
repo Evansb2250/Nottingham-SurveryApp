@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.surveyapp.CONSTANTS.ExistingSors
 import com.example.surveyapp.DAO.dbDAO
+import com.example.surveyapp.domains.ChecklistEntries
 import com.example.surveyapp.domains.SoR
 import com.example.surveyapp.domains.SurveySORs
 import com.example.surveyapp.ignore.Survey
@@ -14,7 +15,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
-@Database(entities = [SoR::class, Survey::class, SurveySORs::class], version = 4, exportSchema = false)
+@Database(entities = [SoR::class, Survey::class, SurveySORs::class, ChecklistEntries::class], version = 6, exportSchema = false)
 abstract class SurveyDatabase : RoomDatabase() {
 
     //let the database know about the DAO

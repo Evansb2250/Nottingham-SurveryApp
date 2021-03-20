@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.databinding.FragmentAsbestoRemovalBinding
@@ -32,17 +33,16 @@ class AsbestoRemoval : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_asbesto_removal, container, false)
 
+        SurveyActivity.abesto?.changeDetected?.observe(viewLifecycleOwner, Observer { detection ->
+            binding.abestoRemovalEditView.setText(SurveyActivity?.abesto?.getAbesto())
+        })
 
         // updates text
         binding.abestoRemovalEditView.addTextChangedListener{
             val description = binding.abestoRemovalEditView.getText().toString()
             SurveyActivity.abesto!!.updateText(description)
             }
-            binding.abestoRemovalEditView.addTextChangedListener{
 
-                Toast.makeText(requireContext(), binding.abestoRemovalEditView.getText(), Toast.LENGTH_LONG ).show()
-
-            }
 
 
         return binding.root

@@ -32,7 +32,9 @@ class SurveyActivityViewModel (private val repository: DatabaseRepository) : Vie
     private fun requestExistSurvey(id: Int) = viewModelScope.launch {
        val existingSurvey = repository.searchSurveyById(id)
        val existingSorCodes = repository.returnSurveySors(id)!!
-        restoreSurveyHelperClass = RestoreSurveyHelper(existingSurvey, existingSorCodes)
+        val checkList = repository.getCheckList(id)
+
+        restoreSurveyHelperClass = RestoreSurveyHelper(existingSurvey, existingSorCodes, checkList)
         _id.value = restoreSurveyHelperClass.getId()
     }
 

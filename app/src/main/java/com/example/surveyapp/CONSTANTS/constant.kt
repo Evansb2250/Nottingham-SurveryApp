@@ -128,6 +128,25 @@ class constant {
         val HEATING_BOX_ID = 6
         val GLASS_BOX_ID = 7
 
+val ONLYPREVIOUSSORS = arraySetOf<String>(
+    QUESTION1_SOR,
+    QUESTION2_SOR,
+    QUESTION3_SOR,
+    QUESTION4_SOR,
+    QUESTION5_SOR,
+    QUESTION6_SOR,
+    QUESTION6_SOR,
+    QUESTION7_SOR,
+    QUESTION8_SOR,
+    QUESTION9_SOR,
+    QUESTION10_SOR,
+    QUESTION11_SOR,
+    QUESTION12_SOR,
+    QUESTION13_SOR,
+    QUESTION14_SOR,
+    QUESTION15_SOR,
+    QUESTION16_SOR,
+    QUESTION17_SOR)
 
         val NOTALLOWEDTOENTER = arraySetOf<String>(
             QUESTION1_SOR,
@@ -178,8 +197,13 @@ class constant {
             19,
             20
         )
+       // (id, address, year, month, or day)
 
-
+        val DAY ="DAY"
+        val MONTH = "MONTH"
+        val YEAR = "YEAR"
+        val SEARCH_ID="SURVEY ID"
+        val ADDRESS= "ADDRESS"
         val bundleMessage = "message"
         val editSurveyTag = "edit"
         val idTag = "ID"

@@ -153,6 +153,9 @@ class ConfirmationPage : Fragment() {
     private fun saveAndExit(cancelButton: Button) {
         cancelButton.setOnClickListener { it ->
             pullDataAndDisplay()
+
+
+
             confirmPage?.insertCompleteSurvey()
 
 

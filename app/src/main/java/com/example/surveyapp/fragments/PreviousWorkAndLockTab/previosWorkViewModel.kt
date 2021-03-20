@@ -1,6 +1,8 @@
 package com.example.surveyapp.fragments.PreviousWorkAndLockTab
 
+import android.util.Log
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -14,7 +16,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
 
 
     private var surveyID = 0
-
+    var changeDetect = MutableLiveData<Boolean>()
 
 
 
@@ -28,7 +30,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
     /*
     PASSED
      */
-    val previousWorkData = arrayOf(
+    var previousWorkData = arrayListOf<SurveySORs>(
         SurveySORs(
             surveyID,
             constant.QUESTION1_SOR,
@@ -288,8 +290,7 @@ PASSED
     @WorkerThread
     fun get(sorCode: String, id: Int, quantity: Double, isRecharge: Boolean, comment: String) =
         viewModelScope.launch {
-            currentSor = repository.getSor(sorCode)
-
+            currentSor = repository.getSor(sorCode.trim())
             if (currentSor != null) {
                 changeSurveyVariables(id, quantity, isRecharge, comment)
                 requestRecieved = true
@@ -300,6 +301,13 @@ PASSED
         }
 
 
+
+
+
+    fun loadOldSors(existingSurveySors: List<SurveySORs>){
+        previousWorkData = existingSurveySors as ArrayList<SurveySORs>
+        changeDetect.value = true
+    }
 }
 
 

@@ -16,6 +16,8 @@ import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.activities.SurveyActivity.Companion.createSurveyPage
 import com.example.surveyapp.databinding.FragmentCreateSurveyBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 
@@ -51,6 +53,14 @@ class CreateSurveyFragment : Fragment() {
             var month = createSurveyPage?.getMonth()
             var year = createSurveyPage?.getYear()
 
+            val dateFormat = SimpleDateFormat("dd-M-yyyy")
+            val x = "${day}-${month}-${year}"
+            val date = dateFormat.parse(x)
+
+
+
+
+            binding.calendarView.setDate(date.getTime())
             binding.dateEdit.setText("${day}/${month}/${year}")
 
         })
@@ -63,6 +73,8 @@ class CreateSurveyFragment : Fragment() {
                  binding.revenueRB.setChecked(true)}
 
         })
+
+
 
         binding.capitalRB.setOnClickListener {
             SurveyActivity.createSurveyPage?.setSurveryType(constant.CAPTIAL)
@@ -90,12 +102,15 @@ class CreateSurveyFragment : Fragment() {
             SurveyActivity.createSurveyPage?.storePhoneNumber(text.toString())
         }
 
+
+
 //        binding.dateEdit.addTextChangedListener { text ->
 //            SurveyActivity.createSurveyPage?.storeDate(text.toString())
 //        }
 
 
         binding.calendarView.setOnDateChangeListener{CalendarView, year, month, dayOfMonth ->
+
             createSurveyPage?.month_?.value = month+1
             createSurveyPage?.year_?.value = year
             createSurveyPage?.day_?.value = dayOfMonth

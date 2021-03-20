@@ -2,10 +2,11 @@ package com.example.surveyapp.classLoader
 
 import android.util.Log
 import com.example.surveyapp.CONSTANTS.constant
+import com.example.surveyapp.domains.ChecklistEntries
 import com.example.surveyapp.domains.SurveySORs
 import com.example.surveyapp.ignore.Survey
 
-class RestoreSurveyHelper(private val surveyOld: Survey, private val sorsOld: List<SurveySORs>) {
+class RestoreSurveyHelper(private val surveyOld: Survey, private val sorsOld: List<SurveySORs>, private val checkList: ChecklistEntries) {
 
     private var survey = surveyOld
     private var existingSors = sorsOld
@@ -25,9 +26,11 @@ class RestoreSurveyHelper(private val surveyOld: Survey, private val sorsOld: Li
 
 
     fun getHeatType(): Int {
-        heatType = 0
+        return checkList.heatType
+    }
 
-        return heatType
+    fun getCheckList():ChecklistEntries{
+        return checkList
     }
 
 
@@ -54,6 +57,22 @@ class RestoreSurveyHelper(private val surveyOld: Survey, private val sorsOld: Li
     fun getId(): Int? {
         return survey.surveyId
     }
+
+    fun getAbesto():String{
+        return survey.abestoRemovalDescription
+    }
+
+    fun getListOfPreviousSors():List<SurveySORs>{
+       var list = ArrayList<SurveySORs>()
+        for(i in 0..16){
+            if(constant.ONLYPREVIOUSSORS.contains(sorsOld[i].sorCode)){
+                list.add(sorsOld[i])
+            }
+        }
+        return  list
+    }
+
+
 
     fun getName(): String {
         return survey.surveyorName

@@ -1,6 +1,7 @@
 package com.example.surveyapp.fragments.checkListTab
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.databinding.FragmentCreateSurveyP1p5Binding
+import com.example.surveyapp.ignore.Survey
 
 
 class CreateSurveyP1p5Fragment : Fragment() {
@@ -35,8 +37,11 @@ class CreateSurveyP1p5Fragment : Fragment() {
         binding.viewmodel = SurveyActivity.checkListVM
         binding.lifecycleOwner = this
 
-        SurveyActivity.checkListVM?._loadedHeatType?.observe(viewLifecycleOwner, Observer { heatType ->
-            binding.systemBoilerSpinner.setSelection(heatType)
+        SurveyActivity.checkListVM?.changeDetected?.observe(viewLifecycleOwner, Observer { change ->
+              loadCheckBoxState()
+
+              loadCommentsToGui()
+              binding.systemBoilerSpinner.setSelection(SurveyActivity.checkListVM!!.getHeatTypeIndex())
         })
 
         binding.decorComments.addTextChangedListener{
@@ -76,6 +81,41 @@ class CreateSurveyP1p5Fragment : Fragment() {
 
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    private fun loadCommentsToGui() {
+        binding.floorComment.setText(SurveyActivity.checkListVM?.getFloorLevel())
+        binding.decorComments.setText(SurveyActivity.checkListVM?.getDecorPoints())
+        binding.fireDoorTextField.setText(SurveyActivity.checkListVM?.getFireDoorComments())
+        binding.TAPScomment.setText(SurveyActivity.checkListVM?.getTapsLocation())
+    }
+
+    private fun loadCheckBoxState() {
+        binding.fdChkbx.setChecked(SurveyActivity.checkListVM!!.checBoxLiveState_[constant.FIRE_DOOR_BOX_ID])
+
+        binding.fdChkbx.jumpDrawablesToCurrentState()
+
+        binding.isolatorChkBx.setChecked(SurveyActivity.checkListVM!!.checBoxLiveState_[constant.ISOLATOR_BOX_ID])
+        binding.isolatorChkBx.jumpDrawablesToCurrentState()
+
+        binding.mIChkBx.setChecked(SurveyActivity.checkListVM!!.checBoxLiveState_[constant.METER_BOX_ID])
+        binding.mIChkBx.jumpDrawablesToCurrentState()
+
+        binding.ftChkBx.setChecked(SurveyActivity.checkListVM!!.checBoxLiveState_[constant.FAST_TRACKING_BOX_ID])
+        binding.ftChkBx.jumpDrawablesToCurrentState()
+
+        binding.atroChkBx.setChecked(SurveyActivity.checkListVM!!.checBoxLiveState_[constant.ASTO_BOX_ID])
+        binding.atroChkBx.jumpDrawablesToCurrentState()
+
+        binding.rwChkBx.setChecked(SurveyActivity.checkListVM!!.checBoxLiveState_[constant.REWIRE_BOX_ID])
+        Log.i("CHECKs", SurveyActivity.checkListVM!!.checBoxLiveState_[constant.REWIRE_BOX_ID].toString() )
+        binding.rwChkBx.jumpDrawablesToCurrentState()
+
+        binding.heatingChkBx.setChecked(SurveyActivity.checkListVM!!.checBoxLiveState_[constant.HEATING_BOX_ID])
+        binding.heatingChkBx.jumpDrawablesToCurrentState()
+
+        binding.glassChkBx.setChecked(SurveyActivity.checkListVM!!.checBoxLiveState_[constant.GLASS_BOX_ID])
+        binding.glassChkBx.jumpDrawablesToCurrentState()
     }
 
     private fun registerCheckBoxClick(id: Int, chkBx: CheckBox) {

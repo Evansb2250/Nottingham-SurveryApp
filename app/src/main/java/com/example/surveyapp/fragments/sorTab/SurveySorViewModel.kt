@@ -264,6 +264,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     @WorkerThread
     fun get(sorCode: String) = viewModelScope.launch {
         currentSor = repository.getSor(sorCode)
+        Log.i("CHECS" ,"Survey sor " + currentSor)
         if (currentSor != null) {
             updateCurrentSoR()
         } else
