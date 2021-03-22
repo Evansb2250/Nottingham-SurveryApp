@@ -181,7 +181,7 @@ class SOR_Fragment : Fragment() {
 
 //TODO REFACTOR CODE
             // Adds the SorCode to the current sorCode
-
+//TODO redundant operation
               SurveyActivity.sorViewModel!!.get(SurveyActivity.sorViewModel!!.addedSor2List!!.get(position)!!.sorCode)
 
             val selectedQuantity = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.quantity?.toDouble()
@@ -197,20 +197,21 @@ class SOR_Fragment : Fragment() {
             val isRecharge = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.isRecharge
             val comment = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.surveyorDescription
 
+            //Can go in a separate function
             for( idCat in 0..constant.ROOMCATEGORIES.size -1){
                 if( category.equals(constant.ROOMCATEGORIES[idCat].toString())){
                     binding.RoomCatSpin.setSelection(idCat)
                 }
             }
 
-
+//can go into a separate Function
             binding.commentEntry.text.clear()
             binding.commentEntry.setText(comment)
+
 
             SurveyActivity.sorViewModel?.get(sorcode)
 
             //Redisplays the amount and details submitted
-
 
 
             binding.quantitySpinner.setSelection(selectedQuantity!!.toInt() -1)
@@ -272,7 +273,7 @@ class SOR_Fragment : Fragment() {
 
 
     private fun setupImageButton() {
-        binding.imageButton.setOnClickListener({ it ->
+        binding.imageButton.setOnClickListener{ it ->
             SurveyActivity.sorViewModel?.searchViewEntry = binding.searchView.text.toString().trim()
             binding.viewmodel?.searchFor(SurveyActivity.sorViewModel!!.searchViewEntry)
 
@@ -291,7 +292,7 @@ class SOR_Fragment : Fragment() {
             alertUser()
 
 
-        })
+        }
     }
 
     private fun revealSelectedItem(tag: String) {
@@ -413,7 +414,7 @@ class SOR_Fragment : Fragment() {
 
     private fun setUpAddButton() {
 
-        binding.addSoRToSurveyButton.setOnClickListener({ it ->
+        binding.addSoRToSurveyButton.setOnClickListener{ it ->
             val surveyId: Int = SurveyActivity.SurveyID!!
 
 
@@ -434,7 +435,7 @@ class SOR_Fragment : Fragment() {
             resetFields()
 
 
-        })
+        }
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.surveyapp.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -57,6 +58,8 @@ class SurveyActivity : AppCompatActivity() {
 
 
         surveyActivityModel.id.observe(this, Observer { id ->
+
+            Log.i("CHECKs", id.toString())
             preloadAllViewModelsWithExistingData(isThisSurveyBeingEdited, surveyActivityModel)
             updateViewModelsSurveyID(id)
 

@@ -46,6 +46,17 @@ class ViewSurveyFragment : Fragment() {
 
         }
 
+        binding.deleteSurveyButton.setOnClickListener{
+            if(viewModel.currentSurvey.value != null){
+
+              // Toast.makeText(requireContext(), viewModel.position.toString(), Toast.LENGTH_LONG).show()
+                  viewModel.deleteSurvey()
+                 clearDescriptionField()
+            }else
+                Toast.makeText(requireContext(), "Must select a survey", Toast.LENGTH_LONG).show()
+                resetSearchField()
+        }
+
 
 
 
@@ -114,6 +125,10 @@ class ViewSurveyFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun clearDescriptionField() {
+        binding.descriptionBox.setText("")
     }
 
     private fun resetSearchField() {

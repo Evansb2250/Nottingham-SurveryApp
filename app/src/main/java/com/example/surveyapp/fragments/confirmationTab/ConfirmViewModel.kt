@@ -43,6 +43,8 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     lateinit var phoneNumber: String
     lateinit var surveyType: String
     lateinit var abestoText:String
+   // var surveyId:Int?=null
+
 
 
     var day: Int? = null
@@ -136,6 +138,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
     private fun createSurveyDomain() {
         surveyInfo = Survey(
+            surveyId = surveyIDTextView.value!!,
             address = address,
             postCode = postCode,
             phoneNumber = phoneNumber,
@@ -148,6 +151,8 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
             surveyTotal = 0.0,
             rechargeTotal = 0.0
         )
+        //SURVEY IS AUTOMATICALLY INCREMENTEND
+
     }
 
     private fun surveyTabScanResults(): Boolean {

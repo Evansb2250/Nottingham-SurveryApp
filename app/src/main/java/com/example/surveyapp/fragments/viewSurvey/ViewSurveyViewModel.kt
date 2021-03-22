@@ -17,6 +17,8 @@ import kotlin.properties.Delegates
 class ViewSurveyViewModel (private val repository: DatabaseRepository) : ViewModel() {
 
 
+    var position:Int? = null
+
     //Boolean
     val changeDetected = MutableLiveData<Boolean>()
     val validResponse = MutableLiveData<Boolean>()
@@ -119,6 +121,7 @@ class ViewSurveyViewModel (private val repository: DatabaseRepository) : ViewMod
                 val temp = repository.searchSurveyById(id)
                     if (temp != null) {
                         _currentSurvey.value = temp
+                        position = 0
                         addToList(null, _currentSurvey.value)
                     }else searchNotFound()
                 }catch(e: NumberFormatException){
@@ -173,6 +176,7 @@ class ViewSurveyViewModel (private val repository: DatabaseRepository) : ViewMod
         //
         listOfSurveys.clear()
         listOfSurveyTitles.clear()
+
         if(list != null){
             listOfSurveys = list as ArrayList<Survey>
             updateSurveyTitles()
@@ -194,8 +198,9 @@ class ViewSurveyViewModel (private val repository: DatabaseRepository) : ViewMod
         }
     }
 
-    fun changeCurrentSurvey(position: Int) {
-    _currentSurvey.value = listOfSurveys[position]
+    fun changeCurrentSurvey(positionIndex: Int) {
+    _currentSurvey.value = listOfSurveys[positionIndex]
+        position = positionIndex
     }
 
    private fun searchNotFound(){
@@ -211,6 +216,15 @@ class ViewSurveyViewModel (private val repository: DatabaseRepository) : ViewMod
         listOfSurveyTitles.clear()
         _currentSurvey.value = null
         changeDetected.value =true
+        position = null
+    }
+
+    fun deleteSurvey() = viewModelScope.launch {
+        repository.deleteSurvey(currentSurvey!!.value!!.surveyId)
+        listOfSurveys.removeAt(position!!)
+        listOfSurveyTitles.removeAt(position!!)
+        _currentSurvey.value = null
+        changeDetected.value = true
     }
 
 }

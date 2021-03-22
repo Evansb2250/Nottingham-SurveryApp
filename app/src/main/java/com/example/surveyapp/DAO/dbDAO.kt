@@ -25,10 +25,25 @@ interface dbDAO {
     suspend fun insertSurveySorList(sorList: List<SurveySORs>)
 
     @Insert
+    suspend fun insertNewSurveySor(surveySORs: SurveySORs)
+
+    @Insert
     suspend fun  insertCheckList(checklist: ChecklistEntries)
+
 
     @Update
     suspend fun updateSoR(sor: SoR)
+
+    @Update
+    suspend fun updateSurvey(survey: Survey)
+
+    @Update
+    suspend fun updateCheckList(list: ChecklistEntries)
+
+    @Update
+    suspend fun updateSurveySor(listOfSors: List<SurveySORs>)
+
+
 
 
 
@@ -42,6 +57,19 @@ interface dbDAO {
 
     @Query("SELECT * FROM survey_sors_table where surveyId =:key")
     suspend fun getSurveySors(key:Int): List<SurveySORs>
+
+
+
+
+
+    @Query("DELETE FROM survey_sors_table where surveyId=:surveyID AND sorCode=:sorCode ")
+    suspend fun removeIndividualSurveySorCode(surveyID: Int, sorCode: String)
+
+
+    //Used to access if a surveySor Exist if it doesn't we will add it
+    @Query("SELECT * FROM survey_sors_table where surveyId =:key AND sorCode=:Code")
+    suspend fun getSurveySorsByID(key:Int, Code:String): SurveySORs
+
 
 
 
@@ -78,13 +106,15 @@ interface dbDAO {
     /*
     FUNCTIONS FOR REMOVING DATA FROM TABLE
      */
-    @Query("DELETE FROM Survey_table where surveyId =:key ")
-    suspend fun removeSurveyFromTable(key: String)
+    @Query("DELETE FROM Survey_table where surveyId=:key ")
+    suspend fun removeSurveyFromTable(key: Int)
 
     @Query("DELETE FROM survey_sors_table where surveyID =:key ")
-    suspend fun removeSurveySorsFromTable(key: String)
+    suspend fun removeSurveySorsFromTable(key: Int)
 
     @Query("DELETE FROM checklist_table where surveyId=:key ")
-    suspend fun removeCheckListFromTable(key: String)
+    suspend fun removeCheckListFromTable(key: Int)
+
+
 
 }

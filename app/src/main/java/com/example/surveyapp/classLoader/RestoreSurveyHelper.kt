@@ -9,8 +9,6 @@ import com.example.surveyapp.ignore.Survey
 class RestoreSurveyHelper(private val surveyOld: Survey, private val sorsOld: List<SurveySORs>, private val checkList: ChecklistEntries) {
 
     private var survey = surveyOld
-    private var existingSors = sorsOld
-    private var heatType: Int = 0
     private lateinit var sorsInSorFragment: List<SurveySORs>
 
 
@@ -48,10 +46,7 @@ class RestoreSurveyHelper(private val surveyOld: Survey, private val sorsOld: Li
     }
 
 
-    fun getAsbesto(): String {
 
-        return survey.abestoRemovalDescription
-    }
 
 
     fun getId(): Int? {
