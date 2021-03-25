@@ -195,5 +195,9 @@ class DatabaseRepository(private val dbManager: dbDAO) {
 
     }
 
+    suspend fun upDateSoRCode(sorCodeIntance: SoR) {
+        dbManager.updateSoR(sorCodeIntance)
+    }
+
 
 }

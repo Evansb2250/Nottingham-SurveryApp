@@ -14,6 +14,7 @@ import androidx.lifecycle.observe
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
+import com.example.surveyapp.activities.SurveyActivity.Companion.sorViewModel
 import com.example.surveyapp.databinding.FragmentSORBinding
 import java.text.DecimalFormat
 
@@ -26,10 +27,9 @@ import java.text.DecimalFormat
 class SOR_Fragment : Fragment() {
 
     private val currency = DecimalFormat("£###,###.##")
-
+    private var viewingaSorInView = false
 
     private lateinit var binding: FragmentSORBinding
-
 
 
     override fun onCreateView(
@@ -70,12 +70,11 @@ class SOR_Fragment : Fragment() {
     }
 
 
-
-
     private fun setUpRemoveAllButton() {
         binding.removeAllSorButton.setOnClickListener({
             SurveyActivity.sorViewModel?.removeAllSorFromList()
             updateListViewAfterDeletion()
+            resetFields()
         })
     }
 
@@ -90,11 +89,15 @@ class SOR_Fragment : Fragment() {
         wasSorInsertedToSurvey?.observe(
             viewLifecycleOwner,
             { wasSuccessfuL ->
-                Toast.makeText(requireContext(), wasSuccessfuL.toString(), Toast.LENGTH_SHORT).show()
-                binding.SorNumberView.text =
-                    SurveyActivity.sorViewModel?.addedSor2List?.size.toString()
+                if(wasSuccessfuL){
+                Toast.makeText(requireContext(),"Code Added To Survey", Toast.LENGTH_SHORT)
+                    .show()
+                    binding.SorNumberView.text =
+                        SurveyActivity.sorViewModel?.addedSor2List?.size.toString()
+                    setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
 
-                setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
+                    }
+
             })
 
     }
@@ -122,14 +125,15 @@ class SOR_Fragment : Fragment() {
         removeSorButton.setOnClickListener { it ->
             SurveyActivity.sorViewModel!!.removeSorFromList()
             updateListViewAfterDeletion()
+            resetFields()
+
         }
 
 
     }
 
 
-
-    private fun updateListViewAfterDeletion(){
+    private fun updateListViewAfterDeletion() {
         if (SurveyActivity.sorViewModel!!.addedSors != null) {
             setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
             binding.SorNumberView.text = SurveyActivity.sorViewModel?.addedSor2List?.size.toString()
@@ -142,15 +146,12 @@ class SOR_Fragment : Fragment() {
 
 
     private fun setupQuantyObserver(sorViewModel: SurveySorViewModel?) {
-        SurveyActivity.sorViewModel!!.quantitySelected.observe(viewLifecycleOwner, Observer {
+        SurveyActivity.sorViewModel!!.sorCodeQuantity.observe(viewLifecycleOwner, Observer {
             SurveyActivity.sorViewModel!!.updateTotalByQuantity()
             updateTotal()
 
         })
     }
-
-
-
 
 
     private fun setUpSearchResult(searchResultBox: ListView) {
@@ -162,10 +163,10 @@ class SOR_Fragment : Fragment() {
 
             //val description = SurveyActivity.sorViewModel!!.listForView.get(position)
             SurveyActivity.sorViewModel?.get(sorcode)
-           // setDescription(description)
+            // setDescription(description)
             revealSelectedItem(sorcode)
             setNumberSpinnerToOne()
-            //TODO remove box
+
             resetFields()
         }
 
@@ -177,63 +178,85 @@ class SOR_Fragment : Fragment() {
 
         sorAttachedToSurveyBox.setOnItemClickListener { parent, view, position, id ->
             SurveyActivity.sorViewModel?.sorcodeToDeleteIndex = position
-            //Gets the values for this added Sor
-
-//TODO REFACTOR CODE
-            // Adds the SorCode to the current sorCode
-//TODO redundant operation
-              SurveyActivity.sorViewModel!!.get(SurveyActivity.sorViewModel!!.addedSor2List!!.get(position)!!.sorCode)
-
-            val selectedQuantity = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.quantity?.toDouble()
-
-            // calculates the original recharge cost
-            val rechargeCost = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.total!!.toDouble() / selectedQuantity!!.toDouble()
-            SurveyActivity.sorViewModel!!._rechargeAmount.value = rechargeCost
-
-
-            val category = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.roomCategory
-            val selectedTotal = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.total
-            val sorcode = SurveyActivity.sorViewModel!!.addedSors.get(position)
-            val isRecharge = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.isRecharge
-            val comment = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.surveyorDescription
-
-            //Can go in a separate function
-            for( idCat in 0..constant.ROOMCATEGORIES.size -1){
-                if( category.equals(constant.ROOMCATEGORIES[idCat].toString())){
-                    binding.RoomCatSpin.setSelection(idCat)
-                }
-            }
-
-//can go into a separate Function
-            binding.commentEntry.text.clear()
-            binding.commentEntry.setText(comment)
-
-
-            SurveyActivity.sorViewModel?.get(sorcode)
-
-            //Redisplays the amount and details submitted
-
-
-            binding.quantitySpinner.setSelection(selectedQuantity!!.toInt() -1)
-
-
-
-
-            //  Toast.makeText(requireContext(),  selectedTotal.toString(), Toast.LENGTH_SHORT).show()
-            binding.totalTextView.text.clear()
-
-            binding.totalTextView.append(currency.format(selectedTotal))
-
-            if (isRecharge != null) {
-                binding.rechargeBox.isChecked = isRecharge
-            }
-
-            //   Toast.makeText(requireContext(), " sexond" + selectedTotal.toString(), Toast.LENGTH_SHORT).show()
-            lockFields()
-            revealSelectedItem(sorcode)
-
+            initializeSelectedSurveySorVariables(position)
         }
 
+    }
+
+    private fun initializeSelectedSurveySorVariables(position: Int) {
+        binding.sorDescriptionBox.setText(SurveyActivity.sorViewModel!!.addedSor2List!!.get(position)!!.sorDescription)
+        //     SurveyActivity.sorViewModel!!.get(SurveyActivity.sorViewModel!!.addedSor2List!!.get(position)!!.sorCode)
+
+
+
+        val selectedQuantity = sorViewModel?.addedSor2List?.get(position)?.quantity
+
+
+
+        sorViewModel!!._rechargeAmount.value = sorViewModel?.addedSor2List?.get(position)?.total!!.toDouble()
+
+
+        val category = sorViewModel?.addedSor2List?.get(position)?.roomCategory
+        val selectedTotal =
+            SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.total!! * selectedQuantity!!
+        val sorcode = SurveyActivity.sorViewModel!!.addedSors.get(position)
+
+        val isRecharge = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.isRecharge
+        val comment = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.surveyorDescription
+
+        //Can go in a separate function
+
+
+        if (isRecharge != null) {
+            binding.rechargeBox.isChecked = isRecharge
+        }
+
+
+//can go into a separate Function
+
+        displaySurveyInformationAttachedToSurvey(
+            comment,
+            selectedQuantity,
+            selectedTotal,
+            sorcode,
+            category
+        )
+
+    }
+
+    private fun displaySurveyInformationAttachedToSurvey(
+        comment: String?,
+        selectedQuantity: Double,
+        selectedTotal: Double,
+        sorcode: String,
+        category: String?
+    ) {
+        binding.commentEntry.text.clear()
+        binding.commentEntry.setText(comment)
+
+
+        //Redisplays the amount and details submitted
+
+
+        binding.quantitySpinner.setSelection(selectedQuantity!!.toInt() - 1)
+
+
+        //  Toast.makeText(requireContext(),  selectedTotal.toString(), Toast.LENGTH_SHORT).show()
+        binding.totalTextView.text.clear()
+
+        binding.totalTextView.append(currency.format(selectedTotal))
+
+
+        for (idCat in 0..constant.ROOMCATEGORIES.size - 1) {
+            if (category.equals(constant.ROOMCATEGORIES[idCat].toString())) {
+                binding.RoomCatSpin.setSelection(idCat)
+            }
+        }
+
+
+        //   Toast.makeText(requireContext(), " sexond" + selectedTotal.toString(), Toast.LENGTH_SHORT).show()
+        lockFields()
+        revealSelectedItem(sorcode)
     }
 
 
@@ -271,9 +294,8 @@ class SOR_Fragment : Fragment() {
     }
 
 
-
     private fun setupImageButton() {
-        binding.imageButton.setOnClickListener{ it ->
+        binding.imageButton.setOnClickListener { it ->
             SurveyActivity.sorViewModel?.searchViewEntry = binding.searchView.text.toString().trim()
             binding.viewmodel?.searchFor(SurveyActivity.sorViewModel!!.searchViewEntry)
 
@@ -284,7 +306,8 @@ class SOR_Fragment : Fragment() {
             //Searches using key word
             if (binding.optionSelector.selectedItem == constant.KEYWORD) {
                 setUpListView(SurveyActivity.sorViewModel!!.listForView)
-                SurveyActivity.sorViewModel?.listForViewSize?.value =  SurveyActivity.sorViewModel?.listForView?.size
+                SurveyActivity.sorViewModel?.listForViewSize?.value =
+                    SurveyActivity.sorViewModel?.listForView?.size
             }
 
             unlockFields()
@@ -364,7 +387,7 @@ class SOR_Fragment : Fragment() {
                 id: Long
             ) {
 
-                binding.viewmodel!!.quantitySelected.value = constant.quantityRange[position]
+                binding.viewmodel!!.sorCodeQuantity.value = constant.quantityRange[position]
 
             }
 
@@ -413,42 +436,42 @@ class SOR_Fragment : Fragment() {
 
 
     private fun setUpAddButton() {
-
-        binding.addSoRToSurveyButton.setOnClickListener{ it ->
-            val surveyId: Int = SurveyActivity.SurveyID!!
-
-
-
-            val sorCode = SurveyActivity.sorViewModel?.currentSor?.sorCode
-            val quantity = SurveyActivity.sorViewModel?.quantitySelected?.value
-            val total = SurveyActivity.sorViewModel?.total?.value
-            val comments = binding.commentEntry.text.toString()
-            val isRecharge = binding.rechargeBox.isChecked
-
-
-            binding.viewmodel?.CheckBeforeAddint(
-                sorCode, surveyId, comments,
-                isRecharge, quantity, total
-            )
+        binding.addSoRToSurveyButton.setOnClickListener { it ->
+           if(!viewingaSorInView) {
+               val surveyId: Int = SurveyActivity.SurveyID!!
+               val sorCode = sorViewModel?.currentSor?.sorCode
+               val quantity = sorViewModel?.sorCodeQuantity?.value
+               val total = sorViewModel?.total?.value
+               val comments = binding.commentEntry.text.toString()
+               val isRecharge = binding.rechargeBox.isChecked
+               binding.viewmodel?.CheckBeforeAddint(
+                   sorCode, surveyId, comments,
+                   isRecharge, quantity, total
+               )
 
 
-            resetFields()
-
+               resetFields()
+           }else
+               Toast.makeText(requireContext(), "You must click on a sor code not in your list", Toast.LENGTH_LONG).show()
 
         }
     }
 
 
     private fun lockFields() {
-        binding.quantitySpinner.isFocusable = false
-        binding.rechargeBox.isFocusable = false
+        viewingaSorInView = true
+        binding.RoomCatSpin.isEnabled = false
+        binding.quantitySpinner.isEnabled = false
+        binding.rechargeBox.isClickable = false
         binding.commentEntry.isFocusable = false
     }
 
     //TODO Fixe bug that won't let me unlock
     private fun unlockFields() {
-        binding.quantitySpinner.isFocusable = true
-        binding.rechargeBox.isFocusable = true
+        viewingaSorInView = false
+        binding.RoomCatSpin.isEnabled = true
+        binding.quantitySpinner.isEnabled = true
+        binding.rechargeBox.isClickable = true
         binding.commentEntry.isFocusableInTouchMode = true
 
     }

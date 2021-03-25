@@ -207,9 +207,9 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
             //TODO CREATE AN IF STATEMENT TO ADD TOTAL OR TO JUST UPDATE MESSAGE
             if (hidePrices.equals(false)) {
                 for (data in _sorListData) {
-                    total.value = total.value?.plus(data.total)
+                    total.value = total.value?.plus(data.total * data.quantity) //TODO just added data.quantity
                     if (data.isRecharge.equals(true)) {
-                        rechargeTotal.value = rechargeTotal.value?.plus(data.total)
+                        rechargeTotal.value = rechargeTotal.value?.plus(data.total * data.quantity)
                     }
                 }
 
@@ -253,7 +253,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
                 //TODO add this to a separate return function
                 if (hidePrices.equals(false)) {
                     tempString += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + " -  " + currency.format(
-                        data.total
+                        data.total * data.quantity
                     ) + "\n"
                 } else
                     tempString += count.toString() + ". " + data.roomCategory + " |" + data.sorCode + " - " + data.sorDescription + "\n"

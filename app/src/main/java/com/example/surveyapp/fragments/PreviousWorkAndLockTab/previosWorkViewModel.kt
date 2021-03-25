@@ -281,7 +281,7 @@ PASSED
         previousWorkData.get(id - 1).isRecharge = isRecharge
         previousWorkData.get(id - 1).quantity = quantity
         previousWorkData.get(id - 1).surveyorDescription = comment
-        previousWorkData.get(id - 1).total = currentSor!!.rechargeRate * quantity
+        previousWorkData.get(id - 1).total = currentSor!!.rechargeRate
 
 
     }

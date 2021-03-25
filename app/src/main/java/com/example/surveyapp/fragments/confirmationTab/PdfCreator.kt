@@ -248,7 +248,7 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
 
 
 
-                    cell = PdfPCell(Phrase(currency.format(hidePrices(sor.total))))
+                    cell = PdfPCell(Phrase(currency.format(hidePrices(sor.total * sor.quantity))))
                     cell.border = NONE
                     table.addCell(cell)
 

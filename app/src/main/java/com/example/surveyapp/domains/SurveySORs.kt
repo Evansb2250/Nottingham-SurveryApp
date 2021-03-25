@@ -17,7 +17,7 @@ data class SurveySORs(
     @ColumnInfo(name="Survey_Description") var surveyorDescription: String,
     @ColumnInfo(name="isRecharge") var isRecharge: Boolean,
     @ColumnInfo(name="Quantity") var quantity: Double,
-    @ColumnInfo(name="Total") var total: Double,
+    @ColumnInfo(name="Total") var total: Double, //Change to recharge rate
     @ColumnInfo(name="Category") var roomCategory: String = "",
 
 )

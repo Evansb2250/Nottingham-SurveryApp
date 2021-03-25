@@ -27,7 +27,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     //Number selected in the number wheel
     //TODO change to a text entry to add floating point numbers
-    val quantitySelected = MutableLiveData<Int>()
+    val sorCodeQuantity = MutableLiveData<Int>()
     lateinit var UOM: String
     lateinit var sorDescrip: String
     private var category = ""
@@ -111,7 +111,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         searchWasFound = true
         _sorDescripition.value = ""
         _rechargeAmount.value = 0.0
-        quantitySelected.value = 0
+        sorCodeQuantity.value = 0
         total.value = 0.0
         viewList = MutableLiveData(listForView)
         comments = " "
@@ -149,7 +149,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     fun updateTotalByQuantity() {
-        total.value = _rechargeAmount.value!!.times(quantitySelected.value!!.toInt())
+        total.value = _rechargeAmount.value!!.times(sorCodeQuantity.value!!.toInt())
     }
 
 
@@ -190,7 +190,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
                 addedSor2List.add(
                     SurveySORs(
                         surveyId, sorCode!!, UOM, sorDescrip, comments,
-                        recharge, quantity!!.toDouble(), total!!, category
+                        recharge, quantity!!.toDouble(), _rechargeAmount.value!!, category      //TODO change this so it reflects the current rate for the sorCode
                     )
                 )
                 resetCat()
@@ -213,7 +213,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
     fun loadPreviousSorList(list: List<SurveySORs>){
-        Log.i("SEARCH","Result in survey sor" + list.toString())
+
         if(list != null) {
             addedSor2List = list.toMutableList()
           //  Log.i("SEARCH","Result in survey sor" + addedSor2List.toString())
@@ -274,12 +274,6 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
-    fun insert(sorCode: SoR) = viewModelScope.launch {
-        repository.insert(sorCode)
-
-    }
 
 
     @Suppress("RedundantSuspendModifier")
@@ -300,12 +294,14 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     fun removeSorFromList() {
 
+        if(addedSor2List != null){
         if (addedSor2List.size >= 0 && sorcodeToDeleteIndex != null) {
             addedSor2List.removeAt(sorcodeToDeleteIndex!!)
             sorcodeToDeleteIndex = null
 
         }
         updateListofAddedSorUI(addedSor2List)
+        }
     }
 
 
@@ -337,6 +333,8 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         category = cat
 
     }
+
+
 
 
 }

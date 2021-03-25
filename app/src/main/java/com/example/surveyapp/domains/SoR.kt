@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "SoR_table")
 data class SoR(
-    @PrimaryKey val sorCode: String,
-    @ColumnInfo(name = "Description") val description: String,
-    @ColumnInfo(name = "UOM") val UOM: String,
-    @ColumnInfo(name = "Recharge_Price") val rechargeRate: Double
+    @PrimaryKey var sorCode: String,
+    @ColumnInfo(name = "Description") var description: String,
+    @ColumnInfo(name = "UOM") var UOM: String,
+    @ColumnInfo(name = "Recharge_Price") var rechargeRate: Double
 )

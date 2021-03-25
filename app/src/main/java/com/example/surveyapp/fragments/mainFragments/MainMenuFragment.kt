@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.databinding.FragmentMainMenuBinding
+import com.example.surveyapp.fragments.modificationTab.SurveyModificationFragment
 import kotlinx.coroutines.delay
 import java.lang.Thread.sleep
 
@@ -72,7 +73,7 @@ class MainMenuFragment : Fragment() {
 
 
         binding.button3.setOnClickListener{
-            activity?.onBackPressed()
+            changeToSurveyModificationFragment(it)
         }
         return binding.root
     }
@@ -102,5 +103,8 @@ class MainMenuFragment : Fragment() {
             .navigate(MainMenuFragmentDirections.actionMainMenuFragmentToViewSurveyFragment())
     }
 
+    private fun changeToSurveyModificationFragment(it: View) {
+        it.findNavController().navigate(MainMenuFragmentDirections.actionMainMenuFragmentToSurveyModificationFragment())
+    }
 
 }

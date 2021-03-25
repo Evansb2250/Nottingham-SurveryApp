@@ -18,14 +18,27 @@
         android:id="@+id/viewSurveyLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/appbackgroundColor">
+        android:background="@color/grey">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="232dp"
+            android:layout_height="190dp"
+            android:layout_marginBottom="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.906"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.228"
+            app:srcCompat="@drawable/ic_nottinghamcitylogoresize" />
 
         <ImageButton
             android:id="@+id/imageButtonRequestSearch"
-            android:layout_width="60dp"
-            android:layout_height="57dp"
-            android:layout_marginStart="240dp"
-            android:layout_marginLeft="240dp"
+            android:layout_width="46dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginLeft="200dp"
             android:layout_marginTop="130dp"
             android:layout_marginEnd="425dp"
             android:layout_marginRight="425dp"
@@ -33,10 +46,10 @@
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintVertical_bias="0.156"
             app:srcCompat="@drawable/ic_baseline_search_24" />
 
         <Spinner
@@ -49,7 +62,7 @@
             android:layout_marginEnd="700dp"
             android:layout_marginRight="700dp"
             android:layout_marginBottom="400dp"
-            android:background="@color/whitish"
+            android:background="#EAE5D9"
             android:entries="@array/search_surveys_by"
             android:spinnerMode="dropdown"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -69,15 +82,15 @@
             android:layout_marginEnd="700dp"
             android:layout_marginRight="700dp"
             android:layout_marginBottom="200dp"
-            android:background="@color/whitish"
+            android:background="#EAE5D9"
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.38"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchBySpinner"
-            app:layout_constraintVertical_bias="0.044" />
+            app:layout_constraintVertical_bias="0.028" />
 
         <TextView
             android:id="@+id/textView22"
@@ -92,6 +105,7 @@
             android:fontFamily="@font/abril_fatface"
             android:text="Previous Survey's"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -104,71 +118,62 @@
             android:id="@+id/deleteSurveyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="470dp"
+            android:layout_marginTop="410dp"
             android:layout_marginEnd="132dp"
             android:layout_marginRight="132dp"
             android:layout_marginBottom="30dp"
+            android:fontFamily="@font/alice"
             android:text="delete survey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/editSurveyButton"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/editSurveyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="400dp"
-            android:layout_marginLeft="400dp"
-            android:layout_marginTop="470dp"
+            android:layout_marginStart="300dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="410dp"
             android:layout_marginBottom="30dp"
+            android:fontFamily="@font/alice"
             android:text="edit/create PDF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/deleteSurveyButton"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ListView
             android:id="@+id/listView"
             android:layout_width="197dp"
             android:layout_height="202dp"
-            android:layout_marginStart="79dp"
-            android:layout_marginLeft="79dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginLeft="28dp"
             android:layout_marginTop="93dp"
             android:layout_marginBottom="64dp"
-            android:background="#FFF1CE"
+            android:background="#EAE5D9"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchEditField"
-            app:layout_constraintVertical_bias="0.222" />
-
-        <Spinner
-            android:id="@+id/orderBySpinner"
-            android:layout_width="126dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="100dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="23dp"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/listView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchEditField"
             app:layout_constraintVertical_bias="0.0" />
 
         <TableLayout
             android:id="@+id/tableLayout4"
-            android:layout_width="500dp"
-            android:layout_height="367dp"
-            android:layout_marginStart="46dp"
-            android:layout_marginLeft="46dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_width="372dp"
+            android:layout_height="186dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.71"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageButtonRequestSearch"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.32999998">
+            app:layout_constraintVertical_bias="0.25">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -178,6 +183,7 @@
                     android:id="@+id/surveyIDText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/adamina"
                     android:text="Survey ID:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -187,8 +193,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
             </TableRow>
 
             <TableRow
@@ -199,6 +205,7 @@
                     android:id="@+id/nameText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/adamina"
                     android:text="Name:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -208,8 +215,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
             </TableRow>
 
             <TableRow
@@ -220,6 +227,7 @@
                     android:id="@+id/dateText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/adamina"
                     android:text="Date:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -230,8 +238,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
 
 
             </TableRow>
@@ -244,6 +252,7 @@
                     android:id="@+id/surveyTypeText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/adamina"
                     android:text="Survey Type:"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -254,10 +263,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:focusable="false"/>
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
             </TableRow>
-
+            <!--
 
             <TableRow
                 android:layout_width="match_parent"
@@ -267,6 +276,7 @@
                     android:id="@+id/addressText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/adamina"
                     android:text="@string/Address_label"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -277,8 +287,28 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/postCodeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/adamina"
+                    android:text="Post Code:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <EditText
+                    android:id="@+id/postCodeEdit"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
             </TableRow>
 
 
@@ -286,21 +316,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/postCodeText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Post Code:"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <EditText
-                    android:id="@+id/postCodeEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:focusable="false" />
             </TableRow>
 
 
@@ -312,17 +327,38 @@
                     android:id="@+id/surveyTotalText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/adamina"
                     android:text="Survey Total: "
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <EditText
                     android:id="@+id/surveyTotalEdit"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/rechargeAmountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/adamina"
+                    android:text="Recharge Total: "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <EditText
+                    android:id="@+id/rechargeAmountEdit"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
             </TableRow>
 
 
@@ -330,24 +366,159 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
 
+
+            </TableRow>
+            -->
+        </TableLayout>
+
+
+        <TableLayout
+            android:id="@+id/tableLayout5"
+            android:layout_width="665dp"
+            android:layout_height="94dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/editSurveyButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.97"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout4"
+            app:layout_constraintVertical_bias="0.050000012">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
                 <TextView
-                    android:id="@+id/rechargeAmountText"
+                    android:id="@+id/addressText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Recharge Total: "
+                    android:fontFamily="@font/adamina"
+                    android:text="@string/Address_label"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 
                 <EditText
-                    android:id="@+id/rechargeAmountEdit"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/addressEdit"
+                    android:layout_width="172dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:focusable="false"/>
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/postCodeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/adamina"
+                    android:text="Post Code:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <EditText
+                    android:id="@+id/postCodeEdit"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
             </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="511dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/surveyTotalText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/adamina"
+                    android:text="Survey Total: "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <EditText
+                    android:id="@+id/surveyTotalEdit"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/rechargeAmountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/adamina"
+                    android:text="Recharge Total: "
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <EditText
+                    android:id="@+id/rechargeAmountEdit"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+
+            </TableRow>
+
         </TableLayout>
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/adamina"
+            android:text="Search Survey By:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/searchBySpinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/adamina"
+            android:text="Search Results"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/listView"
+            app:layout_constraintEnd_toStartOf="@+id/tableLayout4"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchEditField"
+            app:layout_constraintVertical_bias="0.843" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,9 +12,17 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_viewSurveyFragment"
             app:destination="@id/viewSurveyFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_surveyModificationFragment"
+            app:destination="@id/surveyModificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewSurveyFragment"
         android:name="com.example.surveyapp.fragments.viewSurvey.ViewSurveyFragment"
         android:label="ViewSurveyFragment" />
+    <fragment
+        android:id="@+id/surveyModificationFragment"
+        android:name="com.example.surveyapp.fragments.modificationTab.SurveyModificationFragment"
+        android:label="fragment_survey_modification"
+        tools:layout="@layout/fragment_survey_modification" />
 </navigation>

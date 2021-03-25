@@ -184,7 +184,7 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
         upDateFloorComment(checklistEntries.floorLevel)
         updateDecorTaps(checklistEntries.decorationPoints)
         storeFireDoorComment(checklistEntries.fireDoorComment)
-        setHeatyingType(checklistEntries.heatType)
+        heatTypeIndex = checklistEntries.heatType
 
 
         checBoxLiveState_ = checkBoxStatus
