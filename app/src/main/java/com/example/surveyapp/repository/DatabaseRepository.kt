@@ -199,5 +199,10 @@ class DatabaseRepository(private val dbManager: dbDAO) {
         dbManager.updateSoR(sorCodeIntance)
     }
 
+    suspend fun updateSurveySorTable(surveyData: List<SurveySORs>, survey: Survey) {
+        dbManager.updateSurvey(survey)
+        dbManager.updateSurveySor(surveyData)
+    }
+
 
 }

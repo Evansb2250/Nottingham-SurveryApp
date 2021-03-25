@@ -95,27 +95,15 @@ class ViewSurveyFragment : Fragment() {
             viewModel.changeCurrentSurvey(position)
         }
 
-//        viewModel.currentSurvey.observe(viewLifecycleOwner, Observer { survey ->
-//            if (survey != null) {
-//                val details =
-//                    " Survey ID: ${survey.surveyId} \n\n Name: ${survey.surveyorName}\n\n Date: ${survey.day}/${survey.month}/${survey.year}\n\n" +
-//                            " Survey Type: ${survey.surveyType}\n\n Address: ${survey.address}\n\n Post Code: ${survey.postCode}\n\n " +
-//                            "Survey Total: ${currency.format(survey.surveyTotal)}\n\n Recharge Total: ${
-//                                currency.format(
-//                                    survey.rechargeTotal
-//                                )
-//                            } "
-//
-//                binding.descriptionBox.setText(details)
-//            } else
-//                binding.descriptionBox.setText("")
-//
-//        })
-//        binding.listView.setOnItemClickListener { parent, view, position, id ->
-//            viewModel.changeCurrentSurvey(position)
-//        }
-//
-//
+        binding.upgradeSurveyButton.setOnClickListener {
+            if(viewModel.currentSurvey.value != null){
+                viewModel.updateSurveyToReflectNewRates()
+            }else
+                Toast.makeText(requireContext(), "please select on a survey to update", Toast.LENGTH_LONG).show()
+        }
+
+
+
 
         viewModel.changeDetected.observe(viewLifecycleOwner, Observer { flag ->
             setUpListView(viewModel.listOfSurveyTitles)

@@ -281,6 +281,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
             surveyInfo.surveyTotal = total.value?:0.0
             //adds the recharge amount into the survey object
             surveyInfo.rechargeTotal = rechargeTotal.value ?:0.0
+            surveyInfo.vatAmount = VAT.value!!
         }
 
 

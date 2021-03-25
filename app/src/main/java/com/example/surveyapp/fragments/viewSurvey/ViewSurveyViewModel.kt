@@ -1,18 +1,15 @@
 package com.example.surveyapp.fragments.viewSurvey
 
-import android.provider.ContactsContract
 import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.*
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.domains.SurveySORs
-import com.example.surveyapp.fragments.sorTab.SurveySorViewModel
 import com.example.surveyapp.ignore.Survey
 import com.example.surveyapp.repository.DatabaseRepository
 import kotlinx.coroutines.launch
 import java.lang.NullPointerException
 import java.lang.NumberFormatException
-import kotlin.properties.Delegates
 
 class ViewSurveyViewModel (private val repository: DatabaseRepository) : ViewModel() {
 
@@ -209,6 +206,52 @@ class ViewSurveyViewModel (private val repository: DatabaseRepository) : ViewMod
        clearAll()
     }
 
+
+
+    fun updateSurveyToReflectNewRates(){
+        if(_currentSurvey.value != null){
+            getCurrentSurveySorCodes()
+        }
+
+    }
+
+    private fun getCurrentSurveySorCodes() = viewModelScope.launch {
+     val surveyData =  repository.returnSurveySors(_currentSurvey.value!!.surveyId)
+
+        if(surveyData != null){
+            changeRatesForEachCode(surveyData)
+        }
+    }
+
+
+    private fun changeRatesForEachCode(surveyData: List<SurveySORs>) = viewModelScope.launch {
+        for(id in 0..surveyData.size -1){
+            surveyData[id].total = repository.getSor(surveyData[id].sorCode).rechargeRate
+        }
+        updateSurveyInfo(surveyData)
+        updateSurveySorTable(surveyData, _currentSurvey.value!!)
+        _currentSurvey.value = repository.searchSurveyById(_currentSurvey.value!!.surveyId)
+
+    }
+
+    private fun updateSurveyInfo(surveyData: List<SurveySORs>) {
+        var surveyTotal = 0.0
+        var rechargeTotal = 0.0
+        for(id in 0 .. surveyData.size -1){
+            surveyTotal += surveyData[id].total * surveyData[id].quantity
+            if(surveyData[id].isRecharge){
+             rechargeTotal += surveyData[id].total * surveyData[id].quantity
+            }
+        }
+        _currentSurvey.value?.surveyTotal = surveyTotal
+        _currentSurvey.value?.rechargeTotal = rechargeTotal.plus(rechargeTotal * _currentSurvey.value!!.vatAmount)
+
+    }
+
+
+    private suspend fun updateSurveySorTable(surveyData: List<SurveySORs>, survey: Survey) {
+        repository.updateSurveySorTable(surveyData, survey)
+    }
 
 
     private fun clearAll(){

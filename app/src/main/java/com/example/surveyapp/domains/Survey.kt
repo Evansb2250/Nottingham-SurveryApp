@@ -20,7 +20,9 @@ data class Survey(
     @ColumnInfo(name = YEAR) val year: Int,
     @ColumnInfo(name = SURVEYTYPE) val surveyType: String,
     @ColumnInfo(name = SURVEY_TOTAL) var surveyTotal:Double,
-    @ColumnInfo(name=  SURVEY_RECHARGE_TOTAL) var rechargeTotal:Double
+    @ColumnInfo(name=  SURVEY_RECHARGE_TOTAL) var rechargeTotal:Double,
+    @ColumnInfo(name=  VAT_AMOUNT) var vatAmount:Double = .20
+
 )
 
 /*z
@@ -43,6 +45,7 @@ https://stackoverflow.com/questions/47511750/how-to-use-foreign-key-in-room-pers
         const val SURVEYTYPE = "surveyType"
         const val SURVEY_TOTAL ="survey_Total"
         const val SURVEY_RECHARGE_TOTAL ="survey_recharge_Total"
+        const val VAT_AMOUNT = "vat_amount"
 
     }
 }

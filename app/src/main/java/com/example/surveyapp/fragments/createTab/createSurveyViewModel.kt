@@ -15,7 +15,7 @@ class createSurveyViewModel(private val repository: DatabaseRepository) : ViewMo
     var postCode_ = MutableLiveData<String>()
     var phoneNumber_ = MutableLiveData<String>()
     var surveyType_ = MutableLiveData<String>()
-    var houseNumber_=MutableLiveData<String>()
+
 
     var day_ = MutableLiveData<Int>()
     var month_ = MutableLiveData<Int>()

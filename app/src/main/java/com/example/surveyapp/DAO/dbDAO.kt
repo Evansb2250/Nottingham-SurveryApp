@@ -62,6 +62,7 @@ interface dbDAO {
 
 
 
+
     @Query("DELETE FROM survey_sors_table where surveyId=:surveyID AND sorCode=:sorCode ")
     suspend fun removeIndividualSurveySorCode(surveyID: Int, sorCode: String)
 
