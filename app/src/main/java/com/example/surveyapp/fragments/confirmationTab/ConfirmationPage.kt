@@ -91,6 +91,12 @@ class ConfirmationPage : Fragment() {
         })
 
 
+confirmPage?.updateDetected?.observe(viewLifecycleOwner, androidx.lifecycle.Observer { update ->
+    if(confirmPage?.VAT?.value != null){
+        val percentage = confirmPage?.VAT?.value!! * 100
+        binding.taxPrecentage.setText(percentage.toString())
+    }
+})
 
         binding.taxPrecentage.addTextChangedListener { pct ->
             val percentage = checkTaxPercentage(pct.toString())
@@ -103,6 +109,7 @@ class ConfirmationPage : Fragment() {
         saveAndExit(binding.cancelButton)
         setUpCheckButton(binding.showPriceCheckBox)
         exitDontSave(binding.button5)
+
 
 
         return binding.root
@@ -134,6 +141,7 @@ class ConfirmationPage : Fragment() {
 
     private fun exitDontSave(exitButton: Button) {
         exitButton.setOnClickListener{
+            SurveyActivity.isApplicationInEditMode = false
             exitActivity(requireContext(), activity)
         }
     }
@@ -175,12 +183,13 @@ class ConfirmationPage : Fragment() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
             val context = context
             if (context != null) {
-                if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_DENIED) {
                     val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    Toast.makeText(requireContext(), "Creating PDF", Toast.LENGTH_LONG).show()
                     requestPermissions(permissions, STORAGE_CODE)
-                } else
-                confirmPage?.savePdfHandler()
-            }
+                }
+            }else
+                Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_LONG).show()
         } else {
             confirmPage?.savePdfHandler()
         }
@@ -227,6 +236,7 @@ class ConfirmationPage : Fragment() {
             Toast.makeText(requireContext(),"PDF Failed " + PdfCreator.message,Toast.LENGTH_SHORT).show()
         }
     }
+
 
 
 

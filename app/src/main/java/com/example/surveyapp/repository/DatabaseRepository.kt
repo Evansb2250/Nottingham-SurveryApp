@@ -22,9 +22,12 @@ class DatabaseRepository(private val dbManager: dbDAO) {
         //Check if prexisting data needs to be removed
         if (SurveyActivity.isApplicationInEditMode) {
             updateSurveyInformation(survey, listOfSors, checklist)
+        } else{
+            if(survey.surveyId == listOfSors[0].surveyID && survey.surveyId == checklist.surveyId){
+                addCompleteSurvey(survey, listOfSors, checklist)
+            }
+        }
 
-        } else
-            addCompleteSurvey(survey, listOfSors, checklist)
     }
 
     @Suppress("RedundantSuspendModifier")
@@ -39,6 +42,9 @@ class DatabaseRepository(private val dbManager: dbDAO) {
         dbManager.updateCheckList(checklist)
         dbManager.updateSurveySor(listOfSors)
         addOrRemoveSurveySors(listOfSors)
+
+        //Turns the static variable value back to false
+        SurveyActivity.isApplicationInEditMode = false
     }
 
 
@@ -65,7 +71,6 @@ class DatabaseRepository(private val dbManager: dbDAO) {
         var originalSorCodeList = dbManager.getSurveySors(newSorList.get(0).surveyID)
 
         for (positionX in originalSorCodeList.indices) {
-              //  Log.i("CHECKs", "Removing ${originalSorCodeList.get(positionX).sorCode}")
                 dbManager.removeIndividualSurveySorCode(originalSorCodeList.get(positionX).surveyID, originalSorCodeList.get(positionX).sorCode)
         }
 
@@ -154,6 +159,7 @@ class DatabaseRepository(private val dbManager: dbDAO) {
         val sor = dbManager.getSoR(sor)
         return sor
     }
+
 
 
     @Suppress("RedundantSuspendModifier")

@@ -357,7 +357,7 @@
                     android:entries="@array/heating_selection"
                     android:gravity="center"
                     android:paddingLeft="20dp"
-                    android:spinnerMode="dialog"
+                    android:spinnerMode="dropdown"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.03"

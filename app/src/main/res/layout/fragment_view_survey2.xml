@@ -18,7 +18,7 @@
         android:id="@+id/viewSurveyLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey">
+        android:background="@color/appbackgroundColor">
 
         <ImageView
             android:id="@+id/imageView6"
@@ -62,7 +62,7 @@
             android:layout_marginEnd="700dp"
             android:layout_marginRight="700dp"
             android:layout_marginBottom="400dp"
-            android:background="#EAE5D9"
+            android:background="#F6F5F2"
             android:entries="@array/search_surveys_by"
             android:spinnerMode="dropdown"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -82,7 +82,7 @@
             android:layout_marginEnd="700dp"
             android:layout_marginRight="700dp"
             android:layout_marginBottom="200dp"
-            android:background="#EAE5D9"
+            android:background="#F6F5F2"
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -158,7 +158,7 @@
             android:layout_marginEnd="700dp"
             android:layout_marginRight="700dp"
             android:layout_marginBottom="64dp"
-            android:background="#EAE5D9"
+            android:background="#F6F5F2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.381"

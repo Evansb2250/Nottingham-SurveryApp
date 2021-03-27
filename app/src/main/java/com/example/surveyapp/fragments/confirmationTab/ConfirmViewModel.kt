@@ -33,6 +33,9 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     var canSuveryBeSaved = MutableLiveData<Boolean>()
 
 
+    var updateDetected = MutableLiveData<Boolean>()
+
+
     private lateinit var dataFromSor: List<SurveySORs>
     private lateinit var dataFromPrev: List<SurveySORs>
     private lateinit var dataFromChecklist: List<SurveySORs>
@@ -104,6 +107,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
     @WorkerThread
     suspend fun combineData(): List<SurveySORs> {
         val tempList = mutableListOf<SurveySORs>()
+
         if (dataFromPrev != null) {
             for (data in dataFromPrev) {
                 tempList.add(data)
@@ -115,11 +119,13 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
                 tempList.add(data)
             }
         }
+
         if (dataFromSor != null) {
-            for (data in dataFromSor) {
+            for (data in dataFromSor.asReversed()) {
                 tempList.add(data)
             }
         }
+
 
         return tempList
     }
@@ -154,6 +160,19 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
         //SURVEY IS AUTOMATICALLY INCREMENTEND
 
     }
+
+
+
+    fun changeVATDEFAULT(vat: Double){
+        VAT.value = vat
+        updateDetected.value = true
+
+    }
+
+
+
+
+
 
     private fun surveyTabScanResults(): Boolean {
         val cantUpdate = "Cant update "
@@ -248,7 +267,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
             var count = 0
 
-            for (data in List) {
+            for (data in List.asReversed()) {
                 count += 1
                 //TODO add this to a separate return function
                 if (hidePrices.equals(false)) {
@@ -301,6 +320,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
     private suspend fun addSurvey() {
        // repository.insertCompleteSurvey(surveyInfo)
+        //checkListObject?.surveyId = surveyInfo.surveyId
         repository.insertSurveyPreCheck(surveyInfo,_sorListData,checkListObject!!)
     }
 
@@ -331,7 +351,6 @@ class confirmViewModelFactory(private val repository: DatabaseRepository) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ConfirmViewModel::class.java)) {
-
             return ConfirmViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel Class")

@@ -31,6 +31,8 @@ interface dbDAO {
     suspend fun  insertCheckList(checklist: ChecklistEntries)
 
 
+
+
     @Update
     suspend fun updateSoR(sor: SoR)
 

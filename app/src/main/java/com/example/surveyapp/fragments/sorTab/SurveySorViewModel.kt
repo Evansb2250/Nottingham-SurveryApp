@@ -24,6 +24,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     //Store the total for the Sor USED for both the SorViewModel and data in the SurveySORs data class
     val total = MutableLiveData<Double>()
+    var recentlyRemovedSorCode:String =""
 
     //Number selected in the number wheel
     //TODO change to a text entry to add floating point numbers
@@ -130,7 +131,6 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     fun searchFor(userInput: String) {
-
         when (searchby.value.toString()) {
             constant.SORCODE -> searchBySorCode(userInput.toUpperCase())
             constant.KEYWORD -> searchByKeyword(userInput)
@@ -264,7 +264,6 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     @WorkerThread
     fun get(sorCode: String) = viewModelScope.launch {
         currentSor = repository.getSor(sorCode)
-        Log.i("CHECS" ,"Survey sor " + currentSor)
         if (currentSor != null) {
             updateCurrentSoR()
         } else
@@ -296,6 +295,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
         if(addedSor2List != null){
         if (addedSor2List.size >= 0 && sorcodeToDeleteIndex != null) {
+            recentlyRemovedSorCode =  addedSor2List.get(sorcodeToDeleteIndex!!).sorCode
             addedSor2List.removeAt(sorcodeToDeleteIndex!!)
             sorcodeToDeleteIndex = null
 
@@ -322,8 +322,9 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     private fun updateListofAddedSorUI(addedSorList: MutableList<SurveySORs>) =
         viewModelScope.launch {
             var list = mutableListOf<String>()
-            for (surveySor in addedSorList) {
-                list.add(surveySor.sorCode + "- " + surveySor.sorDescription)
+            var count = 1
+            for (surveySor in addedSorList) { list.add("${count} - ${surveySor.sorCode} ${surveySor.sorDescription}")
+               count = count.plus(1)
             }
             addedSors = list
 

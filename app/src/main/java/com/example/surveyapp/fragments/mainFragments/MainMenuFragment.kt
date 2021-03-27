@@ -45,11 +45,11 @@ class MainMenuFragment : Fragment() {
             container,
             false
         )
-        progress = AlertDialog.Builder(requireContext()).create()
+     //   progress = AlertDialog.Builder(requireContext()).create()
 
 
         if(flag == false){
-            progress?.dismiss()
+            //progress?.dismiss()
         }
 
         binding.createSurveyButtonMain.setOnClickListener { it ->
@@ -60,7 +60,7 @@ class MainMenuFragment : Fragment() {
                 displayLoadMessage()
 
                 flag = true
-                changeToSurveyActivity()
+             //   changeToSurveyActivity()
             }
 
         }
@@ -80,20 +80,20 @@ class MainMenuFragment : Fragment() {
 
 
     private fun displayLoadMessage() {
-        progress.setTitle("Loading");
-        progress.setMessage("Please wait while survey builder is loading...");
-        progress.setCancelable(true); // disable dismiss by tapping outside of the dialog
-        progress.show();
+//        progress.setTitle("Loading");
+//        progress.setMessage("Please wait while survey builder is loading...");
+//        progress.setCancelable(true); // disable dismiss by tapping outside of the dialog
+//        progress.show();
 
     }
 
-    private fun changeToSurveyActivity() {
-        intent  = Intent(activity, SurveyActivity::class.java)
-        requireActivity().startActivity(intent)
-        //TODO comment out lines to test SOR DATABASE
-        activity?.finish()
-
-    }
+//    private fun changeToSurveyActivity() {
+//        intent  = Intent(activity, SurveyActivity::class.java)
+//        requireActivity().startActivity(intent)
+//        //TODO comment out lines to test SOR DATABASE
+//        activity?.finish()
+//
+//    }
 
 
 

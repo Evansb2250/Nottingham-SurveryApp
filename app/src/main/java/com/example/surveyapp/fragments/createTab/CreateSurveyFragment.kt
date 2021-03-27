@@ -104,11 +104,6 @@ class CreateSurveyFragment : Fragment() {
 
 
 
-//        binding.dateEdit.addTextChangedListener { text ->
-//            SurveyActivity.createSurveyPage?.storeDate(text.toString())
-//        }
-
-
         binding.calendarView.setOnDateChangeListener{CalendarView, year, month, dayOfMonth ->
 
             createSurveyPage?.month_?.value = month+1

@@ -305,8 +305,10 @@ PASSED
 
 
     fun loadOldSors(existingSurveySors: List<SurveySORs>){
-        previousWorkData = existingSurveySors as ArrayList<SurveySORs>
-        changeDetect.value = true
+        if(previousWorkData.size == existingSurveySors.size) {
+            previousWorkData = existingSurveySors as ArrayList<SurveySORs>
+            changeDetect.value = true
+        }
     }
 }
 

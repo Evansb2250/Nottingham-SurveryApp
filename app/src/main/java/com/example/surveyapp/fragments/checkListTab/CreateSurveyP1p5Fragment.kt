@@ -145,7 +145,7 @@ class CreateSurveyP1p5Fragment : Fragment() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
+
             }
 
         }

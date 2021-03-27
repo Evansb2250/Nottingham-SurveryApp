@@ -96,7 +96,8 @@ class SOR_Fragment : Fragment() {
                         SurveyActivity.sorViewModel?.addedSor2List?.size.toString()
                     setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
 
-                    }
+                    }else
+                    Toast.makeText(requireContext(),"Code is not selected or is already added", Toast.LENGTH_SHORT).show()
 
             })
 
@@ -126,6 +127,8 @@ class SOR_Fragment : Fragment() {
             SurveyActivity.sorViewModel!!.removeSorFromList()
             updateListViewAfterDeletion()
             resetFields()
+            binding.searchView.setText(sorViewModel?.recentlyRemovedSorCode)
+            sorViewModel!!.recentlyRemovedSorCode =""
 
         }
 

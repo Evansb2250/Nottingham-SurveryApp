@@ -22,7 +22,5 @@ class MainActivity : AppCompatActivity() {
         val viewModel: MainActivityViewModel by viewModels { MainActivityViewModelFactory((application as SurveyApplication).repository) }
     }
 
-//    override fun onBackPressed() {
-//        Toast.makeText(this, "Go To cancel button to exit Survey", Toast.LENGTH_LONG).show()
-//    }
+
 }

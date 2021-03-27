@@ -88,6 +88,10 @@ class RestoreSurveyHelper(private val surveyOld: Survey, private val sorsOld: Li
         return cPackage
     }
 
+    fun getVat(): Double {
+        return survey.vatAmount
+    }
+
 
 }
 

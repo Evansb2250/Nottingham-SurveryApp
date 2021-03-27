@@ -58,11 +58,9 @@ class SurveyActivity : AppCompatActivity() {
 
 
         surveyActivityModel.id.observe(this, Observer { id ->
-
-            Log.i("CHECKs", id.toString())
             preloadAllViewModelsWithExistingData(isThisSurveyBeingEdited, surveyActivityModel)
             updateViewModelsSurveyID(id)
-
+            Log.i("Checks", "Survey mode for edit is ${isApplicationInEditMode} " )
         })
 
         // viewModel  = ViewModelProvider(this).get(SurveySorViewModel::class.java)
@@ -75,6 +73,7 @@ class SurveyActivity : AppCompatActivity() {
         confirmPage?.surveyIDTextView?.value = id
         SurveyID = id
         checkListVM?.setSurveyID(id)
+        Log.i("CHECKs", id.toString())
         prevViewModel?.setSurveyID(id)
     }
 
@@ -92,7 +91,7 @@ class SurveyActivity : AppCompatActivity() {
             sorViewModel?.loadPreviousSorList(surveyActivityModel.restoreSurveyHelperClass.getSorsBelongingToSorFragament())
             checkListVM?.requestCheckList( surveyActivityModel.restoreSurveyHelperClass.getCheckList())
             prevViewModel?.loadOldSors(surveyActivityModel.restoreSurveyHelperClass.getListOfPreviousSors())
-
+            confirmPage?.changeVATDEFAULT(surveyActivityModel.restoreSurveyHelperClass.getVat())
         }
     }
 

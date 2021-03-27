@@ -122,10 +122,11 @@ class CreateSurveyP2Fragment : Fragment() {
 
 
 
+
         SurveyActivity.prevViewModel?.changeDetect?.observe(viewLifecycleOwner, Observer { flag ->
             if (flag == true) {
                 val guiInterface = SurveyActivity.prevViewModel?.returnPreviosWorkData()
-               if(guiInterface != null) {
+               if(guiInterface != null && guiInterface.isNotEmpty()) {
                    sortDataLoadedList(guiInterface)
                }
             }
