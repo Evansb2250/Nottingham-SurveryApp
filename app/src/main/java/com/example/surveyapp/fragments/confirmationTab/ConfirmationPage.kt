@@ -3,12 +3,13 @@ package com.example.surveyapp.fragments.confirmationTab
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,11 +17,11 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ViewModel
 import com.example.surveyapp.R
 import com.example.surveyapp.activities.MainActivity
 import com.example.surveyapp.activities.SurveyActivity
@@ -45,7 +46,7 @@ class ConfirmationPage : Fragment() {
     lateinit var binding: FragmentConfirmationPageBinding
     val STORAGE_CODE = 100
 
-    @RequiresApi(Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.P)
     @SuppressLint("WrongThread")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -171,46 +172,60 @@ confirmPage?.updateDetected?.observe(viewLifecycleOwner, androidx.lifecycle.Obse
         }
     }
 
-        @RequiresApi(Build.VERSION_CODES.M)
+        @RequiresApi(Build.VERSION_CODES.P)
     private fun setUpPDFButton(pdfButton: Button) {
         pdfButton.setOnClickListener { it ->
-            checkPerm()
+          if(requireContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+           //   Toast.makeText(requireContext(), " Permission already Granted", Toast.LENGTH_LONG).show()
+               val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+              requestPermissions(permissions, STORAGE_CODE)
+          }else{
+              requestStoragePermission()
+          }
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun checkPerm() {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            val context = context
-            if (context != null) {
-                if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_DENIED) {
-                    val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    Toast.makeText(requireContext(), "Creating PDF", Toast.LENGTH_LONG).show()
+    private fun requestStoragePermission() {
+        if(ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+            val alert = AlertDialog.Builder(requireContext())
+                .setTitle("Permission needed")
+                .setMessage("This permission is needed to create a PDF and save it to your external storage.")
+                .setPositiveButton("ok", DialogInterface.OnClickListener { dialogInterface: DialogInterface, i: Int ->
+
+                    val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     requestPermissions(permissions, STORAGE_CODE)
-                }
-            }else
-                Toast.makeText(requireContext(), "Permission Denied", Toast.LENGTH_LONG).show()
-        } else {
-            confirmPage?.savePdfHandler()
-        }
-    }
 
+                }).setNegativeButton("cancel", DialogInterface.OnClickListener{ dialogInterface: DialogInterface, i: Int ->
+                    dialogInterface.dismiss()
+                })
+                .create().show()
+
+        }else{
+            val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            requestPermissions(permissions, STORAGE_CODE)
+        }
+
+
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        when (requestCode) {
+        when(requestCode){
             STORAGE_CODE -> {
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(requireContext(), " Printing PDF", Toast.LENGTH_LONG).show()
                     confirmPage?.savePdfHandler()
-                } else {
-                    Toast.makeText(requireContext(), "Permission denied .....!", Toast.LENGTH_SHORT)
-                        .show()
                 }
+                else
+                    Toast.makeText(requireContext(), " Permission was not granted", Toast.LENGTH_LONG).show()
             }
+
+            else -> Toast.makeText(requireContext(), " Permission Denied", Toast.LENGTH_LONG).show()
         }
+
     }
 
 

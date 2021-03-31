@@ -132,9 +132,21 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     fun searchFor(userInput: String) {
         when (searchby.value.toString()) {
-            constant.SORCODE -> searchBySorCode(userInput.toUpperCase())
-            constant.KEYWORD -> searchByKeyword(userInput)
+            constant.SORCODE -> {
+                setCurrentToNull()
+                searchBySorCode(userInput.toUpperCase())
+            }
+            constant.KEYWORD -> {
+                setCurrentToNull()
+                if(userInput.length > 1)
+                searchByKeyword(userInput)
+            }
         }
+    }
+
+    private fun setCurrentToNull() {
+        currentSor = null
+        updateCurrentSoR()
     }
 
 
@@ -159,11 +171,11 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     private fun updateCurrentSoR() {
-        _sorDescripition.value = currentSor?.description
-        _rechargeAmount.value = currentSor?.rechargeRate
-        UOM = currentSor?.UOM.toString()
-        sorDescrip = currentSor?.description.toString()
-        total.value = currentSor?.rechargeRate
+        _sorDescripition.value = currentSor?.description ?: ""
+        _rechargeAmount.value = currentSor?.rechargeRate?: 0.0
+        UOM = currentSor?.UOM.toString()?: ""
+        sorDescrip = currentSor?.description.toString()?: ""
+        total.value = currentSor?.rechargeRate?: 0.0
         alertSuccess(true)
     }
 
@@ -282,13 +294,14 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         listForView.clear()
         for (sor in ExistingSors.getList()) {
             if (sor.description.toLowerCase().contains(keyword.toLowerCase())) {
-                listForView.add(sor.sorCode)
+                listForView.add("${sor.sorCode}-${sor.description}")
             }
             //This list displays the options available SORS a user can select and find out more about.
             viewList = MutableLiveData(listForView)
         }
 
     }
+
 
 
     fun removeSorFromList() {

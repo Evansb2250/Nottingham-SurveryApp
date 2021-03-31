@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="labelWidth">410dp</dimen>
+    <dimen name="labelWidth">500dp</dimen>
     <dimen name="quantityLabelWidth">60dp</dimen>
-    <dimen name="commentWidth">230dp</dimen>
+    <dimen name="commentWidth">210dp</dimen>
 </resources>

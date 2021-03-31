@@ -128,6 +128,7 @@ class SOR_Fragment : Fragment() {
             updateListViewAfterDeletion()
             resetFields()
             binding.searchView.setText(sorViewModel?.recentlyRemovedSorCode)
+            binding.optionSelector.setSelection(0)
             sorViewModel!!.recentlyRemovedSorCode =""
 
         }
@@ -159,11 +160,9 @@ class SOR_Fragment : Fragment() {
 
     private fun setUpSearchResult(searchResultBox: ListView) {
         searchResultBox.setOnItemClickListener { parent, view, position, id ->
-
             unlockFields()
-
-            val sorcode = SurveyActivity.sorViewModel!!.listForView.get(position)
-
+            val sorcodeWithDetails = SurveyActivity.sorViewModel!!.listForView.get(position)
+            val sorcode = sorcodeWithDetails.substring(0, sorcodeWithDetails.indexOf("-"))
             //val description = SurveyActivity.sorViewModel!!.listForView.get(position)
             SurveyActivity.sorViewModel?.get(sorcode)
             // setDescription(description)
@@ -306,12 +305,15 @@ class SOR_Fragment : Fragment() {
             binding.searchView.text.clear()
             setNumberSpinnerToOne()
 
+
             //Searches using key word
             if (binding.optionSelector.selectedItem == constant.KEYWORD) {
                 setUpListView(SurveyActivity.sorViewModel!!.listForView)
                 SurveyActivity.sorViewModel?.listForViewSize?.value =
                     SurveyActivity.sorViewModel?.listForView?.size
             }
+
+            updateListViewAfterDeletion()
 
             unlockFields()
 
@@ -322,8 +324,13 @@ class SOR_Fragment : Fragment() {
     }
 
     private fun revealSelectedItem(tag: String) {
+        var codeHeader = ""
         binding.sorIdentifier.visibility = View.VISIBLE
-        binding.sorIdentifier.text = tag
+        if(tag.contains("-")){
+            codeHeader = tag.substring(0, tag.indexOf("-"))
+        }else
+             codeHeader = tag
+        binding.sorIdentifier.text = codeHeader
     }
 
     private fun setNumberSpinnerToOne() {

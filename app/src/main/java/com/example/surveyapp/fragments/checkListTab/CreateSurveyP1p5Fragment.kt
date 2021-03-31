@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.CheckBox
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -108,7 +107,6 @@ class CreateSurveyP1p5Fragment : Fragment() {
         binding.atroChkBx.jumpDrawablesToCurrentState()
 
         binding.rwChkBx.setChecked(SurveyActivity.checkListVM!!.checBoxLiveState_[constant.REWIRE_BOX_ID])
-        Log.i("CHECKs", SurveyActivity.checkListVM!!.checBoxLiveState_[constant.REWIRE_BOX_ID].toString() )
         binding.rwChkBx.jumpDrawablesToCurrentState()
 
         binding.heatingChkBx.setChecked(SurveyActivity.checkListVM!!.checBoxLiveState_[constant.HEATING_BOX_ID])
@@ -124,7 +122,6 @@ class CreateSurveyP1p5Fragment : Fragment() {
             val isChecked = chkBx.isChecked
             SurveyActivity.checkListVM?.registerClick(id, isChecked)
 
-            Toast.makeText(requireContext(), binding.viewmodel!!.getDecorPoints(), Toast.LENGTH_LONG).show()
         }
 
 

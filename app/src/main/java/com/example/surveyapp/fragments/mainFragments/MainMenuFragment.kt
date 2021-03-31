@@ -60,7 +60,7 @@ class MainMenuFragment : Fragment() {
                 displayLoadMessage()
 
                 flag = true
-             //   changeToSurveyActivity()
+               changeToSurveyActivity()
             }
 
         }
@@ -87,13 +87,13 @@ class MainMenuFragment : Fragment() {
 
     }
 
-//    private fun changeToSurveyActivity() {
-//        intent  = Intent(activity, SurveyActivity::class.java)
-//        requireActivity().startActivity(intent)
-//        //TODO comment out lines to test SOR DATABASE
-//        activity?.finish()
-//
-//    }
+    private fun changeToSurveyActivity() {
+        intent  = Intent(activity, SurveyActivity::class.java)
+        requireActivity().startActivity(intent)
+        //TODO comment out lines to test SOR DATABASE
+        activity?.finish()
+
+    }
 
 
 
