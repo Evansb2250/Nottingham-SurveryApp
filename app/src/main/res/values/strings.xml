@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">SurveyApp</string>
-    <string name="make_modifications">Make Modifications</string>
-    <string name="view_surveys">View Surveys</string>
+    <string name="make_modifications">Make_Modifications</string>
+    <string name="view_surveys">View_Surveys</string>
     <string name="home">Notts Automated Survey App</string>
-    <string name="create_survey">Create Survey</string>
+    <string name="create_survey">Create_Survey</string>
     <string name="surveyor_name">Surveyor Name</string>
     <string name="progress">%1$d / %2$d (%3$.2f)</string>
     <string name="blank"></string>

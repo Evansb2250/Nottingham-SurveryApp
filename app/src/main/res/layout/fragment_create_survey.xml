@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
     tools:context="com.example.surveyapp.fragments.createTab.CreateSurveyFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -186,32 +185,6 @@
                         android:inputType="textPersonName"
                         android:text="@string/no_text_lebel" />
                 </TableRow>
-<!--
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/houseNumber_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bsc_fonts"
-                        android:text="@string/houseNumberLabel"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <EditText
-                        android:id="@+id/houseNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:autofillHints=""
-                        android:ems="10"
-                        android:hint="@string/houseNumberHint"
-                        android:inputType="textPersonName"
-                        android:text="@string/no_text_lebel" />
-                </TableRow>
--->
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -292,7 +265,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toStartOf="@+id/textView11"
+                />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,19 +37,15 @@
             android:id="@+id/imageButtonRequestSearch"
             android:layout_width="46dp"
             android:layout_height="51dp"
-            android:layout_marginStart="200dp"
-            android:layout_marginLeft="200dp"
             android:layout_marginTop="130dp"
-            android:layout_marginEnd="425dp"
-            android:layout_marginRight="425dp"
             android:layout_marginBottom="350dp"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/searchBySpinner"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/searchEditField"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.156"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_baseline_search_24" />
 
         <Spinner
@@ -59,15 +55,12 @@
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="70dp"
-            android:layout_marginEnd="700dp"
-            android:layout_marginRight="700dp"
             android:layout_marginBottom="400dp"
             android:background="#F6F5F2"
             android:entries="@array/search_surveys_by"
             android:spinnerMode="dropdown"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.43"
+            app:layout_constraintEnd_toEndOf="@+id/listView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.100000024" />
@@ -76,21 +69,17 @@
             android:id="@+id/searchEditField"
             android:layout_width="150dp"
             android:layout_height="54dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="700dp"
-            android:layout_marginRight="700dp"
             android:layout_marginBottom="200dp"
             android:background="#F6F5F2"
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/searchBySpinner"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/searchBySpinner"
             app:layout_constraintTop_toBottomOf="@+id/searchBySpinner"
-            app:layout_constraintVertical_bias="0.028" />
+            app:layout_constraintVertical_bias="0.077" />
 
         <TextView
             android:id="@+id/textView22"
@@ -383,13 +372,12 @@
             android:layout_width="665dp"
             android:layout_height="94dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/editSurveyButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.97"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView6"
+            app:layout_constraintStart_toStartOf="@+id/tableLayout4"
             app:layout_constraintTop_toBottomOf="@+id/tableLayout4"
-            app:layout_constraintVertical_bias="0.050000012">
+            app:layout_constraintVertical_bias="0.0">
 
             <TableRow
                 android:layout_width="match_parent"
