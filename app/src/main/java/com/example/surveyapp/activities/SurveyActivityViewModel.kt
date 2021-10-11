@@ -1,13 +1,9 @@
 package com.example.surveyapp.activities
 
-import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.*
 import com.example.surveyapp.CONSTANTS.constant
 import com.example.surveyapp.classLoader.RestoreSurveyHelper
-import com.example.surveyapp.domains.SurveySORs
-import com.example.surveyapp.fragments.createTab.createSurveyViewModel
-import com.example.surveyapp.ignore.Survey
 import com.example.surveyapp.repository.DatabaseRepository
 import kotlinx.coroutines.launch
 

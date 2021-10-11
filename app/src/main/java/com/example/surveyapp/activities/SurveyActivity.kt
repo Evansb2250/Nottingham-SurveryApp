@@ -23,7 +23,7 @@ import com.example.surveyapp.fragments.confirmationTab.ConfirmViewModel
 import com.example.surveyapp.fragments.confirmationTab.ConfirmationPage
 import com.example.surveyapp.fragments.confirmationTab.confirmViewModelFactory
 import com.example.surveyapp.fragments.createTab.CreateSurveyFragment
-import com.example.surveyapp.fragments.createTab.createSurveyViewModel
+import com.example.surveyapp.fragments.createTab.CreateSurveyViewModel
 import com.example.surveyapp.fragments.createTab.createSurveyViewModelFactory
 import com.example.surveyapp.fragments.sorTab.SOR_Fragment
 import com.example.surveyapp.fragments.sorTab.SurveySorViewModel
@@ -37,7 +37,7 @@ class SurveyActivity : AppCompatActivity() {
         // global sor viewModel
 
         var isApplicationInEditMode = false
-        var createSurveyPage: createSurveyViewModel? = null
+        var createSurveyPage: CreateSurveyViewModel? = null
         var sorViewModel: SurveySorViewModel? = null
         var prevViewModel: previosWorkViewModel? = null
         var checkListVM: ChecklistViewModel? = null
@@ -117,7 +117,7 @@ class SurveyActivity : AppCompatActivity() {
         val prevSoRViewModel: previosWorkViewModel by viewModels { previosWorkViewModelFactory((application as SurveyApplication).repository) }
         val checklistViewModel: ChecklistViewModel by viewModels { ChecklistViewModelFactory((application as SurveyApplication).repository) }
         val confirmationVM: ConfirmViewModel by viewModels { confirmViewModelFactory((application as SurveyApplication).repository) }
-        val createSVM: createSurveyViewModel by viewModels { createSurveyViewModelFactory((application as SurveyApplication).repository) }
+        val createSVM: CreateSurveyViewModel by viewModels { createSurveyViewModelFactory((application as SurveyApplication).repository) }
         val abestoViewModel: AbestoViewModel by viewModels { AbestoViewModelFactory((application as SurveyApplication).repository) }
 
         // Short CUT TO CLEAR A BUG

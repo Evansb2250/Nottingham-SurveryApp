@@ -172,7 +172,7 @@
                     android:text="yes" />
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/textViewFragmentHeader"
                     android:layout_width="125dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bsc_fonts"
@@ -193,7 +193,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView17"
+                    android:id="@+id/textViewCalenderHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bsc_fonts"

@@ -3,7 +3,7 @@
     <string name="make_modifications">Make_Modifications</string>
     <string name="view_surveys">View_Surveys</string>
     <string name="home">Notts Automated Survey App</string>
-    <string name="create_survey">Create_Survey</string>
+    <string name="create_survey">Create Survey</string>
     <string name="surveyor_name">Surveyor Name</string>
     <string name="progress">%1$d / %2$d (%3$.2f)</string>
     <string name="blank"></string>
@@ -115,5 +115,9 @@
     <string name="pdf">PDF</string>
     <string name="houseNumberLabel">House #</string>
     <string name="houseNumberHint">Enter House Number</string>
+    <string name="Revenue">Revenue</string>
+    <string name="Capital">Capital</string>
+    <string name="Survey_Information">Survey Information</string>
+    <string name="Date_Of_Survey">Date of Survey</string>
 
 </resources>

@@ -31,81 +31,14 @@ class CreateSurveyFragment : Fragment() {
     ): View? {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_create_survey, container, false)
-        // Inflate the layout for this fragment
-
-        SurveyActivity.createSurveyPage?.surveyName_?.observe(viewLifecycleOwner, Observer { name->
-            binding.nameEdit.setText(name)
-
-        })
-        SurveyActivity.createSurveyPage?.address_?.observe(viewLifecycleOwner, Observer { address->
-            binding.addressEdit.setText(address)
-
-        })
-        SurveyActivity.createSurveyPage?.postCode_?.observe(viewLifecycleOwner, Observer { postCode->
-            binding.postEdit.setText(postCode)
-
-        })
-        SurveyActivity.createSurveyPage?.phoneNumber_?.observe(viewLifecycleOwner, Observer { phoneNumber->
-            binding.phoneNumEdit.setText(phoneNumber)
-
-        })
-        SurveyActivity.createSurveyPage?.day_?.observe(viewLifecycleOwner, Observer { day->
-            var month = createSurveyPage?.getMonth()
-            var year = createSurveyPage?.getYear()
-
-            val dateFormat = SimpleDateFormat("dd-M-yyyy")
-            val x = "${day}-${month}-${year}"
-            val date = dateFormat.parse(x)
 
 
 
 
-            binding.calendarView.setDate(date.getTime())
-            binding.dateEdit.setText("${day}/${month}/${year}")
-
-        })
-
-        SurveyActivity.createSurveyPage?.surveyType_?.observe(viewLifecycleOwner, Observer { surveyType->
-            if(surveyType == constant.CAPTIAL){
-                binding.capitalRB.setChecked(true)
-            }
-             if(surveyType == constant.REVENUE) {
-                 binding.revenueRB.setChecked(true)}
-
-        })
-
-
-
-        binding.capitalRB.setOnClickListener {
-            SurveyActivity.createSurveyPage?.setSurveryType(constant.CAPTIAL)
-        }
-
-        binding.revenueRB.setOnClickListener {
-            SurveyActivity.createSurveyPage?.setSurveryType(constant.REVENUE)
-        }
-
-
-
-        binding.nameEdit.addTextChangedListener { text ->
-            SurveyActivity.createSurveyPage?.storeName(text.toString())
-        }
-
-        binding.addressEdit.addTextChangedListener { text ->
-            SurveyActivity.createSurveyPage?.storeAddress(text.toString())
-        }
-
-        binding.postEdit.addTextChangedListener { text ->
-            SurveyActivity.createSurveyPage?.storePostCode(text.toString())
-        }
-
-        binding.phoneNumEdit.addTextChangedListener { text ->
-            SurveyActivity.createSurveyPage?.storePhoneNumber(text.toString())
-        }
 
 
 
         binding.calendarView.setOnDateChangeListener{CalendarView, year, month, dayOfMonth ->
-
             createSurveyPage?.month_?.value = month+1
             createSurveyPage?.year_?.value = year
             createSurveyPage?.day_?.value = dayOfMonth

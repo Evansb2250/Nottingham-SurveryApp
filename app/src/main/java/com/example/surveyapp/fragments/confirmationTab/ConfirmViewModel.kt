@@ -194,11 +194,11 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
 
     private fun initializeSurveyInfoVariables() {
-        address = SurveyActivity.createSurveyPage?.getAddress() ?: ""
-        name = SurveyActivity.createSurveyPage?.getName() ?: ""
-        postCode = SurveyActivity.createSurveyPage?.getPostCode() ?: ""
-        phoneNumber = SurveyActivity.createSurveyPage?.getPhoneNumber() ?: ""
-        surveyType = SurveyActivity.createSurveyPage?.getSurveyType() ?: ""
+        address = SurveyActivity.createSurveyPage?.address ?: ""
+        name = SurveyActivity.createSurveyPage?.surveyName ?: ""
+        postCode = SurveyActivity.createSurveyPage?.postCode ?: ""
+        phoneNumber = SurveyActivity.createSurveyPage?.phoneNumber ?: ""
+        surveyType = SurveyActivity.createSurveyPage?.surveyType ?: ""
         day = SurveyActivity.createSurveyPage?.getDay()
         month = SurveyActivity.createSurveyPage?.getMonth()
         year = SurveyActivity.createSurveyPage?.getYear()

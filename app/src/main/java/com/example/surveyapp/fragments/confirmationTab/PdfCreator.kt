@@ -321,13 +321,13 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
             table.addCell(createBlankSpace())
 
             table.addCell(createBordlessHeaderCell(PDFconstants.VPM))
-            table.addCell(createBordlessHeaderCell(SurveyActivity.createSurveyPage?.getName()))
+            table.addCell(createBordlessHeaderCell(SurveyActivity.createSurveyPage?.surveyName))
 
             table.addCell(createBlankSpace())
             table.addCell(createBlankSpace())
 
             table.addCell(createBordlessHeaderCell(PDFconstants.ADDRESS))
-            table.addCell(createBordlessHeaderCell(SurveyActivity.createSurveyPage?.getAddress()))
+            table.addCell(createBordlessHeaderCell(SurveyActivity.createSurveyPage?.address))
 
             table.addCell(createBlankSpace())
             table.addCell(createBlankSpace())
