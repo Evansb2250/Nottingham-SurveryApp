@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 
 class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
+    val uniqueSorCodeNumber = -1000
+
 
     companion object {
         private lateinit var Global_heatingType: List<SurveySORs>
@@ -152,6 +154,7 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
 
                 tempList.add(
                     SurveySORs(
+                        uniqueSorCodeNumber,
                         surveyID,
                         sorcode,
                         uom,

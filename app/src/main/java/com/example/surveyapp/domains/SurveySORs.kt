@@ -8,8 +8,9 @@ import androidx.room.PrimaryKey
 
 
 
-@Entity(tableName = "survey_sors_table", primaryKeys= arrayOf("sorCode", "surveyID"))
+@Entity(tableName = "survey_sors_table", primaryKeys= arrayOf("uniqueSurveyCode", "sorCode", "surveyID"))
 data class SurveySORs(
+    var uniqueSurveyCode: Int,
     var surveyID: Int,
     var sorCode: String = "",
     @ColumnInfo(name="UOM") var UOM: String,

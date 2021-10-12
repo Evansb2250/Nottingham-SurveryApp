@@ -51,14 +51,19 @@ class DatabaseRepository(private val dbManager: dbDAO) {
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     private suspend fun addOrRemoveSurveySors(newSorList: List<SurveySORs>) {
+
         var tempSor: SurveySORs?
+
+
         if(newSorList != null) {
             if(newSorList.size > 0) {
                 removeSorCodesNotInNewList(newSorList)
             }
         }
+
+
         for (i in 0..newSorList.size - 1) {
-            tempSor = dbManager.getSurveySorsByID(newSorList.get(i)!!.surveyID, newSorList.get(i).sorCode)
+            tempSor = dbManager.getSurveySorsByID(newSorList.get(i).uniqueSurveyCode, newSorList.get(i)!!.surveyID, newSorList.get(i).sorCode)
             if (tempSor == null) {
                 dbManager.insertNewSurveySor(newSorList.get(i))
             }
@@ -69,9 +74,9 @@ class DatabaseRepository(private val dbManager: dbDAO) {
 
     private suspend fun removeSorCodesNotInNewList(newSorList: List<SurveySORs>) {
         var originalSorCodeList = dbManager.getSurveySors(newSorList.get(0).surveyID)
-
         for (positionX in originalSorCodeList.indices) {
-                dbManager.removeIndividualSurveySorCode(originalSorCodeList.get(positionX).surveyID, originalSorCodeList.get(positionX).sorCode)
+                dbManager.removeIndividualSurveySorCode(originalSorCodeList.get(positionX).uniqueSurveyCode
+                    ,originalSorCodeList.get(positionX).surveyID, originalSorCodeList.get(positionX).sorCode)
         }
 
     }

@@ -89,6 +89,8 @@ class SurveyActivity : AppCompatActivity() {
             createSurveyPage?.addSurveyPackage(surveyActivityModel.restoreSurveyHelperClass.returnCreatePagePackage())
             abesto?.restoreOldText(surveyActivityModel.restoreSurveyHelperClass.getAbesto())
             sorViewModel?.loadPreviousSorList(surveyActivityModel.restoreSurveyHelperClass.getSorsBelongingToSorFragament())
+            sorViewModel?.enterHighestUniqueNumber(surveyActivityModel.restoreSurveyHelperClass.returnHighestSorNumber())
+
             checkListVM?.requestCheckList( surveyActivityModel.restoreSurveyHelperClass.getCheckList())
             prevViewModel?.loadOldSors(surveyActivityModel.restoreSurveyHelperClass.getListOfPreviousSors())
             confirmPage?.changeVATDEFAULT(surveyActivityModel.restoreSurveyHelperClass.getVat())
@@ -131,9 +133,9 @@ class SurveyActivity : AppCompatActivity() {
 
     }
 
-    override fun onBackPressed() {
-        Toast.makeText(this, "Go To cancel button to exit Survey", Toast.LENGTH_LONG).show()
-    }
+//    override fun onBackPressed() {
+//        Toast.makeText(this, "Go To cancel button to exit Survey", Toast.LENGTH_LONG).show()
+//    }
 
     private fun setUpTabs() {
         adapter.addFragment(CreateSurveyFragment(), "Survey Details")

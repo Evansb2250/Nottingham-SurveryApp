@@ -65,13 +65,13 @@ interface dbDAO {
 
 
 
-    @Query("DELETE FROM survey_sors_table where surveyId=:surveyID AND sorCode=:sorCode ")
-    suspend fun removeIndividualSurveySorCode(surveyID: Int, sorCode: String)
+    @Query("DELETE FROM survey_sors_table where uniqueSurveyCode=:uniqueCode AND surveyId=:surveyID AND sorCode=:sorCode ")
+    suspend fun removeIndividualSurveySorCode(uniqueCode:Int, surveyID: Int, sorCode: String)
 
 
     //Used to access if a surveySor Exist if it doesn't we will add it
-    @Query("SELECT * FROM survey_sors_table where surveyId =:key AND sorCode=:Code")
-    suspend fun getSurveySorsByID(key:Int, Code:String): SurveySORs
+    @Query("SELECT * FROM survey_sors_table where uniqueSurveyCode=:uniqueCode AND surveyId =:key AND sorCode=:Code")
+    suspend fun getSurveySorsByID(uniqueCode: Int, key:Int, Code:String): SurveySORs
 
 
 

@@ -10,13 +10,18 @@ class RestoreSurveyHelper(private val surveyOld: Survey, private val sorsOld: Li
 
     private var survey = surveyOld
     private lateinit var sorsInSorFragment: List<SurveySORs>
+    private  var highestUniqueSorNumber = 0
+
 
 
     init {
+        //list of sors
         sorsInSorFragment = separateSorFramgent()
         //    sorsApartOfPreviousWork=  separtePreviousSors()
     }
 
+
+    fun returnHighestSorNumber():Int = highestUniqueSorNumber
 
     fun getSorsBelongingToSorFragament(): List<SurveySORs> {
         return sorsInSorFragment
@@ -35,9 +40,13 @@ class RestoreSurveyHelper(private val surveyOld: Survey, private val sorsOld: Li
     private fun separateSorFramgent(): List<SurveySORs> {
         var list = arrayListOf<SurveySORs>()
 
+
         for (x in 0..sorsOld.size - 1) {
             var answer = constant.NOTALLOWEDTOENTER.find { it == sorsOld[x].sorCode }
             if (answer == null) {
+                if(sorsOld[x].uniqueSurveyCode > highestUniqueSorNumber){
+                    highestUniqueSorNumber = sorsOld[x].uniqueSurveyCode
+                }
                 list.add(sorsOld[x])
             }
         }

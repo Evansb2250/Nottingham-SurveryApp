@@ -17,6 +17,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
 
     private var surveyID = 0
     var changeDetect = MutableLiveData<Boolean>()
+    val uniqueSorCodeNumber = -1000
 
 
 
@@ -32,6 +33,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
      */
     var previousWorkData = arrayListOf<SurveySORs>(
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION1_SOR,
             "HR",
@@ -43,6 +45,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 1
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION2_SOR,
             "No",
@@ -54,6 +57,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 2
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION3_SOR,
             "No",
@@ -65,6 +69,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 3
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION4_SOR,
             "Item",
@@ -76,6 +81,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 4
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION5_SOR,
             "No",
@@ -87,6 +93,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 5
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION6_SOR,
             "No",
@@ -98,10 +105,12 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 6
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID, constant.QUESTION7_SOR, "No",  "Fix only lock", "", false, 0.0, 0.0,
             constant.STANDARDCODE
         ), // 7
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION8_SOR,
             "No",
@@ -113,6 +122,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 8
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION9_SOR,
             "No",
@@ -124,6 +134,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 9
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION10_SOR,
             "Item",
@@ -136,6 +147,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 10
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION11_SOR,
             "Item",
@@ -147,6 +159,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 11
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION12_SOR,
             "Item",
@@ -158,6 +171,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 12
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION13_SOR,
             "Item",
@@ -169,6 +183,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 13
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION14_SOR,
             "Item",
@@ -180,6 +195,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 14
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION15_SOR,
             "No",
@@ -191,6 +207,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ), // 15
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID,
             constant.QUESTION16_SOR,
             "No",
@@ -202,6 +219,7 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             constant.STANDARDCODE
         ),
         SurveySORs(
+            uniqueSorCodeNumber,
             surveyID, constant.QUESTION17_SOR, "No", "Additional ring main", "", false, 0.0, 0.0,
             constant.STANDARDCODE
         )

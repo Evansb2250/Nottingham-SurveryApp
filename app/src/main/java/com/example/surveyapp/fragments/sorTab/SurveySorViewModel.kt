@@ -12,6 +12,8 @@ import kotlinx.coroutines.launch
 
 class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
+  var uniqueSorCodeNumber = 0
+
 
 
     fun returnListSORLIST(): List<SurveySORs> {
@@ -179,7 +181,9 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         alertSuccess(true)
     }
 
-
+    fun enterHighestUniqueNumber(highestNumber:Int){
+        uniqueSorCodeNumber = highestNumber + 1
+    }
 
 
     fun CheckBeforeAddint(
@@ -191,20 +195,21 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         total: Double?
     ) {
         val passedNullTest = checkForNullVariables(sorCode, surveyId, comments, recharge, quantity, total)
-        val passedDuplicateSorTest = runCheck4Duplicates(sorCode?.toLowerCase()?.trim())
-        val passedNotallowedTest = passedUniqueSoRTest(sorCode?.toUpperCase()?.trim())
+       // val passedDuplicateSorTest = runCheck4Duplicates(sorCode?.toLowerCase()?.trim())
+      //  val passedNotallowedTest = passedUniqueSoRTest(sorCode?.toUpperCase()?.trim())
 
 
 
         if (passedNullTest) {
 
-            if (passedDuplicateSorTest && passedNotallowedTest) { // val surveysor = SurveySORs(sorCode!!, surveyId!!, comments!!, recharge!!, quantity!!, total!!)
+            if ( true) { // val surveysor = SurveySORs(sorCode!!, surveyId!!, comments!!, recharge!!, quantity!!, total!!)
                 addedSor2List.add(
                     SurveySORs(
-                        surveyId, sorCode!!, UOM, sorDescrip, comments,
+                        uniqueSorCodeNumber ,surveyId, sorCode!!, UOM, sorDescrip, comments,
                         recharge, quantity!!.toDouble(), _rechargeAmount.value!!, category      //TODO change this so it reflects the current rate for the sorCode
                     )
                 )
+                uniqueSorCodeNumber += 1
                 resetCat()
                 updateListofAddedSorUI(addedSor2List)
                 _wasSorInsertedToSurvey.value = true
@@ -219,10 +224,10 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
 
-
-    fun passedUniqueSoRTest(sorCode: String?): Boolean{
-        return !constant.NOTALLOWEDTOENTER.contains(sorCode)
-    }
+//
+//    fun passedUniqueSoRTest(sorCode: String?): Boolean{
+//        return !constant.NOTALLOWEDTOENTER.contains(sorCode)
+//    }
 
     fun loadPreviousSorList(list: List<SurveySORs>){
 
@@ -340,6 +345,8 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
                count = count.plus(1)
             }
             addedSors = list
+            println("Adding ${addedSors}")
+
 
         }
 
