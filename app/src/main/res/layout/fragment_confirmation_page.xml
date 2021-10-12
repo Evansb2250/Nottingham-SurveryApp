@@ -61,8 +61,8 @@
 
         <TableLayout
             android:id="@+id/tableLayout3"
-            android:layout_width="425dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.05"
@@ -106,7 +106,7 @@
 
                 <TextView
                     android:id="@+id/total"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
@@ -128,7 +128,7 @@
 
                 <TextView
                     android:id="@+id/rechargeAmount"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
@@ -150,7 +150,7 @@
 
                 <EditText
                     android:id="@+id/taxPrecentage"
-                    android:layout_width="25dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
@@ -188,16 +188,13 @@
         <LinearLayout
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="361dp"
-            android:layout_marginLeft="361dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.92"
             app:layout_constraintStart_toEndOf="@+id/tableLayout3"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.3">
+            app:layout_constraintVertical_bias="0.19">
 
             <Button
                 android:id="@+id/refreshPageButton"
