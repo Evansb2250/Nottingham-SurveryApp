@@ -21,16 +21,352 @@
         android:layout_height="match_parent"
         android:background="@color/appbackgroundColor">
 
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:contentDescription="@string/SearchButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/searchResultBox"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/searchView"
+            app:layout_constraintTop_toTopOf="@+id/searchView"
+            app:layout_constraintVertical_bias="0.036"
+            app:srcCompat="@drawable/ic_baseline_search_24" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="11dp"
+            android:fontFamily="@font/abril_fatface"
+            android:text="Search By"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/optionSelector"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton"
+            app:layout_constraintHorizontal_bias="0.339"
+            app:layout_constraintStart_toStartOf="@+id/searchView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.416" />
+
+        <Spinner
+            android:id="@+id/optionSelector"
+            android:layout_width="171dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="@+id/textView9"
+            app:layout_constraintHorizontal_bias="0.579"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <EditText
+            android:id="@+id/searchView"
+            android:layout_width="139dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="47dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@{viewmodel.searchViewEntry}"
+            app:layout_constraintBottom_toTopOf="@+id/textView47"
+            app:layout_constraintEnd_toEndOf="@+id/textView47"
+            app:layout_constraintHorizontal_bias="0.552"
+            app:layout_constraintStart_toStartOf="@+id/textView47"
+            app:layout_constraintTop_toBottomOf="@+id/optionSelector"
+            app:layout_constraintVertical_bias="0.071" />
+
+        <Spinner
+            android:id="@+id/quantity_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            app:layout_constraintBottom_toBottomOf="@+id/sorAttachedToSurveyBox"
+            app:layout_constraintEnd_toStartOf="@+id/sorAttachedToSurveyBox"
+            app:layout_constraintHorizontal_bias="0.412"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/quantity_label2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="@string/quantity_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/quantity_spinner"
+            app:layout_constraintEnd_toEndOf="@+id/quantity_spinner"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/quantity_spinner" />
+
+        <Spinner
+            android:id="@+id/roomCatSpin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:dropDownWidth="match_parent"
+            android:entries="@array/dummy_categories"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/quantity_label2"
+            app:layout_constraintEnd_toEndOf="@+id/quantity_label2"
+            app:layout_constraintHorizontal_bias="0.358"
+            app:layout_constraintStart_toStartOf="@+id/quantity_label2" />
+
+        <TextView
+            android:id="@+id/textView47"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:gravity="center|center_vertical"
+            android:text="Category"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/roomCatSpin"
+            app:layout_constraintEnd_toEndOf="@+id/roomCatSpin"
+            app:layout_constraintHorizontal_bias="0.446"
+            app:layout_constraintStart_toStartOf="@+id/roomCatSpin"
+            app:layout_constraintTop_toBottomOf="@+id/added_sors2"
+            app:layout_constraintVertical_bias="0.65" />
+
+        <TextView
+            android:id="@+id/searchResultNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="29dp"
+            android:text="0"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toTopOf="@+id/searchResultBox"
+            app:layout_constraintEnd_toEndOf="@+id/searchResultBox"
+            app:layout_constraintStart_toEndOf="@+id/textView46"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:text="Search Results : "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBaseline_toBaselineOf="@+id/searchResultNumber"
+            app:layout_constraintEnd_toEndOf="@+id/searchResultBox"
+            app:layout_constraintHorizontal_bias="0.227"
+            app:layout_constraintStart_toStartOf="@+id/searchResultBox" />
+
+        <ListView
+            android:id="@+id/searchResultBox"
+            android:layout_width="319dp"
+            android:layout_height="132dp"
+            android:background="#F4EAEA"
+            app:layout_constraintBottom_toTopOf="@+id/added_sors2"
+            app:layout_constraintEnd_toEndOf="@+id/added_sors2"
+            app:layout_constraintHorizontal_bias="0.408"
+            app:layout_constraintStart_toStartOf="@+id/added_sors2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.811">
+
+        </ListView>
+
+        <TextView
+            android:id="@+id/added_sors2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:text="@string/SoRToSurvey"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toTopOf="@+id/sorNumberView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.991" />
+
+        <TextView
+            android:id="@+id/sorNumberView"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/abril_fatface"
+            android:text="0"
+            app:layout_constraintBottom_toTopOf="@+id/sorAttachedToSurveyBox"
+            app:layout_constraintEnd_toEndOf="@+id/added_sors2"
+            app:layout_constraintStart_toStartOf="@+id/added_sors2" />
+
+        <ListView
+            android:id="@+id/sorAttachedToSurveyBox"
+            android:layout_width="352dp"
+            android:layout_height="152dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="244dp"
+            android:background="#F4EAEA"
+            app:layout_constraintBottom_toTopOf="@+id/removeSorButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.355"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.729" />
+
+        <Button
+            android:id="@+id/addSoRToSurveyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:fontFamily="@font/button_fonts"
+            android:text="add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/removeSorButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/sorAttachedToSurveyBox" />
+
+        <Button
+            android:id="@+id/removeSorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/button_fonts"
+            android:text="@string/removeButton"
+            app:layout_constraintEnd_toStartOf="@+id/removeAllSorButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/addSoRToSurveyButton"
+            app:layout_constraintTop_toTopOf="@+id/addSoRToSurveyButton" />
+
+        <Button
+            android:id="@+id/removeAllSorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/button_fonts"
+            android:text="@string/remove_all_label"
+            app:layout_constraintEnd_toEndOf="@+id/sorAttachedToSurveyBox"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/removeSorButton"
+            app:layout_constraintTop_toTopOf="@+id/removeSorButton" />
+
+        <CheckBox
+            android:id="@+id/rechargeBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:text="@string/Recharge_Box"
+            app:layout_constraintBottom_toBottomOf="@+id/removeAllSorButton"
+            app:layout_constraintEnd_toEndOf="@+id/commentEntry"
+            app:layout_constraintHorizontal_bias="0.557"
+            app:layout_constraintStart_toStartOf="@+id/commentEntry"
+            app:layout_constraintTop_toBottomOf="@+id/commentEntry" />
+
+        <EditText
+            android:id="@+id/commentEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textLongMessage|text"
+            app:layout_constraintBottom_toTopOf="@+id/rechargeBox"
+            app:layout_constraintEnd_toEndOf="@+id/textView45"
+            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintStart_toStartOf="@+id/textView45"
+            app:layout_constraintTop_toBottomOf="@+id/textView45"
+            app:layout_constraintVertical_bias="0.104" />
+
+        <TextView
+            android:id="@+id/textView45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/abril_fatface"
+            android:text="Comments"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="@+id/sor_total_label2"
+            app:layout_constraintHorizontal_bias="0.529"
+            app:layout_constraintStart_toStartOf="@+id/textView43"
+            app:layout_constraintTop_toBottomOf="@+id/sor_total_label2" />
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="48dp"
+            android:fontFamily="@font/abril_fatface"
+            android:gravity="center"
+            android:text="SOR Description"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/sorDescription_scrollview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.547"
+            app:layout_constraintStart_toEndOf="@+id/searchResultBox"
+            app:layout_constraintTop_toTopOf="@+id/textView46" />
+
+        <TextView
+            android:id="@+id/sorIdentifier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="16dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/sorDescription_scrollview"
+            app:layout_constraintEnd_toEndOf="@+id/sorDescription_scrollview"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="@+id/sorDescription_scrollview"
+            app:layout_constraintTop_toBottomOf="@+id/textView44"
+            tools:visibility="invisible" />
+
+
+        <TextView
+            android:id="@+id/sor_total_label2"
+            android:layout_width="74dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="112dp"
+            android:layout_marginRight="112dp"
+            android:layout_marginBottom="300dp"
+            android:gravity="center"
+            android:text="@string/singleSoRTotal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/totalTextView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/totalTextView"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="wrap_content"
+            android:layout_height="39dp"
+            android:gravity="center"
+            android:text="@string/Recharge_Label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/rechargeTextView"
+            app:layout_constraintHorizontal_bias="0.779"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/rechargeTextView"
+            app:layout_constraintTop_toTopOf="@+id/sor_total_label2"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints" />
+
         <ScrollView
             android:id="@+id/sorDescription_scrollview"
             android:layout_width="365dp"
             android:layout_height="73dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.98"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.171">
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/rechargeTextView"
+            app:layout_constraintEnd_toEndOf="@+id/textView44"
+            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintStart_toStartOf="@+id/textView44">
 
             <EditText
                 android:id="@+id/sorDescriptionBox"
@@ -44,418 +380,36 @@
                 android:text="@{viewmodel.sorDescripition.toString()}" />
         </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="366dp"
-            android:layout_height="65dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.979"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sorDescription_scrollview"
-            app:layout_constraintVertical_bias="0.002">
-
-            <EditText
-                android:id="@+id/rechargeTextView"
-                android:layout_width="12dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:focusable="false"
-                android:inputType="textPersonName" />
-
-            <EditText
-                android:id="@+id/totalTextView"
-                android:layout_width="25dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:focusable="false"
-                android:inputType="textPersonName" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/sor_total_label"
-            android:layout_width="74dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginBottom="320dp"
-            android:gravity="center"
-            android:text="@string/singleSoRTotal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.872"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="89dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="320dp"
-            android:gravity="center"
-            android:text="@string/Recharge_Label"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.7"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:fontFamily="@font/abril_fatface"
-            android:gravity="center"
-            android:text="SOR Description"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toTopOf="@+id/sorDescription_scrollview"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.841"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Spinner
-            android:id="@+id/optionSelector"
-            android:layout_width="171dp"
-            android:layout_height="48dp"
-            android:spinnerMode="dropdown"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.02"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.115" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/abril_fatface"
-            android:text="Search By"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toTopOf="@+id/optionSelector"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.056"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.416" />
-
         <EditText
-            android:id="@+id/searchView"
-            android:layout_width="139dp"
-            android:layout_height="58dp"
+            android:id="@+id/rechargeTextView"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_weight="1"
             android:ems="10"
+            android:focusable="false"
             android:inputType="textPersonName"
-            android:text="@{viewmodel.searchViewEntry}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.053"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/optionSelector"
-            app:layout_constraintVertical_bias="0.04000002" />
-
-        <Button
-            android:id="@+id/addSoRToSurveyButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="415dp"
-            android:layout_marginBottom="25dp"
-            android:fontFamily="@font/button_fonts"
-            android:text="add"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.26"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/abril_fatface"
-            android:text="Search Results : "
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.372"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.01" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="280dp"
-            android:layout_marginBottom="300dp"
-            android:fontFamily="@font/abril_fatface"
-            android:text="Comments"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.827"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toStartOf="@+id/totalTextView"
+            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintStart_toStartOf="@+id/sorDescription_scrollview"
+            app:layout_constraintTop_toTopOf="@+id/totalTextView" />
 
         <EditText
-            android:id="@+id/commentEntry"
-            android:layout_width="wrap_content"
+            android:id="@+id/totalTextView"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="380dp"
-            android:layout_marginBottom="160dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textLongMessage|text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.876"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.93" />
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
-            android:layout_marginLeft="160dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="50dp"
-            android:contentDescription="@string/SearchButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.259"
-            app:srcCompat="@drawable/ic_baseline_search_24" />
-
-        <TextView
-            android:id="@+id/sorIdentifier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="200dp"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="173dp"
-            android:layout_marginRight="173dp"
-            android:layout_marginBottom="6dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/sorDescription_scrollview"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/searchResultBox"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            tools:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/added_sors"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="195dp"
-            android:fontFamily="@font/abril_fatface"
-            android:text="@string/SoRToSurvey"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ListView
-            android:id="@+id/sorAttachedToSurveyBox"
-            android:layout_width="352dp"
-            android:layout_height="152dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="260dp"
-            android:background="#F4EAEA"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.378"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <CheckBox
-            android:id="@+id/rechargeBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="112dp"
-            android:text="@string/Recharge_Box"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.849"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10"
-            app:layout_constraintVertical_bias="0.927" />
-
-        <Button
-            android:id="@+id/removeSorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="415dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="25dp"
-            android:fontFamily="@font/button_fonts"
-            android:text="@string/removeButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.41"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/removeAllSorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="415dp"
-            android:layout_marginLeft="415dp"
-            android:layout_marginTop="415dp"
-            android:layout_marginEnd="90dp"
-            android:layout_marginRight="90dp"
-            android:layout_marginBottom="25dp"
-            android:fontFamily="@font/button_fonts"
-            android:text="@string/remove_all_label"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/SorNumberView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="151dp"
-            android:layout_marginRight="151dp"
             android:layout_marginBottom="16dp"
-            android:fontFamily="@font/abril_fatface"
-            android:text="0"
-            app:layout_constraintBottom_toTopOf="@+id/sorAttachedToSurveyBox"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/added_sors"
+            android:layout_weight="1"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/sor_total_label2"
+            app:layout_constraintEnd_toEndOf="@+id/sorDescription_scrollview"
+            app:layout_constraintHorizontal_bias="0.867"
+            app:layout_constraintStart_toStartOf="@+id/sorDescription_scrollview"
+            app:layout_constraintTop_toBottomOf="@+id/sorDescription_scrollview"
             app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/searchResultNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="186dp"
-            android:text="0"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toTopOf="@+id/sorAttachedToSurveyBox"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.016"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.23" />
-
-        <ListView
-            android:id="@+id/searchResultBox"
-            android:layout_width="319dp"
-            android:layout_height="132dp"
-            android:background="#F4EAEA"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.382"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.117">
-
-        </ListView>
-
-        <LinearLayout
-            android:layout_width="239dp"
-            android:layout_height="152dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="31dp"
-            android:layout_marginRight="31dp"
-            android:layout_marginBottom="150dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/sorAttachedToSurveyBox"
-            app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView"
-            app:layout_constraintVertical_bias="0.110000014">
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center|center_vertical"
-                android:text="Category"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
-
-            <Spinner
-                android:id="@+id/RoomCatSpin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:dropDownWidth="match_parent"
-                android:entries="@array/dummy_categories"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/quantity_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:gravity="center"
-                android:text="@string/quantity_label"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
-
-            <Spinner
-                android:id="@+id/quantity_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:spinnerMode="dropdown" />
-        </LinearLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

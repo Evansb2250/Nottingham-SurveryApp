@@ -43,6 +43,7 @@ class SOR_Fragment : Fragment() {
         // TEST
         binding.viewmodel = SurveyActivity.sorViewModel
         binding.lifecycleOwner = this
+
         binding.sorIdentifier.visibility = View.INVISIBLE
 
         setupQuantyObserver(SurveyActivity.sorViewModel)
@@ -92,7 +93,7 @@ class SOR_Fragment : Fragment() {
                 if(wasSuccessfuL){
                 Toast.makeText(requireContext(),"Code Added To Survey", Toast.LENGTH_SHORT)
                     .show()
-                    binding.SorNumberView.text =
+                    binding.sorNumberView.text =
                         SurveyActivity.sorViewModel?.addedSor2List?.size.toString()
                     setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
 
@@ -140,7 +141,7 @@ class SOR_Fragment : Fragment() {
     private fun updateListViewAfterDeletion() {
         if (SurveyActivity.sorViewModel!!.addedSors != null) {
             setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
-            binding.SorNumberView.text = SurveyActivity.sorViewModel?.addedSor2List?.size.toString()
+            binding.sorNumberView.text = SurveyActivity.sorViewModel?.addedSor2List?.size.toString()
         }
         unlockFields()
         binding.commentEntry.text.clear()
@@ -251,7 +252,7 @@ class SOR_Fragment : Fragment() {
 
         for (idCat in 0..constant.ROOMCATEGORIES.size - 1) {
             if (category.equals(constant.ROOMCATEGORIES[idCat].toString())) {
-                binding.RoomCatSpin.setSelection(idCat)
+                binding.roomCatSpin.setSelection(idCat)
             }
         }
 
@@ -353,9 +354,9 @@ class SOR_Fragment : Fragment() {
             constant.ROOMCATEGORIES.toList()
         )
         //attach the adapter to the spinner adapter
-        binding.RoomCatSpin.adapter = catArrayAdapter
+        binding.roomCatSpin.adapter = catArrayAdapter
 
-        binding.RoomCatSpin.onItemSelectedListener = object :
+        binding.roomCatSpin.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -470,7 +471,7 @@ class SOR_Fragment : Fragment() {
 
     private fun lockFields() {
         viewingaSorInView = true
-        binding.RoomCatSpin.isEnabled = false
+        binding.roomCatSpin.isEnabled = false
         binding.quantitySpinner.isEnabled = false
         binding.rechargeBox.isClickable = false
         binding.commentEntry.isFocusable = false
@@ -479,7 +480,7 @@ class SOR_Fragment : Fragment() {
     //TODO Fixe bug that won't let me unlock
     private fun unlockFields() {
         viewingaSorInView = false
-        binding.RoomCatSpin.isEnabled = true
+        binding.roomCatSpin.isEnabled = true
         binding.quantitySpinner.isEnabled = true
         binding.rechargeBox.isClickable = true
         binding.commentEntry.isFocusableInTouchMode = true
@@ -493,7 +494,7 @@ class SOR_Fragment : Fragment() {
         //Reset recharge box
         binding.rechargeBox.isChecked = false
         binding.quantitySpinner.setSelection(0)
-        binding.RoomCatSpin.setSelection(0)
+        binding.roomCatSpin.setSelection(0)
         updateTotal()
 
     }
