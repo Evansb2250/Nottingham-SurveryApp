@@ -49,6 +49,7 @@ class SOR_Fragment : Fragment() {
 
         binding.sorIdentifier.visibility = View.INVISIBLE
 
+        foundNoUOM()
         setupQuantyObserver(SurveyActivity.sorViewModel)
         setUpTotalObserver(SurveyActivity.sorViewModel!!.total)
         setUpRechargeObserver(SurveyActivity.sorViewModel!!.rechargeAmount)

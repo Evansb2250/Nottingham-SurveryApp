@@ -24,6 +24,7 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
     }
 
     private val currency = DecimalFormat("£###,###.##")
+    private val quantityFormat = DecimalFormat("##.####")
 
     suspend fun savePdf(): Boolean {
         // Create object of Document class
@@ -199,80 +200,85 @@ class PdfCreator(private val viewModel: ConfirmViewModel) {
             if (list != null) {
                 var cell: PdfPCell
 
-                for (sor in list) {
-                    //DIVIDER
-
-                    cell = PdfPCell(Phrase(""))
-                    cell.border = NONE
-                    cell.colspan = 11
-                    cell.minimumHeight = 20F
-                    table.addCell(cell)
 
 
-                    var phrase = Phrase()
-                    phrase.add(
-                        Chunk(
-                            sor.roomCategory,
-                            FontFactory.getFont(FontFactory.TIMES_ITALIC)
-                        )
-                    )
-                    cell = PdfPCell(phrase)
-                    cell.border = NONE
-                    cell.fixedHeight = 10F
-                    table.addCell(cell)
+              val map =  list.groupBy { it-> it.roomCategory }
 
-                    cell = PdfPCell(Phrase(sor.sorCode))
-                    cell.border = NONE
-                    table.addCell(cell)
-
-                    cell = PdfPCell(Phrase(sor.sorDescription))
-                    cell.colspan = 2
-                    cell.border = NONE
-
-                    table.addCell(cell)
-
-                    phrase = Phrase()
-                    phrase.add(Chunk(sor.UOM, FontFactory.getFont(FontFactory.TIMES_ITALIC)))
-                    cell = PdfPCell(phrase)
-                    cell.border = NONE
-                    table.addCell(cell)
-
-
-                    cell = PdfPCell(Phrase(sor.quantity.toString()))
-                    cell.border = NONE
-                    table.addCell(cell)
-
-                    cell = PdfPCell(Phrase(recharge(sor.isRecharge)))
-                    cell.border = NONE
-                    table.addCell(cell)
-
-
-
-                    cell = PdfPCell(Phrase(currency.format(hidePrices(sor.total * sor.quantity))))
-                    cell.border = NONE
-                    table.addCell(cell)
-
-                    cell = PdfPCell(Phrase(sor.surveyorDescription))
-                    cell.colspan = 2
-                    cell.border = NONE
-                    table.addCell(cell)
-
-
-
-                    cell = PdfPCell(Phrase(""))
-                    cell.border = NONE
-                    table.addCell(cell)
-
-                    count += 1
-
-                    if (count % 5 == 0) {
+                for(keys in map.keys.sorted()){
+                    for(sor in map.get(keys)!!){
                         cell = PdfPCell(Phrase(""))
                         cell.border = NONE
                         cell.colspan = 11
-                        cell.minimumHeight = 40F
+                        cell.minimumHeight = 20F
                         table.addCell(cell)
+
+
+                        var phrase = Phrase()
+                        phrase.add(
+                            Chunk(
+                                sor.roomCategory,
+                                FontFactory.getFont(FontFactory.TIMES_ITALIC)
+                            )
+                        )
+                        cell = PdfPCell(phrase)
+                        cell.border = NONE
+                        cell.fixedHeight = 10F
+                        table.addCell(cell)
+
+                        cell = PdfPCell(Phrase(sor.sorCode))
+                        cell.border = NONE
+                        table.addCell(cell)
+
+                        cell = PdfPCell(Phrase(sor.sorDescription))
+                        cell.colspan = 2
+                        cell.border = NONE
+
+                        table.addCell(cell)
+
+                        phrase = Phrase()
+                        phrase.add(Chunk(sor.UOM, FontFactory.getFont(FontFactory.TIMES_ITALIC)))
+                        cell = PdfPCell(phrase)
+                        cell.border = NONE
+                        table.addCell(cell)
+
+
+                        cell = PdfPCell(Phrase(quantityFormat.format(sor.quantity)))
+                        cell.border = NONE
+                        table.addCell(cell)
+
+                        cell = PdfPCell(Phrase(recharge(sor.isRecharge)))
+                        cell.border = NONE
+                        table.addCell(cell)
+
+
+
+                        cell = PdfPCell(Phrase(currency.format(hidePrices(sor.total * sor.quantity))))
+                        cell.border = NONE
+                        table.addCell(cell)
+
+                        cell = PdfPCell(Phrase(sor.surveyorDescription))
+                        cell.colspan = 2
+                        cell.border = NONE
+                        table.addCell(cell)
+
+
+
+                        cell = PdfPCell(Phrase(""))
+                        cell.border = NONE
+                        table.addCell(cell)
+
+                        count += 1
+
+                        if (count % 5 == 0) {
+                            cell = PdfPCell(Phrase(""))
+                            cell.border = NONE
+                            cell.colspan = 11
+                            cell.minimumHeight = 40F
+                            table.addCell(cell)
+                        }
                     }
                 }
+
             }
 
             mDoc.add(table)
