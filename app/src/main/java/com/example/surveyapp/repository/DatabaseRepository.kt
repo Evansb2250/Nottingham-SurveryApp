@@ -123,6 +123,13 @@ class DatabaseRepository(private val dbManager: dbDAO) {
         return list
     }
 
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun returnRecentSurveys(): List<Survey> {
+        val list = dbManager.getLast10Surveys()
+        return list
+    }
+
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread

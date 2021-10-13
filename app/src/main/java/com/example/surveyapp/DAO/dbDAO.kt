@@ -96,6 +96,10 @@ interface dbDAO {
     @Query("Select * from survey_table where address Like :address ")
     suspend fun getSurveysByAddress(address:String):List<Survey>
 
+
+    @Query("Select * from survey_table ORDER BY surveyId DESC LIMIT 10 ")
+    suspend fun getLast10Surveys():List<Survey>
+
     @Query("Select * from survey_table where month Like :month ")
     suspend fun getSurveyByMonth(month: Int): List<Survey>
 

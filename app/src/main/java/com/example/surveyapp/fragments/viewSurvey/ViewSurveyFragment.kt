@@ -39,6 +39,7 @@ class ViewSurveyFragment : Fragment() {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_view_survey2, container, false)
 
+        viewModel.requestSurvey("request recent", "last 10")
 //
 
         binding.imageButtonRequestSearch.setOnClickListener {

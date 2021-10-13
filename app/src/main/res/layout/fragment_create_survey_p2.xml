@@ -13,14 +13,14 @@
 
         <ScrollView
             android:id="@+id/scrollView3"
-            android:layout_width="881dp"
-            android:layout_height="466dp"
+            android:layout_width="901dp"
+            android:layout_height="415dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.509"
@@ -503,6 +503,7 @@
                     android:ems="10"
                     android:hint="@string/Qty"
                     android:inputType="number"
+                    android:text="1"
                     app:layout_constraintBaseline_toBaselineOf="@+id/rechargeQ10"
                     app:layout_constraintEnd_toStartOf="@+id/comment10"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -515,6 +516,7 @@
                     android:ems="10"
                     android:hint="@string/commentHint"
                     android:inputType="text"
+
                     app:layout_constraintBaseline_toBaselineOf="@+id/question10"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -602,6 +604,7 @@
                     android:ems="10"
                     android:hint="@string/Qty"
                     android:inputType="number"
+                    android:text="1"
                     app:layout_constraintBaseline_toBaselineOf="@+id/rechargeQ12"
                     app:layout_constraintEnd_toStartOf="@+id/comment12"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -749,6 +752,7 @@
                     android:ems="10"
                     android:hint="@string/Qty"
                     android:inputType="number"
+                    android:text="1"
                     app:layout_constraintBaseline_toBaselineOf="@+id/rechargeQ15"
                     app:layout_constraintEnd_toStartOf="@+id/comment15"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -800,10 +804,12 @@
                     android:hint="@string/Qty"
 
                     android:inputType="number"
+                    android:text="1"
                     app:layout_constraintBaseline_toBaselineOf="@+id/rechargeQ16"
                     app:layout_constraintEnd_toStartOf="@+id/comment16"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/rechargeQ16" />
+                    app:layout_constraintStart_toEndOf="@+id/rechargeQ16"
+                    tools:text="1" />
 
                 <EditText
                     android:id="@+id/comment16"
@@ -850,6 +856,7 @@
                     android:ems="10"
                     android:hint="@string/Qty"
                     android:inputType="number"
+                    android:text="1"
                     app:layout_constraintBaseline_toBaselineOf="@+id/rechargeQ17"
                     app:layout_constraintEnd_toStartOf="@+id/comment17"
                     app:layout_constraintHorizontal_bias="0.5"

@@ -142,8 +142,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "Periodic inspection in void properties",
             "",
             false,
-            0.0,
-            0.0,
+            1.0,
+            192.8,
             constant.STANDARDCODE
         ), // 10
         SurveySORs(
@@ -166,8 +166,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "Smoke alarm certificates",
             "",
             false,
-            0.0,
-            0.0,
+            1.0,
+            20.16,
             constant.STANDARDCODE
         ), // 12
         SurveySORs(
@@ -202,8 +202,8 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
                   "Additional radial circuit",
             "",
             false,
-            0.0,
-            0.0,
+            1.0,
+            18.88,
             constant.STANDARDCODE
         ), // 15
         SurveySORs(
@@ -214,13 +214,13 @@ class previosWorkViewModel(private val repository: DatabaseRepository) : ViewMod
             "Additional lighting circuit",
             "",
             false,
-            0.0,
-            0.0,
+            1.0,
+            28.3,
             constant.STANDARDCODE
         ),
         SurveySORs(
             uniqueSorCodeNumber,
-            surveyID, constant.QUESTION17_SOR, "No", "Additional ring main", "", false, 0.0, 0.0,
+            surveyID, constant.QUESTION17_SOR, "No", "Additional ring main", "", false, 1.0, 28.3,
             constant.STANDARDCODE
         )
     ) // 16

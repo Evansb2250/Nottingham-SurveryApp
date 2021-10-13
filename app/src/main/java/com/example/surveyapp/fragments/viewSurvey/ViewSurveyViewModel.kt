@@ -153,6 +153,11 @@ class ViewSurveyViewModel (private val repository: DatabaseRepository) : ViewMod
             }
 
         }
+            else ->{
+
+                tempList = repository.returnRecentSurveys()
+                checkTempList()
+            }
         }
 
     }
