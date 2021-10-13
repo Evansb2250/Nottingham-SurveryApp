@@ -30,7 +30,8 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     //Number selected in the number wheel
     //TODO change to a text entry to add floating point numbers
-    val sorCodeQuantity = MutableLiveData<Int>()
+    val sorCodeQuantity = MutableLiveData<Double>()
+    val minutesPerformed = MutableLiveData<Int>()
     lateinit var UOM: String
     lateinit var sorDescrip: String
     private var category = ""
@@ -40,8 +41,11 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     /*****
     Variables representing the data appeared on the Fragment and ViewModel
      ****/
+    //TODO create an else statement
+
     //Individual Sor
-    var currentSor: SoR? = null
+    private val _currentSor = MutableLiveData<SoR>()
+    val currentSor: LiveData<SoR>? get()= _currentSor
 
     //
     var searchViewEntry: String = ""
@@ -114,7 +118,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         searchWasFound = true
         _sorDescripition.value = ""
         _rechargeAmount.value = 0.0
-        sorCodeQuantity.value = 0
+        sorCodeQuantity.value = 0.0
         total.value = 0.0
         viewList = MutableLiveData(listForView)
         comments = " "
@@ -131,7 +135,9 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
      *
      * *************************/
 
-
+    fun setCurrentSorFromSearchResult(sor:SoR){
+        _currentSor.value = sor
+    }
     fun searchFor(userInput: String) {
         when (searchby.value.toString()) {
             constant.SORCODE -> {
@@ -147,7 +153,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
     private fun setCurrentToNull() {
-        currentSor = null
+        _currentSor.value = null
         updateCurrentSoR()
     }
 
@@ -163,7 +169,20 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     fun updateTotalByQuantity() {
+        if(minutesPerformed.value != null){
+            total.value = _rechargeAmount.value!!.times(sorCodeQuantity.value!!.toInt()) + ( _rechargeAmount.value!!.times (minutesPerformed.value!!.toDouble().div(60.0)))
+
+            Log.i("SOR", " minutes ${total.value}")
+        }else
         total.value = _rechargeAmount.value!!.times(sorCodeQuantity.value!!.toInt())
+    }
+
+    fun updateTotalByMinutes() {
+        minutesPerformed.value?.let { minutesWorked ->
+        val newValue = sorCodeQuantity.value?.plus(minutesWorked.toDouble().div(60.0))
+            sorCodeQuantity.value = newValue
+        }
+
     }
 
 
@@ -173,11 +192,11 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     private fun updateCurrentSoR() {
-        _sorDescripition.value = currentSor?.description ?: ""
-        _rechargeAmount.value = currentSor?.rechargeRate?: 0.0
-        UOM = currentSor?.UOM.toString()?: ""
-        sorDescrip = currentSor?.description.toString()?: ""
-        total.value = currentSor?.rechargeRate?: 0.0
+        _sorDescripition.value = currentSor?.value?.description ?: ""
+        _rechargeAmount.value = currentSor?.value?.rechargeRate?: 0.0
+        UOM = currentSor?.value?.UOM.toString()?: ""
+        sorDescrip = currentSor?.value?.description.toString()?: ""
+        total.value = currentSor?.value?.rechargeRate?: 0.0
         alertSuccess(true)
     }
 
@@ -191,7 +210,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         surveyId: Int,
         comments: String,
         recharge: Boolean,
-        quantity: Int?,
+        quantity: Double?,
         total: Double?
     ) {
         val passedNullTest = checkForNullVariables(sorCode, surveyId, comments, recharge, quantity, total)
@@ -249,7 +268,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         surveyId: Int,
         comments: String,
         recharge: Boolean,
-        quantity: Int?,
+        quantity: Double?,
         total: Double?
     ): Boolean {
         //Checks to see if there are null variables
@@ -280,7 +299,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     fun get(sorCode: String) = viewModelScope.launch {
-        currentSor = repository.getSor(sorCode)
+        _currentSor.value = repository.getSor(sorCode)
         if (currentSor != null) {
             updateCurrentSoR()
         } else

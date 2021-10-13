@@ -47,8 +47,10 @@ class SOR_Fragment : Fragment() {
         binding.sorIdentifier.visibility = View.INVISIBLE
 
         setupQuantyObserver(SurveyActivity.sorViewModel)
+        setupMinuteObserver(SurveyActivity.sorViewModel)
         setUpTotalObserver(SurveyActivity.sorViewModel!!.total)
         setUpRechargeObserver(SurveyActivity.sorViewModel!!.rechargeAmount)
+
         setUpViewListObserver()
         setUpSorInsertCheck(SurveyActivity.sorViewModel?.wasSorInsertedToSurvey)
         setUpRemoveAllButton()
@@ -65,9 +67,72 @@ class SOR_Fragment : Fragment() {
         setupImageButton()
         setUpSpinner()
         setUpNumberSpinner()
+        setUpMinuteSpinner()
         setUpAddButton()
         setUpRoomCatSpinner()
+
+        SurveyActivity.sorViewModel?.currentSor?.observe(viewLifecycleOwner, { sor ->
+
+
+            if (sor != null) {
+                val uomType = sor.UOM.toLowerCase()
+                if (uomType.equals("hr")) {
+                    foundHrUom()
+
+                } else {
+                    foundNoUOM()
+                }
+            } else {
+                foundNoUOM()
+            }
+        })
+
         return binding.root
+    }
+
+    private fun setUpMinuteSpinner() {
+
+        val minutes = (0..59).toList()
+
+        val minuteArrayAdapter = ArrayAdapter(
+            requireActivity(), android.R.layout.simple_spinner_item,
+             minutes
+        )
+
+
+        binding.spinnerMinute.adapter = minuteArrayAdapter
+
+        //adding listener
+        binding.spinnerMinute.onItemSelectedListener = object :
+
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                SurveyActivity.sorViewModel!!.minutesPerformed.value = minutes.get(position)
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+    }
+
+    private fun foundHrUom() {
+        binding.textviewMinutes.visibility = View.VISIBLE
+        binding.spinnerMinute.visibility = View.VISIBLE
+        binding.quantityLabel2.text = "Hours"
+    }
+
+    private fun foundNoUOM() {
+        binding.quantityLabel2.text = "Quantity"
+        binding.textviewMinutes.visibility = View.INVISIBLE
+        binding.spinnerMinute.visibility = View.INVISIBLE
     }
 
 
@@ -90,15 +155,19 @@ class SOR_Fragment : Fragment() {
         wasSorInsertedToSurvey?.observe(
             viewLifecycleOwner,
             { wasSuccessfuL ->
-                if(wasSuccessfuL){
-                Toast.makeText(requireContext(),"Code Added To Survey", Toast.LENGTH_SHORT)
-                    .show()
+                if (wasSuccessfuL) {
+                    Toast.makeText(requireContext(), "Code Added To Survey", Toast.LENGTH_SHORT)
+                        .show()
                     binding.sorNumberView.text =
                         SurveyActivity.sorViewModel?.addedSor2List?.size.toString()
                     setUpAddedSorListView(SurveyActivity.sorViewModel!!.addedSors.toList())
 
-                    }else
-                    Toast.makeText(requireContext(),"Code is not selected or is already added", Toast.LENGTH_SHORT).show()
+                } else
+                    Toast.makeText(
+                        requireContext(),
+                        "Code is not selected or is already added",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
             })
 
@@ -130,7 +199,7 @@ class SOR_Fragment : Fragment() {
             resetFields()
             binding.searchView.setText(sorViewModel?.recentlyRemovedSorCode)
             binding.optionSelector.setSelection(0)
-            sorViewModel!!.recentlyRemovedSorCode =""
+            sorViewModel!!.recentlyRemovedSorCode = ""
 
         }
 
@@ -150,6 +219,14 @@ class SOR_Fragment : Fragment() {
     }
 
 
+    private fun setupMinuteObserver(sorViewModel: SurveySorViewModel?) {
+        SurveyActivity.sorViewModel!!.minutesPerformed.observe(viewLifecycleOwner, Observer {
+            SurveyActivity.sorViewModel!!.updateTotalByQuantity()
+            updateTotal()
+        })
+    }
+
+
     private fun setupQuantyObserver(sorViewModel: SurveySorViewModel?) {
         SurveyActivity.sorViewModel!!.sorCodeQuantity.observe(viewLifecycleOwner, Observer {
             SurveyActivity.sorViewModel!!.updateTotalByQuantity()
@@ -163,6 +240,7 @@ class SOR_Fragment : Fragment() {
         searchResultBox.setOnItemClickListener { parent, view, position, id ->
             unlockFields()
             val sorcodeWithDetails = SurveyActivity.sorViewModel!!.listForView.get(position)
+
             val sorcode = sorcodeWithDetails.substring(0, sorcodeWithDetails.indexOf("-"))
             //val description = SurveyActivity.sorViewModel!!.listForView.get(position)
             SurveyActivity.sorViewModel?.get(sorcode)
@@ -188,22 +266,25 @@ class SOR_Fragment : Fragment() {
 
     private fun initializeSelectedSurveySorVariables(position: Int) {
         binding.sorDescriptionBox.setText(SurveyActivity.sorViewModel!!.addedSor2List!!.get(position)!!.sorDescription)
-        //     SurveyActivity.sorViewModel!!.get(SurveyActivity.sorViewModel!!.addedSor2List!!.get(position)!!.sorCode)
-
+        if (SurveyActivity.sorViewModel!!.addedSor2List.get(position).UOM.toLowerCase()
+                .equals("hr")
+        ) {
+            foundHrUom()
+            binding.spinnerMinute.isFocusable = false
+        } else
+            foundNoUOM()
 
 
         val selectedQuantity = sorViewModel?.addedSor2List?.get(position)?.quantity
 
 
 
-        sorViewModel!!._rechargeAmount.value = sorViewModel?.addedSor2List?.get(position)?.total!!.toDouble()
-
+        sorViewModel!!._rechargeAmount.value =
+            sorViewModel?.addedSor2List?.get(position)?.total!!.toDouble()
 
         val category = sorViewModel?.addedSor2List?.get(position)?.roomCategory
-        val selectedTotal =
-            SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.total!! * selectedQuantity!!
+        val selectedTotal = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.total!! * selectedQuantity!!
         val sorcode = SurveyActivity.sorViewModel!!.addedSors.get(position)
-
         val isRecharge = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.isRecharge
         val comment = SurveyActivity.sorViewModel?.addedSor2List?.get(position)?.surveyorDescription
 
@@ -312,7 +393,10 @@ class SOR_Fragment : Fragment() {
                 setUpListView(SurveyActivity.sorViewModel!!.listForView)
                 SurveyActivity.sorViewModel?.listForViewSize?.value =
                     SurveyActivity.sorViewModel?.listForView?.size
+
             }
+
+
 
             updateListViewAfterDeletion()
 
@@ -327,10 +411,10 @@ class SOR_Fragment : Fragment() {
     private fun revealSelectedItem(tag: String) {
         var codeHeader = ""
         binding.sorIdentifier.visibility = View.VISIBLE
-        if(tag.contains("-")){
+        if (tag.contains("-")) {
             codeHeader = tag.substring(0, tag.indexOf("-"))
-        }else
-             codeHeader = tag
+        } else
+            codeHeader = tag
         binding.sorIdentifier.text = codeHeader
     }
 
@@ -379,9 +463,14 @@ class SOR_Fragment : Fragment() {
     }
 
     private fun setUpNumberSpinner() {
+        val list = mutableListOf<Double>()
+        for(x in 0 .. 20){
+            list.add(x.toDouble())
+        }
+
         val numberArrayAdapter = ArrayAdapter(
             requireActivity(), android.R.layout.simple_spinner_item,
-            constant.quantityRange.toList()
+            (0..20).toList()
         )
 
 
@@ -398,7 +487,7 @@ class SOR_Fragment : Fragment() {
                 id: Long
             ) {
 
-                binding.viewmodel!!.sorCodeQuantity.value = constant.quantityRange[position]
+                binding.viewmodel!!.sorCodeQuantity.value = list.get(position)
 
             }
 
@@ -448,22 +537,26 @@ class SOR_Fragment : Fragment() {
 
     private fun setUpAddButton() {
         binding.addSoRToSurveyButton.setOnClickListener { it ->
-           if(!viewingaSorInView) {
-               val surveyId: Int = SurveyActivity.SurveyID!!
-               val sorCode = sorViewModel?.currentSor?.sorCode
-               val quantity = sorViewModel?.sorCodeQuantity?.value
-               val total = sorViewModel?.total?.value
-               val comments = binding.commentEntry.text.toString()
-               val isRecharge = binding.rechargeBox.isChecked
-               binding.viewmodel?.CheckBeforeAddint(
-                   sorCode, surveyId, comments,
-                   isRecharge, quantity, total
-               )
+            if (!viewingaSorInView) {
+                val surveyId: Int = SurveyActivity.SurveyID!!
+                val sorCode = sorViewModel?.currentSor?.value?.sorCode
+                val quantity = sorViewModel?.sorCodeQuantity?.value
+                val total = sorViewModel?.total?.value
+                val comments = binding.commentEntry.text.toString()
+                val isRecharge = binding.rechargeBox.isChecked
+                binding.viewmodel?.CheckBeforeAddint(
+                    sorCode, surveyId, comments,
+                    isRecharge, quantity, total
+                )
 
 
-               resetFields()
-           }else
-               Toast.makeText(requireContext(), "You must click on a sor code not in your list", Toast.LENGTH_LONG).show()
+                resetFields()
+            } else
+                Toast.makeText(
+                    requireContext(),
+                    "You must click on a sor code not in your list",
+                    Toast.LENGTH_LONG
+                ).show()
 
         }
     }
@@ -494,6 +587,7 @@ class SOR_Fragment : Fragment() {
         //Reset recharge box
         binding.rechargeBox.isChecked = false
         binding.quantitySpinner.setSelection(0)
+        binding.spinnerMinute.setSelection(0)
         binding.roomCatSpin.setSelection(0)
         updateTotal()
 

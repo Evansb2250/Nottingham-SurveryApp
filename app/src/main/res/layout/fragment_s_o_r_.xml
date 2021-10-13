@@ -27,15 +27,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginLeft="12dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
             android:contentDescription="@string/SearchButton"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/searchResultBox"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/searchView"
             app:layout_constraintTop_toTopOf="@+id/searchView"
-            app:layout_constraintVertical_bias="0.036"
             app:srcCompat="@drawable/ic_baseline_search_24" />
 
         <TextView
@@ -56,13 +54,15 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginLeft="44dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginLeft="36dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Search By"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/searchView"
             app:layout_constraintTop_toTopOf="@+id/textView46" />
 
         <TextView
@@ -80,25 +80,25 @@
 
         <Spinner
             android:id="@+id/optionSelector"
-            android:layout_width="171dp"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="@+id/textView9"
-            app:layout_constraintHorizontal_bias="0.267"
-            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/searchView"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
         <EditText
             android:id="@+id/searchView"
             android:layout_width="139dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@{viewmodel.searchViewEntry}"
             app:layout_constraintEnd_toEndOf="@+id/textView47"
-            app:layout_constraintHorizontal_bias="0.511"
+            app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toStartOf="@+id/textView47"
             app:layout_constraintTop_toBottomOf="@+id/optionSelector" />
 
@@ -106,54 +106,52 @@
             android:id="@+id/quantity_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="24dp"
             android:spinnerMode="dropdown"
-            app:layout_constraintBottom_toBottomOf="@+id/sorAttachedToSurveyBox"
-            app:layout_constraintEnd_toStartOf="@+id/sorAttachedToSurveyBox"
-            app:layout_constraintHorizontal_bias="0.412"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quantity_label2" />
 
         <TextView
             android:id="@+id/quantity_label2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="12dp"
             android:gravity="center"
             android:text="@string/quantity_label"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/quantity_spinner"
-            app:layout_constraintEnd_toEndOf="@+id/quantity_spinner"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/quantity_spinner" />
+            app:layout_constraintStart_toStartOf="@+id/roomCatSpin"
+            app:layout_constraintTop_toBottomOf="@+id/roomCatSpin" />
 
         <Spinner
             android:id="@+id/roomCatSpin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="20dp"
             android:dropDownWidth="match_parent"
             android:entries="@array/dummy_categories"
             android:gravity="center"
-            app:layout_constraintBottom_toTopOf="@+id/quantity_label2"
-            app:layout_constraintEnd_toEndOf="@+id/quantity_label2"
-            app:layout_constraintHorizontal_bias="0.358"
-            app:layout_constraintStart_toStartOf="@+id/quantity_label2" />
+            app:layout_constraintStart_toStartOf="@+id/quantity_spinner"
+            app:layout_constraintTop_toBottomOf="@+id/textView47" />
 
         <TextView
             android:id="@+id/textView47"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="36dp"
             android:gravity="center|center_vertical"
             android:text="Room"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/roomCatSpin"
-            app:layout_constraintHorizontal_bias="0.369"
+            app:layout_constraintHorizontal_bias="0.414"
             app:layout_constraintStart_toStartOf="@+id/roomCatSpin"
-            app:layout_constraintTop_toBottomOf="@+id/added_sors2" />
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
         <TextView
             android:id="@+id/searchResultNumber"
@@ -207,15 +205,13 @@
 
         <ListView
             android:id="@+id/sorAttachedToSurveyBox"
-            android:layout_width="352dp"
+            android:layout_width="340dp"
             android:layout_height="100dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:background="#F4EAEA"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.33"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/searchResultBox"
+            app:layout_constraintHorizontal_bias="0.399"
+            app:layout_constraintStart_toStartOf="@+id/searchResultBox"
             app:layout_constraintTop_toBottomOf="@+id/sorNumberView" />
 
         <Button
@@ -386,6 +382,36 @@
             app:layout_constraintHorizontal_bias="0.894"
             app:layout_constraintStart_toStartOf="@+id/sorDescription_scrollview"
             app:layout_constraintTop_toBottomOf="@+id/sorDescription_scrollview" />
+
+        <TextView
+            android:id="@+id/textviewMinutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:gravity="center"
+            android:text="@string/minutes"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/sorAttachedToSurveyBox"
+            app:layout_constraintHorizontal_bias="0.317"
+            app:layout_constraintStart_toEndOf="@+id/quantity_label2"
+            app:layout_constraintTop_toTopOf="@+id/quantity_label2" />
+
+        <Spinner
+            android:id="@+id/spinnerMinute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="@+id/textviewMinutes"
+            app:layout_constraintHorizontal_bias="0.578"
+            app:layout_constraintStart_toStartOf="@+id/textviewMinutes"
+            app:layout_constraintTop_toBottomOf="@+id/textviewMinutes"
+            tools:visibility="invisible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

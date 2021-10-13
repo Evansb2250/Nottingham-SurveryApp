@@ -133,9 +133,9 @@ class SurveyActivity : AppCompatActivity() {
 
     }
 
-//    override fun onBackPressed() {
-//        Toast.makeText(this, "Go To cancel button to exit Survey", Toast.LENGTH_LONG).show()
-//    }
+    override fun onBackPressed() {
+        Toast.makeText(this, "Go To cancel button to exit Survey", Toast.LENGTH_LONG).show()
+    }
 
     private fun setUpTabs() {
         adapter.addFragment(CreateSurveyFragment(), "Survey Details")

@@ -115,5 +115,6 @@
     <string name="pdf">PDF</string>
     <string name="houseNumberLabel">House #</string>
     <string name="houseNumberHint">Enter House Number</string>
+    <string name="minutes">Minutes</string>
 
 </resources>
