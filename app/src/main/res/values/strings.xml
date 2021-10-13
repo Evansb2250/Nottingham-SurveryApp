@@ -108,7 +108,7 @@
     <string name="Abesto">Asbesto Removal</string>
     <string name="AbestoHint">Text input here .......</string>
     <string name="DecorationPoints">Decoration Points: </string>
-    <string name="Location_TAPS">Location TAPS: </string>
+    <string name="Location_TAPS">Location of stop tap</string>
     <string name="FloorLevel">Floor Level: </string>
     <string name="remove_all_label">RESET</string>
     <string name="button">Button</string>

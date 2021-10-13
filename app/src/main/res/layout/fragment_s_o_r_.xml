@@ -39,29 +39,53 @@
             app:srcCompat="@drawable/ic_baseline_search_24" />
 
         <TextView
+            android:id="@+id/textView44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="512dp"
+            android:layout_marginLeft="512dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/abril_fatface"
+            android:gravity="center"
+            android:text="SOR Description"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginBottom="11dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Search By"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toTopOf="@+id/optionSelector"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton"
-            app:layout_constraintHorizontal_bias="0.339"
-            app:layout_constraintStart_toStartOf="@+id/searchView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.416" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView46" />
+
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/abril_fatface"
+            android:text="Search Results : "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="@+id/searchResultBox"
+            app:layout_constraintHorizontal_bias="0.636"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toTopOf="@+id/textView44" />
 
         <Spinner
             android:id="@+id/optionSelector"
             android:layout_width="171dp"
             android:layout_height="48dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="@+id/textView9"
-            app:layout_constraintHorizontal_bias="0.579"
+            app:layout_constraintHorizontal_bias="0.267"
             app:layout_constraintStart_toStartOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -70,16 +94,13 @@
             android:layout_width="139dp"
             android:layout_height="58dp"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="47dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@{viewmodel.searchViewEntry}"
-            app:layout_constraintBottom_toTopOf="@+id/textView47"
             app:layout_constraintEnd_toEndOf="@+id/textView47"
-            app:layout_constraintHorizontal_bias="0.552"
+            app:layout_constraintHorizontal_bias="0.742"
             app:layout_constraintStart_toStartOf="@+id/textView47"
-            app:layout_constraintTop_toBottomOf="@+id/optionSelector"
-            app:layout_constraintVertical_bias="0.071" />
+            app:layout_constraintTop_toBottomOf="@+id/optionSelector" />
 
         <Spinner
             android:id="@+id/quantity_spinner"
@@ -123,56 +144,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="16dp"
             android:gravity="center|center_vertical"
             android:text="Category"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/roomCatSpin"
             app:layout_constraintEnd_toEndOf="@+id/roomCatSpin"
-            app:layout_constraintHorizontal_bias="0.446"
+            app:layout_constraintHorizontal_bias="0.369"
             app:layout_constraintStart_toStartOf="@+id/roomCatSpin"
-            app:layout_constraintTop_toBottomOf="@+id/added_sors2"
-            app:layout_constraintVertical_bias="0.65" />
+            app:layout_constraintTop_toBottomOf="@+id/added_sors2" />
 
         <TextView
             android:id="@+id/searchResultNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="29dp"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="29dp"
             android:text="0"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toTopOf="@+id/searchResultBox"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView46"
             app:layout_constraintEnd_toEndOf="@+id/searchResultBox"
-            app:layout_constraintStart_toEndOf="@+id/textView46"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView46"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/abril_fatface"
-            android:text="Search Results : "
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBaseline_toBaselineOf="@+id/searchResultNumber"
-            app:layout_constraintEnd_toEndOf="@+id/searchResultBox"
-            app:layout_constraintHorizontal_bias="0.227"
-            app:layout_constraintStart_toStartOf="@+id/searchResultBox" />
+            app:layout_constraintStart_toEndOf="@+id/textView46" />
 
         <ListView
             android:id="@+id/searchResultBox"
-            android:layout_width="319dp"
-            android:layout_height="132dp"
+            android:layout_width="320dp"
+            android:layout_height="114dp"
+            android:layout_marginTop="8dp"
             android:background="#F4EAEA"
-            app:layout_constraintBottom_toTopOf="@+id/added_sors2"
             app:layout_constraintEnd_toEndOf="@+id/added_sors2"
-            app:layout_constraintHorizontal_bias="0.408"
+            app:layout_constraintHorizontal_bias="0.546"
             app:layout_constraintStart_toStartOf="@+id/added_sors2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.811">
+            app:layout_constraintTop_toBottomOf="@+id/sorIdentifier">
 
         </ListView>
 
@@ -180,53 +182,54 @@
             android:id="@+id/added_sors2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/abril_fatface"
             android:text="@string/SoRToSurvey"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toTopOf="@+id/sorNumberView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintHorizontal_bias="0.403"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.991" />
+            app:layout_constraintTop_toBottomOf="@+id/searchResultBox" />
 
         <TextView
             android:id="@+id/sorNumberView"
             android:layout_width="wrap_content"
-            android:layout_height="23dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/abril_fatface"
             android:text="0"
-            app:layout_constraintBottom_toTopOf="@+id/sorAttachedToSurveyBox"
             app:layout_constraintEnd_toEndOf="@+id/added_sors2"
-            app:layout_constraintStart_toStartOf="@+id/added_sors2" />
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="@+id/added_sors2"
+            app:layout_constraintTop_toBottomOf="@+id/added_sors2" />
 
         <ListView
             android:id="@+id/sorAttachedToSurveyBox"
             android:layout_width="352dp"
-            android:layout_height="152dp"
+            android:layout_height="100dp"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="244dp"
+            android:layout_marginTop="16dp"
             android:background="#F4EAEA"
-            app:layout_constraintBottom_toTopOf="@+id/removeSorButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.355"
+            app:layout_constraintHorizontal_bias="0.33"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.729" />
+            app:layout_constraintTop_toBottomOf="@+id/sorNumberView" />
 
         <Button
             android:id="@+id/addSoRToSurveyButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/button_fonts"
             android:text="add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/removeSorButton"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/sorAttachedToSurveyBox" />
+            app:layout_constraintStart_toStartOf="@+id/sorAttachedToSurveyBox"
+            app:layout_constraintTop_toBottomOf="@+id/sorAttachedToSurveyBox"
+            app:layout_constraintVertical_bias="0.038" />
 
         <Button
             android:id="@+id/removeSorButton"
@@ -254,11 +257,10 @@
             android:id="@+id/rechargeBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="32dp"
             android:text="@string/Recharge_Box"
             app:layout_constraintBottom_toBottomOf="@+id/removeAllSorButton"
             app:layout_constraintEnd_toEndOf="@+id/commentEntry"
-            app:layout_constraintHorizontal_bias="0.557"
             app:layout_constraintStart_toStartOf="@+id/commentEntry"
             app:layout_constraintTop_toBottomOf="@+id/commentEntry" />
 
@@ -270,103 +272,77 @@
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textLongMessage|text"
-            app:layout_constraintBottom_toTopOf="@+id/rechargeBox"
             app:layout_constraintEnd_toEndOf="@+id/textView45"
-            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintHorizontal_bias="0.412"
             app:layout_constraintStart_toStartOf="@+id/textView45"
-            app:layout_constraintTop_toBottomOf="@+id/textView45"
-            app:layout_constraintVertical_bias="0.104" />
+            app:layout_constraintTop_toBottomOf="@+id/textView45" />
+
 
         <TextView
             android:id="@+id/textView45"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Comments"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="@+id/sor_total_label2"
-            app:layout_constraintHorizontal_bias="0.529"
+            app:layout_constraintHorizontal_bias="0.556"
             app:layout_constraintStart_toStartOf="@+id/textView43"
             app:layout_constraintTop_toBottomOf="@+id/sor_total_label2" />
 
         <TextView
-            android:id="@+id/textView44"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="48dp"
-            android:fontFamily="@font/abril_fatface"
-            android:gravity="center"
-            android:text="SOR Description"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toTopOf="@+id/sorDescription_scrollview"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.547"
-            app:layout_constraintStart_toEndOf="@+id/searchResultBox"
-            app:layout_constraintTop_toTopOf="@+id/textView46" />
-
-        <TextView
             android:id="@+id/sorIdentifier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="16dp"
+            android:layout_width="55dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="8dp"
             android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/sorDescription_scrollview"
             app:layout_constraintEnd_toEndOf="@+id/sorDescription_scrollview"
-            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="@+id/sorDescription_scrollview"
             app:layout_constraintTop_toBottomOf="@+id/textView44"
             tools:visibility="invisible" />
-
 
         <TextView
             android:id="@+id/sor_total_label2"
             android:layout_width="74dp"
             android:layout_height="39dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="112dp"
-            android:layout_marginRight="112dp"
-            android:layout_marginBottom="300dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:gravity="center"
             android:text="@string/singleSoRTotal"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/totalTextView"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/totalTextView"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/textView43" />
 
         <TextView
             android:id="@+id/textView43"
             android:layout_width="wrap_content"
             android:layout_height="39dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="@string/Recharge_Label"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/rechargeTextView"
-            app:layout_constraintHorizontal_bias="0.779"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="@+id/rechargeTextView"
-            app:layout_constraintTop_toTopOf="@+id/sor_total_label2"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/totalTextView"
             tools:ignore="MissingConstraints" />
 
         <ScrollView
             android:id="@+id/sorDescription_scrollview"
-            android:layout_width="365dp"
+            android:layout_width="300dp"
             android:layout_height="73dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/rechargeTextView"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@+id/textView44"
-            app:layout_constraintHorizontal_bias="0.523"
-            app:layout_constraintStart_toStartOf="@+id/textView44">
+            app:layout_constraintHorizontal_bias="0.406"
+            app:layout_constraintStart_toStartOf="@+id/textView44"
+            app:layout_constraintTop_toBottomOf="@+id/sorIdentifier">
 
             <EditText
                 android:id="@+id/sorDescriptionBox"
@@ -391,7 +367,7 @@
             android:focusable="false"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/totalTextView"
-            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintHorizontal_bias="0.477"
             app:layout_constraintStart_toStartOf="@+id/sorDescription_scrollview"
             app:layout_constraintTop_toTopOf="@+id/totalTextView" />
 
@@ -399,17 +375,15 @@
             android:id="@+id/totalTextView"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:ems="10"
             android:focusable="false"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/sor_total_label2"
             app:layout_constraintEnd_toEndOf="@+id/sorDescription_scrollview"
-            app:layout_constraintHorizontal_bias="0.867"
+            app:layout_constraintHorizontal_bias="0.894"
             app:layout_constraintStart_toStartOf="@+id/sorDescription_scrollview"
-            app:layout_constraintTop_toBottomOf="@+id/sorDescription_scrollview"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/sorDescription_scrollview" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

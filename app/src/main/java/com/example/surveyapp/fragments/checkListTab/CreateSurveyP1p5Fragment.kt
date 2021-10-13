@@ -40,7 +40,7 @@ class CreateSurveyP1p5Fragment : Fragment() {
               loadCheckBoxState()
 
               loadCommentsToGui()
-              binding.systemBoilerSpinner.setSelection(SurveyActivity.checkListVM!!.getHeatTypeIndex())
+           //   binding.systemBoilerSpinner.setSelection(SurveyActivity.checkListVM!!.getHeatTypeIndex())
         })
 
         binding.decorComments.addTextChangedListener{
@@ -61,7 +61,7 @@ class CreateSurveyP1p5Fragment : Fragment() {
 
 
 
-        heatypeChange(binding.systemBoilerSpinner)
+      //  heatypeChange(binding.systemBoilerSpinner)
         // simplifying the checkBox click
         registerCheckBoxClick(constant.FIRE_DOOR_BOX_ID, binding.fdChkbx)
         registerCheckBoxClick(constant.ISOLATOR_BOX_ID, binding.isolatorChkBx)

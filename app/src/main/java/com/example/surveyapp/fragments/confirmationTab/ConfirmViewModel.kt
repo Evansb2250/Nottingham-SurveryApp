@@ -38,7 +38,7 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
 
     private lateinit var dataFromSor: List<SurveySORs>
     private lateinit var dataFromPrev: List<SurveySORs>
-    private lateinit var dataFromChecklist: List<SurveySORs>
+
 
     lateinit var address: String
     lateinit var name: String
@@ -85,7 +85,6 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
             dataFromSor = SurveyActivity.sorViewModel?.returnListSORLIST()!!
             dataFromPrev = SurveyActivity.prevViewModel?.returnPreviosWorkData()!!
 
-            dataFromChecklist = SurveyActivity.checkListVM?.getHeatingType()!!
 
             //    return combineData()
             _sorListData = combineData() as MutableList<SurveySORs>
@@ -114,11 +113,6 @@ class ConfirmViewModel(private val repository: DatabaseRepository) : ViewModel()
             }
         }
 
-        if (dataFromChecklist != null) {
-            for (data in dataFromChecklist) {
-                tempList.add(data)
-            }
-        }
 
         if (dataFromSor != null) {
             for (data in dataFromSor.asReversed()) {

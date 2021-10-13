@@ -2,8 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".fragments.checkListTab.CreateSurveyP1p5Fragment">
-
+    tools:context="com.example.surveyapp.CreateSurveyP2FragmentKt">
     <data>
 
         <variable
@@ -12,362 +11,285 @@
 
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="981dp"
         android:layout_height="match_parent"
         android:background="@color/appbackgroundColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TableLayout
-            android:id="@+id/tableLayout2"
-            android:layout_width="898dp"
-            android:layout_height="357dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="180dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35000002">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/fireDoorTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="Fire Door"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <CheckBox
-                    android:id="@+id/fdChkbx"
-                    android:layout_width="296dp"
-                    android:layout_height="wrap_content"
-
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="yes" />
-
-                <TextView
-                    android:id="@+id/fdCommentTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="Comments:"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <EditText
-                    android:id="@+id/fireDoorTextField"
-                    android:layout_width="254dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginRight="40dp"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="textPersonName" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/decorPoints"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="@string/DecorationPoints"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <EditText
-                    android:id="@+id/decorComments"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="textPersonName" />
-
-                <TextView
-                    android:id="@+id/decorPoints2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="@string/Location_TAPS"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <EditText
-                    android:id="@+id/TAPScomment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="textPersonName" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/decorPoints3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="@string/FloorLevel"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <EditText
-                    android:id="@+id/floorComment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="textPersonName" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="@string/Isolator_txt"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <CheckBox
-                    android:id="@+id/isolatorChkBx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="yes" />
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="125dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="@string/Rewire_txt"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <CheckBox
-                    android:id="@+id/rwChkBx"
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="yes" />
-            </TableRow>
-
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="@string/meterTxt"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <CheckBox
-                    android:id="@+id/mIChkBx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="yes" />
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="@string/HeatingTxt"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <CheckBox
-                    android:id="@+id/heatingChkBx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="yes" />
-            </TableRow>
-
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="@string/FastTrackingTxt"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <CheckBox
-                    android:id="@+id/ftChkBx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="yes" />
-
-                <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="@string/glassText"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <CheckBox
-                    android:id="@+id/glassChkBx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="yes" />
-            </TableRow>
-
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </TableRow>
-
-
-            <TableRow
-                android:layout_width="845dp"
-                android:layout_height="28dp">
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="@string/altroTxt"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <CheckBox
-                    android:id="@+id/atroChkBx"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/bsc_fonts"
-                    android:text="yes" />
-
-            </TableRow>
-
-
-        </TableLayout>
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="400dp"
-            android:layout_marginLeft="400dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="500dp"
-            android:layout_marginRight="500dp"
-            android:layout_marginBottom="40dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Checklist"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="@+id/isolatorChkBx"
+            app:layout_constraintHorizontal_bias="0.528"
+            app:layout_constraintStart_toStartOf="@+id/fireDoorTxt"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fireDoorTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="Fire Door"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.7" />
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-        <TableLayout
-            android:layout_width="265dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="14dp"
-            app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12">
+        <CheckBox
+            android:id="@+id/fdChkbx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:fontFamily="@font/bsc_fonts"
+            android:text="yes"
+            app:layout_constraintBaseline_toBaselineOf="@+id/fireDoorTxt"
+            app:layout_constraintStart_toStartOf="@+id/fireDoorTextField" />
 
-                <TextView
-                    android:id="@+id/heatTxt"
-                    android:layout_width="167dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:paddingStart="15dp"
-                    android:paddingLeft="15dp"
-                    android:text="@string/HEATING"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-            </TableRow>
+        <EditText
+            android:id="@+id/fireDoorTextField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBaseline_toBaselineOf="@+id/fdCommentTxt"
+            app:layout_constraintStart_toStartOf="@+id/decorComments" />
 
-            <TableRow
-                android:layout_width="149dp"
-                android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/fdCommentTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="Comments:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/decorPoints"
+            app:layout_constraintStart_toStartOf="@+id/fireDoorTxt"
+            app:layout_constraintTop_toBottomOf="@+id/fireDoorTxt" />
 
-                <Spinner
-                    android:id="@+id/systemBoilerSpinner"
-                    android:layout_width="143dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/heating_selection"
-                    android:gravity="center"
-                    android:paddingLeft="20dp"
-                    android:spinnerMode="dropdown"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.03"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.112" />
-            </TableRow>
+        <TextView
+            android:id="@+id/decorPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/DecorationPoints"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/decorPoints2"
+            app:layout_constraintStart_toStartOf="@+id/fdCommentTxt"
+            app:layout_constraintTop_toBottomOf="@+id/fdCommentTxt" />
 
-        </TableLayout>
+        <EditText
+            android:id="@+id/decorComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBaseline_toBaselineOf="@+id/decorPoints"
+            app:layout_constraintStart_toStartOf="@+id/TAPScomment" />
+
+        <TextView
+            android:id="@+id/decorPoints2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/Location_TAPS"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/decorPoints3"
+            app:layout_constraintStart_toStartOf="@+id/decorPoints"
+            app:layout_constraintTop_toBottomOf="@+id/decorPoints" />
+
+        <EditText
+            android:id="@+id/TAPScomment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBaseline_toBaselineOf="@+id/decorPoints2"
+            app:layout_constraintStart_toStartOf="@+id/floorComment" />
 
 
+        <TextView
+            android:id="@+id/decorPoints3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/FloorLevel"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/decorPoints2"
+            app:layout_constraintTop_toBottomOf="@+id/decorPoints2" />
+
+        <EditText
+            android:id="@+id/floorComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="96dp"
+            android:layout_marginLeft="96dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            app:layout_constraintBaseline_toBaselineOf="@+id/decorPoints3"
+            app:layout_constraintStart_toEndOf="@+id/decorPoints3" />
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/Isolator_txt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/textView17"
+            app:layout_constraintEnd_toStartOf="@+id/isolatorChkBx"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toEndOf="@+id/textView12"
+            app:layout_constraintTop_toTopOf="@+id/fireDoorTxt" />
+
+        <CheckBox
+            android:id="@+id/isolatorChkBx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="yes"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="@+id/mIChkBx" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/Rewire_txt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/textView18"
+            app:layout_constraintStart_toStartOf="@+id/textView19"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/meterTxt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/textView19"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <CheckBox
+            android:id="@+id/mIChkBx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="yes"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView17"
+            app:layout_constraintStart_toStartOf="@+id/ftChkBx" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/HeatingTxt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/textView20"
+            app:layout_constraintStart_toStartOf="@+id/textView16"
+            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/FastTrackingTxt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/textView16"
+            app:layout_constraintStart_toStartOf="@+id/textView17"
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+
+        <CheckBox
+            android:id="@+id/ftChkBx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="yes"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView19"
+            app:layout_constraintStart_toStartOf="@+id/rwChkBx" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/glassText"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toTopOf="@+id/textView21"
+            app:layout_constraintStart_toStartOf="@+id/textView18"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+        <CheckBox
+            android:id="@+id/glassChkBx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="yes"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView20"
+            app:layout_constraintStart_toStartOf="@+id/atroChkBx" />
+
+        <CheckBox
+            android:id="@+id/rwChkBx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="yes"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView16"
+            app:layout_constraintStart_toStartOf="@+id/heatingChkBx" />
+
+        <CheckBox
+            android:id="@+id/heatingChkBx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="yes"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView18"
+            app:layout_constraintStart_toStartOf="@+id/glassChkBx" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="90dp"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/altroTxt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView20"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+        <CheckBox
+            android:id="@+id/atroChkBx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="176dp"
+            android:layout_marginRight="176dp"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="yes"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView21"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>

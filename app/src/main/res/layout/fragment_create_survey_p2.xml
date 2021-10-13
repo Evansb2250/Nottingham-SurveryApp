@@ -13,20 +13,19 @@
 
         <ScrollView
             android:id="@+id/scrollView3"
-            android:layout_width="893dp"
-            android:layout_height="304dp"
+            android:layout_width="881dp"
+            android:layout_height="466dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="52dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.19999999">
-
+            app:layout_constraintTop_toBottomOf="@+id/textView13">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -753,7 +752,8 @@
                     app:layout_constraintBaseline_toBaselineOf="@+id/rechargeQ15"
                     app:layout_constraintEnd_toStartOf="@+id/comment15"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/rechargeQ15" />
+                    app:layout_constraintStart_toEndOf="@+id/rechargeQ15"
+                    tools:text="1" />
 
                 <EditText
                     android:id="@+id/comment15"
@@ -869,27 +869,20 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
         </ScrollView>
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="403dp"
-            android:layout_marginLeft="403dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="462dp"
-            android:layout_marginRight="462dp"
-            android:layout_marginBottom="23dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Questions 1-17"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toEndOf="@+id/scrollView3"
+            app:layout_constraintHorizontal_bias="0.536"
+            app:layout_constraintStart_toStartOf="@+id/scrollView3"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,85 +11,23 @@
         android:layout_height="match_parent"
         android:background="@color/appbackgroundColor">
 
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="401dp"
-            android:layout_height="59dp"
-            android:layout_marginStart="310dp"
-            android:layout_marginLeft="310dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="275dp"
-            android:layout_marginRight="275dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.02"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-                <TextView
-                    android:id="@+id/surveytypeTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/abril_fatface"
-                    android:gravity="center"
-                    android:paddingStart="30dp"
-                    android:paddingLeft="30dp"
-                    android:paddingEnd="100dp"
-                    android:paddingRight="100dp"
-                    android:text="@string/SurveyTypeTxt"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="69dp">
-
-
-                <RadioGroup
-                    android:id="@+id/radioGroup"
-                    android:layout_width="301dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingLeft="15dp">
-
-
-                    <RadioButton
-                        android:id="@+id/revenueRB"
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginRight="10dp"
-                        android:fontFamily="@font/bsc_fonts"
-                        android:text="@string/RevenuType" />
-
-                    <RadioButton
-                        android:id="@+id/capitalRB"
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-
-                        android:layout_weight="1"
-                        android:fontFamily="@font/bsc_fonts"
-                        android:text="@string/CapitalType" />
-
-                </RadioGroup>
-
-            </TableRow>
-
-
-        </TableLayout>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/abril_fatface"
+            android:text="@string/SurveyTypeTxt"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toStartOf="@+id/textView11"
+            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="159dp"
             android:layout_marginRight="159dp"
             android:fontFamily="@font/abril_fatface"
@@ -97,203 +35,181 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toBottomOf="@+id/textView14"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView14" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintTop_toTopOf="@+id/textView14"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="420dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
             android:fontFamily="@font/abril_fatface"
             android:text="Survey information"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25" />
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:layout_marginBottom="160dp"
+        <TextView
+            android:id="@+id/surveyorTxt"
+            style=' android:fontFamily="@font/bsc_fonts"'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/Surveyor_name_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toStartOf="@+id/nameEdit"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <EditText
+            android:id="@+id/nameEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:ems="10"
+            android:hint="@string/name_hint_label"
+            android:inputType="textPersonName"
+            android:text="@string/no_text_lebel"
+            app:layout_constraintBaseline_toBaselineOf="@+id/surveyorTxt"
+            app:layout_constraintStart_toStartOf="@+id/addressEdit" />
+
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/phoneNumEdit"
+            app:layout_constraintEnd_toEndOf="@+id/textView11"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11"
+            app:layout_constraintVertical_bias="0.238" />
+
+        <TextView
+            android:id="@+id/addressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/Address_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toStartOf="@+id/surveyorTxt"
+            app:layout_constraintTop_toBottomOf="@+id/surveyorTxt" />
+
+        <EditText
+            android:id="@+id/addressEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:ems="10"
+            android:hint="@string/address_hint_label"
+            android:inputType="textPersonName"
+            android:text="@string/no_text_lebel"
+            app:layout_constraintBaseline_toBaselineOf="@+id/addressText"
+            app:layout_constraintStart_toStartOf="@+id/postEdit" />
+
+        <TextView
+            android:id="@+id/postTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/post_code_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBaseline_toBaselineOf="@+id/postEdit"
+            app:layout_constraintStart_toStartOf="@+id/addressText" />
+
+        <EditText
+            android:id="@+id/postEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:ems="10"
+            android:hint="@string/post_code_hint"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/phoneNumEdit"
+            app:layout_constraintTop_toBottomOf="@+id/addressEdit" />
+
+        <TextView
+            android:id="@+id/phoneNumTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/phone_number_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBaseline_toBaselineOf="@+id/phoneNumEdit"
+            app:layout_constraintStart_toStartOf="@+id/postTxt" />
+
+        <EditText
+            android:id="@+id/phoneNumEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:hint="@string/phone_number_hint"
+            android:inputType="phone"
+            app:layout_constraintStart_toStartOf="@+id/dateEdit"
+            app:layout_constraintTop_toBottomOf="@+id/postEdit" />
+
+        <TextView
+            android:id="@+id/dateTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/bsc_fonts"
+            android:text="@string/date_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toStartOf="@+id/phoneNumTxt"
+            app:layout_constraintTop_toBottomOf="@+id/phoneNumTxt" />
+
+        <EditText
+            android:id="@+id/dateEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="@string/dd_mm_yyyy_label"
+            android:inputType="text"
+            app:layout_constraintBaseline_toBaselineOf="@+id/dateTxt"
+            app:layout_constraintEnd_toStartOf="@+id/calendarView" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-            <TableLayout
-                android:id="@+id/surveyEntryTable"
-                android:layout_width="484dp"
-                android:layout_height="290dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="16dp">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/surveyorTxt"
-                        style=' android:fontFamily="@font/bsc_fonts"'
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bsc_fonts"
-                        android:text="@string/Surveyor_name_label"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <EditText
-                        android:id="@+id/nameEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:autofillHints=""
-                        android:ems="10"
-                        android:hint="@string/name_hint_label"
-                        android:inputType="textPersonName"
-                        android:text="@string/no_text_lebel" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/addressText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bsc_fonts"
-                        android:text="@string/Address_label"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <EditText
-                        android:id="@+id/addressEdit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:autofillHints=""
-                        android:ems="10"
-                        android:hint="@string/address_hint_label"
-                        android:inputType="textPersonName"
-                        android:text="@string/no_text_lebel" />
-                </TableRow>
-<!--
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/houseNumber_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bsc_fonts"
-                        android:text="@string/houseNumberLabel"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <EditText
-                        android:id="@+id/houseNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:autofillHints=""
-                        android:ems="10"
-                        android:hint="@string/houseNumberHint"
-                        android:inputType="textPersonName"
-                        android:text="@string/no_text_lebel" />
-                </TableRow>
--->
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/postTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bsc_fonts"
-                        android:text="@string/post_code_label"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <EditText
-                        android:id="@+id/postEdit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:autofillHints=""
-                        android:ems="10"
-                        android:hint="@string/post_code_hint"
-                        android:inputType="textPersonName" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/phoneNumTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bsc_fonts"
-                        android:text="@string/phone_number_label"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <EditText
-                        android:id="@+id/phoneNumEdit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:autofillHints=""
-                        android:ems="10"
-                        android:hint="@string/phone_number_hint"
-                        android:inputType="phone" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/dateTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/bsc_fonts"
-                        android:text="@string/date_label"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <EditText
-                        android:id="@+id/dateEdit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:autofillHints=""
-                        android:ems="10"
-                        android:focusable="false"
-                        android:hint="@string/dd_mm_yyyy_label"
-                        android:inputType="text" />
-                </TableRow>
-            </TableLayout>
-
-            <CalendarView
-                android:id="@+id/calendarView"
+            <RadioButton
+                android:id="@+id/revenueRB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/bsc_fonts"
+                android:text="@string/RevenuType" />
+
+            <RadioButton
+                android:id="@+id/capitalRB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:fontFamily="@font/bsc_fonts"
+                android:text="@string/CapitalType" />
+        </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

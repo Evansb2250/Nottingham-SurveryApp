@@ -58,9 +58,6 @@ class ChecklistViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
-    fun getHeatingType(): List<SurveySORs> {
-        return heatingType!!
-    }
 
 
     fun setHeatyingType(code: Int) {
