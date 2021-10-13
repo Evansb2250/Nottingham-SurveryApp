@@ -138,6 +138,7 @@ class SOR_Fragment : Fragment() {
         binding.quantityLabel2.text = "Quantity"
         binding.textviewMinutes.visibility = View.INVISIBLE
         binding.spinnerMinute.visibility = View.INVISIBLE
+        binding.quantitySpinner.setSelection(1)
     }
 
 
