@@ -1,6 +1,7 @@
 package com.example.surveyapp.fragments.sorTab
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,8 @@ import com.example.surveyapp.activities.SurveyActivity
 import com.example.surveyapp.activities.SurveyActivity.Companion.sorViewModel
 import com.example.surveyapp.databinding.FragmentSORBinding
 import java.text.DecimalFormat
+import kotlin.math.nextDown
+import kotlin.math.roundToInt
 
 
 /**
@@ -47,7 +50,6 @@ class SOR_Fragment : Fragment() {
         binding.sorIdentifier.visibility = View.INVISIBLE
 
         setupQuantyObserver(SurveyActivity.sorViewModel)
-        setupMinuteObserver(SurveyActivity.sorViewModel)
         setUpTotalObserver(SurveyActivity.sorViewModel!!.total)
         setUpRechargeObserver(SurveyActivity.sorViewModel!!.rechargeAmount)
 
@@ -112,7 +114,9 @@ class SOR_Fragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                SurveyActivity.sorViewModel!!.minutesPerformed.value = minutes.get(position)
+
+                val hour = (0..20).toList().get(binding.quantitySpinner.selectedItemPosition).toDouble()
+                sorViewModel?.updateQuantityByHourAndMinutes(hour, minutes.get(position).toDouble())
 
             }
 
@@ -219,16 +223,10 @@ class SOR_Fragment : Fragment() {
     }
 
 
-    private fun setupMinuteObserver(sorViewModel: SurveySorViewModel?) {
-        SurveyActivity.sorViewModel!!.minutesPerformed.observe(viewLifecycleOwner, Observer {
-            SurveyActivity.sorViewModel!!.updateTotalByQuantity()
-            updateTotal()
-        })
-    }
-
 
     private fun setupQuantyObserver(sorViewModel: SurveySorViewModel?) {
         SurveyActivity.sorViewModel!!.sorCodeQuantity.observe(viewLifecycleOwner, Observer {
+
             SurveyActivity.sorViewModel!!.updateTotalByQuantity()
             updateTotal()
 
@@ -270,12 +268,23 @@ class SOR_Fragment : Fragment() {
                 .equals("hr")
         ) {
             foundHrUom()
+            val survey = SurveyActivity.sorViewModel!!.addedSor2List.get(position)
+            val wholeNumber = Math.floor(survey.quantity)
+            val ratio = (survey.quantity - wholeNumber)
+            val minutes = 60 * ratio
+            Log.i("SOR", "percentage to calculate ${survey.quantity} floored ${wholeNumber} ratio ${ratio} minutes ${minutes} ")
+            if(minutes > 0){
+                binding.spinnerMinute.setSelection(minutes.roundToInt())
+            }else
+                binding.spinnerMinute.setSelection(0)
+
+
             binding.spinnerMinute.isFocusable = false
         } else
             foundNoUOM()
 
 
-        val selectedQuantity = sorViewModel?.addedSor2List?.get(position)?.quantity
+        val selectedQuantity = Math.floor(sorViewModel?.addedSor2List?.get(position)?.quantity?:0.0) + 1
 
 
 
@@ -487,7 +496,9 @@ class SOR_Fragment : Fragment() {
                 id: Long
             ) {
 
-                binding.viewmodel!!.sorCodeQuantity.value = list.get(position)
+                val minutes = (0..59).toList().get(binding.spinnerMinute.selectedItemPosition).toDouble()
+                Log.i("SOR", " minutes ${minutes}")
+                sorViewModel?.updateQuantityByHourAndMinutes( list.get(position), minutes)
 
             }
 
@@ -565,6 +576,7 @@ class SOR_Fragment : Fragment() {
     private fun lockFields() {
         viewingaSorInView = true
         binding.roomCatSpin.isEnabled = false
+        binding.spinnerMinute.isEnabled = false
         binding.quantitySpinner.isEnabled = false
         binding.rechargeBox.isClickable = false
         binding.commentEntry.isFocusable = false
@@ -573,6 +585,7 @@ class SOR_Fragment : Fragment() {
     //TODO Fixe bug that won't let me unlock
     private fun unlockFields() {
         viewingaSorInView = false
+        binding.spinnerMinute.isEnabled = true
         binding.roomCatSpin.isEnabled = true
         binding.quantitySpinner.isEnabled = true
         binding.rechargeBox.isClickable = true

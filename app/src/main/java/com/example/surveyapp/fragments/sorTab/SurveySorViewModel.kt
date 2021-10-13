@@ -12,8 +12,7 @@ import kotlinx.coroutines.launch
 
 class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
-  var uniqueSorCodeNumber = 0
-
+    var uniqueSorCodeNumber = 0
 
 
     fun returnListSORLIST(): List<SurveySORs> {
@@ -26,12 +25,11 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     //Store the total for the Sor USED for both the SorViewModel and data in the SurveySORs data class
     val total = MutableLiveData<Double>()
-    var recentlyRemovedSorCode:String =""
+    var recentlyRemovedSorCode: String = ""
 
     //Number selected in the number wheel
     //TODO change to a text entry to add floating point numbers
     val sorCodeQuantity = MutableLiveData<Double>()
-    val minutesPerformed = MutableLiveData<Int>()
     lateinit var UOM: String
     lateinit var sorDescrip: String
     private var category = ""
@@ -45,7 +43,7 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     //Individual Sor
     private val _currentSor = MutableLiveData<SoR>()
-    val currentSor: LiveData<SoR>? get()= _currentSor
+    val currentSor: LiveData<SoR>? get() = _currentSor
 
     //
     var searchViewEntry: String = ""
@@ -62,13 +60,12 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     // a list that is used to intantiate in the ViewList constructor for the MutableLiveData
     // Used to show SORCodes that have a specific word in the description box
     var listForView = mutableListOf<String>()
-    var listForViewSize= MutableLiveData<Int>()
+    var listForViewSize = MutableLiveData<Int>()
 
 
     //indicates if the search was successful
     // TODO add more functions to interact and indicate if it is working
     var searchWasFound: Boolean
-
 
 
     //Stores and tracks the recharge amount
@@ -82,20 +79,13 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     private val _wasSorInsertedToSurvey = MutableLiveData<Boolean>()
 
 
-
-
-
     // String Description of the SOR
     val sorDescripition: LiveData<String> get() = _sorDescripition
     private val _sorDescripition = MutableLiveData<String>()
 
 
-
-
     //Value of spinner object for searching
     var searchby = MutableLiveData<String>()
-
-
 
 
     //Value
@@ -135,9 +125,10 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
      *
      * *************************/
 
-    fun setCurrentSorFromSearchResult(sor:SoR){
+    fun setCurrentSorFromSearchResult(sor: SoR) {
         _currentSor.value = sor
     }
+
     fun searchFor(userInput: String) {
         when (searchby.value.toString()) {
             constant.SORCODE -> {
@@ -146,8 +137,8 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
             }
             constant.KEYWORD -> {
                 setCurrentToNull()
-                if(userInput.length > 1)
-                searchByKeyword(userInput)
+                if (userInput.length > 1)
+                    searchByKeyword(userInput)
             }
         }
     }
@@ -169,21 +160,15 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
 
     fun updateTotalByQuantity() {
-        if(minutesPerformed.value != null){
-            total.value = _rechargeAmount.value!!.times(sorCodeQuantity.value!!.toInt()) + ( _rechargeAmount.value!!.times (minutesPerformed.value!!.toDouble().div(60.0)))
-
-            Log.i("SOR", " minutes ${total.value}")
-        }else
-        total.value = _rechargeAmount.value!!.times(sorCodeQuantity.value!!.toInt())
+        Log.i("SOR", " multiply ${sorCodeQuantity.value}")
+        total.value = _rechargeAmount.value!!.times(sorCodeQuantity.value!!)
     }
 
-    fun updateTotalByMinutes() {
-        minutesPerformed.value?.let { minutesWorked ->
-        val newValue = sorCodeQuantity.value?.plus(minutesWorked.toDouble().div(60.0))
-            sorCodeQuantity.value = newValue
-        }
-
+    fun updateQuantityByHourAndMinutes(num: Double, timeInMinutes:Double) {
+        sorCodeQuantity.value = num.plus(timeInMinutes.div(60.0))
     }
+
+
 
 
     fun alertSuccess(result: Boolean) {
@@ -193,14 +178,14 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
 
     private fun updateCurrentSoR() {
         _sorDescripition.value = currentSor?.value?.description ?: ""
-        _rechargeAmount.value = currentSor?.value?.rechargeRate?: 0.0
-        UOM = currentSor?.value?.UOM.toString()?: ""
-        sorDescrip = currentSor?.value?.description.toString()?: ""
-        total.value = currentSor?.value?.rechargeRate?: 0.0
+        _rechargeAmount.value = currentSor?.value?.rechargeRate ?: 0.0
+        UOM = currentSor?.value?.UOM.toString() ?: ""
+        sorDescrip = currentSor?.value?.description.toString() ?: ""
+        total.value = 0.0
         alertSuccess(true)
     }
 
-    fun enterHighestUniqueNumber(highestNumber:Int){
+    fun enterHighestUniqueNumber(highestNumber: Int) {
         uniqueSorCodeNumber = highestNumber + 1
     }
 
@@ -213,19 +198,29 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         quantity: Double?,
         total: Double?
     ) {
-        val passedNullTest = checkForNullVariables(sorCode, surveyId, comments, recharge, quantity, total)
-       // val passedDuplicateSorTest = runCheck4Duplicates(sorCode?.toLowerCase()?.trim())
-      //  val passedNotallowedTest = passedUniqueSoRTest(sorCode?.toUpperCase()?.trim())
-
+        val passedNullTest =
+            checkForNullVariables(sorCode, surveyId, comments, recharge, quantity, total)
+        // val passedDuplicateSorTest = runCheck4Duplicates(sorCode?.toLowerCase()?.trim())
+        //  val passedNotallowedTest = passedUniqueSoRTest(sorCode?.toUpperCase()?.trim())
 
 
         if (passedNullTest) {
 
-            if ( true) { // val surveysor = SurveySORs(sorCode!!, surveyId!!, comments!!, recharge!!, quantity!!, total!!)
+            if (true) { // val surveysor = SurveySORs(sorCode!!, surveyId!!, comments!!, recharge!!, quantity!!, total!!)
+                Log.i("SOR", "Quantity ${quantity}")
+
                 addedSor2List.add(
                     SurveySORs(
-                        uniqueSorCodeNumber ,surveyId, sorCode!!, UOM, sorDescrip, comments,
-                        recharge, quantity!!.toDouble(), _rechargeAmount.value!!, category      //TODO change this so it reflects the current rate for the sorCode
+                        uniqueSorCodeNumber,
+                        surveyId,
+                        sorCode!!,
+                        UOM,
+                        sorDescrip,
+                        comments,
+                        recharge,
+                        quantity!!.toDouble(),
+                        _rechargeAmount.value!!,
+                        category      //TODO change this so it reflects the current rate for the sorCode
                     )
                 )
                 uniqueSorCodeNumber += 1
@@ -242,17 +237,16 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
-
 //
 //    fun passedUniqueSoRTest(sorCode: String?): Boolean{
 //        return !constant.NOTALLOWEDTOENTER.contains(sorCode)
 //    }
 
-    fun loadPreviousSorList(list: List<SurveySORs>){
+    fun loadPreviousSorList(list: List<SurveySORs>) {
 
-        if(list != null) {
+        if (list != null) {
             addedSor2List = list.toMutableList()
-          //  Log.i("SEARCH","Result in survey sor" + addedSor2List.toString())
+            //  Log.i("SEARCH","Result in survey sor" + addedSor2List.toString())
             updateListofAddedSorUI(addedSor2List)
             _wasSorInsertedToSurvey.value = true
         }
@@ -287,7 +281,6 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
-
     /******
      *
      *  Function calls using the Repository to interact with the Database
@@ -307,10 +300,6 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
-
-
-
-
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     fun getSorList(keyword: String) = viewModelScope.launch {
@@ -327,31 +316,24 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
     }
 
 
-
     fun removeSorFromList() {
 
-        if(addedSor2List != null){
-        if (addedSor2List.size >= 0 && sorcodeToDeleteIndex != null) {
-            recentlyRemovedSorCode =  addedSor2List.get(sorcodeToDeleteIndex!!).sorCode
-            addedSor2List.removeAt(sorcodeToDeleteIndex!!)
-            sorcodeToDeleteIndex = null
+        if (addedSor2List != null) {
+            if (addedSor2List.size >= 0 && sorcodeToDeleteIndex != null) {
+                recentlyRemovedSorCode = addedSor2List.get(sorcodeToDeleteIndex!!).sorCode
+                addedSor2List.removeAt(sorcodeToDeleteIndex!!)
+                sorcodeToDeleteIndex = null
 
-        }
-        updateListofAddedSorUI(addedSor2List)
+            }
+            updateListofAddedSorUI(addedSor2List)
         }
     }
 
 
-
-   fun removeAllSorFromList(){
-       addedSor2List.clear()
+    fun removeAllSorFromList() {
+        addedSor2List.clear()
         updateListofAddedSorUI(addedSor2List)
     }
-
-
-
-
-
 
 
     @Suppress("RedundantSuspendModifier")
@@ -360,8 +342,9 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         viewModelScope.launch {
             var list = mutableListOf<String>()
             var count = 1
-            for (surveySor in addedSorList) { list.add("${count} - ${surveySor.sorCode} ${surveySor.sorDescription}")
-               count = count.plus(1)
+            for (surveySor in addedSorList) {
+                list.add("${count} - ${surveySor.sorCode} ${surveySor.sorDescription}")
+                count = count.plus(1)
             }
             addedSors = list
             println("Adding ${addedSors}")
@@ -373,8 +356,6 @@ class SurveySorViewModel(private val repository: DatabaseRepository) : ViewModel
         category = cat
 
     }
-
-
 
 
 }
